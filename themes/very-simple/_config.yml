@@ -1,0 +1,22 @@
+# Header
+menu:
+  ## If your site is put in a subdirectory, set Home as '/child/'
+  Home: /
+  Archives: archives
+  About: about
+
+social:
+  email: jiaming0708[at]gmail.com
+  twitter: Secret_GoGo
+  weibo:
+  github: jiaming0708
+  googleplus:
+  rss: /atom.xml
+
+# Content
+fancybox: true # set to true if you want to use it
+
+duoshuo: #duoshuo_shortname
+disqus: disqus_QyWgpCMJha #disqus _shortname
+google_analytics: #Google Analytics Tracking Code
+google_adsense_page_level_ads: #Google Adsense Page Level Ads Code
