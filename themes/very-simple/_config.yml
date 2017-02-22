@@ -6,17 +6,17 @@ menu:
   About: about
 
 social:
-  email: jiaming0708[at]gmail.com
+  email: jiaming0708@gmail.com
   twitter: Secret_GoGo
   weibo:
   github: jiaming0708
   googleplus:
-  rss: /atom.xml
+  rss: 
 
 # Content
 fancybox: true # set to true if you want to use it
 
 duoshuo: #duoshuo_shortname
-disqus: disqus_QyWgpCMJha #disqus _shortname
+disqus: secretgogo #disqus _shortname
 google_analytics: #Google Analytics Tracking Code
 google_adsense_page_level_ads: #Google Adsense Page Level Ads Code
