@@ -1,6 +1,6 @@
 ---
 title: 第一個directive
-date: 2014-02-25 19:32:03
+date: 2014-11-25 19:32:03
 categories:
 - Front-end
 - AngularJS
