@@ -1,7 +1,12 @@
 ---
 title: WebAPI使用
 date: 2015-01-08 17:35:46
+categories:
+- Back-end
+- C#
 tags:
+- MVC
+- C#
 ---
 
 以前在寫API時，都寫在Controller，而不是ApiController
