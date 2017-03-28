@@ -87,15 +87,15 @@ export class HighlightDirective {
 ```
 
 > 補充說明:
-> beta版本時(遙遠的古代...)，是在directive那邊的描述中加上一個host的來使用
-> ```typescript
- @Directive({
-  selector: '[highlight]',
-  host: {
-    '(mouseenter)': 'onMouseEnter()',
-  }
- })
- ```
+beta版本時(遙遠的古代...)，是在directive那邊的描述中加上一個host的來使用
+```typescript
+@Directive({
+ selector: '[highlight]',
+ host: {
+   '(mouseenter)': 'onMouseEnter()',
+ }
+})
+```
 
 ## HostBinding
 可是上面那樣寫還是不夠漂亮，還要在事件內去控制，為什麼不能用model去控制呢
@@ -125,13 +125,17 @@ export class HighlightDirective {
   }
 }
 ```
-
 哇屋～這樣的code看起來是不是更為清楚，而且好操作
+
+這個範例是變更style的屬性，那如果要變更class的話，可以用下面的方法
+使用boolean來控制class是否被引用
+``` typescript
+@HostBinding('class.draging') isDraging: boolean = false;
+```
 
 ## 加上Output
 上面的應用其實非常的簡單，但通常不會有這麼簡單的應用，那接著我們來加點料吧
 在進入時，我們需要拋出event，讓component呈現計數滑動次數吧！
-好啦...是我想不太到什麼好玩的題目＠＠
 
 ``` typescript
 import { Directive, ElementRef, Input, HostListener, HostBinding, Output, EventEmitter } from '@angular/core';
