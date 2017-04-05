@@ -133,6 +133,17 @@ export class HighlightDirective {
 @HostBinding('class.draging') isDraging: boolean = false;
 ```
 
+來點進階的內容，input和hostBinding合在一起有沒有搞頭
+答案是，絕對有搞頭
+``` typescript
+@Input('color')
+@HostBinding('style.backgroundColor')
+bgColor: string;
+```
+
+外面的element用color這個屬性來傳入顏色，放入到bgColor這個變數，然後來影響backgroundColor
+這樣可以讓變數減少，並且整合在一起，閱讀起來也很清楚
+
 ## 加上Output
 上面的應用其實非常的簡單，但通常不會有這麼簡單的應用，那接著我們來加點料吧
 在進入時，我們需要拋出event，讓component呈現計數滑動次數吧！
