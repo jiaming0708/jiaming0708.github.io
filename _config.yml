@@ -69,5 +69,5 @@ theme: very-simple
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://jiaming0708@github.com/jiaming0708/jiaming0708.github.io.git
+  repository: git@github.com:jiaming0708/blog-source.git
   branch: master
