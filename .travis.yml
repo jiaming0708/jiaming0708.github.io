@@ -6,16 +6,14 @@ before_install:
 - export TZ=Asia/Taipei
 - npm install -g hexo-cli
 before_script:
-- git config --global user.name 'jiaming0708'
+- git config --global user.name 'Jimmy'
 - git config --global user.email 'jiaming0708@gmail.com'
-- sed -i'' "s~git@github.com:jiaming0708/blog-source.git~https://${GH_TOKEN}@github.com/jiaming0708/jiaming0708.github.io.git~"
+- sed -i'' "s~https://github.com/jiaming0708/jiaming0708.github.io.git~https://${GH_TOKEN}@github.com/jiaming0708/jiaming0708.github.io.git~"
   _config.yml
 install:
 - npm install
 script:
-- hexo generate
-after_success:
-- hexo deploy
+- hexo deploy -g
 cache:
   directories:
   - node_modules   
