@@ -13,7 +13,9 @@ before_script:
 install:
 - npm install
 script:
-- hexo deploy -g
+- hexo generate
+after_success:
+- hexo deploy
 cache:
   directories:
   - node_modules   
