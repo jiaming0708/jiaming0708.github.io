@@ -6,19 +6,20 @@ before_install:
 - export TZ=Asia/Taipei
 - npm install -g hexo-cli
 before_script:
-- git init
 - git config --global push.default matching
 - git config --global user.name 'Jimmy'
 - git config --global user.email 'jiaming0708@gmail.com'
-- git add --all .
-- git commit -m "Auto Builder by travis" # commit 信息
-- git push --quiet --force https://${GH_TOKEN}@github.com/jiaming0708/jiaming0708.github.io.git master # 將生成的靜態整站部署到指定 Repo 的 master 分支。
 install:
 - npm install
 script:
 - hexo generate
-after_success:
-- hexo deploy
+- cd ./public
+- git init
+- git add --all .
+- git commit -m "Auto Builder by travis" # commit 信息
+- git push --quiet --force https://${GH_TOKEN}@github.com/jiaming0708/jiaming0708.github.io.git master # 將生成的靜態整站部署到指定 Repo 的 master 分支。
+#after_success:
+#- hexo deploy
 cache:
   directories:
   - node_modules   
