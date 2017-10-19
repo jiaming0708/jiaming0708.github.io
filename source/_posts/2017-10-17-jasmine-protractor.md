@@ -349,6 +349,8 @@ it('calculate', () => {
 - `element` 存取網頁的element
 - `by` 選擇器
 
+今天的demo程式[github連結](https://github.com/jiaming0708/testTool)
+
 # 參考
 
 * [angular test guide](https://angular.io/guide/testing)
