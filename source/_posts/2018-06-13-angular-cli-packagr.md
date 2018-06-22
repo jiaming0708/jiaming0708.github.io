@@ -80,7 +80,7 @@ export * from './src/app/first/first.module';
 {
     "scripts":{
         "start": "ng serve",
-        "packagr: "ng-packagr -p ng-package.json"
+        "packagr": "ng-packagr -p ng-package.json"
     }
 }
 ```
@@ -146,3 +146,19 @@ export class AppModule { }
 另一個套件的資料也可以參考
 
 [How to build and publish an Angular module](https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464)
+
+# 補充
+
+2018/06/20 在線上讀書會中分享，kevin也提到`angular cli 6`的版本已經包含這個功能
+
+```shell
+ng g library jimmy-demo
+```
+
+執行後，可以看到整個目錄中多了一個`projects`的目錄，可以看到是一個完整的專案，編譯的話就要特別指定
+
+```shell
+ng build jimmy-demo
+```
+
+一樣可以在`dist`中看到一個目錄`jimmy-demo`，只要切到這個目錄底下就可以做`npm publish`
