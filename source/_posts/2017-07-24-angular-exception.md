@@ -2,11 +2,11 @@
 title: Angular/AngularJS Exception Handle
 date: 2017-07-24 22:00:20
 categories:
-- angularJS
-- angular
-tags:
 - Front-end
-- angularJS
+- Angular
+tags:
+- Angular
+- AngularJS
 ---
 
 今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception

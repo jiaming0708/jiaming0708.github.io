@@ -4,8 +4,7 @@ date: 2017-08-29 20:17:54
 categories:
 - Design Pattern
 tags:
-- Observer
-- Decoractor
+- Design Pattern
 ---
 
 今天要來談談不一樣的東西，關於Design Pattern的兩三事，在程式開發中應用了這些模式在撰寫上可以更輕鬆一點，那我們先來看看其中的兩個
