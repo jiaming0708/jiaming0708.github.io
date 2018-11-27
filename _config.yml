@@ -60,10 +60,12 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+disqus_shortname: secretgogo
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: very-simple
+theme: material-flow
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
