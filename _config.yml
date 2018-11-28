@@ -5,7 +5,7 @@
 # Site
 title: Secret Note
 subtitle: 機密檔案
-description: 
+description: 記錄一些自己記不住的東西
 author: Jimmy Ho
 language: zh-TW
 timezone:
@@ -66,6 +66,55 @@ disqus_shortname: secretgogo
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: material-flow
+
+search:
+  path: search.xml
+  field: post
+
+autoprefixer:
+  exclude:
+    - '*.min.css'
+
+jsonContent:
+  meta: false
+  keywords: false
+  pages:
+    title: true
+    slug: false
+    date: false
+    updated: false
+    comments: false
+    path: false
+    link: false
+    permalink: true
+    excerpt: false
+    keywords: false
+    text: true
+    raw: false
+    content: false
+  posts:
+    title: true
+    slug: false
+    date: false
+    updated: false
+    comments: false
+    path: false
+    link: false
+    permalink: true
+    excerpt: false
+    keywords: false
+    text: true
+    raw: false
+    content: false
+    categories: false
+    tags: false
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

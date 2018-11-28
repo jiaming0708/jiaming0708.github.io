@@ -4,6 +4,8 @@
 <%} %>
 <div class='header'><%=config.author %></div>
 <div class='content'>
-<div class='desc'>Tempora mutantur, nos et mutamur in illis ...</div>
+<% if(config.description) {%>
+<div class='desc'><%=config.description %></div>
 </div>
+<%} %>
 </section>
