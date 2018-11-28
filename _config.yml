@@ -9,6 +9,8 @@ description: 記錄一些自己記不住的東西
 author: Jimmy Ho
 language: zh-TW
 timezone:
+# avatar: /images/avator.JPG
+favicon: /images/favicon.ico
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
