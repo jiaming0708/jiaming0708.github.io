@@ -12,6 +12,8 @@ tags:
 自己寫的dll產生一個這樣的文件，可以讓其他使用這個dll的人，快速了解如何使用
 當然前提是dll有產生XML的註解
 
+<!--more-->
+
 要產生像這樣的文件，需要先準備一些東西
 1. Sandcastle
 2. Sandcastle Help File Builder，這有GUI可以讓我們快速設定並產生

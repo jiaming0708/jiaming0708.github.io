@@ -10,6 +10,8 @@ tags:
 最近的案子有一個需求
 要在頁面Reload時保持ScrollBar的位置
 
+<!--more-->
+
 作法其實很簡單
 就是在ScrollBar移動時將位置記住
 每次Reload時去抓取存放的位置

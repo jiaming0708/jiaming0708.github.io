@@ -8,6 +8,8 @@ tags:
 - jQuery
 ---
 在jQuery中使用each時，要進行continue/break只要這樣做就行了
+<!--more-->
+
 ``` js
 $('tag').each(p=>{
     //continue

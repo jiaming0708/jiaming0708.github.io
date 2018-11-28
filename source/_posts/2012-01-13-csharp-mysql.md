@@ -9,6 +9,8 @@ tags:
 ---
 最近case是要和MySql連結，之前都沒有用過，特別記一下
 
+<!--more-->
+
 MySql和Oracle類似，都必須先安裝Client才能夠連線
 [MySql下載](http://dev.mysql.com/downloads/)
 

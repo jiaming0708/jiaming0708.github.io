@@ -11,6 +11,8 @@ tags:
 在網路上查詢了一下，是因為DB的一個設定導致
 可使用底下方法修改，資料儲存就正常了
 
+<!--more-->
+
 使用Regedit找到
 > `HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_ORADB11G_HOME1\NLS_LANG`
 原始值為TRADITIONAL CHINESE_TAIWAN.ZHT16MSWIN950

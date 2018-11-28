@@ -11,6 +11,8 @@ tags:
 但完全沒有經驗，只好邊寫邊摸囉
 分享一下下自己的一點點經驗囉
 
+<!--more-->
+
 ## element
 在native中，不能使用html中的element
 而是要改使用Text、View、Image這些...

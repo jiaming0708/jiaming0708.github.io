@@ -12,6 +12,8 @@ tags:
 
 因為測試的需要，protrator-recorder是在local環境中架設走的是http，但公司的測試環境是在https底下，因此會導致無法將protrator-recorder掛載到測試環境中進行錄製，就開始找方法去解決
 
+<!--more-->
+
 錯誤訊息是mixed content，讓我一開始找的方向就是把工具架成https，錄製工具總共要起兩個網站，第一個是webdriver，第二個是recorder本身
 
 第一個想法就是針對recorder本身改成https，原生程式是用node的express+http，只要改成https即可，但是問題來了，webdriver這個工具該怎麼架成https，這部份我沒找到資料(如果有人知道麻煩告訴我)，在經過幾番詢問後，kevin給了一個新的方向 `reverse proxy` 

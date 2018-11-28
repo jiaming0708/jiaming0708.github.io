@@ -11,6 +11,8 @@ tags:
 
 最近看到 Kevin 的一篇[文章](https://www.facebook.com/CKNotepad/posts/542075559526993)，說到有用到alias就必須在wallaby另外設定，想說很久沒有弄前陣子上線的專案，開啟來設定看看，沒想到設定後完全沒有用
 
+<!--more-->
+
 後來檢查發現到，竟然是因為當初為了要拿到`package.json`的version而在`environment`加上require直接取值，像下面這樣
 
 ```typescript

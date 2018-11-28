@@ -10,6 +10,8 @@ tags:
 當要調教效能時，會採用寫log的方式
 但是寫log是一定要commit，但commit下去一定會影響到外面在做的事情
 
+<!--more-->
+
 這時候怎麼辦呢，還好同事有經驗
 這種功能在Oracle中，中文叫做自治事務，英文是Autonomous Transactions
 

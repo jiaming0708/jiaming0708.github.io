@@ -11,6 +11,8 @@ Telerik是第三方的元件，加強了前台和後台的一些功能
 並且都經過美化，讓開發者可以簡單使用又不失美觀
 [telerik官網](http://www.telerik.com/)
 
+<!--more-->
+
 我們最常使用的是RadGrid（其實就是GridView的功能）
 會用到的Column有GridButtonColumn、GridTemplateColumn、GridBoundColumna等
 

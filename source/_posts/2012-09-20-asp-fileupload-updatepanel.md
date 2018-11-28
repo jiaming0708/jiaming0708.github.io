@@ -10,6 +10,8 @@ tags:
 一般使用FileUpload控制項時，只要PostBack回後台，有上傳的檔案一定取的到
 但是某天我在外面包了一個UpdatePanel
 
+<!--more-->
+
 慘案發生了
 ``` html
 <asp:updatepanel id="UpdatePanel1" runat="server">

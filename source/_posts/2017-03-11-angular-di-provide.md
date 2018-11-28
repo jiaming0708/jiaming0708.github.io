@@ -11,6 +11,8 @@ tags:
 話說最近弄了一個題目練習Angular，搭配cli使用(只有方便而已啦!!我以前是在白痴什麼orz...)
 自己想了一個需求，就是我的API Server有分prodction和development
 
+<!--more-->
+
 ## 基礎應用
 首先衍生出來的就是要設定在哪，然後怎麼用
 cli中有一個environment的資料夾，底下兩個檔案，`environment.ts、environment.prod.ts`

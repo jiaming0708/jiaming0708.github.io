@@ -8,6 +8,8 @@ tags:
 - C#
 ---
 以下為xml檔案內容
+
+<!--more-->
 ``` xml
 <?xml version="1.0" encoding="big5"?>
 <noval>

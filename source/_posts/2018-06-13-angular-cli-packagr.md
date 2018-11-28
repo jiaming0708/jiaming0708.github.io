@@ -12,6 +12,8 @@ tags:
 
 今天會示範如何使用Angular Cli來建立一個元件並且發佈到npm
 
+<!--more-->
+
 # 產生Component
 
 1. 使用cli產生一個專案

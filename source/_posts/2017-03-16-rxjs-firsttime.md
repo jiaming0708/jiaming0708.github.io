@@ -12,6 +12,8 @@ tags:
 其實也不算是初體驗啦
 因為之前就有把promise的程式改成用rx，但那時候還是非常不了解
 
+<!--more-->
+
 最近在跟人一起寫angular的workshop，飲料維護及訂購的功能
 就開始用一些之前沒用到的功能rx、form control等...
 

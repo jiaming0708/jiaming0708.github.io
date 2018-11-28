@@ -10,6 +10,8 @@ tags:
 上次發表這篇 {% post_link 2011-10-05-asp-javascript-updatepanel 在UpdatePanel裡執行JavaScript %}
 只是提到如何在UpdatePanel裡面，在後台中去執行前台的Script
 
+<!--more-->
+
 那如果是要每次PostBack後都需要執行呢
 那就必須改用這個方式
 

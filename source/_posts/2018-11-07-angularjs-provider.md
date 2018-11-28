@@ -14,6 +14,8 @@ tags:
 
 在AngularJS中提供一個很好用的機制叫做DI(Dependecy Injection 依賴注入)，這是一個design pattern，可以降低測試及宣告的程度，想要了解更完整的觀念可以參考一下[燈哥的文章](https://oomusou.io/angular/di/)，這邊就不探討。
 
+<!--more-->
+
 官方也專門寫了一篇來介紹整個的機制，但其實真的很容易搞混，所以特別寫了這篇文章來記錄。
 首先先來看看有哪些是可以被inject的
 

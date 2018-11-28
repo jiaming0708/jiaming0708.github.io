@@ -10,6 +10,8 @@ tags:
 
 當我們有一個child component想要用ViewChild的方法在parent component取得物件，但如果在上面加上ngIf的時候，取得物件的這個動作就會發現根本取不到!!!
 
+<!--more-->
+
 在app.component中，使用todo.component，並且加上ngIf作為控制是否顯示
 
 ```html

@@ -12,6 +12,8 @@ tags:
 今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception
 想要把這種資料回寫到後端，我們可以怎麼去實作他
 
+<!--more-->
+
 # Angular作法
 在Angular可以攔截在全域未handle到的exception，可以看一下[官方文件](https://angular.io/api/core/ErrorHandler)
 

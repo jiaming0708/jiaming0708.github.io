@@ -13,6 +13,8 @@ Color型別只有三種parse
 FromArgb、FromKnownColor、FromName
 後面兩種都是Color型別中已存在命名的顏色去做parse
 
+<!--more-->
+
 所以只能用第一種，但是他又只支援int32
 那這種代碼要怎麼轉換
 其實很明顯的，這種代碼是16進制

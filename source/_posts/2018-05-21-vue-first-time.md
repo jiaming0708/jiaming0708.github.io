@@ -11,6 +11,8 @@ tags:
 最近朋友要做一個公司的官網，身為前端人（自己說XD），怎麼可以用wix/wordpress那些啦一啦而已呢
 當然要玩一下沒玩過的東西，一直聽說Vue不錯用，因此就來玩玩看囉
 
+<!--more-->
+
 ## 建立專案
 
 起手式，當然要先來個[vue-cli](https://github.com/vuejs/vue-cli)

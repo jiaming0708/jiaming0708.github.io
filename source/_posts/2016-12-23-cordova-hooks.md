@@ -11,6 +11,8 @@ tags:
 最近才得知cordova可以在編譯輸出前做一些事情
 這個地方叫做hooks，可以到[官網](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/)查詢
 
+<!--more-->
+
 預計要來做幾件事情
 1.JSHint
 2.Concat files

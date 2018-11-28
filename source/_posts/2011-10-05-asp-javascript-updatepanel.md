@@ -11,6 +11,8 @@ tags:
 一般在按鈕觸發後回到後台執行完畢，要在執行某個Script
 我們會這樣寫
 
+<!--more-->
+
 ``` js
 ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "alert('hello!')");
 ```

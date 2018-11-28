@@ -10,6 +10,8 @@ tags:
 TCPClient有一個屬性Connected可以用來判斷是否還有連線
 但是每次斷線後這個屬性還是沒有改變
 
+<!--more-->
+
 MSDN中有說明
 
 > 如果最近一次的作業是將 Client 通訊端連接至遠端資源，則為 true，否則為 false。

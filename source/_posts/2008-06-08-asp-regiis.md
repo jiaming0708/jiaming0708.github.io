@@ -9,6 +9,8 @@ tags:
 ---
 指定的Web伺服器不是執行ASP.NET 1.1版。您將無法執行ASP.NET Web應用程式或服務。
 
+<!--more-->
+
 因為IIS跟.FrameWork安裝順序錯誤，導致IIS無法辨別ASP.NET 1.1，所以必須讓兩者
 認識得重新安裝ASP.NET 1.1 方法為
 

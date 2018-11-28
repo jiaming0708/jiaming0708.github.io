@@ -12,6 +12,8 @@ tags:
 之前自己在寫的時候，套用bootstrap的功能時就有應用到
 但那時候一直看不懂是什麼意思，在昨天就整個豁然開朗
 
+<!--more-->
+
 那到底什麼是ViewChild、ContentChild，底下來看看範例吧
 
 ## ViewChild

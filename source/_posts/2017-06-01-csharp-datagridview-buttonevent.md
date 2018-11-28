@@ -12,6 +12,8 @@ tags:
 習慣了web form的很多東西，其實win form並沒有像web那樣的方便，或者說他其實更加的彈性
 很多行為模式都不一樣因此要熟悉一下
 
+<!--more-->
+
 其中有個行為其實我們很常用到，那就是在Grid中放了一些元件，然後要觸發事件，像是button的click
 在DataGridView中，其實沒有那些事件可以直接使用，因此我們要繞點路
 使用CellContentClick這個事件

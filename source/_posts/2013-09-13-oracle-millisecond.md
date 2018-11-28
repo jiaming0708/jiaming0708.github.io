@@ -10,6 +10,8 @@ tags:
 記錄時間的時候，通常會用to_char(sysdate, 'yyyy/MM/dd HH24:mi:ss')
 但這樣只能顯示到秒，無法在顯示到更小的單位
 
+<!--more-->
+
 當想要看到毫秒的話，就不能使用sysdate
 要改用systimestamp，to_char(systimestamp, 'yyyy/MM/dd hh24:mi:ssxff')
 

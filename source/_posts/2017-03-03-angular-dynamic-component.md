@@ -11,6 +11,8 @@ tags:
 就開始測試，沒想到一直遇到鬼，就是過不去
 > No component factory found for CreateComponent. Did you add it to @NgModule.entryComponents?
 
+<!--more-->
+
 表示系統一直不認識這個component
 但是看來看去ngModule我都有放進去該component
 ``` typescript

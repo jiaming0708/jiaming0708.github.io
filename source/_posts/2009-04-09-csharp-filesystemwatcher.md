@@ -12,6 +12,8 @@ tags:
 詳細的介紹還是看[msdn](http://msdn.microsoft.com/zh-tw/library/system.io.filesystemwatcher.aspx)吧...
 來點小範例...
 
+<!--more-->
+
 ``` csharp
 void Main()
 {

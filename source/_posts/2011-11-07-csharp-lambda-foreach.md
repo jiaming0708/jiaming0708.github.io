@@ -9,6 +9,9 @@ tags:
 ---
 在一般情況下，使用foreach時，遇到特定條件要讓他continue/break
 會這樣去寫
+
+<!--more-->
+
 ``` csharp
 List<string> lstSql;
 foreach(var sql  in lstSql)

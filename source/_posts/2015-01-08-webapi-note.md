@@ -13,6 +13,8 @@ tags:
 這次的專案，總覺得應該要標準化改走ApiController
 沒想到遇到了不少問題
 
+<!--more-->
+
 1.預設的Route下，每個ApiController只允許一個Get/Delete/Post
 若要同一個ApiController底下支援多個，可以修改WebApiConfig
 

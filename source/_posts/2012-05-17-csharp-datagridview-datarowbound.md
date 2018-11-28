@@ -11,6 +11,8 @@ tags:
 不過是使用WinForm開發，跟工作時使用的Web不一樣
 蠻多事件都不太一樣
 
+<!--more-->
+
 其中，在Web上最好用的事件，GridView_DataRowBound
 在WinForm的DataGridView竟然沒有><
 後來東找找西找找，找到了一個類似的
