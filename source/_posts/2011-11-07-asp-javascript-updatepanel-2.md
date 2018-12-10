@@ -7,7 +7,7 @@ categories:
 tags:
 - ASP.NET
 ---
-上次發表這篇 {% post_link 2011-10-05-asp-javascript-updatepanel 在UpdatePanel裡執行JavaScript %}
+上次發表這篇 {% post_link asp-javascript-updatepanel 在UpdatePanel裡執行JavaScript %}
 只是提到如何在UpdatePanel裡面，在後台中去執行前台的Script
 
 <!--more-->

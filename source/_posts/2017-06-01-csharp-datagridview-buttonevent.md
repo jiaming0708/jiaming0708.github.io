@@ -40,4 +40,4 @@ private void DataGridView1_CellContentClick(object sender, DataGridViewCellEvent
 
 ## 相似文章
 關於DataGridView的其他操作，之前也有寫過其他篇
-{% post_link 2012-05-17-csharp-datagridview-datarowbound WinForm的DataGridView類似Web的GridView_DataRowBound事件 %}
+{% post_link csharp-datagridview-datarowbound WinForm的DataGridView類似Web的GridView_DataRowBound事件 %}

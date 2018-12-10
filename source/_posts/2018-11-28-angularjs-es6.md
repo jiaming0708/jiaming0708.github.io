@@ -8,7 +8,7 @@ tags:
 - AngularJS
 ---
 
-在前一篇{% post_link 2018-11-12-ng-admin '介紹ng-admin' %}中，有提到要使用es6來撰寫，但是angularJS預設是es5，讓我們看一下該怎麼進行整合，使用更強更好用的es6來快樂的開發angularJS
+在前一篇{% post_link ng-admin %}中，有提到要使用es6來撰寫，但是angularJS預設是es5，讓我們看一下該怎麼進行整合，使用更強更好用的es6來快樂的開發angularJS
 
 <!--more-->
 
