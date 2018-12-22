@@ -1,5 +1,5 @@
 ---
-title: [css] scale和position的糾葛
+title: scale和position的糾葛-crop(1)
 date: 2018-12-20 22:27:56
 categories:
 - Front-end
@@ -8,7 +8,7 @@ tags:
 - CSS
 ---
 
-最近剛做完一個功能是drag和scale，晚點會把全部整理起來，先來分享一個小東西
+最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西
 當我們有一個block要做scale，那這時候的position會是？
 
 <!--more-->
@@ -69,3 +69,5 @@ tags:
    ```
 
 那來總結一下這個算式，`(scale - 1) / 2 * value`這就是取得偏移量的公式！
+
+> 2018/12/22調整title和第一段描述
