@@ -1,11 +1,12 @@
 ---
-title: canvas drawimage應用-crop(2)
+title: crop系列2-canvas drawimage應用
 date: 2018-12-22 10:32:17
 categories:
 - Front-end
 - canvas
 tags:
 - canvas
+- crop
 ---
 
 這是接續前一篇{% post_link css-scale-position %}的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦

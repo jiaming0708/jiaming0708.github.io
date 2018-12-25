@@ -1,11 +1,12 @@
 ---
-title: scale和position的糾葛-crop(1)
+title: crop系列1-scale和position的糾葛
 date: 2018-12-20 22:27:56
 categories:
 - Front-end
 - CSS
 tags:
 - CSS
+- crop
 ---
 
 最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西
