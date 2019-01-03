@@ -118,6 +118,13 @@ feed:
   limit: 20
   hub:
   content:
+  
+# article read time
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
