@@ -29,7 +29,6 @@
         .post {
             padding: 1.5 * @gap @gap;
             .meta {
-                margin-bottom: @gap;
                 .title {
                     font-size: @article-title-size-sm;
                 }
@@ -58,7 +57,9 @@
         padding: @gap /2;
         .mobile-post();
         .tags {
+            margin-top: 20px;
             margin-bottom: -1.5*@gap;
+            padding-bottom: @gap/2;
         }
         @media(max-width:@on-phone) {
             padding-left: 0;
@@ -73,7 +74,6 @@
         background: white;
         &:extend(.z-depth-1);
         .meta {
-            margin-bottom: 2*@gap;
             .title {
                 left: 0;
                 font-size: @article-title-size;
