@@ -55,7 +55,6 @@ menu:
 widgets:
   - about
   - links
-  - categories
   - tagcloud
 
 # Less
