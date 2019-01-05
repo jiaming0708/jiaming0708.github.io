@@ -9,9 +9,11 @@
       <div class='l_main'>
         <%- body %>
       </div>
-      <aside class='l_side'>
-        <%- partial('_partial/side') %>
-      </aside>
+      <% if (!is_post()) { %>
+        <aside class='l_side'>
+          <%- partial('_partial/side') %>
+        </aside>
+      <% } %>
       <script>setLoadingBarProgress(60);</script>
     </div>
   </div>
