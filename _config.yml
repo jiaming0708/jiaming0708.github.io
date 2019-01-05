@@ -8,7 +8,7 @@ subtitle: 機密檔案
 description: 記錄一些自己記不住的東西
 author: Jimmy Ho
 language: zh-TW
-timezone:
+timezone: Asia/Taipei
 # avatar: /images/avator.JPG
 favicon: /images/favicon.ico
 
@@ -73,6 +73,9 @@ theme: material-flow
 search:
   path: search.xml
   field: post
+
+sitemap:
+  path: sitemap.xml
 
 autoprefixer:
   exclude:
