@@ -1,0 +1,8 @@
+<% if (config.disqus_shortname) { %>
+<div class="m_widget comments">
+  <div class="header">comments</div>
+  <div class="content">
+    <script type="text/javascript" src="https://<%- config.disqus_shortname %>.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200&hide_mods=0"></script>
+  </div>
+</div>
+<% } %>
