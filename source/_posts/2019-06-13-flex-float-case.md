@@ -251,6 +251,30 @@ html不變，只是調整一下css的寫法，加上wrap讓第三欄自動的換
 
 這邊就都把float拉掉就行，因為block預設就是一個row的行為
 
+## 小技巧
+
+我有一個算是潔癖？或是怪癖？希望不要出現多餘的html，像是`clearfix`的element，但是float一旦沒有被清除，parent的空間呈現上是有問題的，這時候有沒有比較好的作法呢？
+
+有兩個方法可以解決這問題
+
+1. pseudo element
+
+   ```css
+   .container::after{
+   	content: '';
+   	display: block;
+   	clear: left;
+   }
+   ```
+
+2. overflow，這是一個奇淫技巧，可以發現有一樣的效果
+
+   ```css
+   .container{
+   	overflow: hidden;
+   }
+   ```
+
 # 結論
 
 其實不管用哪個來實作都可以，都可以做出目的的效果，但在寫css的時候還是可以看一下應用的情境，也許剛好那個情境會比較適合，那何必要用更麻煩的方式來完成呢
