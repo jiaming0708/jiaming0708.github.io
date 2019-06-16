@@ -44,9 +44,9 @@ mobile顯示一欄
 
 ```html
 <div class="container">
-  <div class="item item1"></div>
-  <div class="item item2"></div>
-  <div class="item item3"></div>
+  <div class="item item1">1</div>
+  <div class="item item2">2</div>
+  <div class="item item3">3</div>
 </div>
 ```
 
@@ -141,10 +141,10 @@ html不變，只是調整一下css的寫法，加上wrap讓第三欄自動的換
 ```html
 <div class="container">
   <div class="column column1">
-    <div class="item item1"></div>
-    <div class="item item2"></div>
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
   </div>
-  <div class="column column2"></div>
+  <div class="column column2">3</div>
 </div>
 ```
 
@@ -185,9 +185,10 @@ html不變，只是調整一下css的寫法，加上wrap讓第三欄自動的換
 
 ```html
 <div class="container">
-  <div class="item item1"></div>
-  <div class="item item2"></div>
-  <div class="item item3"></div>
+  <div class="item item1">1</div>
+  <div class="item item2">2</div>
+  <div class="item item3">3</div>
+  <div class="clearfix"></div>
 </div>
 ```
 
