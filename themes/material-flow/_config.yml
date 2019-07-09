@@ -26,7 +26,7 @@ links:
     url: https://blog.miniasp.com/
   - name: 點燈坊
     url: http://oomusou.io/
-  - name: 全端開發人員天梯
+  - name: 全端開發人員天梯 - Mike
     url: https://wellwind.idv.tw/blog/
   - name: POY CHANG | Trial and Error
     url: https://poychang.github.io/
@@ -38,6 +38,10 @@ links:
     url: http://kyleap.blogspot.com/
   - name: CSS可樂
     url: http://csscoke.com
+  - name: 維持熱情不滅 - Alan Liu
+    url: http://www.alanliu.net/
+  - name: Alan Tsai 的學習筆記
+    url: https://blog.alantsai.net/
 
 # navigation menu
 menu:
