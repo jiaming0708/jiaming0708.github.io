@@ -1,5 +1,5 @@
 ---
-title: Telerik RadGrid的GridButtonColumn修改ConfirmText
+title: '[ASP.NET] Telerik RadGrid的GridButtonColumn修改ConfirmText'
 date: 2011-09-29 09:53
 categories:
 - Back-end

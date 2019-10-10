@@ -1,5 +1,5 @@
 ---
-title: 單一化執行
+title: '[C#] 單一化執行'
 date: 2008-12-26 11:33:06
 categories:
 - Back-end

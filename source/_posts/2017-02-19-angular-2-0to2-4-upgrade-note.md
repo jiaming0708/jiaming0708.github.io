@@ -1,5 +1,5 @@
 ---
-title: 2.0.0RC5升級2.4.0的注意事項
+title: '[Angular] 2.0.0RC5升級2.4.0的注意事項'
 date: 2017-02-19 19:25:08
 categories:
 - Front-end

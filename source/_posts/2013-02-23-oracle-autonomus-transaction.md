@@ -1,5 +1,5 @@
 ---
-title: 獨立交易，不影響外層的交易行為
+title: '[oracle] 獨立交易，不影響外層的交易行為'
 date: 2013-02-23 22:57:33
 categories:
 - Back-end

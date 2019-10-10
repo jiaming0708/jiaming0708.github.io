@@ -1,5 +1,5 @@
 ---
-title: hooks功能-檢查、壓縮、合併
+title: '[Cordova] hooks功能-檢查、壓縮、合併'
 date: 2016-12-23 10:51:17
 categories:
 - APP

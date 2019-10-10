@@ -1,5 +1,5 @@
 ---
-title: crop系列1-scale和position的糾葛
+title: '[crop系列] 1 scale和position的糾葛'
 date: 2018-12-20 22:27:56
 categories:
 - Front-end
@@ -21,7 +21,6 @@ tags:
 先來看看一開始還沒做scale前，我們的外框距離top是50px並且水平置中，裡面的話是距離外框top是31px，left是21px
 
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/scale-position?embed=1&file=src/app/app.component.ts&view=preview"></iframe>
-
 根據這樣的條件，我們可以先來想像一下，當內框用`transform`放大的時候，我們要拿到的offset、client各會是多少？
 
 > 可以再editor中改`app.component.scss`的`.scale`，已經有先放了一個`transform: scale(1)`在裡面

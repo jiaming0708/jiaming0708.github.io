@@ -1,5 +1,5 @@
 ---
-title: 動態載入Component
+title: '[Angular] 動態載入Component'
 categories:
 - Front-end
 - Angular

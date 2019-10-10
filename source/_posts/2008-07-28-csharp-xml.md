@@ -1,5 +1,5 @@
 ---
-title: 讀取xml檔
+title: '[C#] 讀取xml檔'
 date: 2008-07-28 11:08:09
 categories:
 - Back-end

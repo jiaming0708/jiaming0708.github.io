@@ -1,5 +1,5 @@
 ---
-title: camera照片大小設定
+title: '[Cordova] camera照片大小設定'
 date: 2016-11-29 17:07:11
 categories:
 - APP

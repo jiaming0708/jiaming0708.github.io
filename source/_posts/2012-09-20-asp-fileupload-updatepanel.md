@@ -1,5 +1,5 @@
 ---
-title: 在UpdatePanel裡使用FileUpload控制項
+title: '[ASP.NET] 在UpdatePanel裡使用FileUpload控制項'
 date: 2012-09-20 21:00:12
 categories:
 - Back-end

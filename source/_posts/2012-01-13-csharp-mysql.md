@@ -1,5 +1,5 @@
 ---
-title: 連結MySql
+title: '[C#] 連結MySql'
 date: 2012-01-13 10:12:16
 categories:
 - Back-end

@@ -1,5 +1,5 @@
 ---
-title: Window 7如何讀取Window NT4.0的分享資料夾
+title: '[windows] Window 7如何讀取Window NT4.0的分享資料夾'
 date: 2012-11-13 09:22:18
 categories:
 - Windows

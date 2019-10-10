@@ -1,5 +1,5 @@
 ---
-title: ViewChild及ContentChild介紹
+title: '[Angular] ViewChild及ContentChild介紹'
 date: 2017-02-23 22:10:58
 categories:
 - Front-end

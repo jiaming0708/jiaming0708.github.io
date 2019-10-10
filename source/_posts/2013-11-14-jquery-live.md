@@ -1,5 +1,5 @@
 ---
-title: live改用on寫法
+title: '[jQuery] live改用on寫法'
 date: 2013-11-14 19:47:55
 categories:
 - Front-end

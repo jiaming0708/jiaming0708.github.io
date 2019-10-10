@@ -1,5 +1,5 @@
 ---
-title: 跳出類似loading的頁面
+title: '[ASP.NET] 跳出類似loading的頁面'
 date: 2008-09-12 22:46:36
 categories:
 - Back-end

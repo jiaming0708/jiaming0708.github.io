@@ -1,5 +1,5 @@
 ---
-title: Oracle 11G沒有資料的Schema無法匯出
+title: '[oracle] 11G沒有資料的Schema無法匯出'
 date: 2011-08-05 08:23:44
 categories:
 - Back-end

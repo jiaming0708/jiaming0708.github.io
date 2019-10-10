@@ -1,5 +1,5 @@
 ---
-title: Angular自訂Validator-password format、repeat
+title: '[Angular] 自訂Validator-password format、repeat'
 date: 2018-02-17 23:08:09
 categories:
 - Front-end

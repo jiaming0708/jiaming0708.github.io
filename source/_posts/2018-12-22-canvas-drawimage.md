@@ -1,5 +1,5 @@
 ---
-title: crop系列2-canvas drawimage應用
+title: '[crop系列] 2 canvas drawimage應用'
 date: 2018-12-22 10:32:17
 categories:
 - Front-end
@@ -39,7 +39,6 @@ ctx.drawImage(img, 0, 0);
 你可以發現到一件事情，圖被切割了！！畫出來的大小竟然不是跟image的元件所產生的是一樣大，而是根據原始檔案
 
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version1?embed=1&file=src/app/app.component.html&hideExplorer=1&view=editor"></iframe>
-
 # 指定區域截取
 
 接下來，就是要開始做截取圖片，在`drawImage`有提供override可以使用，要使用的是其中最多參數的那個，那要先知道每個參數的意義，可以參考一下[這篇](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)的說明
@@ -64,7 +63,6 @@ ctx.drawImage(img, 10, 100, 50, 50, 0, 0, 50, 50);
 ```
 
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
-
 完蛋了！取到的地方跟我們預期完全不一樣，其實這跟上面所提到的canvas是用實際大小有關係，所以這時候就要來做一點運算，讓位置是符合我們的預期
 
 原圖是`300*227`，實際是`200*151`，因此位置要跟著等比例放大，因此先將比例算出來，再拿來計算
@@ -87,7 +85,6 @@ ctx.drawImage(img, realLeft, realTop, realWidth, realHeight, 0, 0, 50, 50);
 ```
 
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
-
 耶，終於成功啦！拿到我們要的區域，那我們就可以匯出成圖片囉
 
 # 匯出圖片

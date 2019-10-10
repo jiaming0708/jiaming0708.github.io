@@ -1,5 +1,5 @@
 ---
-title: Angular HostBinding&HostListener
+title: '[Angular] HostBinding&HostListener'
 date: 2017-03-27 17:33:00
 categories:
 - Front-end

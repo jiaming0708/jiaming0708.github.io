@@ -1,5 +1,5 @@
 ---
-title: 查詢正在執行的JOB及砍掉執行中的Session
+title: '[oracle] 查詢正在執行的JOB及砍掉執行中的Session'
 date: 2013-02-23 20:38:39
 categories:
 - Back-end

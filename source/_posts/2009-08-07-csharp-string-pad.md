@@ -1,5 +1,5 @@
 ---
-title: 固定字串長度
+title: '[C#] 固定字串長度'
 date: 2009-08-07 10:18:55
 categories:
 - Back-end

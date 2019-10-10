@@ -1,5 +1,5 @@
 ---
-title: xml讀取寫入(續)
+title: '[C#] xml讀取寫入(續)'
 date: 2009-07-31 00:10:11
 categories:
 - Back-end
@@ -65,7 +65,7 @@ foreach (XmlElement elm in root)
 
 接下來是要取得名稱為"停車費"的Item...
 
-``` csharp
+​``` csharp
 XmlElement node = (XmlElement)xmlDoc.SelectSingleNode("/MoneyManage/UserClassification/Category/Item[@Name=\"停車費\"]");
 Label1.Text += "Category Name:" + node.GetAttribute("Name");
 ```

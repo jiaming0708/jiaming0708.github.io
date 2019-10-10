@@ -1,5 +1,5 @@
 ---
-title: 使用AngularCli搭配ng-packagr建立元件
+title: '[Angular] 使用AngularCli搭配ng-packagr建立元件'
 date: 2018-06-13 20:09:31
 categories:
 - Front-end
