@@ -35,7 +35,7 @@ tags:
 
 ![firefox-animation](firefox-animation.png)
 
-##截圖
+## 截圖
 
 想要把整個網頁截取的話，可以不用額外的工具，只需要在命令列中輸入 `screenshot` 選取 `capture full size` 就會開始執行截圖的行為，但需要一下下的執行時間，請耐心等候。
 
