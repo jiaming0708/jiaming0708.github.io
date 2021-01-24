@@ -1,1 +1,0 @@
-![BuildInfo](https://travis-ci.org/jiaming0708/blog-source.svg?branch=master)
