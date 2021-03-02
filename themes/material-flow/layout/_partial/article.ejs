@@ -1,3 +1,4 @@
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
 <article id="<%= post.layout %>-<%= post.slug %>"
   class="post white-box article-type-<%= post.layout %>"
   itemscope itemprop="blogPost">
@@ -7,6 +8,8 @@
     	<%= post.title %>
     </a>
   </h2>
+	<div id="fb-root"></div>
+	<div class="fb-like" data-href="<%- url_for(post.path) %>" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  <%= date(post.date, 'MMM D, YYYY') %>
 	</time>
