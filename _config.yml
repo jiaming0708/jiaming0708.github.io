@@ -94,7 +94,7 @@ include:
 exclude:
 ignore:
 
-# disqus_shortname: secretgogo
+disqus_shortname: secretgogo
 google_analytics: UA-10240063-3
 google_adsense: ca-pub-6806360411033447
 
@@ -167,12 +167,3 @@ symbols_count_time:
 deploy:
   type: git
   repository: https://github.com/jiaming0708/jiaming0708.github.io.git
-
-# Facebook comments - https://github.com/RichardJECooke/hexo-fbcomments/
-fbcomments:
-  appId: 620422978667861
-  colorscheme: light # (optional) light/dark
-  enabled: true # (optional) true/false
-  lang: zh_TW # (optional)
-  order_by: time  # (optional) time/reverse_time/social
-  numPosts: 10 # (optional) defaults to 5

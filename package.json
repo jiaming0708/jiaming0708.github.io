@@ -15,7 +15,6 @@
     "hexo": "^5.0.0",
     "hexo-autoprefixer": "^2.0.0",
     "hexo-codepen": "^0.1.1",
-    "hexo-fbcomments": "^1.0.6",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",

@@ -599,11 +599,6 @@ hexo-codepen@^0.1.1:
   resolved "https://registry.yarnpkg.com/hexo-codepen/-/hexo-codepen-0.1.1.tgz#249be13d54d35daa1eeb596f49ea1bb4919438d3"
   integrity sha1-JJvhPVTTXaoe61lvSeobtJGUONM=
 
-hexo-fbcomments@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/hexo-fbcomments/-/hexo-fbcomments-1.0.6.tgz#99bb8f63735df2a0f633a5c2a15bbc8988939356"
-  integrity sha512-6MO6KbSxjIZcuOwC6cdOoDyDB5JcXkxw3yiYWqonIh7cHxbxHGn0kW9FmuTn8PvWMh9Cu1ukuGTMRkf4pQoTvg==
-
 hexo-front-matter@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/hexo-front-matter/-/hexo-front-matter-2.0.0.tgz#03f39a9eedb16c5448dbb3bec7dff2c4e224006c"
