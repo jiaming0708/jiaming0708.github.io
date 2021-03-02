@@ -951,7 +951,6 @@ ul.h-list > li {
   position: relative;
   padding-top: 30px;
   background: white;
-  text-align: center;
 }
 @media (max-width: 820px) {
   .l_main #comments {
@@ -1630,6 +1629,11 @@ pre .javascript .function {
   width: 50%;
   float: right;
   text-align: right;
+}
+.fb-like {
+  display: block !important;
+  max-width: 100%;
+  overflow: hidden;
 }
 /* Pagination */
 #page-nav {
