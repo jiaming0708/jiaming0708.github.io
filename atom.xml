@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2021-03-22T10:08:43.955Z</updated>
+  <updated>2021-03-23T05:59:00.905Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/"/>
     <id>http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/</id>
     <published>2021-03-22T02:04:38.000Z</published>
-    <updated>2021-03-22T10:08:43.955Z</updated>
+    <updated>2021-03-23T05:59:00.905Z</updated>
     
     
     <summary type="html">&lt;p&gt;當要選擇自架的 git 伺服器，Gitea 是蠻多公司的選擇，在這個講求效率的開發時代，必須要搭配一個 CI/CD 的平台，讓我們可以更好更快的部屬，我選擇 Drone CI 作為平台，今天要來分享一下使用 docker-compose 建置在本機的步驟。&lt;/p&gt;</summary>
@@ -46,7 +46,7 @@
     <link href="http://jiaming0708.github.io/2021/03/13/nginx-location-regex-reverse-proxy/"/>
     <id>http://jiaming0708.github.io/2021/03/13/nginx-location-regex-reverse-proxy/</id>
     <published>2021-03-13T01:03:58.000Z</published>
-    <updated>2021-03-22T10:08:43.955Z</updated>
+    <updated>2021-03-23T05:59:00.905Z</updated>
     
     
     <summary type="html">&lt;p&gt;一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。&lt;/p&gt;
@@ -68,7 +68,7 @@
     <link href="http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/"/>
     <id>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</id>
     <published>2021-02-20T06:33:28.000Z</published>
-    <updated>2021-03-22T10:08:43.955Z</updated>
+    <updated>2021-03-23T05:59:00.905Z</updated>
     
     
     <summary type="html">&lt;p&gt;網站的安全性中，其中有一項是關於 TLS 的檢查，建議是v1.2版以上。那服務如果是架設在 AWS 的 ELB 上，應該要怎麼做調整呢？&lt;/p&gt;</summary>
@@ -87,7 +87,7 @@
     <link href="http://jiaming0708.github.io/2021/01/26/logrotate-nginx/"/>
     <id>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</id>
     <published>2021-01-26T02:25:27.000Z</published>
-    <updated>2021-03-22T10:08:43.955Z</updated>
+    <updated>2021-03-23T05:59:00.905Z</updated>
     
     
     <summary type="html">&lt;p&gt;前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。&lt;/p&gt;</summary>
@@ -106,7 +106,7 @@
     <link href="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/"/>
     <id>http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/</id>
     <published>2020-10-25T07:33:08.000Z</published>
-    <updated>2021-03-22T10:08:43.951Z</updated>
+    <updated>2021-03-23T05:59:00.901Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近團隊開始規範 git commit 並且導入 &lt;a href=&quot;https://www.conventionalcommits.org/en/v1.0.0/&quot;&gt;Conventional commit&lt;/a&gt;，剛開始不熟悉都會一直要去翻文件，看看到底這時候要用什麼樣的類型，為了加速類別的輸入，可以在 commit 的 template 中設定，今天就來分享一下使用這個規範並且如何有效的套用在 &lt;a href=&quot;https://www.gitkraken.com/&quot;&gt;GitKraken&lt;/a&gt; 這套工具中。&lt;/p&gt;</summary>
@@ -127,7 +127,7 @@
     <link href="http://jiaming0708.github.io/2020/09/07/create-react-app/"/>
     <id>http://jiaming0708.github.io/2020/09/07/create-react-app/</id>
     <published>2020-09-07T13:11:31.000Z</published>
-    <updated>2021-03-22T10:08:43.951Z</updated>
+    <updated>2021-03-23T05:59:00.901Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 &lt;code&gt;create-react-app (CRA)&lt;/code&gt; 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。&lt;/p&gt;</summary>
@@ -148,7 +148,7 @@
     <link href="http://jiaming0708.github.io/2020/07/19/project-setting/"/>
     <id>http://jiaming0708.github.io/2020/07/19/project-setting/</id>
     <published>2020-07-19T15:26:00.000Z</published>
-    <updated>2021-03-22T10:08:43.951Z</updated>
+    <updated>2021-03-23T05:59:00.901Z</updated>
     
     
     <summary type="html">&lt;p&gt;open source總是有些不一樣的東西可以挖，今天為了要找一些使用action的範例，反而讓我找到了一些不一樣的設定，可以幫助我們。&lt;/p&gt;</summary>
@@ -171,7 +171,7 @@
     <link href="http://jiaming0708.github.io/2020/05/21/elastic-update-refresh/"/>
     <id>http://jiaming0708.github.io/2020/05/21/elastic-update-refresh/</id>
     <published>2020-05-21T14:24:59.000Z</published>
-    <updated>2021-03-22T10:08:43.943Z</updated>
+    <updated>2021-03-23T05:59:00.893Z</updated>
     
     
     <summary type="html">&lt;p&gt;一般的關聯式資料庫下 update 以後，如果沒有下 commit 大部分情況是拿到舊的資料，但是在 elastic search 的環境下，沒有所謂的 commit，在異動資料後馬上執行 search 卻拿不到更新後的結果。&lt;/p&gt;</summary>
@@ -194,7 +194,7 @@
     <link href="http://jiaming0708.github.io/2020/05/21/github-action-and-package/"/>
     <id>http://jiaming0708.github.io/2020/05/21/github-action-and-package/</id>
     <published>2020-05-21T13:43:19.000Z</published>
-    <updated>2021-03-22T10:08:43.943Z</updated>
+    <updated>2021-03-23T05:59:00.893Z</updated>
     
     
     <summary type="html">&lt;p&gt;Continuous Integration (以下簡稱CI)，是在開發中很重要的一環，大家常用或常聽到的例如：Jenkins, Travis…等等的，我們常在使用的 Github 本身也有提供類似的服務。&lt;br&gt;今天來使用 Github 的全套服務，使用 Action 做 CI/CD 並且發佈到 Package。&lt;/p&gt;</summary>
@@ -215,7 +215,7 @@
     <link href="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/"/>
     <id>http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/</id>
     <published>2020-03-26T13:06:51.000Z</published>
-    <updated>2021-03-22T10:08:43.911Z</updated>
+    <updated>2021-03-23T05:59:00.861Z</updated>
     
     
     <summary type="html">&lt;p&gt;今天晚上聽 &lt;strong&gt;林亨力&lt;/strong&gt; 在 &lt;em&gt;GDG台中&lt;/em&gt; 分享的 &lt;strong&gt;如果你連DevTools都不會用，還敢說你是網頁設計者嗎&lt;/strong&gt;，滿滿的乾貨，所以趁新鮮趕快來記錄一下自己所不知道的部份。&lt;/p&gt;</summary>
@@ -236,7 +236,7 @@
     <link href="http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/"/>
     <id>http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/</id>
     <published>2020-03-14T08:22:46.000Z</published>
-    <updated>2021-03-22T10:08:43.903Z</updated>
+    <updated>2021-03-23T05:59:00.853Z</updated>
     
     
     <summary type="html">&lt;p&gt;如果要掛載另一個網站的內容進來時，通常會使用iframe，今天要來分享一下在ios safari的bug，並且要如何解決&lt;/p&gt;
@@ -262,7 +262,7 @@
     <link href="http://jiaming0708.github.io/2020/02/29/circle-path-animation/"/>
     <id>http://jiaming0708.github.io/2020/02/29/circle-path-animation/</id>
     <published>2020-02-29T02:58:30.000Z</published>
-    <updated>2021-03-22T10:08:43.903Z</updated>
+    <updated>2021-03-23T05:59:00.853Z</updated>
     
     
     <summary type="html">&lt;p&gt;在畫面上的一個物件的移動方式希望能夠是圓形的，除了用javascript計算的方式以外，有沒有css的方式能做到呢？今天要來一探究竟&lt;/p&gt;</summary>
@@ -283,7 +283,7 @@
     <link href="http://jiaming0708.github.io/2020/01/31/alias-path-vscode/"/>
     <id>http://jiaming0708.github.io/2020/01/31/alias-path-vscode/</id>
     <published>2020-01-31T09:00:14.000Z</published>
-    <updated>2021-03-22T10:08:43.903Z</updated>
+    <updated>2021-03-23T05:59:00.853Z</updated>
     
     
     <summary type="html">&lt;p&gt;在專案開發的時候，為了讓import的路徑短一點，通常都會用alias來處理，例如&lt;code&gt;../../../components/Button&lt;/code&gt;會用&lt;code&gt;@components/Button&lt;/code&gt;來做為取代&lt;/p&gt;
@@ -309,7 +309,7 @@
     <link href="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/"/>
     <id>http://jiaming0708.github.io/2019/10/22/iterm2-session-title/</id>
     <published>2019-10-22T13:47:48.000Z</published>
-    <updated>2021-03-22T10:08:43.895Z</updated>
+    <updated>2021-03-23T05:59:00.849Z</updated>
     
     
     <summary type="html">&lt;p&gt;一直以來都有用 &lt;code&gt;iterm2&lt;/code&gt; 作為 bash 的工具，最近不知道什麼樣的更新，讓頁籤的標題永遠都只會顯示 &lt;code&gt;zsh&lt;/code&gt; ，但工作的關係，一次都會開好幾個專案在跑，那每個都顯示 &lt;code&gt;zsh&lt;/code&gt; 說真的還真沒記得哪個頁籤是什麼…&lt;/p&gt;</summary>
@@ -330,7 +330,7 @@
     <link href="http://jiaming0708.github.io/2019/10/14/mac-catalina-notifiction/"/>
     <id>http://jiaming0708.github.io/2019/10/14/mac-catalina-notifiction/</id>
     <published>2019-10-14T07:36:11.000Z</published>
-    <updated>2021-03-22T10:08:43.887Z</updated>
+    <updated>2021-03-23T05:59:00.841Z</updated>
     
     
     <summary type="html">&lt;p&gt;上禮拜官方release了最新的作業系統，當然要跟上體驗最新的Catalina這個作業系統，但是蘋果提昇了Catalina的一些安全性管理，如果你跟我一樣討厭被notification打擾，那可以看一下我怎麼設定&lt;/p&gt;</summary>
@@ -349,7 +349,7 @@
     <link href="http://jiaming0708.github.io/2019/07/16/rxjs-operator/"/>
     <id>http://jiaming0708.github.io/2019/07/16/rxjs-operator/</id>
     <published>2019-07-16T14:23:04.000Z</published>
-    <updated>2021-03-22T10:08:43.887Z</updated>
+    <updated>2021-03-23T05:59:00.841Z</updated>
     
     
     <summary type="html">&lt;p&gt;很多人在使用rx的時候，往往遇到的瓶頸是operator的使用，因為實在太多可以使用，今天要來分享一下我曾經用過以及常用的operator是哪些&lt;/p&gt;</summary>
@@ -370,7 +370,7 @@
     <link href="http://jiaming0708.github.io/2019/07/07/ai-export-svg/"/>
     <id>http://jiaming0708.github.io/2019/07/07/ai-export-svg/</id>
     <published>2019-07-07T03:28:17.000Z</published>
-    <updated>2021-03-22T10:08:43.887Z</updated>
+    <updated>2021-03-23T05:59:00.837Z</updated>
     
     
     <summary type="html">&lt;p&gt;AI全名是Adobe Illustrator，由Adobe出的一個繪圖工具，今天為什麼會講到這個工具呢？&lt;br&gt;原因是最近公司要做re-brand的動作，designer出的icon都是用svg做匯出，但卻發生了顏色跑掉的問題，原本是&lt;strong&gt;藍色&lt;/strong&gt;變成&lt;strong&gt;黑色&lt;/strong&gt;&lt;/p&gt;</summary>
@@ -393,7 +393,7 @@
     <link href="http://jiaming0708.github.io/2019/06/13/flex-float-case/"/>
     <id>http://jiaming0708.github.io/2019/06/13/flex-float-case/</id>
     <published>2019-06-13T02:29:20.000Z</published>
-    <updated>2021-03-22T10:08:43.883Z</updated>
+    <updated>2021-03-23T05:59:00.837Z</updated>
     
     
     <summary type="html">&lt;p&gt;一直以來都很習慣用flex來解決排版上面的問題，但最近剛好遇到了一個情況，其實用float會更加方便，今天就來探討一下這個案例&lt;/p&gt;</summary>
@@ -414,7 +414,7 @@
     <link href="http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/"/>
     <id>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</id>
     <published>2019-05-25T09:20:19.000Z</published>
-    <updated>2021-03-22T10:08:43.883Z</updated>
+    <updated>2021-03-23T05:59:00.837Z</updated>
     
     
     <summary type="html">&lt;p&gt;很久沒寫angular，最近接了一個小的靜態網站，想要拿牛刀來殺雞XDDD&lt;br&gt;第一件事情當然就是更新最新的angular cli，但是更新後系統卻跟我說 &lt;code&gt;ng command not found&lt;/code&gt;&lt;/p&gt;</summary>
@@ -429,7 +429,7 @@
     <link href="http://jiaming0708.github.io/2019/04/16/flex-text-overflow/"/>
     <id>http://jiaming0708.github.io/2019/04/16/flex-text-overflow/</id>
     <published>2019-04-16T03:10:41.000Z</published>
-    <updated>2021-03-22T10:08:43.883Z</updated>
+    <updated>2021-03-23T05:59:00.833Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近做一些新的畫面，其中有一個問題很妙，在一般的情況下要呈現省略號，其實算是蠻容易的，但在flex中卻有點麻煩，今天要來探討一下這個部分&lt;/p&gt;</summary>
