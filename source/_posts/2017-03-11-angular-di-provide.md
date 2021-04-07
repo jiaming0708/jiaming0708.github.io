@@ -18,7 +18,7 @@ tags:
 cli中有一個environment的資料夾，底下兩個檔案，`environment.ts、environment.prod.ts`
 很簡單的就是在裡面增加一個屬性叫做apiServer，並且應用到service中
 
-![file path](/filePath.png)
+![file path](filePath.png)
 
 ``` typescript
 export const environment = {

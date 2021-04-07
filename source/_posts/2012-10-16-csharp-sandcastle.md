@@ -21,7 +21,7 @@ tags:
 
 以上的東西都準備好後，開啟Sandcastle Help File Builder GUI
 產生新專案後，可以看到以下的畫面
-![GUI](/GUI.jpg)
+![GUI](GUI.jpg)
 
 通常會更改下面的幾個部分
 1.FrameworkVersion:dll使用的版本，預設採用電腦中安裝的最大framework version

@@ -60,25 +60,25 @@ tags:
 
 安裝完畢後，先進行ARR的設定，將Proxy啟用
 
-![IIS_ARR](/IIS_ARR.png)
+![IIS_ARR](IIS_ARR.png)
 
-![ARR_main](/ARR_main.png)
+![ARR_main](ARR_main.png)
 
-![ARR1](/ARR1.png)
+![ARR1](ARR1.png)
 
-![ARR2](/ARR2.png)
+![ARR2](ARR2.png)
 
 接著就可以設定URL Rewrite的設定
 
-![IIS_url_rewrite](/IIS_url_rewrite.png)
+![IIS_url_rewrite](IIS_url_rewrite.png)
 
-![URL_Rewrite_main](/URL_Rewrite_main.png)
+![URL_Rewrite_main](URL_Rewrite_main.png)
 
-![URL_Rewrite_rule](/URL_Rewrite_rule.png)
+![URL_Rewrite_rule](URL_Rewrite_rule.png)
 
-![URLrewrite1](/URLrewrite1.png)
+![URLrewrite1](URLrewrite1.png)
 
-![URLrewrite2](/URLrewrite2.png)
+![URLrewrite2](URLrewrite2.png)
 
 > 這邊要注意一下，重寫URL後面帶的參數，如果錯誤就無法正確導入
 > 可以使用測試模式，確認一下內容
