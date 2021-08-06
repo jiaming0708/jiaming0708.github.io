@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>[Design Pattern] facade(外觀) 和 interpreter(直繹器) 以及 mediator(協調者)</title>
+      <link href="2021/08/06/design-pattern-facade-mediator-interpreter/"/>
+      <url>2021/08/06/design-pattern-facade-mediator-interpreter/</url>
+      
+        <content type="html"><![CDATA[<p>繼上篇  <a href="/2017/08/29/design-pattern-observer-decorator/" title="[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)">[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)</a>，我們接著繼續看其他的模式</p><blockquote><p>迷之音:也隔太久了吧!!!</p></blockquote><ul><li>Facade 外觀</li><li>Mediator 協調者</li><li>Interpreter 直譯器</li></ul><a id="more"></a><h1 id="Facade-外觀"><a href="#Facade-外觀" class="headerlink" title="Facade (外觀)"></a>Facade (外觀)</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>這個模式重點是封裝，只讓使用者看到外觀(表層)，這件事情其實大家都很常在做，尤其是當某個事件一定要執行固定邏輯時，那這樣我們就會想要把那些邏輯集中起來，讓外面呼叫端可以固定行為。</p><h2 id="情境"><a href="#情境" class="headerlink" title="情境"></a>情境</h2><p>那用一點現實的例子來看，用便當商店買東西來做說明，你可能會買咖啡/便當或是其他東西，不管哪一種的行為都是只有對應店員，剩下的煮咖啡/加熱，都會由店員來處理。</p><h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><script src="//gist.github.com/43901411a5164db71ace1d75d2d10cef.js?file=facade.cs"></script><blockquote><p>❯  dotnet run<br>—買餅乾—<br>結帳囉<br>—買咖啡—<br>結帳囉<br>咖啡好了<br>—買便當—<br>結帳囉<br>加熱完成</p></blockquote><h1 id="Mediator-協調者"><a href="#Mediator-協調者" class="headerlink" title="Mediator (協調者)"></a>Mediator (協調者)</h1><h2 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h2><p>將原本互相交錯的溝通，向上抽一層，統一由第三方來轉接收並且轉交。</p><h2 id="情境-1"><a href="#情境-1" class="headerlink" title="情境"></a>情境</h2><p>以現實的世界來看，其實工作中就很多這樣的狀況，工程師、設計師、行銷，老闆除了要跟這些人說明他要的是什麼，同時也要接收他們的狀況回報，並且這些人彼此間也需要互相更新狀態。<br>對於老闆來說，不需要一直收到那麼多的訊息，這時候我們會獨立一個角色叫做 <strong>PM</strong> ，由這個人來負責所有的資訊，彼此間也不用丟出各種訊息給不必要的人，統一由新的角色來做處理，對於老闆來說，也只要叫PM回報狀況就好。</p><h2 id="實作-1"><a href="#實作-1" class="headerlink" title="實作"></a>實作</h2><script src="//gist.github.com/43901411a5164db71ace1d75d2d10cef.js?file=mediator.cs"></script><blockquote><p>❯  dotnet run<br>designer receive login completed from Engineer<br>marketing receive login completed from Engineer<br>engineer receive home page mockup ready from Designer<br>marketing receive home page mockup ready from Designer</p></blockquote><h1 id="Interpreter-直譯器"><a href="#Interpreter-直譯器" class="headerlink" title="Interpreter (直譯器)"></a>Interpreter (直譯器)</h1><h2 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h2><p>偶爾在系統中，會需要一些簡單的文字解析，這時候可以使用這個設計模式來輔助我們，讓後面要擴充的時候更為容易。<br>但效能不是第一考量，因此有效能的需求就應該要重新思考是否適用。</p><h2 id="情境-2"><a href="#情境-2" class="headerlink" title="情境"></a>情境</h2><p>有一組字串，裡面的資料可能要轉換成中文或是英文</p><h2 id="實作-2"><a href="#實作-2" class="headerlink" title="實作"></a>實作</h2><script src="//gist.github.com/43901411a5164db71ace1d75d2d10cef.js?file=interpreter.cs"></script><blockquote><p>❯  dotnet run<br>二零二一 to 2021<br>2021 to 二零二一</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Design Pattern </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Design Pattern </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Blazor] 客製化元件</title>
       <link href="2021/07/03/blazor-customize-component/"/>
       <url>2021/07/03/blazor-customize-component/</url>
