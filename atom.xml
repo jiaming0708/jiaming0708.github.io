@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2021-08-06T03:14:29.414Z</updated>
+  <updated>2021-09-27T02:06:01.341Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jiaming0708.github.io/2021/08/06/design-pattern-facade-mediator-interpreter/"/>
     <id>http://jiaming0708.github.io/2021/08/06/design-pattern-facade-mediator-interpreter/</id>
     <published>2021-08-06T02:29:54.000Z</published>
-    <updated>2021-08-06T03:14:29.414Z</updated>
+    <updated>2021-09-27T02:06:01.341Z</updated>
     
     
     <summary type="html">&lt;p&gt;繼上篇  &lt;a href=&quot;/2017/08/29/design-pattern-observer-decorator/&quot; title=&quot;[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)&quot;&gt;[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)&lt;/a&gt;，我們接著繼續看其他的模式&lt;/p&gt;
@@ -48,7 +48,7 @@
     <link href="http://jiaming0708.github.io/2021/07/03/blazor-customize-component/"/>
     <id>http://jiaming0708.github.io/2021/07/03/blazor-customize-component/</id>
     <published>2021-07-03T01:27:13.000Z</published>
-    <updated>2021-08-06T03:14:29.414Z</updated>
+    <updated>2021-09-27T02:06:01.341Z</updated>
     
     
     <summary type="html">&lt;p&gt;不管是哪一個前端的框架或套件，寫一個專屬於自己專案的元件，是很基本的行為，今天要來分享的是在 Blazor 中建立元件的一些小撇步。&lt;/p&gt;</summary>
@@ -69,7 +69,7 @@
     <link href="http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/"/>
     <id>http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/</id>
     <published>2021-06-27T02:08:40.000Z</published>
-    <updated>2021-08-06T03:14:29.414Z</updated>
+    <updated>2021-09-27T02:06:01.341Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近都在使用一個很新的前端框架，叫做 &lt;a href=&quot;https://docs.microsoft.com/zh-tw/aspnet/core/blazor/?view=aspnetcore-5.0&quot;&gt;Blazor&lt;/a&gt; ，是由微軟所推出給 dotnet 的開發人員所用，優點是可以使用一個語言打天下(迷之音: 真的能嗎?)，但現在的 Blazor 還太年輕，對應的東西都還沒那麼齊全，JavaScript 反而已經擁有很多套件/方法可以使用，今天就一起來看看怎麼將兩個結合一起使用。&lt;/p&gt;</summary>
@@ -92,7 +92,7 @@
     <link href="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/"/>
     <id>http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/</id>
     <published>2021-05-19T13:09:59.000Z</published>
-    <updated>2021-08-06T03:14:29.410Z</updated>
+    <updated>2021-09-27T02:06:01.337Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近再次投入了 window 平台的筆電，之前已經很習慣 mac 的 iTerm + oh-my-zsh 的功能，一直嘗試找有沒有類似的工具可以使用，很開心的找到了一個類似的工具，&lt;a href=&quot;https://github.com/microsoft/terminal&quot;&gt;Window Terminal&lt;/a&gt; 搭配最新的 &lt;a href=&quot;https://github.com/PowerShell/PowerShell&quot;&gt;PowerShell 7&lt;/a&gt; 套用 &lt;a href=&quot;https://ohmyposh.dev/&quot;&gt;oh-my-posh&lt;/a&gt; （是不是很相似阿，作者有說是參考 oh-my-zsh）&lt;/p&gt;</summary>
@@ -115,7 +115,7 @@
     <link href="http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/"/>
     <id>http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/</id>
     <published>2021-04-20T06:30:50.000Z</published>
-    <updated>2021-08-06T03:14:29.410Z</updated>
+    <updated>2021-09-27T02:06:01.337Z</updated>
     
     
     <summary type="html">&lt;p&gt;在Angular中，除了先在Route定義好路徑並且載入模組以外，也能透過動態的方式去載入，能夠讓程式更加的靈活。今天想要試著用輸入的方法來做到動態載入模組，最後結果是失敗的，要來看看編譯後的結果，試著去理解原因。&lt;/p&gt;</summary>
@@ -136,7 +136,7 @@
     <link href="http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/"/>
     <id>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</id>
     <published>2021-04-19T13:20:54.000Z</published>
-    <updated>2021-08-06T03:14:29.410Z</updated>
+    <updated>2021-09-27T02:06:01.337Z</updated>
     
     
     <summary type="html">&lt;p&gt;繼前一篇 &lt;a href=&quot;/2021/04/09/iis-reverse-proxy-header/&quot; title=&quot;[IIS] 修正 reverse proxy 的 host 問題&quot;&gt;[IIS] 修正 reverse proxy 的 host 問題&lt;/a&gt; 後，又持續的跟 IIS 奮鬥了一陣子，才讓 Gitea 搭配 reverse proxy 的運作是正確的！&lt;/p&gt;</summary>
@@ -155,7 +155,7 @@
     <link href="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/"/>
     <id>http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/</id>
     <published>2021-04-09T03:36:52.000Z</published>
-    <updated>2021-08-06T03:14:29.406Z</updated>
+    <updated>2021-09-27T02:06:01.333Z</updated>
     
     
     <summary type="html">&lt;p&gt;使用 IIS 做 reverse proxy 時，如果網站需要 OAuth，會自動導去其他網站，但會發現這時候 host 沒有被切過去，導致整個 auth 失敗，來分享一下可以怎麼樣解決這個問題。&lt;/p&gt;</summary>
@@ -174,7 +174,7 @@
     <link href="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/"/>
     <id>http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/</id>
     <published>2021-03-22T02:04:38.000Z</published>
-    <updated>2021-08-06T03:14:29.398Z</updated>
+    <updated>2021-09-27T02:06:01.317Z</updated>
     
     
     <summary type="html">&lt;p&gt;當要選擇自架的 git 伺服器，Gitea 是蠻多公司的選擇，在這個講求效率的開發時代，必須要搭配一個 CI/CD 的平台，讓我們可以更好更快的部屬，我選擇 Drone CI 作為平台，今天要來分享一下使用 docker-compose 建置在本機的步驟。&lt;/p&gt;</summary>
@@ -199,7 +199,7 @@
     <link href="http://jiaming0708.github.io/2021/03/13/nginx-location-regex-reverse-proxy/"/>
     <id>http://jiaming0708.github.io/2021/03/13/nginx-location-regex-reverse-proxy/</id>
     <published>2021-03-13T01:03:58.000Z</published>
-    <updated>2021-08-06T03:14:29.398Z</updated>
+    <updated>2021-09-27T02:06:01.317Z</updated>
     
     
     <summary type="html">&lt;p&gt;一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。&lt;/p&gt;
@@ -221,7 +221,7 @@
     <link href="http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/"/>
     <id>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</id>
     <published>2021-02-20T06:33:28.000Z</published>
-    <updated>2021-08-06T03:14:29.398Z</updated>
+    <updated>2021-09-27T02:06:01.317Z</updated>
     
     
     <summary type="html">&lt;p&gt;網站的安全性中，其中有一項是關於 TLS 的檢查，建議是v1.2版以上。那服務如果是架設在 AWS 的 ELB 上，應該要怎麼做調整呢？&lt;/p&gt;</summary>
@@ -240,7 +240,7 @@
     <link href="http://jiaming0708.github.io/2021/01/26/logrotate-nginx/"/>
     <id>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</id>
     <published>2021-01-26T02:25:27.000Z</published>
-    <updated>2021-08-06T03:14:29.398Z</updated>
+    <updated>2021-09-27T02:06:01.317Z</updated>
     
     
     <summary type="html">&lt;p&gt;前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。&lt;/p&gt;</summary>
@@ -259,7 +259,7 @@
     <link href="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/"/>
     <id>http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/</id>
     <published>2020-10-25T07:33:08.000Z</published>
-    <updated>2021-08-06T03:14:29.394Z</updated>
+    <updated>2021-09-27T02:06:01.313Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近團隊開始規範 git commit 並且導入 &lt;a href=&quot;https://www.conventionalcommits.org/en/v1.0.0/&quot;&gt;Conventional commit&lt;/a&gt;，剛開始不熟悉都會一直要去翻文件，看看到底這時候要用什麼樣的類型，為了加速類別的輸入，可以在 commit 的 template 中設定，今天就來分享一下使用這個規範並且如何有效的套用在 &lt;a href=&quot;https://www.gitkraken.com/&quot;&gt;GitKraken&lt;/a&gt; 這套工具中。&lt;/p&gt;</summary>
@@ -280,7 +280,7 @@
     <link href="http://jiaming0708.github.io/2020/09/07/create-react-app/"/>
     <id>http://jiaming0708.github.io/2020/09/07/create-react-app/</id>
     <published>2020-09-07T13:11:31.000Z</published>
-    <updated>2021-08-06T03:14:29.394Z</updated>
+    <updated>2021-09-27T02:06:01.313Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 &lt;code&gt;create-react-app (CRA)&lt;/code&gt; 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。&lt;/p&gt;</summary>
@@ -301,7 +301,7 @@
     <link href="http://jiaming0708.github.io/2020/07/19/project-setting/"/>
     <id>http://jiaming0708.github.io/2020/07/19/project-setting/</id>
     <published>2020-07-19T15:26:00.000Z</published>
-    <updated>2021-08-06T03:14:29.394Z</updated>
+    <updated>2021-09-27T02:06:01.313Z</updated>
     
     
     <summary type="html">&lt;p&gt;open source總是有些不一樣的東西可以挖，今天為了要找一些使用action的範例，反而讓我找到了一些不一樣的設定，可以幫助我們。&lt;/p&gt;</summary>
@@ -324,7 +324,7 @@
     <link href="http://jiaming0708.github.io/2020/05/21/elastic-update-refresh/"/>
     <id>http://jiaming0708.github.io/2020/05/21/elastic-update-refresh/</id>
     <published>2020-05-21T14:24:59.000Z</published>
-    <updated>2021-08-06T03:14:29.386Z</updated>
+    <updated>2021-09-27T02:06:01.305Z</updated>
     
     
     <summary type="html">&lt;p&gt;一般的關聯式資料庫下 update 以後，如果沒有下 commit 大部分情況是拿到舊的資料，但是在 elastic search 的環境下，沒有所謂的 commit，在異動資料後馬上執行 search 卻拿不到更新後的結果。&lt;/p&gt;</summary>
@@ -347,7 +347,7 @@
     <link href="http://jiaming0708.github.io/2020/05/21/github-action-and-package/"/>
     <id>http://jiaming0708.github.io/2020/05/21/github-action-and-package/</id>
     <published>2020-05-21T13:43:19.000Z</published>
-    <updated>2021-08-06T03:14:29.386Z</updated>
+    <updated>2021-09-27T02:06:01.305Z</updated>
     
     
     <summary type="html">&lt;p&gt;Continuous Integration (以下簡稱CI)，是在開發中很重要的一環，大家常用或常聽到的例如：Jenkins, Travis…等等的，我們常在使用的 Github 本身也有提供類似的服務。&lt;br&gt;今天來使用 Github 的全套服務，使用 Action 做 CI/CD 並且發佈到 Package。&lt;/p&gt;</summary>
@@ -368,7 +368,7 @@
     <link href="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/"/>
     <id>http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/</id>
     <published>2020-03-26T13:06:51.000Z</published>
-    <updated>2021-08-06T03:14:29.358Z</updated>
+    <updated>2021-09-27T02:06:01.277Z</updated>
     
     
     <summary type="html">&lt;p&gt;今天晚上聽 &lt;strong&gt;林亨力&lt;/strong&gt; 在 &lt;em&gt;GDG台中&lt;/em&gt; 分享的 &lt;strong&gt;如果你連DevTools都不會用，還敢說你是網頁設計者嗎&lt;/strong&gt;，滿滿的乾貨，所以趁新鮮趕快來記錄一下自己所不知道的部份。&lt;/p&gt;</summary>
@@ -389,7 +389,7 @@
     <link href="http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/"/>
     <id>http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/</id>
     <published>2020-03-14T08:22:46.000Z</published>
-    <updated>2021-08-06T03:14:29.354Z</updated>
+    <updated>2021-09-27T02:06:01.265Z</updated>
     
     
     <summary type="html">&lt;p&gt;如果要掛載另一個網站的內容進來時，通常會使用iframe，今天要來分享一下在ios safari的bug，並且要如何解決&lt;/p&gt;
@@ -415,7 +415,7 @@
     <link href="http://jiaming0708.github.io/2020/02/29/circle-path-animation/"/>
     <id>http://jiaming0708.github.io/2020/02/29/circle-path-animation/</id>
     <published>2020-02-29T02:58:30.000Z</published>
-    <updated>2021-08-06T03:14:29.350Z</updated>
+    <updated>2021-09-27T02:06:01.265Z</updated>
     
     
     <summary type="html">&lt;p&gt;在畫面上的一個物件的移動方式希望能夠是圓形的，除了用javascript計算的方式以外，有沒有css的方式能做到呢？今天要來一探究竟&lt;/p&gt;</summary>
@@ -436,7 +436,7 @@
     <link href="http://jiaming0708.github.io/2020/01/31/alias-path-vscode/"/>
     <id>http://jiaming0708.github.io/2020/01/31/alias-path-vscode/</id>
     <published>2020-01-31T09:00:14.000Z</published>
-    <updated>2021-08-06T03:14:29.350Z</updated>
+    <updated>2021-09-27T02:06:01.265Z</updated>
     
     
     <summary type="html">&lt;p&gt;在專案開發的時候，為了讓import的路徑短一點，通常都會用alias來處理，例如&lt;code&gt;../../../components/Button&lt;/code&gt;會用&lt;code&gt;@components/Button&lt;/code&gt;來做為取代&lt;/p&gt;
