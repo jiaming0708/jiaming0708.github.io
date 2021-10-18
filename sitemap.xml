@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -58,7 +51,28 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -100,20 +114,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2020/05/21/elastic-update-refresh/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -135,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2020/01/31/alias-path-vscode/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -156,21 +149,14 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2019/10/22/iterm2-session-title/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/06/13/flex-float-case/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -227,6 +213,20 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2019/04/16/flex-text-overflow/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/06/13/flex-float-case/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -380,6 +380,13 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2017/06/01/csharp-datagridview-buttonevent/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2017/07/05/rx/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -409,111 +416,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/09/02/reserve-proxy/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/06/01/csharp-datagridview-buttonevent/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/29/csharp-parse/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/02/12/csharp-call-by-reference/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/02/16/asp-auth/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/03/11/csharp-oledbtransaction/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/04/09/csharp-filesystemwatcher/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/07/23/csharp-string-datetime/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/07/30/csharp-xml-continue/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -843,6 +745,104 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/29/csharp-parse/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/02/12/csharp-call-by-reference/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/02/16/asp-auth/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/03/11/csharp-oledbtransaction/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/04/09/csharp-filesystemwatcher/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/07/23/csharp-string-datetime/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/07/30/csharp-xml-continue/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -1308,14 +1308,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
+    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
+    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1350,6 +1350,13 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
+    <lastmod>2021-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/RxJS/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
@@ -1358,13 +1365,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/ReactNative/</loc>
-    <lastmod>2021-10-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
