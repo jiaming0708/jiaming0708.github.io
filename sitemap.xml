@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jiaming0708.github.io/about/index.html</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -45,13 +52,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2021/10/11/browser-open-application/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/about/index.html</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -163,13 +163,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2019/06/13/flex-float-case/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -247,7 +240,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2018/12/25/css-mask/</loc>
+    <loc>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -262,41 +255,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2019/01/09/crop/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/01/08/docker-introduction/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/02/12/angular-download/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/02/17/angular-validator/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/03/26/primeng/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/05/21/vue-first-time/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -359,6 +317,13 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2018/12/25/css-mask/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2017/09/14/angular-viewchild-ngif/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -374,6 +339,41 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/11/30/angularJS-rxjs/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/01/08/docker-introduction/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/02/12/angular-download/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/02/17/angular-validator/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/03/26/primeng/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/05/21/vue-first-time/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -1308,14 +1308,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
+    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
+    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1350,6 +1350,13 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
+    <lastmod>2021-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/RxJS/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
@@ -1358,13 +1365,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/ReactNative/</loc>
-    <lastmod>2021-10-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
