@@ -2,34 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jiaming0708.github.io/about/index.html</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -52,6 +24,34 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2021/10/11/browser-open-application/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/about/index.html</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -163,20 +163,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/06/13/flex-float-case/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/07/07/ai-export-svg/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2019/07/16/rxjs-operator/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -185,20 +171,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2019/10/14/mac-catalina-notifiction/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/02/15/quokka-webpack/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/02/19/gtm-content-group/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -247,7 +219,28 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/01/08/crop-drag/</loc>
+    <loc>http://jiaming0708.github.io/2019/06/13/flex-float-case/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/07/07/ai-export-svg/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/02/15/quokka-webpack/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/02/19/gtm-content-group/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -324,6 +317,13 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2019/01/08/crop-drag/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2017/09/14/angular-viewchild-ngif/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -380,34 +380,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2017/06/01/csharp-datagridview-buttonevent/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/07/05/rx/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/07/24/angular-exception/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/08/17/e2e-tools/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2017/08/29/design-pattern-observer-decorator/</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -416,132 +388,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/09/02/reserve-proxy/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/29/csharp-parse/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/02/12/csharp-call-by-reference/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/02/16/asp-auth/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/03/11/csharp-oledbtransaction/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/04/09/csharp-filesystemwatcher/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/07/23/csharp-string-datetime/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/07/30/csharp-xml-continue/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/08/07/csharp-string-pad/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2009/10/08/charp-combobox-display/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2010/03/29/csharp-type/</loc>
-    
-    <lastmod>2021-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2010/04/13/asp-ajax-webservice/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -843,6 +689,160 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/06/01/csharp-datagridview-buttonevent/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/07/05/rx/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/07/24/angular-exception/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/08/17/e2e-tools/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/29/csharp-parse/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/02/12/csharp-call-by-reference/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/02/16/asp-auth/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/03/11/csharp-oledbtransaction/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/04/09/csharp-filesystemwatcher/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/07/23/csharp-string-datetime/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/07/30/csharp-xml-continue/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/08/07/csharp-string-pad/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2009/10/08/charp-combobox-display/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2010/03/29/csharp-type/</loc>
+    
+    <lastmod>2021-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2010/04/13/asp-ajax-webservice/</loc>
     
     <lastmod>2021-10-18</lastmod>
     
@@ -1308,14 +1308,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
+    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
+    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1350,13 +1350,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
-    <lastmod>2021-10-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/RxJS/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
@@ -1365,6 +1358,13 @@
   
   <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/ReactNative/</loc>
+    <lastmod>2021-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
     <lastmod>2021-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
