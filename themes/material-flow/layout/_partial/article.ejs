@@ -50,6 +50,21 @@
 			<div id="disqus_thread"></div>
 		</section>
 	<% } %>
+	<% if (post.comments && config.giscus.enable){ %>
+		<section id="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="<%=config.giscus.repo %>" 
+				data-repo-id="<%=config.giscus.repo_id %>" 
+				data-category="<%=config.giscus.category %>"
+				data-category-id="<%=config.giscus.category_id %>"
+				data-mapping="<%=config.giscus.mapping %>" 
+				data-reactions-enabled="<%=config.giscus.reactions_enabled %>" 
+				data-theme="<%=config.giscus.theme %>" 
+				crossorigin="anonymous"
+				async>
+		</script>
+		</section>
+	<% } %>
 </article>
 <script>
 	window.subData = {
