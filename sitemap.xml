@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jiaming0708.github.io/2021/11/06/vs-installer-project/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/about/index.html</loc>
     
     <lastmod>2021-11-11</lastmod>
@@ -16,7 +9,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
+    <loc>http://jiaming0708.github.io/2021/11/06/vs-installer-project/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -24,6 +17,13 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2021/04/20/angular-dynamic-module-by-input/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/04/19/gitea-iis-reverse-proxy-trouble-shooting/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -72,6 +72,20 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2021/03/13/nginx-location-regex-reverse-proxy/</loc>
     
     <lastmod>2021-11-11</lastmod>
@@ -101,20 +115,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2021/02/20/aws-elb-tls-setting/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -205,20 +205,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/02/15/quokka-webpack/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/02/19/gtm-content-group/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2019/02/25/rx-expand/</loc>
     
     <lastmod>2021-11-11</lastmod>
@@ -248,6 +234,41 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2019/04/16/flex-text-overflow/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/02/15/quokka-webpack/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/02/19/gtm-content-group/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/01/09/crop/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/08/20/rx-sample/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2018/11/07/angularjs-provider/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -290,20 +311,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2019/01/08/crop-drag/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/01/09/crop/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/11/30/angularJS-rxjs/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -359,20 +366,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2018/08/20/rx-sample/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/11/07/angularjs-provider/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2017/09/14/angular-viewchild-ngif/</loc>
     
     <lastmod>2021-11-11</lastmod>
@@ -387,49 +380,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2017/02/23/angular-viewchild-contentchild/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/02/angular-dynamic-component/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/11/angular-di-provide/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/16/rxjs-firsttime/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/30/react-native-note/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
+    <loc>http://jiaming0708.github.io/2017/11/30/angularJS-rxjs/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -479,41 +430,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/09/02/reserve-proxy/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
-    
-    <lastmod>2021-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -863,6 +779,90 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2017/02/23/angular-viewchild-contentchild/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/02/angular-dynamic-component/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/11/angular-di-provide/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/16/rxjs-firsttime/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/30/react-native-note/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/06/08/asp-regiis/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/07/28/csharp-xml/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/10/asp-regiis/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/09/12/asp-loding/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2008/12/26/csharp-single-instance/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/Privacy-Policy/index.html</loc>
     
     <lastmod>2021-11-11</lastmod>
@@ -879,14 +879,14 @@
 
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/C/</loc>
+    <loc>http://jiaming0708.github.io/tags/ASP-NET/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/ASP-NET/</loc>
+    <loc>http://jiaming0708.github.io/tags/C/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1343,14 +1343,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
+    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Windows/</loc>
+    <loc>http://jiaming0708.github.io/categories/Front-end/jQuery/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1385,13 +1385,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
-    <lastmod>2021-11-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/RxJS/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
@@ -1400,6 +1393,13 @@
   
   <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/ReactNative/</loc>
+    <lastmod>2021-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/categories/APP/Cordova/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1462,13 +1462,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Frontend/Angular/</loc>
-    <lastmod>2021-11-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/canvas/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
@@ -1498,6 +1491,13 @@
   
   <url>
     <loc>http://jiaming0708.github.io/categories/Front-end/js/</loc>
+    <lastmod>2021-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/categories/Frontend/Angular/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1616,14 +1616,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Backend/</loc>
+    <loc>http://jiaming0708.github.io/categories/backend/elasticsearch/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/backend/elasticsearch/</loc>
+    <loc>http://jiaming0708.github.io/categories/Backend/</loc>
     <lastmod>2021-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
