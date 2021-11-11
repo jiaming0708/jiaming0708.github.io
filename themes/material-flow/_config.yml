@@ -70,6 +70,8 @@ less:
 social:
 - slug: github
   url: https://github.com/jiaming0708
+- slug: facebook
+  url: https://www.facebook.com/secretgogoworld
 - slug: twitter
   url: https://twitter.com/Secret_GoGo
 - slug: rss
