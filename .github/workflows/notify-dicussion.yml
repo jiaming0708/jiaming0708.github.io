@@ -1,0 +1,23 @@
+name: Send Message on discussions comment.
+
+on:
+  discussion_comment:
+    types: [created]
+
+jobs:
+  sendMessage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: hmarr/debug-action@v2
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            From: ${{ github.event.sender.login }}
+            Title: ${{ github.event.discussion.title }}
+            Link: ${{ github.event.comment.html_url }}
+            Body:
+            ${{ github.event.comment.body }}
