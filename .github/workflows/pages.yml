@@ -45,3 +45,13 @@ jobs:
           github_token: ${{ github.token }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
+      # notify
+      - name: Notify
+        if: always()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            New Deployment
+            Status: ${{ job.status }}
