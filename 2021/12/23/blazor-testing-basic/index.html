@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>[Blazor] 元件測試 - 基礎篇 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
+  
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="寫了很多的元件來使用，但要怎麼確保行為正確，在修改的時候沒有把一些行為改壞，可以透過測試來進行保護，在 Blazor 中可以透過 bUnit 這個套件來達成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Blazor] 元件測試 - 基礎篇">
+<meta property="og:url" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="寫了很多的元件來使用，但要怎麼確保行為正確，在修改的時候沒有把一些行為改壞，可以透過測試來進行保護，在 Blazor 中可以透過 bUnit 這個套件來達成。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/counter-render-pass.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/counter-increment-clicked.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/compare-first.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/compare-shapshot.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/counter-testing-after-change.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/parameter-on-init.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/parameter-after-init.png">
+<meta property="article:published_time" content="2021-12-23T14:27:50.000Z">
+<meta property="article:modified_time" content="2021-12-23T14:31:36.229Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Blazor">
+<meta property="article:tag" content="Testing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/counter-render-pass.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-10240063-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+  
+    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+  <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
+<article id="post-blazor-testing-basic"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2021/12/23/blazor-testing-basic/">
+    	[Blazor] 元件測試 - 基礎篇
+    </a>
+  </h2>
+	<div id="fb-root"></div>
+	<div class="fb-like" data-href="/2021/12/23/blazor-testing-basic/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+	<time>
+	  12月 23, 2021
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Blazor/">Blazor</a>
+    </div>
+    <span class="readtime">18 mins.</span>
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">環境建置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%92%B0%E5%AF%AB%E6%B8%AC%E8%A9%A6"><span class="toc-number">2.</span> <span class="toc-text">撰寫測試</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Render%E9%A9%97%E8%AD%89"><span class="toc-number">2.1.</span> <span class="toc-text">Render驗證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%92%E5%8B%95%E9%A9%97%E8%AD%89"><span class="toc-number">2.2.</span> <span class="toc-text">互動驗證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E5%B0%8D%E9%A9%97%E8%AD%89"><span class="toc-number">2.3.</span> <span class="toc-text">比對驗證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E6%95%B8%E7%B5%A6%E5%80%BC"><span class="toc-number">2.4.</span> <span class="toc-text">參數給值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B8%BD%E7%B5%90"><span class="toc-number">3.</span> <span class="toc-text">總結</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Blazor/">Blazor</a>
+      
+        <a href="/tags/Testing/">Testing</a>
+      
+	  </div>
+    
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>寫了很多的元件來使用，但要怎麼確保行為正確，在修改的時候沒有把一些行為改壞，可以透過<code>測試</code>來進行保護，在 Blazor 中可以透過 <a target="_blank" rel="noopener" href="https://bunit.dev/"><strong>bUnit</strong></a> 這個套件來達成。</p>
+<a id="more"></a>
+
+<p>bUnit 可以套用在 xUnit/NUnit/MSTest 任何一個測試框架上，寫法不會因為框架的不同而有所差異。跟 API 或是 <strong>method</strong> 不一樣的測試目的，元件通常是由一個 click 或是外部的參數改變，而產生一些行為的變化，在元件的測試中，</p>
+<h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>在開始之前要先準備一下專案的環境，直接用 cli 來產生 blazor wasm 的專案，或者用 VS/Rider 這種 IDE 來產生</p>
+<blockquote>
+<p>dotnet sdk 版本為 6</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir blazor-tsting-demo</span><br><span class="line">dotnet new sln -n blazor-testing-demo</span><br><span class="line">dotnet new blazorwasm -n client</span><br><span class="line">dotnet sln add ./client/client.csproj</span><br></pre></td></tr></table></figure>
+<p>接著在把測試專案也先建立好，並且增加 bunit 及 client 的參考到專案中。</p>
+<blockquote>
+<p>我使用的是 <strong>nunit</strong> ，如果你有習慣的測試框架也可以使用沒有問題</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dotnet new nunit -n test</span><br><span class="line">dotnet sln add ./test/test.csproj</span><br><span class="line">cd test</span><br><span class="line">dotnet add package bunit</span><br><span class="line">dotnet add test.csproj reference ../client/client.csproj</span><br></pre></td></tr></table></figure>
+<h1 id="撰寫測試"><a href="#撰寫測試" class="headerlink" title="撰寫測試"></a>撰寫測試</h1><h2 id="Render驗證"><a href="#Render驗證" class="headerlink" title="Render驗證"></a>Render驗證</h2><p>不管透過 cli/IDE 所建立出來的 blazor wasm 專案都有基本的樣板，這邊就先來看一下樣板中 <code>Pages/Counter.razor</code> 這個元件，有什麼樣的行為，並且如何進行測試。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/counter&quot;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">PageTitle</span>&gt;</span>Counter<span class="tag">&lt;/<span class="name">PageTitle</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Counter<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">role</span>=<span class="string">&quot;status&quot;</span>&gt;</span>Current count: @currentCount<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> @<span class="attr">onclick</span>=<span class="string">&quot;IncrementCount&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line"></span><br><span class="line">    private void IncrementCount()</span><br><span class="line">    &#123;</span><br><span class="line">        currentCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這個樣板中，主要的行為是按下 button 後 count 會加1，測試的動作，就是要模擬使用者點擊 button 後，html 應該要反映出 count 的變化。</p>
+<p>回到測試專案中，把原本的 <code>UnitTest1.cs</code> 改成 <code>CounterTest.cs</code> ，之後我們還會繼續增加其他的測試檔案。<br>將原本的 <code>Test1</code> 改成 <code>CounterRender</code> ，宣告一個 Bunit 的 <strong>TestContext</strong> 並且呼叫 <strong>RenderComponent</strong> 就可以取得 Counter 這個元件的 html 輸出。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CounterRender</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  Console.WriteLine(comp.Markup);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;h1&gt;Counter&lt;/h1&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;p role=&quot;status&quot;&gt;Current count: 0&lt;/p&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;button class=&quot;btn btn-primary&quot; blazor:onclick=&quot;1&quot;&gt;Click me&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣的輸出結果，會發現兩個比較困難的地方</p>
+<ul>
+<li>換行字元</li>
+<li><code>blazer:onclick</code> 屬性並不知道內容是什麼</li>
+</ul>
+<p>我會建議採用部分比對就可以，抓到重點確定內容有符合即可，將測試案例調整如下</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CounterRender</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  StringAssert.Contains(<span class="string">&quot;Current count: 0&quot;</span>, comp.Markup);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/counter-render-pass.png" alt="CounterRender test pass"></p>
+<h2 id="互動驗證"><a href="#互動驗證" class="headerlink" title="互動驗證"></a>互動驗證</h2><p>第一個測試案例寫好後，接著要來寫第二個案例，點擊 button 後 count 應該加1。<br>從 render 出來的元件中找到需要的 element，並且進行互動。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CounterShouldIncrementWhenClicked</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  comp.Find(<span class="string">&quot;button&quot;</span>).Click();</span><br><span class="line"></span><br><span class="line">  StringAssert.Contains(<span class="string">&quot;Current count: 1&quot;</span>, comp.Markup);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者是直接拿到 p 這個 element，來驗證裡面的內容</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comp.Find(<span class="string">&quot;p&quot;</span>).TextContent.MarkupMatches(<span class="string">&quot;Current count: 1&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/counter-increment-clicked.png" alt="counter-increment-clicked"></p>
+<h2 id="比對驗證"><a href="#比對驗證" class="headerlink" title="比對驗證"></a>比對驗證</h2><p>畫面有了異動，會想要知道異動的地方是不是如我們所預期，這時候可以透過比對差異的方法，有兩種作法可以做到</p>
+<ul>
+<li>跟第一次比</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CounterShouldIncrementWhenClicked_CompareWithFirst</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  comp.Find(<span class="string">&quot;button&quot;</span>).Click();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> diffs = comp.GetChangesSinceFirstRender();</span><br><span class="line">  <span class="keyword">var</span> diff = diffs.ShouldHaveSingleChange();</span><br><span class="line">  diff.ShouldBeTextChange(<span class="string">&quot;Current count: 1&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/compare-first.png" alt="compare-first"></p>
+<ul>
+<li><p>比對 <code>snapshot</code>，在比對之前要先儲存</p>
+<blockquote>
+<p>在這邊的範例中比較展示不出來差異，因為異動的都是同一個地方。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CounterShouldIncrementWhenClicked_CompareWithSnapshot</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  <span class="keyword">var</span> button = comp.Find(<span class="string">&quot;button&quot;</span>);</span><br><span class="line">  button.Click();</span><br><span class="line"></span><br><span class="line">  comp.SaveSnapshot();</span><br><span class="line"></span><br><span class="line">  button.Click();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> diffs = comp.GetChangesSinceSnapshot();</span><br><span class="line">  <span class="keyword">var</span> diff = diffs.ShouldHaveSingleChange();</span><br><span class="line">  diff.ShouldBeTextChange(<span class="string">&quot;Current count: 2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/compare-shapshot.png" alt="compare-shapshot"></p>
+<h2 id="參數給值"><a href="#參數給值" class="headerlink" title="參數給值"></a>參數給值</h2><p>接著要來改一下功能需求，可以由外面來決定初始 Count 是多少，沒有給的話就是0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@code &#123;</span><br><span class="line">  [Parameter]</span><br><span class="line">  public int currentCount &#123; get; set; &#125; &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  private void IncrementCount()</span><br><span class="line">  &#123;</span><br><span class="line">    currentCount++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>將剛剛所寫的幾個測試案例重跑過一遍，要確定這樣的修改是正確的。</p>
+<p><img src="/2021/12/23/blazor-testing-basic/counter-testing-after-change.png" alt="image-20211223212905835"></p>
+<p>測試通過後，再來寫傳遞參數的測試案例，有兩個方法可以傳遞參數</p>
+<ul>
+<li>在 init 時就給</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CountShouldBe5_OnInit</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;(parameters =&gt; parameters.Add(p =&gt; p.currentCount, count));</span><br><span class="line">  comp.Find(<span class="string">&quot;p&quot;</span>).TextContent.MarkupMatches(<span class="string">$&quot;Current count: <span class="subst">&#123;count&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/parameter-on-init.png" alt="parameter-on-init"></p>
+<ul>
+<li>先 init 再給值</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Test</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CountShouldBe5_AfterInit</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> <span class="keyword">var</span> ctx = <span class="keyword">new</span> Bunit.TestContext();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">var</span> comp = ctx.RenderComponent&lt;Counter&gt;();</span><br><span class="line">  <span class="keyword">var</span> elm = comp.Find(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">  elm.TextContent.MarkupMatches(<span class="string">&quot;Current count: 0&quot;</span>);</span><br><span class="line"></span><br><span class="line">  comp.SetParametersAndRender(parameters =&gt; parameters.Add(p =&gt; p.currentCount, count));</span><br><span class="line">  elm.TextContent.MarkupMatches(<span class="string">$&quot;Current count: <span class="subst">&#123;count&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/blazor-testing-basic/parameter-after-init.png" alt="parameter-after-init"></p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>今天的重點會放在元件的基本互動，click 還有 parameter 進行測試，可以看到其實都是以 html 的變化作為測試結果的確認，也很符合元件給使用者操作的印象。</p>
+<p>今天的 <a target="_blank" rel="noopener" href="https://github.com/jiaming0708/blazor-testing-demo">範例程式</a> 也放在 github 上，如果有需要也可以按照 commit 的步驟來跟著操作學習。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://bunit.dev/docs/verification/verify-markup.html">verify markup</a></li>
+<li><a target="_blank" rel="noopener" href="https://bunit.dev/docs/providing-input/passing-parameters-to-components.html?tabs=csharp">parameter</a></li>
+</ul>
+
+  	</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2021/11/18/detect-application-installed/" rel="next"  title="在瀏覽器偵測裝置是否已經安裝應用程式">
+						在瀏覽器偵測裝置是否已經安裝應用程式
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+	
+		<section id="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="jiaming0708/jiaming0708.github.io" 
+				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
+				data-category="Q&amp;A"
+				data-category-id="DIC_kwDOBO717c4B_0N9"
+				data-mapping="title" 
+				data-reactions-enabled="1" 
+				data-theme="light" 
+				crossorigin="anonymous"
+				async>
+		</script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '[Blazor] 元件測試 - 基礎篇',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
+          target="_blank" rel="external">
+          <span class="icon icon-facebook"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
