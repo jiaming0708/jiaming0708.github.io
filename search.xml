@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>將專案從 SVN 搬到 Git</title>
+      <link href="2021/12/24/svn-migrate-git/"/>
+      <url>2021/12/24/svn-migrate-git/</url>
+      
+        <content type="html"><![CDATA[<p>公司還是有舊的專案是放在 Subversion(SVN) 中，為了接下來增加一些 CI/CD 的輔助，並且希望在 Teams 能夠集中並且即時的收到專案的資訊，就必須要做搬移的動作。</p><blockquote><p>之前有做過一次，今天在做的時候又有點卡關，一定是沒有做筆記的原因!! </p></blockquote><a id="more"></a><h1 id="SVN-問題"><a href="#SVN-問題" class="headerlink" title="SVN 問題"></a>SVN 問題</h1><p>SVN 也有 hooks 可以發通知之類的，公司就有在 hooks 檢查 message 的格式，把 commit 的資訊推到專案管理的平台。但有點美中不足的地方是，hooks 的設定必須進去 server 然後寫 bat 之類的程式，也就是說這個設定對於新建立專案的人來說並不友善。</p><p>第二點就是 branch 的管理，每個資料夾只能同步到其中一個 branch ，如果同時有 master 和 develop，就必須要開兩個資料夾來存放，這對於開發人員真的是一個很不方便的事情。(也許可以用一個資料夾做到，如果知道的人可以跟我分享喔)</p><p>最後一點應該就是集中式管理，同事會常常要出差到客戶那，或是 VPN 到客戶的環境中作業，這時候將專案放在公司的 SVN server 上，那就會很痛苦要一直切換網路環境。</p><h1 id="搬移"><a href="#搬移" class="headerlink" title="搬移"></a>搬移</h1><h2 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h2><p>電腦應該要安裝好以下這幾個軟體已經被安裝，並且開啟 terminal</p><ul><li><a href="https://subversion.apache.org/packages.html">Subversion</a></li><li><a href="https://git-for-windows.github.io/">Git</a></li><li><a href="https://www.kernel.org/pub/software/scm/git/docs/git-svn.html">git-svn</a> (將會透過這個工具做資訊的轉換)</li></ul><blockquote><p>作業系統為 window  10</p></blockquote><h2 id="取得所有作者資訊"><a href="#取得所有作者資訊" class="headerlink" title="取得所有作者資訊"></a>取得所有作者資訊</h2><p>Git 和 SVN 對於作者描述的方法不同，第一步就要先把 SVN 的作者資訊做轉換。</p><p><strong>Subversion users</strong><br><img src="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/svn-log.png?view=azure-devops" alt="SVN users reference from MS"></p><p><strong>Git users</strong><br><img src="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops" alt="Git users reference from MS"></p><p>從 PowerShell 執行以下的指令，會將作者資訊存到檔案 <code>authors.txt</code>，格式會是像 <code>jiaming = jiaming &lt;jiaming&gt;</code> 這樣，開啟檔案將 <code>&lt;&gt;</code> 中的內容修改成 email 格式。</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn.exe log -<span class="literal">-quiet</span> | ? &#123; <span class="variable">$_</span> <span class="operator">-notlike</span> <span class="string">&#x27;-*&#x27;</span> &#125; | % &#123; <span class="string">&quot;&#123;0&#125; = &#123;0&#125; &lt;&#123;0&#125;&gt;&quot;</span> <span class="operator">-f</span> (<span class="variable">$_</span> <span class="operator">-split</span> <span class="string">&#x27; \| &#x27;</span>)[<span class="number">1</span>] &#125; | <span class="built_in">Select-Object</span> <span class="literal">-Unique</span> | <span class="built_in">Out-File</span> <span class="string">&#x27;authors.txt&#x27;</span></span><br></pre></td></tr></table></figure><h2 id="使用-git-svn-複製"><a href="#使用-git-svn-複製" class="headerlink" title="使用 git-svn 複製"></a>使用 git-svn 複製</h2><p>接著就要將 svn 的專案轉換成 git，先在目前的專案目錄底下建立一個子目錄 <code>gitsource</code> ，並且執行指令。</p><blockquote><p>如果只有一個主幹，那直接 <code>git svn clone</code> 就好</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn clone [svn repo] -A authors.txt ./gitsource</span><br></pre></td></tr></table></figure><p>若專案是標準的 trunk/branch/tag ，那就可以加上 <code>--stdlayout</code> 來描述</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn clone [svn repo] -A authors.txt ./gitsource --stdlayout</span><br></pre></td></tr></table></figure><p>如果 history 很多的話，就會跑比較久一點，建議就是先放著讓他跑，做其他事情去XD</p><h2 id="轉換-ignore"><a href="#轉換-ignore" class="headerlink" title="轉換 ignore"></a>轉換 ignore</h2><p>SVN 也有自己的 ignore 設定，可以透過指令轉換成 .gitignore。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd gitsource</span><br><span class="line">git svn show-ignore &gt; .gitignore</span><br><span class="line">git add .gitignore</span><br><span class="line">git commit -m &#x27;convert svn:ignore to .gitignore&#x27;</span><br></pre></td></tr></table></figure><h2 id="推到遠端"><a href="#推到遠端" class="headerlink" title="推到遠端"></a>推到遠端</h2><p>呼~終於到最後一步啦!! 接著就是照平常 push 到遠端的作法，就可以了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin [git repo]</span><br><span class="line">git push -u origin --all</span><br></pre></td></tr></table></figure><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul><li><a href="https://docs.microsoft.com/en-us/azure/devops/repos/git/perform-migration-from-svn-to-git?view=azure-devops">Migrate from Subversion (SVN) to Git - Azure Repos | Microsoft Docs</a></li><li><a href="https://ithelp.ithome.com.tw/articles/10140481">30 天精通 Git 版本控管 (29)：如何將 Subversion 專案匯入到 Git 儲存庫 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天 (ithome.com.tw)</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+            <tag> SVN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Blazor] 元件測試 - 基礎篇</title>
       <link href="2021/12/23/blazor-testing-basic/"/>
       <url>2021/12/23/blazor-testing-basic/</url>
