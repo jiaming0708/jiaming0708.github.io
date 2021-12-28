@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,7 +24,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/posh-theme.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/mytheme.png">
 <meta property="article:published_time" content="2021-05-19T13:09:59.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.889Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.936Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Window">
 <meta property="article:tag" content="Powershell">
@@ -46,21 +43,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -144,12 +128,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-install-window-terminal-ps7-theme"
+        <article id="post-install-window-terminal-ps7-theme"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -158,8 +142,6 @@
     	安裝 PowerShell7 及 Window Terminal 並套用 theme 美化
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2021/05/19/install-window-terminal-ps7-theme/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  5月 19, 2021
 	</time>
@@ -168,7 +150,9 @@
     <div class='cats'>
         <a href="/categories/Window/">Window</a>
     </div>
-    <span class="readtime">7 mins.</span>
+    
+        <span class="readtime">7 mins.</span>
+    
 
 	</section>
 	
@@ -185,10 +169,10 @@
         <a href="/tags/WindowTerminal/">WindowTerminal</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近再次投入了 window 平台的筆電，之前已經很習慣 mac 的 iTerm + oh-my-zsh 的功能，一直嘗試找有沒有類似的工具可以使用，很開心的找到了一個類似的工具，<a target="_blank" rel="noopener" href="https://github.com/microsoft/terminal">Window Terminal</a> 搭配最新的 <a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">PowerShell 7</a> 套用 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-posh</a> （是不是很相似阿，作者有說是參考 oh-my-zsh）</p>
-<a id="more"></a>
+			<p>最近再次投入了 window 平台的筆電，之前已經很習慣 mac 的 iTerm + oh-my-zsh 的功能，一直嘗試找有沒有類似的工具可以使用，很開心的找到了一個類似的工具，<a target="_blank" rel="noopener" href="https://github.com/microsoft/terminal">Window Terminal</a> 搭配最新的 <a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">PowerShell 7</a> 套用 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-posh</a> （是不是很相似阿，作者有說是參考 oh-my-zsh）</p>
+<span id="more"></span>
 
 <h1 id="安裝-Window-Terminal-以及-PowerShell-7"><a href="#安裝-Window-Terminal-以及-PowerShell-7" class="headerlink" title="安裝 Window Terminal 以及 PowerShell 7"></a>安裝 Window Terminal 以及 PowerShell 7</h1><h2 id="PowerShell-7"><a href="#PowerShell-7" class="headerlink" title="PowerShell 7"></a>PowerShell 7</h2><p>PowerShell 7 或者是說 PowerShell Core，比原本 Window 10 內建的 PowerShell 5.1 相比，更加強大且跨平台。這套在安裝後會獨立存在，也就是說不會蓋掉原本的 PowerShell 5.1，也就是說會有兩套同時存在於電腦中。</p>
 <blockquote>
@@ -204,15 +188,19 @@
 <p><img src="/2021/05/19/install-window-terminal-ps7-theme/window-terminal-select.png" alt="window terminal select"></p>
 <h1 id="套用-Theme"><a href="#套用-Theme" class="headerlink" title="套用 Theme"></a>套用 Theme</h1><h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>打開剛裝好的 <strong>Window Terminal</strong> 以及 <strong>PowerShell 7</strong>，接下來我們就要開始安裝 Theme 相關的套件，總共要安裝兩個套件，一個是 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-pos</a> 樣式的套件，另一個就是 <a target="_blank" rel="noopener" href="https://github.com/dahlbyk/posh-git">posh-git</a> 是用來顯示 git 的狀態，安裝的指令如下。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+
 <p>接著就是要讓 PowerShell 在啟動的時候就能夠套用，需要去修改設定檔，可以透過 <code>$PROFILE</code> 這個指令來確認設定檔的位置。如果沒有設定檔，則建立一個並且使用 <strong>記事本</strong> 來開啟。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(<span class="built_in">Test-Path</span> <span class="literal">-Path</span> <span class="variable">$PROFILE</span> )) &#123; <span class="built_in">New-Item</span> <span class="literal">-Type</span> File <span class="literal">-Path</span> <span class="variable">$PROFILE</span> <span class="literal">-Force</span> &#125;</span><br><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
+
 <p>將以下的內容貼到記事本中，存檔以後，重開一個分頁即可看到套用 <code>Paradox</code> 這個樣式。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> Paradox</span><br></pre></td></tr></table></figure>
+
 <h2 id="執行錯誤"><a href="#執行錯誤" class="headerlink" title="執行錯誤"></a>執行錯誤</h2><blockquote>
 <p>若你重開分頁以後有套用成功，請跳過這個章節。</p>
 </blockquote>
 <p>若你開啟後看到後面的錯誤，<strong>「檔案無法載入，因為這個系統已停用指令碼執行」</strong>，也不用太過多的擔心，在預設的情況下，PowerShell 是禁止執行自訂的檔案，可以透過 <strong>管理原權限</strong> 來打開 PowerShell 並且執行以下指令</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+
 <h2 id="套用樣式"><a href="#套用樣式" class="headerlink" title="套用樣式"></a>套用樣式</h2><p>oh-my-posh 提供蠻多的樣式可以做選擇，可以透過指令 <strong>Get-PoshThemes</strong> 或是 網站<a target="_blank" rel="noopener" href="https://ohmyposh.dev/docs/themes">Themes | Oh my Posh</a> 來做參考，下圖是執行指令出來的部份結果。</p>
 <p><img src="/2021/05/19/install-window-terminal-ps7-theme/posh-theme.png" alt="posh theme"></p>
 <blockquote>
@@ -220,8 +208,10 @@
 </blockquote>
 <p>如果預設的樣式還是不滿意的話，也可以自己客製化，做一些調整，讓自己開心工作上也會比較有動力！</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Export-PoshTheme</span> <span class="literal">-FilePath</span> C:\.oh<span class="literal">-my</span><span class="literal">-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
+
 <p>重新開啟 <code>$PROFILE</code> 設定檔，並且將剛剛的第三行 <strong>Set-PoshPrompt</strong> 改成套用客製化的 json 檔案即可。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> C:\.oh<span class="literal">-my</span><span class="literal">-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
+
 <p>最後分享一下我自己的設定檔，是參考了 <code>paradox</code> 以及 <code>jandedobbeleer</code> 所整理出來的樣式。</p>
 <p><img src="/2021/05/19/install-window-terminal-ps7-theme/mytheme.png" alt="mytheme"></p>
 <script src="//gist.github.com/7851a94d92f5a5f35d1c7685afe56d44.js?file=.mytheme.omp.json"></script>
@@ -231,7 +221,7 @@
 <li><a target="_blank" rel="noopener" href="https://ppundsh.github.io/posts/ad6e/">PowerShell 美化：oh my posh | Flymia 凡事用心之事 (ppundsh.github.io)</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -248,21 +238,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -287,11 +262,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -305,7 +275,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -333,6 +303,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

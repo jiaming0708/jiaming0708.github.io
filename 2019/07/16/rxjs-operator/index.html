@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="很多人在使用rx的時候，往往遇到的瓶頸是operator的使用，因為實在太多可以使用，今天要來分享一下我曾經用過以及常用的operator是哪些">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-07-16T14:23:04.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.825Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.860Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-rxjs-operator"
+        <article id="post-rxjs-operator"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	rxjs之operator使用介紹
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/07/16/rxjs-operator/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  7月 16, 2019
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/RxJS/">RxJS</a>
     </div>
-    <span class="readtime">12 mins.</span>
+    
+        <span class="readtime">12 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/RxJS/">RxJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>很多人在使用rx的時候，往往遇到的瓶頸是operator的使用，因為實在太多可以使用，今天要來分享一下我曾經用過以及常用的operator是哪些</p>
-<a id="more"></a>
+			<p>很多人在使用rx的時候，往往遇到的瓶頸是operator的使用，因為實在太多可以使用，今天要來分享一下我曾經用過以及常用的operator是哪些</p>
+<span id="more"></span>
 
 <h1 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h1><p>從一開始寫Rx到現在，全部使用的operator有差不多18個左右，其中只有五個是最常用的，其他都是遇到需求而使用</p>
 <blockquote>
@@ -185,39 +169,53 @@
 </blockquote>
 <h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>將參數輸出成資料流，常用建構observable之一</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).subscribe(<span class="built_in">console</span>.log);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>跟<code>of</code>類似，個人蠻常用在將陣列拆解</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).subscribe(<span class="built_in">console</span>.log);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="fromEvent"><a href="#fromEvent" class="headerlink" title="fromEvent"></a>fromEvent</h2><p>監聽element的事件最佳利器！！沒有之一XD</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fromEvent(<span class="built_in">window</span>, <span class="string">&#x27;scroll&#x27;</span>).subscribe(<span class="built_in">console</span>.log);</span><br></pre></td></tr></table></figure>
+
 <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>這個是最常用之一，只要有任何的物件轉換就一定會使用到，而且一段裡面可能會使用好幾次</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map(<span class="function"><span class="params">p</span> =&gt;</span> (&#123;</span><br><span class="line">		id: p.id,</span><br><span class="line">		name: p.Name,</span><br><span class="line">	&#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="mergeMap"><a href="#mergeMap" class="headerlink" title="mergeMap"></a>mergeMap</h2><p>把merge和map的功能合一，兩個observable資料是可以並行進來輸出</p>
 <h2 id="switchMap"><a href="#switchMap" class="headerlink" title="switchMap"></a>switchMap</h2><p>功能與<code>mergeMap</code>類似，資料進來後會取消前面的資料重新要一次</p>
 <h2 id="concatMap"><a href="#concatMap" class="headerlink" title="concatMap"></a>concatMap</h2><p>跟<code>mergeMap</code>類似，但會等到前一個observable結束才會執行，通常使用於前面的API結束後才能執行後面的API</p>
 <h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>顧名思義，就是過濾資料用，例如重複的資料不想要，或是只想要拿到某些資料</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>([<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>]).pipe(</span><br><span class="line">  filter(<span class="function"><span class="params">p</span> =&gt;</span> !!p)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="tap"><a href="#tap" class="headerlink" title="tap"></a>tap</h2><p>基本上寫rx應該要讓每一個function都是pure的，減少side effect<br>但如果真的再中間需要寫入一些值的話就可以使用，另一個使用狀況就是debug啦</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>([<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>]).pipe(</span><br><span class="line">  filter(<span class="function"><span class="params">p</span> =&gt;</span> !!p),</span><br><span class="line">  tap(<span class="built_in">console</span>.log),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h2><p>比較多使用在unsubscribe一個observable，在angular中就是<strong>ngOnDestroy</strong>事件中，在react就是<strong>componentWillUnmount</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fromEvent(<span class="built_in">window</span>, <span class="string">&#x27;scroll&#x27;</span>).pipe(</span><br><span class="line">  takeUntil(<span class="built_in">this</span>.destory$)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">destory$ = <span class="keyword">new</span> Subject();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">ngOneDestory</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.destory$.next();</span><br><span class="line">  <span class="built_in">this</span>.destory$.complete();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h2><p>前面有說到會用<code>switchMap</code>把陣列拆解開，但最後的資料就是需要陣列，這時候就很適合使用</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).pipe(</span><br><span class="line">	toArray()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h2><p>資料整理上的好幫手，可以把陣列拆解，然後可以輸出任何類型的資料</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from([1, 2, 3]).pipe(</span><br><span class="line">	reduce((acc, value) &#x3D;&gt; &#123;</span><br><span class="line">		acc.push(value * 2);</span><br><span class="line">	&#125;, [])</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="catchError"><a href="#catchError" class="headerlink" title="catchError"></a>catchError</h2><p>我主要應用在串接API，當發生錯誤時要先做處理然後再讓呼叫端拿到error</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="literal">undefined</span>).pipe(</span><br><span class="line">	map(<span class="function"><span class="params">p</span> =&gt;</span> p.name),</span><br><span class="line">  catchError(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="comment">// 結束整個observable</span></span><br><span class="line">    <span class="keyword">return</span> Observable.throw(p);</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="debounceTime"><a href="#debounceTime" class="headerlink" title="debounceTime"></a>debounceTime</h2><p>收到資料沒有變化多久的時間後就會觸發，適合在不想要被頻繁觸發的事件上，例如<code>autocomplete</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fromEvent(input, <span class="string">&#x27;keyDown&#x27;</span>).pipe(</span><br><span class="line">	debounceTime(<span class="number">200</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="delay"><a href="#delay" class="headerlink" title="delay"></a>delay</h2><p>跟sleep差不多的概念（笑），基本上只使用過一次，demo project為了模擬api的效果才用的</p>
 <h2 id="bufferCount"><a href="#bufferCount" class="headerlink" title="bufferCount"></a>bufferCount</h2><p>累積n筆資料以後才輸出，輸出為陣列，但要注意，如果數量不夠，那些資料就會一直卡在拿不到！基本上也只使用過一次</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).pipe(</span><br><span class="line">	bufferCount(<span class="number">2</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="pairwise"><a href="#pairwise" class="headerlink" title="pairwise"></a>pairwise</h2><p>情境是為了要可以拿到連續配對的資料 <code>[1, 2] [2, 3] [3, 4]</code>；只使用過一次</p>
 <blockquote>
 <p>補充，也能用在scroll事件，可以用來判斷前次和這次的捲軸位置</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).pipe(</span><br><span class="line">	pairwise()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="bufferTime"><a href="#bufferTime" class="headerlink" title="bufferTime"></a>bufferTime</h2><p>資料需要被累積一定時間後再一起輸出，輸出為陣列；只使用過一次</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).pipe(</span><br><span class="line">	bufferTime(<span class="number">100</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>好的，介紹完曾經使用過的operator，有沒有發現有不少都非常的難用到，因為情境太少，畢竟大部分的情況都還是在整理資料或是串接的用途</p>
 <h1 id="subject"><a href="#subject" class="headerlink" title="subject"></a>subject</h1><p>為什麼要額外提subject呢，因為這個功能實在太好用啦，使用情境來列一下</p>
 <ul>
@@ -228,6 +226,7 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只會觸發一次</span></span><br><span class="line"><span class="keyword">var</span> openDialog = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//&lt;app-dialog [open]=&quot;openDialog&quot; /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> openDialog$ = <span class="keyword">new</span> Subject();</span><br><span class="line">openDialog$.next(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">//&lt;app-dialog [open]=&quot;openDialog$&quot; /&gt;</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>手動控制資料時間點，例如destory</li>
 <li>需要有預設值或是取得前幾次的結果（其他subject）</li>
@@ -238,7 +237,7 @@
 <p>如果覺得挑戰不夠，可以看看這個<a target="_blank" rel="noopener" href="https://github.com/jiaming0708/draw-demo">repo</a>，絕對給你滿滿的應用！</p>
 </blockquote>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -255,21 +254,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -294,11 +278,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -312,7 +291,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -340,6 +319,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

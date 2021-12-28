@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,7 +22,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/move.gif">
 <meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/gesturecard.jpg">
 <meta property="article:published_time" content="2019-01-09T13:43:55.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.813Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.848Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="crop">
 <meta property="article:tag" content="React">
@@ -43,21 +40,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -141,12 +125,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-crop"
+        <article id="post-crop"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -155,8 +139,6 @@
     	[crop系列] 5 完整實作
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/01/09/crop/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  1月 9, 2019
 	</time>
@@ -165,7 +147,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/React/">React</a>
     </div>
-    <span class="readtime">26 mins.</span>
+    
+        <span class="readtime">26 mins.</span>
+    
 
 	</section>
 	
@@ -180,10 +164,10 @@
         <a href="/tags/React/">React</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>系列文終於要來到最終章，前面的每一個都是重要的元素，但要怎麼整合起來會在這篇完整的交代</p>
-<a id="more"></a>
+			<p>系列文終於要來到最終章，前面的每一個都是重要的元素，但要怎麼整合起來會在這篇完整的交代</p>
+<span id="more"></span>
 
 <blockquote>
 <p>如果還沒看過系列其他篇的麻煩這邊請</p>
@@ -194,32 +178,42 @@
 </blockquote>
 <h1 id="準備畫面"><a href="#準備畫面" class="headerlink" title="準備畫面"></a>準備畫面</h1><p>既然這是最終章，當然就是要把畫面什麼的都準備好啦，這邊就直接來把html、css準備好<br>畫面的功能是這樣，一開始進去要先上傳圖片，然後接著可以開始放大/縮小/移動，最後按下確定，把區域內的畫面顯示出來</p>
 <h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    &lt;input</span><br><span class="line">      class=&quot;file-input&quot;</span><br><span class="line">      type=&quot;file&quot;</span><br><span class="line">      accept=&#x27;image/*&#x27;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;crop-root&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;photo-block&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;photo-mask&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;zoom-block&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;zoom-out&quot;</span> /&gt;</span></span><br><span class="line">              &lt;input</span><br><span class="line">                class=&quot;slide&quot;</span><br><span class="line">                type=&quot;range&quot;</span><br><span class="line">                min=&quot;1&quot;</span><br><span class="line">                max=&quot;1.5&quot;</span><br><span class="line">                step=&quot;0.01&quot;</span><br><span class="line">              /&gt;</span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;zoom-in&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;button-block&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">              cut</span><br><span class="line">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 最後顯示用 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.crop-root</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#808080</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.photo-block</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">440px</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">img</span>&#123;</span><br><span class="line">      <span class="attribute">display</span>: block;</span><br><span class="line">      <span class="attribute">position</span>: absolute;</span><br><span class="line">      <span class="selector-tag">object</span>-fit: contain;</span><br><span class="line">      <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &amp; &gt; <span class="selector-tag">img</span>&#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#ffffff</span>;</span><br><span class="line">        <span class="attribute">opacity</span>: <span class="number">0.6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.photo-mask</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">clip-path</span>: circle(<span class="number">125px</span> at center <span class="number">180px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.zoom-block</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">18px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: white;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%zoomIconLine&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0.75rem</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#808080</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: calc(<span class="number">50%</span> - <span class="number">1px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%zoomIcon&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">1rem</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">1rem</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.zoom-out</span>&#123;</span><br><span class="line">    <span class="keyword">@extend</span> %zoomIcon;</span><br><span class="line"></span><br><span class="line">    &amp;<span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">        <span class="keyword">@extend</span> %zoomIconLine;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.zoom-in</span>&#123;</span><br><span class="line">    <span class="keyword">@extend</span> %zoomIcon;</span><br><span class="line"></span><br><span class="line">    &amp;<span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">        <span class="keyword">@extend</span> %zoomIconLine;</span><br><span class="line">        <span class="attribute">transform</span>: rotate(-<span class="number">90deg</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">        <span class="keyword">@extend</span> %zoomIconLine;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="scale和drag結合"><a href="#scale和drag結合" class="headerlink" title="scale和drag結合"></a>scale和drag結合</h1><h2 id="scale計算"><a href="#scale計算" class="headerlink" title="scale計算"></a>scale計算</h2><p>前面用了兩篇各自的講到scale和drag，但是這兩個結合在一起以後計算的方式一定會有所不一樣，現在我們要把這塊完成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parent = <span class="built_in">this</span>.dragNode.parentNode;</span><br><span class="line"><span class="keyword">const</span> maxLeft = parent.offsetWidth - <span class="built_in">this</span>.dragNode.offsetWidth;</span><br><span class="line"><span class="keyword">const</span> maxTop = parent.offsetHeight - <span class="built_in">this</span>.dragNode.offsetHeight;</span><br><span class="line"></span><br><span class="line">point = &#123;</span><br><span class="line">  left: <span class="built_in">this</span>.validValue(point.left, <span class="number">0</span>, maxLeft),</span><br><span class="line">  top: <span class="built_in">this</span>.validValue(point.top, <span class="number">0</span>, maxTop),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>上面是前一篇所用的方法，如果不管邊界值，我們只要把<code>this.dragNode</code>的<code>offsetWidth</code>乘上scale值就可以</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parent = <span class="built_in">this</span>.dragNode.parentNode;</span><br><span class="line"><span class="keyword">const</span> maxLeft = parent.offsetWidth - (<span class="built_in">this</span>.dragNode.offsetWidth * zoomValue);</span><br><span class="line"><span class="keyword">const</span> maxTop = parent.offsetHeight - (<span class="built_in">this</span>.dragNode.offsetHeight * zoomValue);</span><br></pre></td></tr></table></figure>
+
 <p>接下來我們要把邊界的條件拉近來，並且邊界從四周改成中間的圓，也就是圖片不能超過圓形的範圍，因此計算的方式要重新來</p>
 <h2 id="圓為邊界"><a href="#圓為邊界" class="headerlink" title="圓為邊界"></a>圓為邊界</h2><p>前面我們所用到的邊界取值的方式還記得嗎，<strong>使用目前值和最大最小做計算</strong>。<br>用圓當做邊界也是一樣，我們要拿到圓的上下左右四個值，而不能偷懶直接用0當做最小值，這邊先來個暖身沒有任何scale的問題要帶入</p>
 <p>我們只要拿一邊來做計算，因此思考的方式要調整一下，先來看一下操作模式<br><img src="/2019/01/09/crop/move.gif" alt="move"></p>
 <p>當圖左邊拉到圓的左邊時就要停止，而反邊的話是左邊拉到圓的右邊減去寬度，因此我們可以用這兩個值當做最大和最小</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> circle = &#123;</span><br><span class="line">    radius: <span class="number">125</span>,</span><br><span class="line">    offsetY: <span class="number">54</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//　取得圓在drag區域的offset</span></span><br><span class="line"><span class="keyword">const</span> photoRect = <span class="built_in">this</span>.dragNode.parentNode.getBoundingClientRect();</span><br><span class="line"><span class="keyword">let</span> circleNode = &#123;</span><br><span class="line">  left: (photoRect.width / <span class="number">2</span>) - circle.radius,</span><br><span class="line">  top: circle.offsetY,</span><br><span class="line">&#125;;</span><br><span class="line">circleNode = &#123;</span><br><span class="line">  ...circleNode,</span><br><span class="line">  right: circleNode.left + (circle.radius * <span class="number">2</span>),</span><br><span class="line">  bottom: circleNode.top + (circle.radius * <span class="number">2</span>),</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//　以上的計算只需要一次，所以可以放在 componentDidMount</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> minLeft = circleNode.right - <span class="built_in">this</span>.dragNode.offsetWidth;</span><br><span class="line"><span class="keyword">const</span> minHeight = circleNode.bottom - <span class="built_in">this</span>.dragNode.offsetHeight;</span><br><span class="line"></span><br><span class="line">point = &#123;</span><br><span class="line">  left: <span class="built_in">this</span>.validValue(point.left, minLeft, circleNode.left),</span><br><span class="line">  top: <span class="built_in">this</span>.validValue(point.top, minHeight, circleNode.top),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>乎～第一版搞定，那接著就要把scale的變數加進來！</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; offsetWidth, offsetHeight &#125; = <span class="built_in">this</span>.dragNode;</span><br><span class="line"><span class="keyword">let</span> minLeft = <span class="built_in">this</span>.circleNode.right - (offsetWidth * zoomValue);</span><br><span class="line"><span class="keyword">let</span> minTop = <span class="built_in">this</span>.circleNode.bottom - (offsetHeight * zoomValue);</span><br><span class="line"><span class="keyword">let</span> maxLeft = <span class="built_in">this</span>.circleNode.left;</span><br><span class="line"><span class="keyword">let</span> maxTop = <span class="built_in">this</span>.circleNode.top;</span><br></pre></td></tr></table></figure>
+
 <p>但這裡有個問題是，圖放大了，但是我們的座標本身是沒有放大，因此在做max、min的比較時，不能用放大後的值來運算，應該要換算回正確的值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (zoomValue &gt; <span class="number">1</span>) &#123;</span><br><span class="line">  minLeft = <span class="built_in">this</span>.calOriginPosition(offsetWidth, minLeft, zoomValue);</span><br><span class="line">  minTop = <span class="built_in">this</span>.calOriginPosition(offsetHeight, minTop, zoomValue);</span><br><span class="line">  maxLeft = <span class="built_in">this</span>.calOriginPosition(offsetWidth, maxLeft, zoomValue);</span><br><span class="line">  maxTop = <span class="built_in">this</span>.calOriginPosition(offsetHeight, maxTop, zoomValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> calOriginPosition = <span class="function">(<span class="params">originLength, value, zoomValue</span>) =&gt;</span></span><br><span class="line">    value + ((zoomValue - <span class="number">1</span>) * originLength / <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
 <h2 id="mobile放大-pinch"><a href="#mobile放大-pinch" class="headerlink" title="mobile放大-pinch"></a>mobile放大-pinch</h2><a href="/2019/01/08/crop-drag/" title="前面一篇">前面一篇</a>有提到在mobile上的touch是一個陣列，為了可以記錄多點觸控時的位置，在mobile上scale有個名詞叫做**pinch**，可以看一下這張圖上面有各種在mobile上的操作行為
 <p><img src="/2019/01/09/crop/gesturecard.jpg" alt="gesture"></p>
 <p>這邊跟drag只有一個地方要調整，就是一定要觸控兩個點，接著變更<code>zoomValue</code>即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(event &#x3D;&gt; event.touches.length &#x3D;&#x3D;&#x3D; 2)</span><br></pre></td></tr></table></figure>
+
 <h1 id="輸出"><a href="#輸出" class="headerlink" title="輸出"></a>輸出</h1><p>drag和scale都處理完以後就只剩下最後的輸出，在專案中為了上傳方便，因此使用的是<code>blob</code>來放檔案，當然你也能夠不要轉直接用<code>base64</code>做顯示，因為已經轉成blob，因此我們需要用<strong>URL.createObjectURL</strong>的方法去轉換成瀏覽器內部的連結</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">afterCutBlob = <span class="function"><span class="params">blob</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">        cutBlob: url,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>不要忘記離開前釋放一下記憶體，可以參考一下這篇<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL">MDN</a>，在這篇中我就沒有寫上去</p>
 </blockquote>
 <h1 id="小應用"><a href="#小應用" class="headerlink" title="小應用"></a>小應用</h1><p>這是一個在專案上用到的情境，designer跟我說希望一開始進去的時後，如果高比寬長，那就將寬設為圓的直徑，高等比比縮放，然後位置是在圓的左上角</p>
 <p>這個需求其實很簡單，在image加上<code>onLoad</code>的事件，寫個判斷式，然後再把left和top重新計算取得正確的位置，就可以打完收工啦</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  loadedImage = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      naturalHeight,</span><br><span class="line">      naturalWidth,</span><br><span class="line">    &#125; = <span class="built_in">this</span>.image;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> stateName = naturalHeight &gt; naturalWidth ? <span class="string">&#x27;width&#x27;</span> : <span class="string">&#x27;height&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> diameter = circle.radius * <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">this</span>.image[stateName] = diameter;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">      [stateName]: diameter,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      left,</span><br><span class="line">      top,</span><br><span class="line">      zoomValue,</span><br><span class="line">    &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    <span class="built_in">this</span>.calMovedPosition(&#123;</span><br><span class="line">      left,</span><br><span class="line">      top,</span><br><span class="line">    &#125;, zoomValue);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;img</span></span><br><span class="line"><span class="comment">  src=&#123;imageBlob&#125;</span></span><br><span class="line"><span class="comment">  style=&#123;imageStyle&#125;</span></span><br><span class="line"><span class="comment">  draggable=&quot;false&quot;</span></span><br><span class="line"><span class="comment">  ref=&#123;node =&gt; &#123; this.image = node; &#125;&#125;</span></span><br><span class="line"><span class="comment">  onLoad=&#123;this.loadedImage&#125;</span></span><br><span class="line"><span class="comment">/&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
 
 
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>到這邊，整個功能已經算是介紹的差不多，剩下的就是把前面所講過的程式碼拼湊起來，需要的話請到這邊看<a target="_blank" rel="noopener" href="https://stackblitz.com/edit/react-crop?embed=1&file=index.js&view=editor">demo</a></p>
@@ -229,7 +223,7 @@
 <p>範例中的<code>Crop</code>這個component沒寫的很好，做太多事情，如果有什麼好的建議歡迎告訴我喔🥂</p>
 </blockquote>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -246,21 +240,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -285,11 +264,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -303,7 +277,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -331,6 +305,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

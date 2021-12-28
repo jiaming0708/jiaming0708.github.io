@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,7 +24,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/preference_for_repo.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/remove_comment.png">
 <meta property="article:published_time" content="2020-10-25T07:33:08.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.873Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.920Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="GitKraken">
@@ -45,21 +42,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -143,12 +127,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-git-template-in-kraken"
+        <article id="post-git-template-in-kraken"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -157,8 +141,6 @@
     	在GitKraken中使用template
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2020/10/25/git-template-in-kraken/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  10月 25, 2020
 	</time>
@@ -167,7 +149,9 @@
     <div class='cats'>
         <a href="/categories/Git/">Git</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -182,22 +166,26 @@
         <a href="/tags/GitKraken/">GitKraken</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近團隊開始規範 git commit 並且導入 <a target="_blank" rel="noopener" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional commit</a>，剛開始不熟悉都會一直要去翻文件，看看到底這時候要用什麼樣的類型，為了加速類別的輸入，可以在 commit 的 template 中設定，今天就來分享一下使用這個規範並且如何有效的套用在 <a target="_blank" rel="noopener" href="https://www.gitkraken.com/">GitKraken</a> 這套工具中。</p>
-<a id="more"></a>
+			<p>最近團隊開始規範 git commit 並且導入 <a target="_blank" rel="noopener" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional commit</a>，剛開始不熟悉都會一直要去翻文件，看看到底這時候要用什麼樣的類型，為了加速類別的輸入，可以在 commit 的 template 中設定，今天就來分享一下使用這個規範並且如何有效的套用在 <a target="_blank" rel="noopener" href="https://www.gitkraken.com/">GitKraken</a> 這套工具中。</p>
+<span id="more"></span>
 
 <h1 id="介紹Conventional-commit"><a href="#介紹Conventional-commit" class="headerlink" title="介紹Conventional commit"></a>介紹Conventional commit</h1><p>這是一個由 angular 團隊推動的 commit message 規範，主要是把每個 commit 做一個分類，分類的好處除了人在看比較輕鬆以外，也是有機會能夠使用工具去拿到某個分類的全部 commit，在 release 時要整理就會比較輕鬆。</p>
 <p>目前的類別大概有 <code>feat</code>, <code>fix</code>, <code>build:</code>, <code>chore</code>, <code>ci</code>, <code>docs</code>, <code>style</code>, <code>refactor</code>, <code>perf</code>, <code>test</code>…等，基本上大部分的 commit 應該都能夠被分類到；目前我最常用到的應該是 <code>feat</code>, <code>style</code>, <code>refactor</code>, <code>fix</code> 這幾個，剩下幾個就沒那麼常使用到。</p>
 <p>要導入一個規範最好的方法還是用強迫的，那就必須要安裝 commit lint 的套件 <a target="_blank" rel="noopener" href="https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional">config-conventional</a>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @commitlint/config-conventional @commitlint/cli</span><br></pre></td></tr></table></figure>
+
 <h1 id="使用Git-Template"><a href="#使用Git-Template" class="headerlink" title="使用Git Template"></a>使用Git Template</h1><p>剛剛有說到可以使用套件來作為規範，但初期的時候就是很容易忘記有哪些類別，這時候可以考慮使用 git 的 template 功能，讓我們在 commit 時，能有一個快速的參考，當然這個 template 並不會真的進入到你的 message 中。</p>
 <p>接著就來試試看在 git 中加上 template，首先建立一個檔案叫做 <code>.gitmessage</code> ，並且放在 root 底下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">touch .gitmessage</span><br><span class="line">vi .gitmessage</span><br></pre></td></tr></table></figure>
+
 <p>接著將 conventional commit 的類別放進去，輸入 <code>i</code> 然後 <code>cmd+v</code> 貼上，這個是我目前使用的內容。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Conventional Commit Types:</span><br><span class="line"># build</span><br><span class="line"># ci</span><br><span class="line"># chore</span><br><span class="line"># docs</span><br><span class="line"># feat</span><br><span class="line"># fix</span><br><span class="line"># perf</span><br><span class="line"># refactor</span><br><span class="line"># revert</span><br><span class="line"># style</span><br><span class="line"># test</span><br></pre></td></tr></table></figure>
+
 <p>最後把這個檔案指定給 git。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config commit.template .gitmessage</span><br></pre></td></tr></table></figure>
+
 <h1 id="設定-GitKaren"><a href="#設定-GitKaren" class="headerlink" title="設定 GitKaren"></a>設定 GitKaren</h1><blockquote>
 <p>如果你是 CLI 派的，就麻煩這邊左轉離開囉。</p>
 </blockquote>
@@ -219,7 +207,7 @@
 <li><a target="_blank" rel="noopener" href="https://support.gitkraken.com/working-with-commits/commits/#commit-templates">GitKraken commit template</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -236,21 +224,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -275,11 +248,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -293,7 +261,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -321,6 +289,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

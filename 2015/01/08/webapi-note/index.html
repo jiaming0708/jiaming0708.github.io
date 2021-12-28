@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="以前在寫API時，都寫在Controller，而不是ApiController這次的專案，總覺得應該要標準化改走ApiController沒想到遇到了不少問題">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2015-01-08T09:35:46.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="MVC">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-webapi-note"
+        <article id="post-webapi-note"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	[C#] WebAPI使用
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2015/01/08/webapi-note/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  1月 8, 2015
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/Back-end/">Back-end</a>, <a href="/categories/Back-end/C/">C#</a>
     </div>
-    <span class="readtime">6 mins.</span>
+    
+        <span class="readtime">6 mins.</span>
+    
 
 	</section>
 	
@@ -177,18 +161,20 @@
         <a href="/tags/MVC/">MVC</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>以前在寫API時，都寫在Controller，而不是ApiController<br>這次的專案，總覺得應該要標準化改走ApiController<br>沒想到遇到了不少問題</p>
-<a id="more"></a>
+			<p>以前在寫API時，都寫在Controller，而不是ApiController<br>這次的專案，總覺得應該要標準化改走ApiController<br>沒想到遇到了不少問題</p>
+<span id="more"></span>
 
 <p>1.預設的Route下，每個ApiController只允許一個Get/Delete/Post<br>若要同一個ApiController底下支援多個，可以修改WebApiConfig</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">WebApiConfig</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Register</span>(<span class="params">HttpConfiguration config</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// Web API 設定和服務</span></span><br><span class="line">        config.EnableCors();</span><br><span class="line">        <span class="comment">// Web API 路由</span></span><br><span class="line">        config.MapHttpAttributeRoutes();</span><br><span class="line"> </span><br><span class="line">        config.Routes.MapHttpRoute(</span><br><span class="line">            name: <span class="string">&quot;DefaultApi&quot;</span>,</span><br><span class="line">            routeTemplate: <span class="string">&quot;api/&#123;controller&#125;/&#123;action&#125;&quot;</span></span><br><span class="line">        );</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//config.Routes.MapHttpRoute(</span></span><br><span class="line">        <span class="comment">//   name: &quot;DefaultApiWithAction&quot;,</span></span><br><span class="line">        <span class="comment">//   routeTemplate: &quot;api/&#123;controller&#125;/&#123;action&#125;&quot;,</span></span><br><span class="line">        <span class="comment">//   defaults: new &#123; id = RouteParameter.Optional &#125;</span></span><br><span class="line">        <span class="comment">//);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>2.ApiController的Route會認前面的字樣，呼叫的方法有限制<br>例如，開頭為Get就不支援Get以外的呼叫<br>若開頭都不在標準方法內，則需使用Post</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用Get</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ReturnDataModel <span class="title">GetUserData</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用Post</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ReturnDataModel <span class="title">SignIn</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>3.Post的傳遞參數，若為物件，則只能接受一個物件</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以多個string</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ReturnDataModel <span class="title">SignIn</span>(<span class="params"><span class="built_in">string</span> user, <span class="built_in">string</span> password</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//將user和password組合成一個物件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> UserName&#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Password&#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以一個物件</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ReturnDataModel <span class="title">SignIn</span>(<span class="params">UserData data</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不可以一個物件以上，必須將這兩個參數合成一個物件</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ReturnDataModel <span class="title">SignIn</span>(<span class="params">UserData data, <span class="built_in">string</span> device</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -205,21 +191,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -244,11 +215,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -262,7 +228,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -290,6 +256,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

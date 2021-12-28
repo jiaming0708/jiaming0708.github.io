@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="繼上篇  [Design Pattern] Observer(觀察者)、Decoractor(裝飾器)，我們接著繼續看其他的模式  迷之音:也隔太久了吧!!!   Facade 外觀 Mediator 協調者 Interpreter 直譯器">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-08-06T02:29:54.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.889Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.940Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-design-pattern-facade-mediator-interpreter"
+        <article id="post-design-pattern-facade-mediator-interpreter"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[Design Pattern] facade(外觀) 和 interpreter(直繹器) 以及 mediator(協調者)
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2021/08/06/design-pattern-facade-mediator-interpreter/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  8月 6, 2021
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Design-Pattern/">Design Pattern</a>
     </div>
-    <span class="readtime">2 mins.</span>
+    
+        <span class="readtime">2 mins.</span>
+    
 
 	</section>
 	
@@ -174,9 +158,9 @@
         <a href="/tags/Design-Pattern/">Design Pattern</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>繼上篇  <a href="/2017/08/29/design-pattern-observer-decorator/" title="[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)">[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)</a>，我們接著繼續看其他的模式</p>
+			<p>繼上篇  <a href="/2017/08/29/design-pattern-observer-decorator/" title="[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)">[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)</a>，我們接著繼續看其他的模式</p>
 <blockquote>
 <p>迷之音:也隔太久了吧!!!</p>
 </blockquote>
@@ -185,7 +169,7 @@
 <li>Mediator 協調者</li>
 <li>Interpreter 直譯器</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="Facade-外觀"><a href="#Facade-外觀" class="headerlink" title="Facade (外觀)"></a>Facade (外觀)</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>這個模式重點是封裝，只讓使用者看到外觀(表層)，這件事情其實大家都很常在做，尤其是當某個事件一定要執行固定邏輯時，那這樣我們就會想要把那些邏輯集中起來，讓外面呼叫端可以固定行為。</p>
 <h2 id="情境"><a href="#情境" class="headerlink" title="情境"></a>情境</h2><p>那用一點現實的例子來看，用便當商店買東西來做說明，你可能會買咖啡/便當或是其他東西，不管哪一種的行為都是只有對應店員，剩下的煮咖啡/加熱，都會由店員來處理。</p>
@@ -209,7 +193,7 @@
 <p>❯  dotnet run<br>二零二一 to 2021<br>2021 to 二零二一</p>
 </blockquote>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -226,21 +210,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -265,11 +234,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -283,7 +247,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -311,6 +275,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

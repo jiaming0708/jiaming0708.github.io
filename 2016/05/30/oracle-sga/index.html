@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近在玩系統負載測試，PM說用到最新的那台server上跑看看，於是就把系統丟上去開始測試沒跑不知道，測試下去才發現，怎麼記憶體吃了96%很怕是自己的系統導致，所以趕快的確認一下是誰吃了那麼多">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2016-05-30T14:29:03.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="oracle">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-oracle-sga"
+        <article id="post-oracle-sga"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[Oracle] 記憶體控制sga
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2016/05/30/oracle-sga/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  5月 30, 2016
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Back-end/">Back-end</a>, <a href="/categories/Back-end/Oracle/">Oracle</a>
     </div>
-    <span class="readtime">1 mins.</span>
+    
+        <span class="readtime">1 mins.</span>
+    
 
 	</section>
 	
@@ -174,17 +158,19 @@
         <a href="/tags/oracle/">oracle</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近在玩系統負載測試，PM說用到最新的那台server上跑看看，於是就把系統丟上去開始測試<br>沒跑不知道，測試下去才發現，怎麼記憶體吃了96%<br>很怕是自己的系統導致，所以趕快的確認一下是誰吃了那麼多</p>
-<a id="more"></a>
+			<p>最近在玩系統負載測試，PM說用到最新的那台server上跑看看，於是就把系統丟上去開始測試<br>沒跑不知道，測試下去才發現，怎麼記憶體吃了96%<br>很怕是自己的系統導致，所以趕快的確認一下是誰吃了那麼多</p>
+<span id="more"></span>
 
 <p>還好兇手不是我(乎)，是三個DB，兩個oracle各吃15G，一個MS SQL吃13G（server共47G）<br>問了一下高手看看這種是什麼情況，原來是sga在搞鬼</p>
 <p>先下個指令確認一下，確認現在設定多少</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> sga;</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">parameter</span> sga_target</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">parameter</span> sga_max_size;</span><br></pre></td></tr></table></figure>
+
 <p>果然是target和max_size設定一樣導致，於是將sga_target先調小，sga_max_size不變避免未來需要吃太多</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> sga_target<span class="operator">=</span><span class="number">8192</span>M;</span><br></pre></td></tr></table></figure>
-  	</div>
+
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -201,21 +187,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -240,11 +211,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -258,7 +224,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -286,6 +252,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

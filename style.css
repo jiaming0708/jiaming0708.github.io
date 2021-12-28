@@ -1500,9 +1500,6 @@ ul.h-list > li {
     line-height: 1.6em;
   }
 }
-.article .gist table tr {
-  border-bottom: unset;
-}
 /* Tomorrow Night Eighties Theme */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
@@ -1629,11 +1626,6 @@ pre .javascript .function {
   width: 50%;
   float: right;
   text-align: right;
-}
-.fb-like {
-  display: block !important;
-  max-width: 100%;
-  overflow: hidden;
 }
 /* Pagination */
 #page-nav {

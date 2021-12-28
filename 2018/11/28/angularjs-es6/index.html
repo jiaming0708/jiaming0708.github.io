@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="在前一篇[AngularJS] ng-admin介紹中，有提到要使用es6來撰寫，但是angularJS預設是es5，讓我們看一下該怎麼進行整合，使用更強更好用的es6來快樂的開發angularJS">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-11-28T01:35:17.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.809Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.844Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="AngularJS">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-angularjs-es6"
+        <article id="post-angularjs-es6"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[AngularJS] 使用es6開發-grunt+webpack+babel
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2018/11/28/angularjs-es6/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  11月 28, 2018
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/AngularJS/">AngularJS</a>
     </div>
-    <span class="readtime">6 mins.</span>
+    
+        <span class="readtime">6 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/AngularJS/">AngularJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>在前一篇<a href="/2018/11/12/ng-admin/" title="[AngularJS] ng-admin介紹">[AngularJS] ng-admin介紹</a>中，有提到要使用es6來撰寫，但是angularJS預設是es5，讓我們看一下該怎麼進行整合，使用更強更好用的es6來快樂的開發angularJS</p>
-<a id="more"></a>
+			<p>在前一篇<a href="/2018/11/12/ng-admin/" title="[AngularJS] ng-admin介紹">[AngularJS] ng-admin介紹</a>中，有提到要使用es6來撰寫，但是angularJS預設是es5，讓我們看一下該怎麼進行整合，使用更強更好用的es6來快樂的開發angularJS</p>
+<span id="more"></span>
 
 <h1 id="開始之前"><a href="#開始之前" class="headerlink" title="開始之前"></a>開始之前</h1><p>要開始整合編譯工具之前，應該要先知道架構面的事情，原本在寫angularJS時，每個controller或是directive還是會拆分檔案來進行開發，像是下面這樣</p>
 <p>-src<br>–directive.js<br>–directive2.js<br>–controller.js<br>–controller2.js<br>-index.html</p>
@@ -185,7 +169,9 @@
 <p>-disc.js<br>-index.html</p>
 <p>所以在整合es6的時候，我們就要先改變一下寫法，將directive、controller等寫成一個標準export的js檔案，像是下面的寫法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// duplicate.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicate</span> (<span class="params">Restangular</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">    scope: &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: <span class="string">&#x27;&lt;span class=&quot;fa fa-clone&quot; aria-hidden=&quot;true&quot;&gt;Duplicate post&lt;/span&gt;&#x27;</span>,</span><br><span class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">scope, element, attrs</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">duplicate.$inject = [</span><br><span class="line">  <span class="string">&#x27;Restangular&#x27;</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> duplicate;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> duplicate <span class="keyword">from</span> <span class="string">&#x27;./duplicate&#x27;</span>;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">&#x27;app&#x27;</span>)</span><br><span class="line">.direcitive(<span class="string">&#x27;duplicate&#x27;</span>, duplicate);</span><br></pre></td></tr></table></figure>
+
 <p>這時候呢，我們只要針對<code>app.js</code>這個檔案做編譯，其他被引用到的就會被編譯到同一個檔案中，那之前所用到把各個檔案集中到一個的作法也就不用</p>
 <h1 id="編譯工具"><a href="#編譯工具" class="headerlink" title="編譯工具"></a>編譯工具</h1><p>現在有兩個方法可以將es6編譯成es5，接下來就來詳細的介紹一下這些工具</p>
 <h2 id="typescript"><a href="#typescript" class="headerlink" title="typescript"></a>typescript</h2><p>typescript是一個超集合，所以可以單純的用ts的檔案但內容全部是一般js的寫法，在angular裡面就開始全部使用ts，所以採用這個也是一個很好的選擇</p>
@@ -215,9 +201,10 @@
 <p>“webpack”: “^4.23.1”<br>“@babel/core”: “^7.1.2”</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//將webpack的設定寫在另一個檔案中</span></span><br><span class="line"><span class="keyword">const</span> webpackConfig = <span class="built_in">require</span>(<span class="string">&#x27;./webpack.config.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line">grunt.initConfig(&#123;</span><br><span class="line">	webpack: &#123;</span><br><span class="line">	  options: &#123;</span><br><span class="line">	    stats: <span class="literal">true</span>,</span><br><span class="line">	  &#125;,</span><br><span class="line">	  prod: webpackConfig,</span><br><span class="line">      <span class="comment">//預設mode是prod，所以在開發時就不用特別給</span></span><br><span class="line">	  dev: <span class="built_in">Object</span>.assign(&#123; <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span> &#125;, webpackConfig),</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>建議有在繼續寫angularJS的都應該要使用編譯工具，讓開發上更加輕鬆（因為使用angularJS已經夠辛苦），時間除了花在找工具外，也有一部分是在把原本寫不好的code修好，這種整合的期間很痛苦，但弄好的時候真的很爽，都可以使用es6的語法，輕鬆寫code</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -234,21 +221,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -273,11 +245,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -291,7 +258,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -319,6 +286,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

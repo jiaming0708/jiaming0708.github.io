@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="為什麼要用Directive，可以幫助我們做到什麼事情?">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-08-16T02:32:42.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-angular-directive"
+        <article id="post-angular-directive"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[Angular] Directive介紹
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/08/16/angular-directive/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  8月 16, 2017
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Frontend/">Frontend</a>, <a href="/categories/Frontend/Angular/">Angular</a>
     </div>
-    <span class="readtime">10 mins.</span>
+    
+        <span class="readtime">10 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/Angular/">Angular</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>為什麼要用Directive，可以幫助我們做到什麼事情?</p>
-<a id="more"></a>
+			<p>為什麼要用Directive，可以幫助我們做到什麼事情?</p>
+<span id="more"></span>
 
 <p>directive是一個可以擴充element的行為或是呈現，最常使用的component則是繼承了directive加上template的部份，</p>
 <p>這時候我們可以使用directive來幫助我們，把重複的東西抽離出來，並且能夠讓element變得精簡</p>
@@ -190,15 +174,19 @@
 <p>對HTML的結構進行操作，像是隱藏、顯示或是迴圈等的動作。<br>常用的功能有<code>ngIf</code>、<code>ngFor</code>、<code>ngSwitch</code>。</p>
 <p><code>*ngIf</code>代表著是否要顯示dom，這邊隱藏的話是不會去真正的產生element</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngIf&#x3D;&quot;true&quot;&gt;this is show&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div *ngIf&#x3D;&quot;false&quot;&gt;this is hide&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!--template bindings&#x3D;&#123;</span><br><span class="line">  &quot;ng-reflect-ng-if&quot;: null</span><br><span class="line">&#125;--&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>*ngFor</code>迴圈顯示，被包在裡面的html可以自行定義</p>
 <blockquote>
 <p>這邊要注意，當變數是null則會死掉，這時候外面可以包一個*ngIf</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let todo of todoList&quot;&gt;</span><br><span class="line">  &#123;&#123;todo.name&#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>ngSwith</code>樣板有多種需要動態決定顯示哪個時可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div [ngSwitch]&#x3D;&quot;hero?.emotion&quot;&gt;</span><br><span class="line">  &lt;happy-hero    *ngSwitchCase&#x3D;&quot;&#39;happy&#39;&quot;    [hero]&#x3D;&quot;hero&quot;&gt;&lt;&#x2F;happy-hero&gt;</span><br><span class="line">  &lt;sad-hero      *ngSwitchCase&#x3D;&quot;&#39;sad&#39;&quot;      [hero]&#x3D;&quot;hero&quot;&gt;&lt;&#x2F;sad-hero&gt;</span><br><span class="line">  &lt;confused-hero *ngSwitchCase&#x3D;&quot;&#39;confused&#39;&quot; [hero]&#x3D;&quot;hero&quot;&gt;&lt;&#x2F;confused-hero&gt;</span><br><span class="line">  &lt;unknown-hero  *ngSwitchDefault           [hero]&#x3D;&quot;hero&quot;&gt;&lt;&#x2F;unknown-hero&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
 <p>使用*做為前置詞，用來跟其他功能做區隔<br>當然也可以用其他的寫法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div template&#x3D;&quot;ngIf hero&quot;&gt;&#123;&#123;hero.name&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;ng-template [ngIf]&#x3D;&quot;hero&quot;&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123;hero.name&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;ng-template&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Attribute-Directive"><a href="#Attribute-Directive" class="headerlink" title="Attribute Directive"></a>Attribute Directive</h2><p>可以改變element的行為或是樣式</p>
 <p><code>ngClass</code>改變element的class，使用陣列的方式或用物件的方式來決定要哪些class要被引用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div [ngClass]&#x3D;&quot;&#39;selected&#39;&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div [ngClass]&#x3D;&quot;[&#39;selected&#39;]&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div [ngClass]&#x3D;&#123;&#39;selected&#39;:true&#125;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
@@ -222,9 +210,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Directive(&#123;select: &#39;[myTodo]&#39; &#125;)</span><br><span class="line">export class TodoDirective&#123;</span><br><span class="line">  @Input(&#39;status&#39;) @HostBinding(&#39;class.completed&#39;) _status:boolean;</span><br><span class="line">  </span><br><span class="line">  constructor(el: ElementRef)&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>@HostBinding是用來變更directive所在的那個element的一些屬性，例如：style、class等，那你也許會問可以變更屬性，那能不能監聽element的事件呢？答案是可以的，我們可以來用用@HostListener</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Directive(&#123;select: &#39;[myTodo]&#39; &#125;)</span><br><span class="line">export class TodoDirective&#123;</span><br><span class="line">  @Input(&#39;status&#39;) @HostBinding(&#39;class.completed&#39;) _status:boolean;</span><br><span class="line">  &#x2F;&#x2F;Output只能拋出event喔!</span><br><span class="line">  @Output() onEventChange &#x3D; new EventEmitter();</span><br><span class="line">  @HostListener(&#39;click&#39;) onHostClick()&#123;</span><br><span class="line">    this.el.nativeElement.classList.toggle(&#39;complete&#39;);</span><br><span class="line">    this.onEventChange.emit();</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  constructor(private el: ElementRef)&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://angular.io/guide/attribute-directives">官網</a><br><a target="_blank" rel="noopener" href="https://jeffwu85182.github.io/2017/03/25/angular-directive-reaserch/">Jeff筆記</a></p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -241,21 +230,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -280,11 +254,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -298,7 +267,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -326,6 +295,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception想要把這種資料回寫到後端，我們可以怎麼去實作他">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-07-24T14:00:20.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="AngularJS">
 <meta property="article:tag" content="Angular">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-angular-exception"
+        <article id="post-angular-exception"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	[Angular/AngularJS] Exception Handle
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/07/24/angular-exception/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  7月 24, 2017
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Angular/">Angular</a>
     </div>
-    <span class="readtime">3 mins.</span>
+    
+        <span class="readtime">3 mins.</span>
+    
 
 	</section>
 	
@@ -177,19 +161,20 @@
         <a href="/tags/Angular/">Angular</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception<br>想要把這種資料回寫到後端，我們可以怎麼去實作他</p>
-<a id="more"></a>
+			<p>今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception<br>想要把這種資料回寫到後端，我們可以怎麼去實作他</p>
+<span id="more"></span>
 
 <h1 id="Angular作法"><a href="#Angular作法" class="headerlink" title="Angular作法"></a>Angular作法</h1><p>在Angular可以攔截在全域未handle到的exception，可以看一下<a target="_blank" rel="noopener" href="https://angular.io/api/core/ErrorHandler">官方文件</a></p>
 <p>只要照著寫一個class <code>implements ErrorHandler</code>就可以<br>最簡單的錯誤就是在呼叫api的時候沒有去handle exception(想辦法讓api呼叫失敗)<br>這時候就會進入到自己寫的那個class中</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ErrorHandler &#125; <span class="keyword">from</span> <span class="string">&quot;@angular/core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MyErrorHandler</span> <span class="title">implements</span> <span class="title">ErrorHandler</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">handleError</span>(<span class="params">error</span>)</span> &#123;</span><br><span class="line">        <span class="comment">//call backend api</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`this is my error handle, <span class="subst">$&#123;error&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="AngularJS作法"><a href="#AngularJS作法" class="headerlink" title="AngularJS作法"></a>AngularJS作法</h1><p>因為工作上還有用到AngularJS，同事就問到有沒有這種東西<br>於是查詢了一下<a target="_blank" rel="noopener" href="https://docs.angularjs.org/api/ng/service/$exceptionHandler">官方文件</a></p>
 <p>作法跟Angular蠻像的，果然是前後代XD</p>
 <p>同樣的照著官方文件做，寫一個factory叫做<code>$exceptionHandler</code>，overwrite原生的handler<br>一樣可以輕鬆的搞定需求</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">&#x27;exceptionModule&#x27;</span>)</span><br><span class="line">    .factory(<span class="string">&#x27;$exceptionHandler&#x27;</span>, [<span class="string">&#x27;$log&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$log</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">myExceptionHandler</span>(<span class="params">exception, cause</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//call back-end api</span></span><br><span class="line">            $log.error(<span class="string">`my error handler, <span class="subst">$&#123;exception&#125;</span>`</span>, cause)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;]);</span><br></pre></td></tr></table></figure>
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -206,21 +191,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -245,11 +215,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -263,7 +228,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -291,6 +256,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="今天要來帶大家看三個我實際有使用過的案例，並且一個步驟一個步驟的走過，當然我們會從簡單到複雜…">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-08-20T12:21:01.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.809Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.844Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta property="article:tag" content="RxJS">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-rx-sample"
+        <article id="post-rx-sample"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	Rx真實案例展示
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2018/08/20/rx-sample/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  8月 20, 2018
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Angular/">Angular</a>
     </div>
-    <span class="readtime">33 mins.</span>
+    
+        <span class="readtime">33 mins.</span>
+    
 
 	</section>
 	
@@ -177,10 +161,10 @@
         <a href="/tags/RxJS/">RxJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>今天要來帶大家看三個我實際有使用過的案例，並且一個步驟一個步驟的走過，當然我們會從簡單到複雜…</p>
-<a id="more"></a>
+			<p>今天要來帶大家看三個我實際有使用過的案例，並且一個步驟一個步驟的走過，當然我們會從簡單到複雜…</p>
+<span id="more"></span>
 
 <h1 id="AutoComplete"><a href="#AutoComplete" class="headerlink" title="AutoComplete"></a>AutoComplete</h1><p>這是一個常見的需求，而且這個功能絕對是非常好使用Rx的一個情境，搭配Angular <code>Reactive Form</code>效果更好</p>
 <p>先來描述一下這個案例</p>
@@ -195,7 +179,9 @@
 <p>使用async可以加上$用來區隔變數</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> [<span class="attr">formGroup</span>]=<span class="string">&quot;form&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">formControlName</span>=<span class="string">&quot;keyword&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of wastes$ | async as wastes&quot;</span>&gt;</span></span><br><span class="line">      &#123;&#123;item.OrgName&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FormBuilder, FormGroup &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/forms&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-root&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./app.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./app.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  keyword$: Observable&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">  form: FormGroup;</span><br><span class="line">  wastes$: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.form = <span class="built_in">this</span>.fb.group(&#123;</span><br><span class="line">      keyword: [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">this</span>.form.get(<span class="string">&#x27;keyword&#x27;</span>)</span><br><span class="line">        .valueChanges</span><br><span class="line">      	.subscribe(<span class="function"><span class="params">p</span>=&gt;</span><span class="built_in">console</span>.log(<span class="string">&#x27;input&#x27;</span>, p));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> fb: FormBuilder</span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>透過<code>FormGroup</code>的<code>valueChanges</code>就能夠監聽input的變動了(484很簡單!!)</p>
 </blockquote>
@@ -204,12 +190,15 @@
 <p>最好的作法應該是用server做filter</p>
 </blockquote>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;County&quot;</span>: <span class="string">&quot;宜蘭縣&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;OrgType&quot;</span>: <span class="string">&quot;清除&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Grade&quot;</span>: <span class="string">&quot;甲&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;OrgName&quot;</span>: <span class="string">&quot;境庭有限公司&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;RegistrationNo&quot;</span>: <span class="string">&quot;G3004187&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;OrgAddress&quot;</span>: <span class="string">&quot;宜蘭縣宜蘭市文昌路一九八之六號一樓&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;TreatMethod&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;GrantDeadline&quot;</span>: <span class="string">&quot;2022/7/18 上午 12:00:00&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;OrgTel&quot;</span>: <span class="string">&quot;03-9356440&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;OperatingAddress&quot;</span>: <span class="string">&quot;宜蘭縣宜蘭市文昌路一九八之六號一樓&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 <p>可以看到輸出的資料是一個物件的陣列，所以我們要宣告一個<code>interface</code>來做為資料model</p>
 <blockquote>
 <p>等等將採用OrgName來做為搜尋條件</p>
 </blockquote>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Waste &#123;</span><br><span class="line">  County: <span class="built_in">string</span>;</span><br><span class="line">  OrgType: <span class="built_in">string</span>;</span><br><span class="line">  Grade: <span class="built_in">string</span>;</span><br><span class="line">  OrgName: <span class="built_in">string</span>;</span><br><span class="line">  RegistrationNo: <span class="built_in">string</span>;</span><br><span class="line">  OrgAddress: <span class="built_in">string</span>;</span><br><span class="line">  TreatMethod: <span class="built_in">string</span>;</span><br><span class="line">  GrantDeadline: <span class="built_in">string</span>;</span><br><span class="line">  OrgTel: <span class="built_in">string</span>;</span><br><span class="line">  OperatingAddress: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; environment &#125; <span class="keyword">from</span> <span class="string">&#x27;src/environments/environment&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpClient &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; map &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs/operators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Waste &#125; <span class="keyword">from</span> <span class="string">&#x27;@app/models/waste&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  providedIn: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">EnvAPIService</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> wasteAPI$ = <span class="built_in">this</span>.http.jsonp(<span class="built_in">this</span>.generatorUrl(<span class="string">&#x27;355000000I-001154&#x27;</span>), <span class="string">&#x27;callback&#x27;</span>)</span><br><span class="line">    .pipe(</span><br><span class="line">      map(<span class="function">(<span class="params">p: <span class="built_in">any</span></span>) =&gt;</span> p.result.records <span class="keyword">as</span> Waste[])</span><br><span class="line">    );</span><br><span class="line">  generatorUrl(resouceId: <span class="built_in">string</span>, params?: <span class="built_in">any</span>[]): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> queryParam = !params ? <span class="string">&#x27;&#x27;</span> : <span class="string">`&amp;<span class="subst">$&#123;params.join(<span class="string">&#x27;&amp;&#x27;</span>)&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;environment.envAPIEndpoint + resouceId&#125;</span>?format=json&amp;toekn=<span class="subst">$&#123;environment.envToken&#125;</span><span class="subst">$&#123;queryParam&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> http: HttpClient</span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>接著我們要跟service做一個串接，這邊先來解析一下會怎麼思考使用的operator</p>
 <ol>
 <li>API取得資料是一個陣列，但我們要用OrgName作為過濾條件，所以需要要先將陣列拆開(<strong>switchMap</strong>)</li>
@@ -217,6 +206,7 @@
 <li>將拆開的陣列組合回去(<strong>toArray</strong>)</li>
 </ol>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; filter, mergeMap, switchMap, toArray, debounceTime, map &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs/operators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FormBuilder, FormGroup &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/forms&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable, combineLatest &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Waste &#125; <span class="keyword">from</span> <span class="string">&#x27;@app/models/waste&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; EnvAPIService &#125; <span class="keyword">from</span> <span class="string">&#x27;@app/service/env-api.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-root&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./app.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./app.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  keyword$: Observable&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">  form: FormGroup;</span><br><span class="line">  wastes$: Observable&lt;Waste[]&gt;;</span><br><span class="line"></span><br><span class="line">  hasKeyword = <span class="function">(<span class="params">keyword: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">waste: Waste</span>) =&gt;</span> waste.OrgName.indexOf(keyword) &gt; -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.form = <span class="built_in">this</span>.fb.group(&#123;</span><br><span class="line">      keyword: [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">this</span>.keyword$ = <span class="built_in">this</span>.form.get(<span class="string">&#x27;keyword&#x27;</span>).valueChanges;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.wastes$ = <span class="built_in">this</span>.keyword$.pipe(</span><br><span class="line">      mergeMap(<span class="function"><span class="params">keyword</span> =&gt;</span> <span class="built_in">this</span>.envAPI.wasteAPI$.pipe(</span><br><span class="line">        switchMap(<span class="function"><span class="params">p</span> =&gt;</span> p),</span><br><span class="line">        filter(<span class="built_in">this</span>.hasKeyword(keyword)),</span><br><span class="line">        toArray()</span><br><span class="line">      ))</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> envAPI: EnvAPIService, <span class="keyword">private</span> fb: FormBuilder</span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>這邊必須注意<code>service</code>或是<code>input</code>事件的先後順序，因為<code>input</code>會是持續發生，所以必須要以<code>keyword$</code>為主</p>
 <blockquote>
 <p>如果是es5作法呢？</p>
@@ -227,8 +217,10 @@
 <li>加上輸入的間隔時間<code>debounceTime</code>，避免一直呼叫API</li>
 </ul>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.wastes$ = combineLatest(</span><br><span class="line">  <span class="built_in">this</span>.keyword$.pipe(</span><br><span class="line">    debounceTime(<span class="number">200</span>)</span><br><span class="line">  ), <span class="built_in">this</span>.envAPI.wasteAPI$</span><br><span class="line">).pipe(</span><br><span class="line">  map(<span class="function">(<span class="params">[keyword, wastes]</span>) =&gt;</span> wastes.filter(<span class="built_in">this</span>.hasKeyword(keyword)))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
 <h1 id="資料整理轉換"><a href="#資料整理轉換" class="headerlink" title="資料整理轉換"></a>資料整理轉換</h1><p>先來看一下資料，一樣有個陣列裡面有著日期和兩種等級</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">      modifyTime: &#x27;2018/03/27&#x27;,</span><br><span class="line">      criticalLevel: 4,</span><br><span class="line">      oddsLevel: 4</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      modifyTime: &#x27;2018/02/27&#x27;,</span><br><span class="line">      criticalLevel: 3,</span><br><span class="line">      oddsLevel: 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      modifyTime: &#x27;2018/01/27&#x27;,</span><br><span class="line">      criticalLevel: 2,</span><br><span class="line">      oddsLevel: 2</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      modifyTime: &#x27;2018/04/27&#x27;,</span><br><span class="line">      criticalLevel: 3,</span><br><span class="line">      oddsLevel: 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      modifyTime: &#x27;2018/03/22&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+
 <p>看一下預期目標</p>
 <ul>
 <li><p>沒有<code>criticalLevel</code>或是<code>oddsLevel</code>的忽略</p>
@@ -237,10 +229,12 @@
 </li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">      id: `$&#123;oddsLevel&#125;-$&#123;criticalLevel&#125;`,</span><br><span class="line">      date: &#x27;&#x27;,</span><br><span class="line">      order: 0</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>輸出資料2，計算相同id的total數並組成以下的格式</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">      id: `$&#123;oddsLevel&#125;-$&#123;criticalLevel&#125;`,</span><br><span class="line">      total: 0,</span><br><span class="line">      current: 0</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 <h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>這邊分兩個部分來做，會比較輕鬆一點，不然整段會漏漏等</p>
 <h3 id="第一組資料"><a href="#第一組資料" class="headerlink" title="第一組資料"></a>第一組資料</h3><p>一樣來拆執行步驟</p>
 <ol>
@@ -252,6 +246,7 @@
 <li>加上order(<strong>map</strong>、<code>map</code>)</li>
 </ol>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getPointList</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">obs</span> =&gt;</span> obs.pipe(</span><br><span class="line">    switchMap(<span class="function">(<span class="params">p: HistoryRecord[]</span>) =&gt;</span> p),</span><br><span class="line">    filter(<span class="function">(<span class="params">p: HistoryRecord</span>) =&gt;</span> !!p.criticalLevel &amp;&amp; !!p.oddsLevel),</span><br><span class="line">    map(<span class="function">(<span class="params">p: HistoryRecord</span>) =&gt;</span> (&#123;</span><br><span class="line">      id: <span class="string">`<span class="subst">$&#123;p.oddsLevel&#125;</span>-<span class="subst">$&#123;p.criticalLevel&#125;</span>`</span>,</span><br><span class="line">      date: p.modifyTime</span><br><span class="line">    &#125; <span class="keyword">as</span> PointData)),</span><br><span class="line">    toArray(),</span><br><span class="line">    map(<span class="function">(<span class="params">p: PointData[]</span>) =&gt;</span> p.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="built_in">Date</span>.parse(b.date) - <span class="built_in">Date</span>.parse(a.date))),</span><br><span class="line">    map(<span class="function">(<span class="params">p: PointData[]</span>) =&gt;</span> p.map(<span class="function">(<span class="params">data, idx</span>) =&gt;</span> (&#123; ...data, <span class="attr">order</span>: idx &#125;)))</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="第二組資料"><a href="#第二組資料" class="headerlink" title="第二組資料"></a>第二組資料</h3><p>透過第一組資料來組合成第二組，其實步驟很簡單，但是資料從前面來輸出成新的物件，所以我們要把第二步驟的行為視為一個<code>observer</code></p>
 <p>再來拆步驟</p>
 <ol>
@@ -260,12 +255,16 @@
 <li>重新產生新的物件(<strong>map</strong>)</li>
 </ol>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="title">getPointCount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">obs</span> =&gt;</span> obs.pipe(</span><br><span class="line">    mergeMap(<span class="function">(<span class="params">pointList: PointData[]</span>) =&gt;</span> <span class="keyword">from</span>(pointList)</span><br><span class="line">        .pipe(</span><br><span class="line">          reduce(<span class="function">(<span class="params">acc, value: PointData</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> id = value.id;</span><br><span class="line">            <span class="keyword">if</span> (!acc[id]) &#123;</span><br><span class="line">              acc[id] = &#123; <span class="attr">total</span>: <span class="number">0</span>, <span class="attr">current</span>: <span class="number">0</span> &#125; <span class="keyword">as</span> PointCount;</span><br><span class="line">            &#125;</span><br><span class="line">            acc[id].total++;</span><br><span class="line">            <span class="keyword">return</span> acc;</span><br><span class="line">          &#125;, [] <span class="keyword">as</span> PointCount[]),</span><br><span class="line">          map(<span class="function"><span class="params">counts</span> =&gt;</span> (&#123; <span class="attr">pointList</span>: pointList, <span class="attr">pointCount</span>: counts &#125;))</span><br><span class="line">        ))</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="組合"><a href="#組合" class="headerlink" title="組合"></a>組合</h3><p>將第一組和第二組資料做結合，然後輸出成為最終需要的資料</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.api.dataApi$.pipe(</span><br><span class="line">  filter(<span class="function"><span class="params">p</span> =&gt;</span> !!p &amp;&amp; p.length &gt; <span class="number">0</span>),</span><br><span class="line">  <span class="built_in">this</span>.getPointList(),</span><br><span class="line">  <span class="built_in">this</span>.getPointCount()</span><br><span class="line">).subscribe(<span class="function"><span class="params">p</span> =&gt;</span> <span class="built_in">console</span>.log(p));</span><br></pre></td></tr></table></figure>
+
 <h1 id="動態資料監聽"><a href="#動態資料監聽" class="headerlink" title="動態資料監聽"></a>動態資料監聽</h1><p>這個需求比較特別一點，資料流是從API下來（也就是前一個範例的處理），經過component處理後輸出，然後我們要監聽這些經過component處理後的資料。格式如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">&#123;</span><br><span class="line">  top: 10,</span><br><span class="line">  left: 10,</span><br><span class="line">  order: 0</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">&#123;</span><br><span class="line">    top: 20,</span><br><span class="line">    left: 20,</span><br><span class="line">    order: 1</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">&#123;</span><br><span class="line">    top: 30,</span><br><span class="line">    left: 30,</span><br><span class="line">    order: 2</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line">&#123;</span><br><span class="line">    top: 40,</span><br><span class="line">    left: 40,</span><br><span class="line">    order: 3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>最後我們期望得到的是這樣一組一組的資料集</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+
 <p>所以這邊我們要先思考一下怎麼解析這個問題…</p>
 <ol>
 <li>監聽component送出的資料</li>
@@ -286,6 +285,7 @@
 <p>這問題我找了很多的方法，而且也找人一起討論，重要的是<strong>pairwise</strong>很難debug…TAT</p>
 </blockquote>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.api.pointList$</span><br><span class="line">  .pipe(</span><br><span class="line">    mergeMap(<span class="function"><span class="params">pointList</span> =&gt;</span></span><br><span class="line">      <span class="built_in">this</span>.api.elementPoint$</span><br><span class="line">        .pipe(</span><br><span class="line">          bufferCount(pointList.length),</span><br><span class="line">          switchMap(<span class="function"><span class="params">p</span> =&gt;</span> p.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.order - b.order)),</span><br><span class="line">          pairwise(),</span><br><span class="line">          bufferCount(pointList.length - <span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">        )))</span><br><span class="line">  .subscribe(<span class="function"><span class="params">p</span> =&gt;</span> <span class="built_in">console</span>.log(p));</span><br></pre></td></tr></table></figure>
+
 <h1 id="Conculsion"><a href="#Conculsion" class="headerlink" title="Conculsion"></a>Conculsion</h1><ul>
 <li>在不熟的情況下，先使用最熟悉的作法，再來開始想裡面的步驟如何被拆出來</li>
 <li>不用試著對每個operator都很熟悉，百分之七十以上的情況都在寫常用的那幾個</li>
@@ -296,7 +296,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/jiaming0708/draw-demo">進階範例</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -313,21 +313,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -352,11 +337,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -370,7 +350,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -398,6 +378,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

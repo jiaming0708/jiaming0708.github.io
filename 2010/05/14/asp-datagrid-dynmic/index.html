@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="這是舊的文章…但這個功能之前其實算是失敗的…在update時後想要再後台去抓取那些動態生成的欄位值…但發現都抓不到…最近都在用jQuery…就改在前台抓完值後存在某個地方…再由後台去處理…">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2010-05-14T13:40:30.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.797Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.824Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="ASP.NET">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-asp-datagrid-dynmic"
+        <article id="post-asp-datagrid-dynmic"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[ASP.NET] DataGrid動態產生Template(更新)
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2010/05/14/asp-datagrid-dynmic/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  5月 14, 2010
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Back-end/">Back-end</a>, <a href="/categories/Back-end/ASP-NET/">ASP.NET</a>
     </div>
-    <span class="readtime">9 mins.</span>
+    
+        <span class="readtime">9 mins.</span>
+    
 
 	</section>
 	
@@ -174,18 +158,19 @@
         <a href="/tags/ASP-NET/">ASP.NET</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>這是舊的文章…<br>但這個功能之前其實算是失敗的…<br>在update時後想要再後台去抓取那些動態生成的欄位值…<br>但發現都抓不到…<br>最近都在用jQuery…<br>就改在前台抓完值後存在某個地方…<br>再由後台去處理…</p>
-<a id="more"></a>
+			<p>這是舊的文章…<br>但這個功能之前其實算是失敗的…<br>在update時後想要再後台去抓取那些動態生成的欄位值…<br>但發現都抓不到…<br>最近都在用jQuery…<br>就改在前台抓完值後存在某個地方…<br>再由後台去處理…</p>
+<span id="more"></span>
 
 <h2 id="舊的內容"><a href="#舊的內容" class="headerlink" title="舊的內容"></a>舊的內容</h2><p>為了不想要每次資料庫增加一個欄位…<br>就要大費工夫的去改一堆程式…<br>因此想說用動態的去產生要顯示的欄位…</p>
 <p>這是ASP1.1的作法…</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> TemplateColumn col = <span class="keyword">new</span> TemplateColumn();</span><br><span class="line"> col.ItemTemplate = <span class="keyword">new</span> DataItemTemplate(ListItemType.Item, colu, attr);</span><br><span class="line"> col.EditItemTemplate = <span class="keyword">new</span> DataItemTemplate(ListItemType.EditItem, colu, attr);</span><br><span class="line"> datagrid.Columns.Add(col);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataItemTemplate</span>:<span class="title">ITemplate</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">private</span> ListItemType mType;</span><br><span class="line">  <span class="keyword">private</span> <span class="built_in">string</span> mColumnName;</span><br><span class="line">  <span class="keyword">private</span> <span class="built_in">string</span> mIDName;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DataItemTemplate</span>(<span class="params">ListItemType type, <span class="built_in">string</span> colname, <span class="built_in">string</span> idname</span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">   mType = type;</span><br><span class="line">   mColumnName = colname;</span><br><span class="line">   mIDName = idname;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InstantiateIn</span>(<span class="params">Control container</span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">   <span class="comment">// <span class="doctag">TODO:</span>  加入 DataItemTemplate.InstantiateIn 實作</span></span><br><span class="line">   <span class="keyword">switch</span> (<span class="keyword">this</span>.mType)</span><br><span class="line">   &#123;</span><br><span class="line">    <span class="keyword">case</span> ListItemType.Item:</span><br><span class="line">     <span class="comment">//可自行改成別的物件</span></span><br><span class="line">     Label lb = <span class="keyword">new</span> Label();</span><br><span class="line">     lb.DataBinding += <span class="keyword">new</span> EventHandler(DataBinding);</span><br><span class="line">     container.Controls.Add(lb);</span><br><span class="line">     <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> ListItemType.EditItem:</span><br><span class="line">     <span class="comment">//可自行改成別的物件</span></span><br><span class="line">     DropDownList ddl = <span class="keyword">new</span> DropDownList();</span><br><span class="line">     ddl.Items.Add(<span class="string">&quot;TRUE&quot;</span>);</span><br><span class="line">     ddl.Items.Add(<span class="string">&quot;FALSE&quot;</span>);</span><br><span class="line">     ddl.ID = <span class="string">&quot;ddl&quot;</span> + <span class="keyword">this</span>.mIDName;</span><br><span class="line">     container.Controls.Add(ddl);</span><br><span class="line">     <span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">DataBinding</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">   <span class="comment">//要對應Item的DataBinding</span></span><br><span class="line">   Label lb = (Label)sender;</span><br><span class="line">   DataGridItem container = (DataGridItem)lb.NamingContainer;</span><br><span class="line">   <span class="built_in">object</span> dataValue = DataBinder.Eval(container.DataItem, mColumnName);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>(dataValue != DBNull.Value)</span><br><span class="line">   &#123;</span><br><span class="line">    lb.Text = dataValue.ToString();</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="新的內容"><a href="#新的內容" class="headerlink" title="新的內容"></a>新的內容</h2><p>ASP2.0的作法請產考這篇文章…<br><a target="_blank" rel="noopener" href="http://blog.blueshop.com.tw/hent/archive/2008/02/24/54382.aspx">http://blog.blueshop.com.tw/hent/archive/2008/02/24/54382.aspx</a></p>
 <p>前台抓取動態欄位值</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在DataGrid裡面找到叫做update的元件</span></span><br><span class="line">$(<span class="string">&#x27;#dg_ControlStatus&#x27;</span>).find(<span class="string">&#x27;a[id$=btnUpdate]&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//input Reason</span></span><br><span class="line">    <span class="keyword">var</span> tempReason = prompt(<span class="string">&#x27;Modify Reason?&#x27;</span>,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(tempReason != <span class="literal">null</span> &amp;&amp; tempReason != <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        $(<span class="string">&#x27;#txtReason&#x27;</span>).val(tempReason);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> data = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//找出該行中的所有儲存格</span></span><br><span class="line">    $(<span class="built_in">this</span>).parents(<span class="string">&#x27;tr&#x27;</span>).find(<span class="string">&#x27;td&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//只要CoboBox的值</span></span><br><span class="line">        <span class="keyword">if</span>($(<span class="built_in">this</span>).find(<span class="string">&#x27;select&#x27;</span>).length &gt; <span class="number">0</span>)</span><br><span class="line">            data += $(<span class="built_in">this</span>).find(<span class="string">&#x27;select&#x27;</span>).val() + <span class="string">&#x27;,&#x27;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//儲存起來給後台處理</span></span><br><span class="line">    $(<span class="string">&#x27;#txtSaveData&#x27;</span>).val(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -202,21 +187,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -241,11 +211,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -259,7 +224,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -287,6 +252,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

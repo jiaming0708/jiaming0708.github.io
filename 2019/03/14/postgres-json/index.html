@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="data team的同事回報了一個bug，是我寫入的資料格式不正確，導致他們在解析資料上的有困難，先把寫入資料的問題解決以後，要幫忙把錯誤的資料導正回來，才發現postgres對於json的支援度蠻高">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-03-14T13:47:58.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.821Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.856Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Postgres">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-postgres-json"
+        <article id="post-postgres-json"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	postgres對於json的支援度
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/03/14/postgres-json/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  3月 14, 2019
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Back-end/">Back-end</a>, <a href="/categories/Back-end/Postgres/">Postgres</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/Postgres/">Postgres</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>data team的同事回報了一個bug，是我寫入的資料格式不正確，導致他們在解析資料上的有困難，先把寫入資料的問題解決以後，要幫忙把錯誤的資料導正回來，才發現postgres對於json的支援度蠻高</p>
-<a id="more"></a>
+			<p>data team的同事回報了一個bug，是我寫入的資料格式不正確，導致他們在解析資料上的有困難，先把寫入資料的問題解決以後，要幫忙把錯誤的資料導正回來，才發現postgres對於json的支援度蠻高</p>
+<span id="more"></span>
 
 <h1 id="緣由"><a href="#緣由" class="headerlink" title="緣由"></a>緣由</h1><p>先來說說這種資料格式怎麼產生的，我們有一個academy的網站，app會用web view的方式開啟，為了要追蹤這是由哪邊連近來的，所以app在開網頁的時候會加上query parameter給我們，並且我們將這些資訊寫入到db作為觀看記錄</p>
 <p>格式大概會是這樣 <code>?region=tw&amp;platform=android</code>，但是就出現了這種情況<code>?region=tw&amp;platform=android&amp;region=tw&amp;patform=android</code>，收到了雙份的參數，導致寫入的時候變成了錯誤的格式</p>
@@ -206,20 +190,24 @@
 <p>原來這個根本不是json物件，而是一個不知道什麼的資料格式，那該怎麼辦呢</p>
 <h2 id="資料轉型"><a href="#資料轉型" class="headerlink" title="資料轉型"></a>資料轉型</h2><p>幸好，還有另一種轉型的function叫做<code>array_to_json(anyarray [, pretty_bool])</code>，我們可以這樣使用</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> array_to_json(region::text[]) <span class="keyword">from</span> table1</span><br><span class="line"><span class="comment">-- [&#x27;tw&#x27;, &#x27;tw&#x27;]</span></span><br></pre></td></tr></table></figure>
+
 <p>並且得到一個正確的json陣列，接著就能根據這樣的資料透過json function做解析</p>
 <h2 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h2><p>在postgres有提供一種operator的寫法，來取得json物件的資料</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">&#x27;&#123;&quot;tw&quot;:123&#125;&#x27;</span>::json<span class="operator">-</span><span class="operator">&gt;</span><span class="string">&#x27;tw&#x27;</span></span><br><span class="line"><span class="comment">-- 123</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">&#x27;[&quot;tw&quot;, 123]&#x27;</span>::json<span class="operator">-</span><span class="operator">&gt;</span><span class="number">0</span></span><br><span class="line"><span class="comment">-- &quot;tw&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>那我們就來試試看搭配我們的資料，沒錯啦，可以完美的拿到資料，但有沒有發現一個小缺點資料是<code>&#39;tw&#39;</code>帶著單引號的</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> array_to_json(region::text[])::json<span class="operator">-</span><span class="operator">&gt;</span><span class="number">0</span> <span class="keyword">from</span> table1</span><br><span class="line"><span class="comment">-- &#x27;tw&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <p>這時候要用另一個方法來拿到只有<code>tw</code>的資料，使用<code>&gt;&gt;</code>，真是太完美了！</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> array_to_json(region::text[])::json<span class="operator">-</span><span class="operator">&gt;&gt;</span><span class="number">0</span> <span class="keyword">from</span> table1</span><br><span class="line"><span class="comment">-- tw</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在postgres的json相關功能提供的蠻齊全，並且也有支援json作為欄位格式，在使用上就更加的彈性</p>
 <p>這次的意外順便學到了一個新的東西，順便碰一下很久沒有碰到的資料庫，趕快把技能點上來XD</p>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/9.3/functions-json.html">JSON Functions and Operators</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -236,21 +224,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -275,11 +248,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -293,7 +261,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -321,6 +289,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

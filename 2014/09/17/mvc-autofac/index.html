@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近接觸MVC…(好像也接觸一兩年了＠＠…所看到的範例程式，都是使用Interface來呼叫method">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2014-09-17T01:30:27.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="MVC">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-mvc-autofac"
+        <article id="post-mvc-autofac"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	[C#] 使用Autofac
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2014/09/17/mvc-autofac/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  9月 17, 2014
 	</time>
@@ -171,22 +153,25 @@
         <a href="/tags/MVC/">MVC</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近接觸MVC…(好像也接觸一兩年了＠＠…<br>所看到的範例程式，都是使用Interface來呼叫method</p>
-<a id="more"></a>
+			<p>最近接觸MVC…(好像也接觸一兩年了＠＠…<br>所看到的範例程式，都是使用Interface來呼叫method</p>
+<span id="more"></span>
 
 <p>去了解後才知道這樣做有一個好處<br>以後若要進行客製，可以直接替換成另一個class來寫該method的內容，而不用改寫呼叫該method的程式<br>這個有一個詞叫做DI或是IoC，想要知道這塊的朋友，請搜尋一下囉</p>
 <p>使用此作法，其實有很多的方法可以做到<br>今天要來說的是Autofac，這類的教學其實已經很多了<br>那我今天的重點會是在如何讓Autofac幫我們自動載入Interface到Controller的建構子中</p>
 <p>那我們就先來準備一下Interface及實作的class</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ILotService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">LotData <span class="title">GetLotByLot</span>(<span class="params"><span class="built_in">string</span> lot</span>)</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LotService</span> : <span class="title">ILotService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> LotData <span class="title">GetLotByLot</span>(<span class="params"><span class="built_in">string</span> lot</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">          <span class="keyword">var</span> data = <span class="keyword">new</span> LotData();</span><br><span class="line">          <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>那接著我們在Controller加上建構子，並用ILotService當做參數</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HomeController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HomeController</span>(<span class="params">ILotService lotService</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ActionResult <span class="title">Index</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">return</span> View();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>以上都好了以後，直接去跑的話，系統一定死給你看<br>接下來我們要把Autofac加入，新增一個AutofacConfig的class到App_Start<br>在AutofacConfig裡面加入Bootstrapper的method</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AutofaceConfig</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Bootstrapper</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> builder = <span class="keyword">new</span> ContainerBuilder();</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//直接將Services專案中的所有Interface加入，可免除後來新增的忘記加入</span></span><br><span class="line">        builder.RegisterAssemblyTypes(<span class="keyword">typeof</span>(ILotService).Assembly).AsImplementedInterfaces();</span><br><span class="line">        <span class="comment">//可直接在Controller的建構子，使用Interface的參數</span></span><br><span class="line">        builder.RegisterControllers(Assembly.GetExecutingAssembly());</span><br><span class="line">        <span class="comment">//交由MVC的Dependency處理</span></span><br><span class="line">        <span class="keyword">var</span> container = builder.Build();</span><br><span class="line">        DependencyResolver.SetResolver(<span class="keyword">new</span> AutofacDependencyResolver(container));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>想要做到Controller的建構子能夠自動載入Interface，重點是在使用builder.RegisterControllers<br>最後再Global的Application_Start裡面加上AutofaceConfig.Bootstrapper();</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Application_Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    AreaRegistration.RegisterAllAreas();</span><br><span class="line">    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);</span><br><span class="line">    RouteConfig.RegisterRoutes(RouteTable.Routes);</span><br><span class="line">    BundleConfig.RegisterBundles(BundleTable.Bundles);</span><br><span class="line">    <span class="comment">//載入autofac</span></span><br><span class="line">    AutofaceConfig.Bootstrapper();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -203,21 +188,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -242,11 +212,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -260,7 +225,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -288,6 +253,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

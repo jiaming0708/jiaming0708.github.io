@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="當我們有一個child component想要用ViewChild的方法在parent component取得物件，但如果在上面加上ngIf的時候，取得物件的這個動作就會發現根本取不到!!!">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-09-14T07:20:01.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.805Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.840Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-angular-viewchild-ngif"
+        <article id="post-angular-viewchild-ngif"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[Angular] ViewChild遇上ngIf
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/09/14/angular-viewchild-ngif/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  9月 14, 2017
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Angular/">Angular</a>
     </div>
-    <span class="readtime">7 mins.</span>
+    
+        <span class="readtime">7 mins.</span>
+    
 
 	</section>
 	
@@ -174,31 +158,34 @@
         <a href="/tags/Angular/">Angular</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>當我們有一個child component想要用ViewChild的方法在parent component取得物件，但如果在上面加上ngIf的時候，取得物件的這個動作就會發現根本取不到!!!</p>
-<a id="more"></a>
+			<p>當我們有一個child component想要用ViewChild的方法在parent component取得物件，但如果在上面加上ngIf的時候，取得物件的這個動作就會發現根本取不到!!!</p>
+<span id="more"></span>
 
 <p>在app.component中，使用todo.component，並且加上ngIf作為控制是否顯示</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;setFlag(!flag)&quot;</span>&gt;</span>toggle flag<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">app-todo</span> *<span class="attr">ngIf</span>=<span class="string">&quot;flag&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">app-todo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>在component中，使用<code>ViewChild</code>的方法並且在<code>setFlag</code>中印出物件，就可以發現在這個時候是取不到todo這個物件的，就算是用angularJS常用的setTimeout也是一樣</p>
 <p>這個問題應該就是變數還沒反應到html，所以導致根本還沒拿到這個物件</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">  <span class="meta">@ViewChild</span>(TodoComponent) todo: TodoComponent;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">setFlag</span>(<span class="params">flag</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.flag = flag;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;a&#x27;</span>, <span class="built_in">this</span>.todo);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;b&#x27;</span>, <span class="built_in">this</span>.todo);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h1><p>但這樣根本不能拿到物件要怎麼往後處理，那這邊有兩個作法</p>
 <ol>
 <li><p>在child component使用事件作為觸發，當物件被ngIf啟動後，就可以拋出事件</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">TodoComponent</span> <span class="title">implements</span> <span class="title">AfterViewInit</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Output</span>() onInit = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngAfterViewInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.onInit.emit(<span class="built_in">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在parent component收到事件後再去操作ViewChild的物件，就可以正常使用</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;setFlag(!flag)&quot;</span>&gt;</span>toggle flag<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">app-todo</span> (<span class="attr">onInit</span>)=<span class="string">&quot;trigerTodo($event)&quot;</span> *<span class="attr">ngIf</span>=<span class="string">&quot;flag&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">app-todo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">  <span class="meta">@ViewChild</span>(TodoComponent) todo: TodoComponent;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">setFlag</span>(<span class="params">flag</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.flag = flag;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">trigerTodo</span>(<span class="params">event</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;component&#x27;</span>, event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>ViewChild使用setter，當物件被建立時，就可以在裡面進行操作</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">  <span class="meta">@ViewChild</span>(TodoComponent) <span class="keyword">set</span> <span class="title">todo</span>(<span class="params">content: ViewContainerRef</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;setter&#x27;</span>, content);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">setFlag</span>(<span class="params">flag</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.flag = flag;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1></li>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">  <span class="meta">@ViewChild</span>(TodoComponent) <span class="keyword">set</span> <span class="title">todo</span>(<span class="params">content: ViewContainerRef</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;setter&#x27;</span>, content);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">setFlag</span>(<span class="params">flag</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.flag = flag;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>其實在使用ViewChild的時候，使用ngIf其實是不好的應用，但如果真的要用就必須要繞路一下，也要去了解一下各種使用方法，上面的兩個方法，我個人比較喜歡setter的作法，簡單乾淨!</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實在使用ViewChild的時候，使用ngIf其實是不好的應用，但如果真的要用就必須要繞路一下，也要去了解一下各種使用方法，上面的兩個方法，我個人比較喜歡setter的作法，簡單乾淨!</p>
 <p>如果有其他作法或想法歡迎來討論喔!!</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -215,21 +202,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -254,11 +226,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -272,7 +239,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -300,6 +267,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

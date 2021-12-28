@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-01-26T02:25:27.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.877Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.920Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-logrotate-nginx"
+        <article id="post-logrotate-nginx"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	設定nginx的log備份機制
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2021/01/26/logrotate-nginx/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  1月 26, 2021
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/linux/">linux</a>
     </div>
-    <span class="readtime">5 mins.</span>
+    
+        <span class="readtime">5 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/nginx/">nginx</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。</p>
-<a id="more"></a>
+			<p>前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。</p>
+<span id="more"></span>
 
 <h1 id="環境與前言"><a href="#環境與前言" class="headerlink" title="環境與前言"></a>環境與前言</h1><p>目前我們還有些服務還是直接架設在 ec2 上，所以我們會在上面安裝 nginx 來指向我們的服務，因為這台 server 已經運行蠻久的時間，上面的版本也比較舊，為了安全性問題，前陣子將 nginx 升級到 1.18（強烈建議安裝到此版本，之前的版本都有安全性的問題），但升級以後沒有注意到 logrotate 的設定跟之前不同。</p>
 <ul>
@@ -193,6 +177,7 @@
 <p>cat /etc/logrotate.d/nginx</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;log&#x2F;nginx&#x2F;*.log &#123;</span><br><span class="line">        daily</span><br><span class="line">        missingok</span><br><span class="line">        rotate 52</span><br><span class="line">        compress</span><br><span class="line">        delaycompress</span><br><span class="line">        notifempty</span><br><span class="line">        create 640 nginx adm</span><br><span class="line">        sharedscripts</span><br><span class="line">        postrotate</span><br><span class="line">                if [ -f &#x2F;var&#x2F;run&#x2F;nginx.pid ]; then</span><br><span class="line">                        kill -USR1 &#96;cat &#x2F;var&#x2F;run&#x2F;nginx.pid&#96;</span><br><span class="line">                fi</span><br><span class="line">        endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="參數介紹"><a href="#參數介紹" class="headerlink" title="參數介紹"></a>參數介紹</h2><ul>
 <li>daily，以天為單位做檔案切割，另外還有其他三種<ul>
 <li>weekly</li>
@@ -211,6 +196,7 @@
 </ul>
 <h2 id="調整設定"><a href="#調整設定" class="headerlink" title="調整設定"></a>調整設定</h2><p>根據上面的一些介紹，可以得知會保留52天的檔案，並且一個檔案沒有上限，那為了讓開檔更順利且不會佔用太多的空間，限縮檔案是 <code>10M</code> 並且只保留 <code>7個</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">--- &#x2F;etc&#x2F;logrotate.d&#x2F;nginx</span><br><span class="line">+++ &#x2F;etc&#x2F;logrotate.d&#x2F;nginx</span><br><span class="line">&#x2F;var&#x2F;log&#x2F;nginx&#x2F;*.log &#123;</span><br><span class="line">+				size&#x3D;10M</span><br><span class="line">        daily</span><br><span class="line">        missingok</span><br><span class="line">-				rotate 52</span><br><span class="line">+       rotate 7</span><br><span class="line">        compress</span><br><span class="line">        delaycompress</span><br><span class="line">        notifempty</span><br><span class="line">        create 640 nginx adm</span><br><span class="line">        sharedscripts</span><br><span class="line">        postrotate</span><br><span class="line">                if [ -f &#x2F;var&#x2F;run&#x2F;nginx.pid ]; then</span><br><span class="line">                        kill -USR1 &#96;cat &#x2F;var&#x2F;run&#x2F;nginx.pid&#96;</span><br><span class="line">                fi</span><br><span class="line">        endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="測試執行"><a href="#測試執行" class="headerlink" title="測試執行"></a>測試執行</h2><p>基本上 logrotate 是每天定時跑起來，改完以後是可以不用特別重新執行，但通常改完我們會希望確定是不是如我們預期，那我們可以下個指令要求立刻執行。</p>
 <blockquote>
 <p>sudo logrotate -v /etc/logrotate.d/nginx</p>
@@ -222,7 +208,7 @@
 </li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -239,21 +225,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -278,11 +249,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -296,7 +262,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -324,6 +290,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

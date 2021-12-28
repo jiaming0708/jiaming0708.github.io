@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="介紹當我們要寫一個後台系統的時候，也就兩種方法可以選，一種是全部自己來，一種是拿著別人寫好的樣板來套，今天要來介紹的就是基於angularjs的一套後台系統ng-admin">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-11-12T14:26:59.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.809Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.844Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="AngularJS">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-ng-admin"
+        <article id="post-ng-admin"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[AngularJS] ng-admin介紹
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2018/11/12/ng-admin/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  11月 12, 2018
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/AngularJS/">AngularJS</a>
     </div>
-    <span class="readtime">20 mins.</span>
+    
+        <span class="readtime">20 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/AngularJS/">AngularJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當我們要寫一個後台系統的時候，也就兩種方法可以選，一種是全部自己來，一種是拿著別人寫好的樣板來套，今天要來介紹的就是基於angularjs的一套後台系統<a target="_blank" rel="noopener" href="https://github.com/marmelab/ng-admin">ng-admin</a></p>
-<a id="more"></a>
+			<h1 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h1><p>當我們要寫一個後台系統的時候，也就兩種方法可以選，一種是全部自己來，一種是拿著別人寫好的樣板來套，今天要來介紹的就是基於angularjs的一套後台系統<a target="_blank" rel="noopener" href="https://github.com/marmelab/ng-admin">ng-admin</a></p>
+<span id="more"></span>
 
 <p>選擇一個系統當然要看看有沒有什麼好處囉，所以我們來看一下有些什麼功能</p>
 <ul>
@@ -190,6 +174,7 @@
 </blockquote>
 <h1 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h1><p>首先要先知道這套系統，基本上不太需要寫太多複雜的程式，只要透過類似設定的方法，就可以做到<strong>CRUD</strong>，下面來看看該怎麼做</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">&#x27;app&#x27;</span>, [<span class="string">&#x27;ng-admin&#x27;</span>])</span><br><span class="line">.config([<span class="string">&#x27;NgAdminConfigurationProvider&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">nga</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// application:網站名稱</span></span><br><span class="line">    <span class="comment">// baseApiUrl:api end-point</span></span><br><span class="line">    <span class="keyword">var</span> admin = nga.application(<span class="string">&#x27;My First Admin&#x27;</span>)</span><br><span class="line">    	.baseApiUrl(<span class="string">&#x27;http://jsonplaceholder.typicode.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> user = nga.entity(<span class="string">&#x27;users&#x27;</span>);</span><br><span class="line">    <span class="comment">//定義list畫面要顯示的欄位</span></span><br><span class="line">    user.listView().fields([</span><br><span class="line">        nga.field(<span class="string">&#x27;name&#x27;</span>),</span><br><span class="line">        nga.field(<span class="string">&#x27;username&#x27;</span>),</span><br><span class="line">        nga.field(<span class="string">&#x27;email&#x27;</span>)</span><br><span class="line">    ])</span><br><span class="line">    <span class="comment">//刪除和編輯的功能</span></span><br><span class="line">    .listActions([<span class="string">&#x27;edit&#x27;</span>, <span class="string">&#x27;delete&#x27;</span>]);</span><br><span class="line">    <span class="comment">//定義create畫面要輸入的欄位</span></span><br><span class="line">    user.creationView().fields([</span><br><span class="line">        nga.field(<span class="string">&#x27;name&#x27;</span>),</span><br><span class="line">        nga.field(<span class="string">&#x27;username&#x27;</span>),</span><br><span class="line">        nga.field(<span class="string">&#x27;email&#x27;</span>)</span><br><span class="line">    ]);</span><br><span class="line">    <span class="comment">//定義edit畫面要輸入的欄位</span></span><br><span class="line">    user.editionView().fields([</span><br><span class="line">        nga.field(<span class="string">&#x27;username&#x27;</span>),</span><br><span class="line">        nga.field(<span class="string">&#x27;email&#x27;</span>)</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    admin.addEntity(user);</span><br><span class="line">    nga.configure(admin);</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+
 <p>前面有說到這是一個引用restful的admin，所以我們要先定義基本的end-point，接著就是定義要顯示的欄位以及真正的資料來源<code>entity</code>，可以透過上面這個範例看到，非常的簡單，我們其實只是用定義欄位的方法就完成了CRUD</p>
 <h2 id="end-point"><a href="#end-point" class="headerlink" title="end-point"></a>end-point</h2><p>基本上打出去的api會是這個模式，當然這套也提供客製request或是response的功能，在這邊我就不特別提到，需要的可以去翻一下參考文件</p>
 <table>
@@ -228,6 +213,7 @@
 </tbody></table>
 <h2 id="欄位資料關連"><a href="#欄位資料關連" class="headerlink" title="欄位資料關連"></a>欄位資料關連</h2><p>在admin中很常見到的是要關連另一個資料，例如post中要選擇user，這時候我們可以透過field的關聯欄位來完成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = nga.entity(<span class="string">&#x27;users&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> post = nga.entity(<span class="string">&#x27;posts&#x27;</span>);</span><br><span class="line"></span><br><span class="line">post.creationView().fields([</span><br><span class="line">    nga.field(<span class="string">&#x27;name&#x27;</span>),</span><br><span class="line">    <span class="comment">//使用reference</span></span><br><span class="line">    nga.field(<span class="string">&#x27;userId&#x27;</span>, <span class="string">&#x27;reference&#x27;</span>)</span><br><span class="line">    	<span class="comment">//定義關連的資料</span></span><br><span class="line">        .targetEntity(user)</span><br><span class="line">        <span class="comment">//定義要顯示的欄位，預設對應欄位是userId=id</span></span><br><span class="line">        .targetField(nga.field(<span class="string">&#x27;username&#x27;</span>))</span><br><span class="line">    	<span class="comment">//顯示的label</span></span><br><span class="line">        .label(<span class="string">&#x27;user&#x27;</span>),</span><br><span class="line">    nga.field(<span class="string">&#x27;email&#x27;</span>),</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
 <h1 id="欄位型態"><a href="#欄位型態" class="headerlink" title="欄位型態"></a>欄位型態</h1><p>#客製</p>
 <p>基本的功能在參考資料中可以找到很多，其實官方也寫了很多的說明，告訴你要怎麼使用，以下是官方所支援的所有類型，詳細的使用方法就到各個詳細連結中看囉</p>
 <ul>
@@ -260,16 +246,20 @@
 </li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReferenceField <span class="keyword">from</span> <span class="string">&#x27;admin-config/lib/Field/ReferenceField&#x27;</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RelateField</span> <span class="keyword">extends</span> <span class="title">ReferenceField</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name);</span><br><span class="line">        <span class="comment">//必須要跟config中定義的名稱一樣</span></span><br><span class="line">        <span class="built_in">this</span>._type = <span class="string">&quot;relate&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>._referenceField = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="title">referenceField</span>(<span class="params">field</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">arguments</span>.length) <span class="keyword">return</span> <span class="built_in">this</span>._referenceField;</span><br><span class="line">        <span class="built_in">this</span>._referenceField = field;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> RelateField;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li><code>relateFieldView.js</code>，定義在各種情況下要怎麼呈現，我只在write的情況下改成自己的directive</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  getReadWidget: <span class="function">() =&gt;</span> <span class="string">&#x27;&lt;ma-reference-column field=&quot;::field&quot; value=&quot;::value&quot; datastore=&quot;::datastore&quot;&gt;&lt;/ma-reference-column&gt;&#x27;</span>,</span><br><span class="line">  getLinkWidget: <span class="function">() =&gt;</span> <span class="string">&#x27;&lt;ma-reference-link-column entry=&quot;::entry&quot; field=&quot;::field&quot; value=&quot;::value&quot; datastore=&quot;::datastore&quot;&gt;&lt;/ma-reference-link-column&gt;&#x27;</span>,</span><br><span class="line">  getFilterWidget: <span class="function">() =&gt;</span> <span class="string">&#x27;&lt;ma-reference-field field=&quot;::field&quot; value=&quot;value&quot; datastore=&quot;::datastore&quot;&gt;&lt;/ma-reference-field&gt;&#x27;</span>,</span><br><span class="line">  getWriteWidget: <span class="function">() =&gt;</span> <span class="string">&#x27;&lt;relate field=&quot;::field&quot; value=&quot;value&quot; datastore=&quot;::datastore&quot; entry=&quot;::entry&quot;&gt;&lt;/relate&gt;&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <ol start="3">
 <li><code>relate.directive.js</code>，定義directive的行為</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">relate</span> (<span class="params">ReferenceRefresher, locale</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    scope: &#123;</span><br><span class="line">      <span class="string">&#x27;field&#x27;</span>: <span class="string">&#x27;&amp;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;value&#x27;</span>: <span class="string">&#x27;=&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;entry&#x27;</span>: <span class="string">&#x27;=?&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;datastore&#x27;</span>: <span class="string">&#x27;&amp;?&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    restrict: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">    template: <span class="string">&#x27;&lt;ma-choice-field field=&quot;field()&quot; datastore=&quot;datastore()&quot; refresh=&quot;refresh($search)&quot;&#x27;</span> +</span><br><span class="line">      <span class="string">&#x27; value=&quot;value&quot;&gt;&lt;/ma-choice-field&gt;&#x27;</span>,</span><br><span class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">scope</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> field = scope.field();</span><br><span class="line">      <span class="keyword">const</span> referenceFieldId = field.referenceField().name();</span><br><span class="line">      scope.name = field.name();</span><br><span class="line">      scope.v = field.validation();</span><br><span class="line">      <span class="comment">//主要的功能所在，監聽參考欄位是否變更</span></span><br><span class="line">      scope.$watch(<span class="string">&#x27;entry.values.&#x27;</span> + referenceFieldId, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!val) &#123;</span><br><span class="line">          scope.value = <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> search = &#123;</span><br><span class="line">          [referenceFieldId]: scope.entry.values[referenceFieldId],</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//這邊要特別注意，search的物件會直接變成query string</span></span><br><span class="line">        <span class="comment">//像是這樣 _filters: &#123;&quot;name&quot;:&#123;&quot;region_id&quot;:2&#125;&#125;</span></span><br><span class="line">        ReferenceRefresher.refresh(field, scope.value, search)</span><br><span class="line">          .then(<span class="function"><span class="keyword">function</span> (<span class="params">formattedResults</span>) </span>&#123;</span><br><span class="line">            scope.$broadcast(<span class="string">&#x27;choices:update&#x27;</span>, &#123; <span class="attr">choices</span>: formattedResults &#125;);</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">relate.$inject = [<span class="string">&#x27;ReferenceRefresher&#x27;</span>, <span class="string">&#x27;locale&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> relate;</span><br></pre></td></tr></table></figure>
+
 <p>都寫好以上的程式以後，只要在一開始的config宣告就可以使用</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">&#x27;app&#x27;</span>, [<span class="string">&#x27;ng-admin&#x27;</span>])</span><br><span class="line">.config([<span class="string">&#x27;NgAdminConfigurationProvider&#x27;</span>, <span class="string">&#x27;FieldViewConfigurationProvider&#x27;</span>,</span><br><span class="line">	<span class="function"><span class="keyword">function</span>(<span class="params">nga, fvp</span>)</span>&#123;</span><br><span class="line">		nga.registerFieldType(<span class="string">&#x27;relate&#x27;</span>, RelateField);</span><br><span class="line">		fvp.registerFieldView(<span class="string">&#x27;relate&#x27;</span>, RelateFieldView);</span><br><span class="line">        </span><br><span class="line">        post.creationView().fields([</span><br><span class="line">            nga.field(<span class="string">&#x27;name&#x27;</span>),</span><br><span class="line">            nga.field(<span class="string">&#x27;userId&#x27;</span>, <span class="string">&#x27;relate&#x27;</span>)</span><br><span class="line">                .targetEntity(user)</span><br><span class="line">                .targetField(nga.field(<span class="string">&#x27;username&#x27;</span>))</span><br><span class="line">            	<span class="comment">//name欄位值變更時，要引發這邊的選單變更</span></span><br><span class="line">            	.referenceField(nga.field(<span class="string">&#x27;name&#x27;</span>))</span><br><span class="line">                .label(<span class="string">&#x27;user&#x27;</span>),</span><br><span class="line">        ]);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>但是這邊稍微實驗一下，可以發現在directive中<code>datastore</code>是無法在一開始拿到users的資料，跟<code>reference</code>的行為有一點點的不一樣，追了一下source code以後，發現這是被包起來定義好的，所以沒辦法有相同的行為，但還好的是我不需要一開始就有資料，而是要等到<code>referenceField</code>變更以後再取得</p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>今天的介紹就到這邊，這套admin是一個蠻不一樣的架構，不希望你寫太多程式，而是透過設定的模版來達到需求，但是當今天功能越來越複雜，這套的限制就會越來越大，再客製上會有很大的侷限，如果已經知道未來會有很多變化（不管是欄位或是api），那建議就是不要使用這套，而是採用其他模版透過寫程式的方式最沒有侷限</p>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
@@ -277,7 +267,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/marmelab/ng-admin">github</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -294,21 +284,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -333,11 +308,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -351,7 +321,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -379,6 +349,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

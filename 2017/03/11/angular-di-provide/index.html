@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +21,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="http://jiaming0708.github.io/2017/03/11/angular-di-provide/filePath.png">
 <meta property="article:published_time" content="2017-03-11T08:01:20.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
@@ -41,21 +38,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -139,12 +123,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-angular-di-provide"
+        <article id="post-angular-di-provide"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -153,8 +137,6 @@
     	[Angular] DI注入環境變數
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/03/11/angular-di-provide/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  3月 11, 2017
 	</time>
@@ -163,7 +145,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Angular/">Angular</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -176,19 +160,21 @@
         <a href="/tags/Angular/">Angular</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>話說最近弄了一個題目練習Angular，搭配cli使用(只有方便而已啦!!我以前是在白痴什麼orz…)<br>自己想了一個需求，就是我的API Server有分prodction和development</p>
-<a id="more"></a>
+			<p>話說最近弄了一個題目練習Angular，搭配cli使用(只有方便而已啦!!我以前是在白痴什麼orz…)<br>自己想了一個需求，就是我的API Server有分prodction和development</p>
+<span id="more"></span>
 
 <h2 id="基礎應用"><a href="#基礎應用" class="headerlink" title="基礎應用"></a>基礎應用</h2><p>首先衍生出來的就是要設定在哪，然後怎麼用<br>cli中有一個environment的資料夾，底下兩個檔案，<code>environment.ts、environment.prod.ts</code><br>很簡單的就是在裡面增加一個屬性叫做apiServer，並且應用到service中</p>
 <p><img src="/2017/03/11/angular-di-provide/filePath.png" alt="file path"></p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> environment = &#123;</span><br><span class="line">  production: <span class="literal">false</span>,</span><br><span class="line">  apiServer: <span class="string">&#x27;https://192.168.100.1&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; environment &#125; <span class="keyword">from</span> <span class="string">&quot;../../environments/environment&quot;</span>;</span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BeverageService</span> </span>&#123;</span><br><span class="line">  getBeverageList(): Observable&lt;BeverageData[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._http.get(environment.apiServer+ <span class="string">&quot;Beverage&quot;</span>)</span><br><span class="line">      .map(<span class="function"><span class="params">response</span> =&gt;</span> response.json() <span class="keyword">as</span> BeverageData[])</span><br><span class="line">      .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="進階應用"><a href="#進階應用" class="headerlink" title="進階應用"></a>進階應用</h2><p>這樣寫其實已經滿足我們需求，但是有點low<br>來設想一個情境，如果之後我們的apiServer名字改掉的話，是不是變成service裡面所有使用到environment.apiServer這個全部要換掉<br>其實angular本身有提供一個東西，叫做<a target="_blank" rel="noopener" href="https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#usevalue">DI</a><br>那我們可以把他做一個轉換，這樣在使用上，就可以脫離environment的直接影響<br>只要在providers放進去，並且在constructor取得就好</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; environment &#125; <span class="keyword">from</span> <span class="string">&quot;../../environments/environment&quot;</span>;</span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  providers: [</span><br><span class="line">    &#123; <span class="attr">provide</span>: <span class="string">&#x27;apiServer&#x27;</span>, <span class="attr">useValue</span>: environment.apiServer &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BeverageService</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> _http: Http, <span class="meta">@Inject</span>(<span class="string">&#x27;apiServer&#x27;</span>) <span class="keyword">private</span> apiServer: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.onInit();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="DI學習參考"><a href="#DI學習參考" class="headerlink" title="DI學習參考"></a>DI學習參考</h2><p><a target="_blank" rel="noopener" href="http://oomusou.io/angular/angular-di/">oomusou的文章，深入探討 Angular 的 DI 與 Provider</a></p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -205,21 +191,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -244,11 +215,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -262,7 +228,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -290,6 +256,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="前情提要其實也不算是初體驗啦因為之前就有把promise的程式改成用rx，但那時候還是非常不了解">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-03-16T14:10:52.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-rxjs-firsttime"
+        <article id="post-rxjs-firsttime"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	RX初體驗(?)
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/03/16/rxjs-firsttime/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  3月 16, 2017
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/RxJS/">RxJS</a>
     </div>
-    <span class="readtime">9 mins.</span>
+    
+        <span class="readtime">9 mins.</span>
+    
 
 	</section>
 	
@@ -174,28 +158,33 @@
         <a href="/tags/RxJS/">RxJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>其實也不算是初體驗啦<br>因為之前就有把promise的程式改成用rx，但那時候還是非常不了解</p>
-<a id="more"></a>
+			<h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>其實也不算是初體驗啦<br>因為之前就有把promise的程式改成用rx，但那時候還是非常不了解</p>
+<span id="more"></span>
 
 <p>最近在跟人一起寫angular的workshop，飲料維護及訂購的功能<br>就開始用一些之前沒用到的功能rx、form control等…</p>
 <p>嗯～還是不要太多廢話XD</p>
 <h2 id="從promise改成rx"><a href="#從promise改成rx" class="headerlink" title="從promise改成rx"></a>從promise改成rx</h2><p>從ng1的時候，就都是寫promise，所以剛轉到二的時候，看到官網寫rx，就沒有想要去寫他o.0（年少不懂事…<br>一開始的promise</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getStepListByProjectId</span>(<span class="params">id: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">this</span>._http.post(<span class="built_in">this</span>.url + <span class="string">&quot;GetStepListByProjectId&quot;</span>, &#123; <span class="attr">projectId</span>: id &#125;)</span><br><span class="line">       .toPromise()</span><br><span class="line">       .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">           <span class="keyword">var</span> data = res.json();</span><br><span class="line">           <span class="keyword">if</span> (data.Result) &#123;</span><br><span class="line">               <span class="comment">//轉換為前端使用物件</span></span><br><span class="line">               data.StepList = <span class="built_in">this</span>.parseStepDataList(data.StepList);</span><br><span class="line">               <span class="comment">//預設值第一個選取</span></span><br><span class="line">               <span class="keyword">if</span> (data.StepList.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                   data.StepList[<span class="number">0</span>].SelectedFlag = <span class="literal">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">return</span> data;</span><br><span class="line">       &#125;)</span><br><span class="line">       .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>改寫成rx後，在重新整理過，是不是感覺更精簡了<br>但這時候其實還沒什麼感覺，因為比較算是轉換而已，對於rx還是很不熟…</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getStepListByProjectId</span>(<span class="params">id: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">this</span>._http.post(<span class="built_in">this</span>.url + <span class="string">&quot;GetStepListByProjectId&quot;</span>, &#123; <span class="attr">projectId</span>: id &#125;)</span><br><span class="line">        .switchMap(<span class="built_in">this</span>.checkResult)</span><br><span class="line">        .map(<span class="built_in">this</span>.parseStepDataList)</span><br><span class="line">        .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> checkResult(res: <span class="built_in">any</span>): Observable&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> data = res.json();</span><br><span class="line">    <span class="keyword">if</span> (!data.Result) &#123;</span><br><span class="line">        Observable.throw(data.ErrorMessage);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Observable.of(data.StepList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h2 id="rx進一步的應用"><a href="#rx進一步的應用" class="headerlink" title="rx進一步的應用"></a>rx進一步的應用</h2><h3 id="concatMap、toArray"><a href="#concatMap、toArray" class="headerlink" title="concatMap、toArray"></a>concatMap、toArray</h3><p>這次的需求是這樣的，從api取得的資料中，沒有其中一個物件中的欄位state<br>所以我要把取得的資料重新assign欄位值</p>
 <p>這樣的寫法其實已經可以達到我的需求，但總覺得不是很好看<br>這是第一版</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getBeverageList(): Observable&lt;BeverageData[]&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>._http.get(<span class="built_in">this</span>.beverageAPI, <span class="built_in">this</span>.options)</span><br><span class="line">    .map(<span class="function"><span class="params">response</span> =&gt;</span> response.json() <span class="keyword">as</span> BeverageData[])</span><br><span class="line">    .map(<span class="function"><span class="params">item</span> =&gt;</span> item.map(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">      p.state = StateType.None;</span><br><span class="line">      <span class="keyword">return</span> p;</span><br><span class="line">    &#125;))</span><br><span class="line">    .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>剛好kevin介紹了一個工具<a target="_blank" rel="noopener" href="https://quokkajs.com/docs/">Quokka.js</a>，可以不用console.log就可以把結果呈現在旁邊<br>於是就開始實驗怎麼寫，可以讓這段更好看<br>先把陣列拆開，做完以後再組合起來，這樣的寫法看起來是不是更清楚一點<br>這是第二版</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getBeverageList(): Observable&lt;BeverageData[]&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>._http.get(<span class="built_in">this</span>.beverageAPI, <span class="built_in">this</span>.options)</span><br><span class="line">    .map(<span class="function"><span class="params">response</span> =&gt;</span> response.json() <span class="keyword">as</span> BeverageData[])</span><br><span class="line">    .concatMap(<span class="function"><span class="params">p</span> =&gt;</span> p)</span><br><span class="line">    .map(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">      p.state = StateType.None;</span><br><span class="line">      <span class="keyword">return</span> p;</span><br><span class="line">    &#125;)</span><br><span class="line">    .toArray()</span><br><span class="line">    .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="mergeMap"><a href="#mergeMap" class="headerlink" title="mergeMap"></a>mergeMap</h3><p>post資料回server端後，想要重新取得全部的資料，這時候又不希望由前面再次呼叫<br>這時候可以直接在service層一次做完</p>
 <p>那因為是呼叫另一個已經寫好的service，所以必須要把自己的observable和另一個接起來<br>這時候我們要使用到mergeMap</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">postBeverage(index:<span class="built_in">number</span>,  <span class="attr">beverage</span>: BeverageData):Observable&lt;BeverageData[]&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>._http.post(<span class="built_in">this</span>.beverageAPI + <span class="string">&quot;/&quot;</span> + index, beverage, <span class="built_in">this</span>.options)</span><br><span class="line">    .mergeMap(<span class="function"><span class="params">resp</span> =&gt;</span> <span class="built_in">this</span>.getBeverageList())</span><br><span class="line">    .catch(<span class="built_in">this</span>.handleError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h2><p>rx這東西真的要有案例來學，才有辦法體會他的奧妙，不然看文件看多了還是不太清楚如何搭配使用</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -212,21 +201,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -251,11 +225,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -269,7 +238,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -297,6 +266,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

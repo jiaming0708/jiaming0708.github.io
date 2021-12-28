@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="quokka是一個測試工具，支援蠻多的編輯器，可以直接即時的就看到結果，所以大部分都是開發或是測試的時候可以拿出來使用 在使用webpack作為打包編譯的工具的時候，有一些設定會讓quokka看不懂，這邊就來介紹一下怎麼設定">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-02-15T14:44:03.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.821Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.852Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Test">
 <meta property="article:tag" content="Quokka">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-quokka-webpack"
+        <article id="post-quokka-webpack"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	quokka搭配webpack設定
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/02/15/quokka-webpack/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  2月 15, 2019
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Tool/">Tool</a>
     </div>
-    <span class="readtime">8 mins.</span>
+    
+        <span class="readtime">8 mins.</span>
+    
 
 	</section>
 	
@@ -177,39 +161,49 @@
         <a href="/tags/Quokka/">Quokka</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p><a target="_blank" rel="noopener" href="https://quokkajs.com/">quokka</a>是一個測試工具，支援蠻多的編輯器，可以直接即時的就看到結果，所以大部分都是開發或是測試的時候可以拿出來使用</p>
+			<p><a target="_blank" rel="noopener" href="https://quokkajs.com/">quokka</a>是一個測試工具，支援蠻多的編輯器，可以直接即時的就看到結果，所以大部分都是開發或是測試的時候可以拿出來使用</p>
 <p>在使用webpack作為打包編譯的工具的時候，有一些設定會讓quokka看不懂，這邊就來介紹一下怎麼設定</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h1><p>在專案中通常會加上alias的設定，這樣可以讓import比較乾淨，大概會像是這樣設定</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        resolve: &#123;</span><br><span class="line">            alias: &#123;</span><br><span class="line">                <span class="string">&#x27;@app&#x27;</span>: resolve(__dirname, <span class="string">&#x27;./app&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>那在程式中通常會這樣寫</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> api <span class="keyword">from</span> <span class="string">&#x27;@app/services/api&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <p>但是這個時候使用quokka會告訴你找不到這個module，根據<a target="_blank" rel="noopener" href="https://quokkajs.com/docs/configuration.html">官方的文件</a>可以透過設定<code>.quokka</code>的檔案(<em>json  format</em>)，來讓工具看的懂</p>
 <h2 id="without-babel"><a href="#without-babel" class="headerlink" title="without babel"></a>without babel</h2><p>alias有兩種方法，一個是有babel，當然另一種就是沒有，這兩個都有寫好的套件可以使用<br>首先介紹一下沒有babel的情況下要使用<a target="_blank" rel="noopener" href="https://github.com/Gozala/alias-quokka-plugin">alias-quokka-plugin</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --save --dev alias-quokka-plugin</span><br></pre></td></tr></table></figure>
+
 <p>再來就是把<code>.quokka</code>的檔案產生好</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [<span class="string">&quot;alias-quokka-plugin&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;alias&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;@app&quot;</span>: <span class="string">&quot;./app&quot;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>設定完以後就不用怕啦，開始使用在程式裡面吧</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> api = <span class="built_in">require</span>(<span class="string">&#x27;@app/services/api&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
 <h2 id="with-babel"><a href="#with-babel" class="headerlink" title="with babel"></a>with babel</h2><p>有使用babel的話，我們要安裝另一個套件<a target="_blank" rel="noopener" href="https://github.com/timhuff/babel-alias-quokka-plugin">babel-alias-quokka-plugin</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --save --dev babel-alias-quokka-plugin</span><br></pre></td></tr></table></figure>
+
 <p>改一下<code>.quokka</code>檔案的內容</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;babel&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;babel-alias-quokka-plugin&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;alias&quot;</span>:&#123;</span><br><span class="line">      <span class="attr">&quot;@app&quot;</span>:<span class="string">&quot;./app&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <p>可以看到這邊主要多了一個設定叫做<code>babel</code>，那預設會載入<code>.babelrc</code>並且env是<strong>test</strong>，當然你也可以特別指定env之類的，但我是全部都交給<code>babelrc</code>就好，<code>.quokka</code>只做最基本的設定</p>
 <h1 id="global-variable"><a href="#global-variable" class="headerlink" title="global variable"></a>global variable</h1><p>很開心的設定完上面的步驟，一按下去執行，🤬又有錯誤，這次是**<code>__CLIENT__</code>**找不到，突然想到在webpack中有定義了一些屬於全域型的變數</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in webpack.config.js</span></span><br><span class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">    __CLIENT: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h2 id="自定plugin"><a href="#自定plugin" class="headerlink" title="自定plugin"></a>自定plugin</h2><p>這時候我們就要採用自訂plugin的方式，宣告一個變數讓quokka看懂，這時候就先產生一個<code>quokkaPlugin.js</code>的檔案</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">global</span>.__CLIENT__ = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
 <p>在<code>.quokka</code>的設定中，把這個檔案當做plugin放進去</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;babel&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;./quokkaPlugin.js&quot;</span>,</span><br><span class="line">      <span class="string">&quot;babel-alias-quokka-plugin&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;alias&quot;</span>:&#123;</span><br><span class="line">      <span class="attr">&quot;@app&quot;</span>:<span class="string">&quot;./app&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>終於設定完畢，可以正常的使用<code>quokka</code>這個工具，如果你的import很多的話，可能會使用到<strong>Pro</strong>的版本，可以先看一下官方的差異介紹，試用後再決定要不要買</p>
 <p>如果你是有套用完整的測試框架像是jest或是protractor，就要改使用<a target="_blank" rel="noopener" href="https://wallabyjs.com/">wallaby</a>，絕對可以讓你享受到TDD的紅綠燈開發方式</p>
 <p>再設定上面如果有一些問題的話可以去參考官方的<a target="_blank" rel="noopener" href="https://github.com/wallabyjs">repo</a>，裡面有非常多種的範例</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -226,21 +220,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -265,11 +244,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -283,7 +257,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -311,6 +285,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

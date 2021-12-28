@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +21,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://mdn.mozillademos.org/files/5397/rhino.jpg">
 <meta property="article:published_time" content="2018-12-22T02:32:17.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.809Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.844Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="crop">
 <meta property="article:tag" content="canvas">
@@ -42,21 +39,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -140,12 +124,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-canvas-drawimage"
+        <article id="post-canvas-drawimage"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -154,8 +138,6 @@
     	[crop系列] 2 canvas drawimage應用
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2018/12/22/canvas-drawimage/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  12月 22, 2018
 	</time>
@@ -164,7 +146,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/canvas/">canvas</a>
     </div>
-    <span class="readtime">9 mins.</span>
+    
+        <span class="readtime">9 mins.</span>
+    
 
 	</section>
 	
@@ -179,18 +163,20 @@
         <a href="/tags/canvas/">canvas</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>這是接續前一篇<a href="/2018/12/20/css-scale-position/" title="[crop系列] 1 scale和position的糾葛">[crop系列] 1 scale和position的糾葛</a>的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦</p>
-<a id="more"></a>
+			<p>這是接續前一篇<a href="/2018/12/20/css-scale-position/" title="[crop系列] 1 scale和position的糾葛">[crop系列] 1 scale和position的糾葛</a>的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦</p>
+<span id="more"></span>
 
 <p>首先我們會把圖片先放在<code>img</code>的element中，然後再讓使用者drag和scale後，只裁切圓形所顯示的部份，但我們不會真的裁切成圓形，而是方形作為儲存</p>
 <h1 id="不是你以為的樣子"><a href="#不是你以為的樣子" class="headerlink" title="不是你以為的樣子"></a>不是你以為的樣子</h1><p>首先我們有一個img的elment，實際大小是<code>300*227</code>，指定寬度為200，下面是實際呈現出來的樣式</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://mdn.mozillademos.org/files/5397/rhino.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">id</span>=<span class="string">&quot;image&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
 <img src="https://mdn.mozillademos.org/files/5397/rhino.jpg" class="" width="200" title="河馬">
 
 <p>接著我們要開始使用canvas，把圖片放進去，直接先指定畫布大小是<code>200*200</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> img = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#image&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line">canvas.width = <span class="number">200</span>;</span><br><span class="line">canvas.height = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
 <p>你可以發現到一件事情，圖被切割了！！畫出來的大小竟然不是跟image的元件所產生的是一樣大，而是根據原始檔案</p>
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version1?embed=1&file=src/app/app.component.html&hideExplorer=1&view=editor"></iframe>
 # 指定區域截取
@@ -198,19 +184,23 @@
 <p>接下來，就是要開始做截取圖片，在<code>drawImage</code>有提供override可以使用，要使用的是其中最多參數的那個，那要先知道每個參數的意義，可以參考一下<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage">這篇</a>的說明</p>
 <p>放一個<code>50*50</code>的紅框，在畫面上，作為識別我們預期要截取的地方</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.block</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在draw的地方改一下參數</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(img, <span class="number">10</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
 完蛋了！取到的地方跟我們預期完全不一樣，其實這跟上面所提到的canvas是用實際大小有關係，所以這時候就要來做一點運算，讓位置是符合我們的預期
 
 <p>原圖是<code>300*227</code>，實際是<code>200*151</code>，因此位置要跟著等比例放大，因此先將比例算出來，再拿來計算</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">      offsetWidth,</span><br><span class="line">      naturalWidth,</span><br><span class="line">&#125; = img;</span><br><span class="line"><span class="keyword">const</span> ratio = naturalWidth / offsetWidth;</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    offsetTop,</span><br><span class="line">    offsetLeft,</span><br><span class="line">&#125; = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.block&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> realTop = offsetTop * ratio;</span><br><span class="line"><span class="keyword">const</span> realLeft = oofsetLeft * ratio;</span><br><span class="line"><span class="keyword">const</span> realWidth = blockWidth * ratio;</span><br><span class="line"><span class="keyword">const</span> realHeight = blockHeight * ratio;</span><br><span class="line">ctx.drawImage(img, realLeft, realTop, realWidth, realHeight, <span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
 <iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
 耶，終於成功啦！拿到我們要的區域，那我們就可以匯出成圖片囉
 
 <h1 id="匯出圖片"><a href="#匯出圖片" class="headerlink" title="匯出圖片"></a>匯出圖片</h1><p>我們要把截取出來的區域變成blob，最簡單的方法可以使用<code>toBlob</code>，但是要注意在<code>safari</code>是不支援的，那這邊有兩個方法，一個是用polyfill，那另一個就是用<code>toDataURL</code>的作法</p>
 <p>這邊介紹的我用的方法<code>toDataURL</code>轉成blob以後丟給api給後端處理</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先輸出成為base64的字串</span></span><br><span class="line"><span class="keyword">const</span> image = canvas.toDataURL();</span><br><span class="line"><span class="comment">// 將base64的資料還原成array</span></span><br><span class="line"><span class="keyword">const</span> byteString = atob(image.split(<span class="string">&#x27;,&#x27;</span>)[<span class="number">1</span>]);</span><br><span class="line"><span class="comment">// 轉換成byte</span></span><br><span class="line"><span class="keyword">const</span> ab = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(byteString.length);</span><br><span class="line"><span class="keyword">const</span> ia = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(ab);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; byteString.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">  ia[i] = byteString.charCodeAt(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newBlob = <span class="keyword">new</span> Blob([ib], &#123;</span><br><span class="line">  type: <span class="string">&#x27;image/jpeg&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>一開始弄的時候被size問題困擾好久，因為還加上了scale的功能，然後怎麼拿到的圖片都不對，後來才發現原來又要拿數學來做計算，然後後來又被一個<code>toBlob</code>搞到，所以才又生出一段轉換的動作</p>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images">MDN</a></p>
@@ -219,7 +209,7 @@
 </li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -236,21 +226,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -275,11 +250,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -293,7 +263,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -321,6 +291,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

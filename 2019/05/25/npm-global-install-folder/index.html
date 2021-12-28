@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="很久沒寫angular，最近接了一個小的靜態網站，想要拿牛刀來殺雞XDDD第一件事情當然就是更新最新的angular cli，但是更新後系統卻跟我說 ng command not found">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-05-25T09:20:19.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.825Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.856Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta name="twitter:card" content="summary">
     
@@ -38,21 +35,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -136,12 +120,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-npm-global-install-folder"
+        <article id="post-npm-global-install-folder"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -150,8 +134,6 @@
     	[抓蟲] npm全域安裝路徑錯誤
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/05/25/npm-global-install-folder/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  5月 25, 2019
 	</time>
@@ -163,8 +145,8 @@
 	<section class="article typo">
 	  
   	<div class="article-entry" itemprop="articleBody">
-    	<p>很久沒寫angular，最近接了一個小的靜態網站，想要拿牛刀來殺雞XDDD<br>第一件事情當然就是更新最新的angular cli，但是更新後系統卻跟我說 <code>ng command not found</code></p>
-<a id="more"></a>
+			<p>很久沒寫angular，最近接了一個小的靜態網站，想要拿牛刀來殺雞XDDD<br>第一件事情當然就是更新最新的angular cli，但是更新後系統卻跟我說 <code>ng command not found</code></p>
+<span id="more"></span>
 
 <h1 id="問題情境"><a href="#問題情境" class="headerlink" title="問題情境"></a>問題情境</h1><p>先來看看電腦環境</p>
 <blockquote>
@@ -172,9 +154,11 @@
 </blockquote>
 <p>既然我們是用nvm那我們安裝的npm global應該是跟著nvm底下跑，但當我下指令 <code>npm i -g @angular/cli</code> 卻一直跑去另一個node version的目錄底下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/jimmy/.nvm/versions/node/v6.11.1/bin/ng -&gt; /Users/jimmy/.nvm/versions/node/v6.11.1/lib/node_modules/@angular/cli/bin/ng</span><br></pre></td></tr></table></figure>
+
 <p>因此這樣在目前版本的node目錄中永遠不會有<code>@angular/cli</code>可以使用，但是到底是哪邊的設定影響到呢？</p>
 <h1 id="問題排查"><a href="#問題排查" class="headerlink" title="問題排查"></a>問題排查</h1><h2 id="nvm版本"><a href="#nvm版本" class="headerlink" title="nvm版本"></a>nvm版本</h2><p>第一次先確認的是nvm中的node版本是不是根本就錯誤，因此先把<code>v6.11.1</code>以及<code>v9.3.0</code>版本刪掉，接著重新安裝<code>v9.3.0</code>並且設定為預設</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvm uninstall v9.3.0</span><br><span class="line">nvm uninstall v6.11.1</span><br><span class="line">nvm install v9.3.0</span><br><span class="line">nvm alias default v9.3.0</span><br></pre></td></tr></table></figure>
+
 <p>再次安裝cli但還是失敗</p>
 <h2 id="重新安裝nvm"><a href="#重新安裝nvm" class="headerlink" title="重新安裝nvm"></a>重新安裝nvm</h2><p>因此改成檢查nvm本身是不是正確的，可以參考一下這篇文章<a target="_blank" rel="noopener" href="https://medium.com/@toumasaya/node-js-%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A-for-mac-a2628836feaf">Node.js 環境設定-for mac</a>，但我們按照步驟重新做完以後，再次安裝cli還是一樣的結果</p>
 <h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>最後試著往npm的相關設定找，很剛好的讓我找到了<code>.npmrc</code>在根目錄底下有設定了一個<code>prefix</code>的目錄就是<code>v6.11.1</code>，先註解掉試試看，再次安裝cli果然成功，可以找到<strong>ng</strong>的指令了</p>
@@ -183,7 +167,7 @@
 <p>prefix的目的是什麼呢，npm的指令全部都會改成到prefix指定的路徑下，而不是目前的node目錄，因此這個如果設定在<code>~/.npmrc</code>就會發生像我一樣的悲劇</p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>要解決問題也要找對資料，不然就可能造成悲劇，其實vscode會報那個錯誤是因為當初我直接安裝node變成用nvm，因此一些設定上錯誤，這次找到<a target="_blank" rel="noopener" href="https://medium.com/@mvpdw06/%E8%A7%A3%E6%B1%BA-nvm-is-not-compatible-with-the-npm-config-prefix-option-currently-set-to-usr-local-%E5%95%8F%E9%A1%8C-cb1f3462ef40">其他資料</a>才發現原來問題是在用brew安裝nvm，最後成功解決問題，可以繼續使用angular啦！！</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -200,21 +184,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -239,11 +208,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -257,7 +221,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -285,6 +249,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

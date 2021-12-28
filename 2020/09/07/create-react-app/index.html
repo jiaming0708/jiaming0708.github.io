@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 create-react-app (CRA) 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-09-07T13:11:31.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.873Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.920Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-create-react-app"
+        <article id="post-create-react-app"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	create-react-app 開發心得分享
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2020/09/07/create-react-app/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  9月 7, 2020
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/React/">React</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,24 +158,28 @@
         <a href="/tags/React/">React</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 <code>create-react-app (CRA)</code> 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。</p>
-<a id="more"></a>
+			<p>最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 <code>create-react-app (CRA)</code> 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。</p>
+<span id="more"></span>
 
 <h1 id="why-CRA"><a href="#why-CRA" class="headerlink" title="why CRA"></a>why CRA</h1><p>在開始之前先和 PM 確認這個網站的功能要有哪些，是否會有所謂的內容或是行銷頁面，那經過 PM 確認後，網站主要是登入後的內容。既然要登入，有沒有所謂的 server-side-render (SSR) 根本不重要，因為對於網站來說也沒辦法那些內容呈現給爬蟲，因此這個時候我們就只需要 client-side-render (CSR) 的功能。</p>
 <p>既然只是 CSR 的網站，react 的團隊也提供已經建置好的一個架構也就是 CRA，讓你不用再煩惱 webpack 等等的設定。</p>
 <h1 id="專案建置"><a href="#專案建置" class="headerlink" title="專案建置"></a>專案建置</h1><p>CRA 本身提供的功能真的很陽春，react 團隊只是提供了一個平台，讓你不用在乎專案的一些架構設定等等，但如果要達到稍微複雜的開發需求，還是有不少東西需要被調整，接著我會說明怎麼去建置所需要的環境。</p>
 <h2 id="建立有redux的專案"><a href="#建立有redux的專案" class="headerlink" title="建立有redux的專案"></a>建立有redux的專案</h2><p>根據<a target="_blank" rel="noopener" href="https://create-react-app.dev/">官網的介紹</a>，我們可以使用下面的指令很輕鬆的建立好專案，完成後使用 vscode 打開，可以發現到只有 <code>public</code> 以及 <code>src</code> 兩個目錄而已，而且是只有 <code>react</code> 的功能， <code>redux</code> 等等的功能都沒有。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-project</span><br><span class="line">cd my-project</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
 <p>作為一個完整的專案，基本上就是會有 <code>redux</code> 以及 <code>middleware</code> （也許有人會說用 context 就好，但就不再這邊討論囉！），那有沒有更簡單的方法呢？當然是有的， 在 npm 中搜尋 <a target="_blank" rel="noopener" href="https://www.npmjs.com/search?q=cra-template-*">cra-template</a> 就可以使用這些別人已經建立好的範本來做初始專案。</p>
 <p>目前團隊是使用 redux+saga ，因此我這邊就選擇一個已經整合好的<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cra-template-react-redux-saga">範本</a>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-project --template react-redux-saga</span><br><span class="line">cd my-project</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
-<h2 id="CSS管理"><a href="#CSS管理" class="headerlink" title="CSS管理"></a>CSS管理</h2><p>在 CRA 中有兩種的 css 管理方法，一種是全域的檔案，另一種就是 css module ，基本上兩種模式都有用到，但主要用比較多的會是 css module ，因此再建立 component 時，就必須要將 css 的檔案名稱加上 *<strong>.module.css</strong> 這樣才會變成 module scope，不然的話預設就會是全域。</p>
+
+<h2 id="CSS管理"><a href="#CSS管理" class="headerlink" title="CSS管理"></a>CSS管理</h2><p>在 CRA 中有兩種的 css 管理方法，一種是全域的檔案，另一種就是 css module ，基本上兩種模式都有用到，但主要用比較多的會是 css module ，因此再建立 component 時，就必須要將 css 的檔案名稱加上 ***.module.css** 這樣才會變成 module scope，不然的話預設就會是全域。</p>
 <p>另外就是使用預處理器 scss 來撰寫，webpack的處理已經準備好，只是需要安裝 <code>node-sass</code> 的 library 即可！</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add node-sass</span><br></pre></td></tr></table></figure>
+
 <h2 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h2><p>建立一個稍微有點規模的專案，都一定不會只有一個頁面，因此我們一定會需要使用到 route ，那想當爾就是我們要自己安裝囉！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure>
+
 
 
 <h2 id="Format-及-ESLint-StyleLint"><a href="#Format-及-ESLint-StyleLint" class="headerlink" title="Format 及 ESLint / StyleLint"></a>Format 及 ESLint / StyleLint</h2><p>排版是一件麻煩的事情，尤其是大家的習慣不同，使用 formatter 以及 linter 是最簡單的，我們團隊是使用 <a target="_blank" rel="noopener" href="https://github.com/prettier/prettier">prettier</a> 為基礎，另外套一些 react / scss 的 lint，基本上不太會去改什麼設定，<a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/setting-up-your-editor/#formatting-code-automatically">參考這邊使用方法</a>。</p>
@@ -208,7 +196,7 @@
 <li><a target="_blank" rel="noopener" href="https://create-react-app.dev/">CRA 官網</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -225,21 +213,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -264,11 +237,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -282,7 +250,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -310,6 +278,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

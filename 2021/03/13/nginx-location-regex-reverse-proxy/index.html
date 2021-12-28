@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。  reverse proxy 可以參考我之前 寫的這篇">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-03-13T01:03:58.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.877Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.924Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-nginx-location-regex-reverse-proxy"
+        <article id="post-nginx-location-regex-reverse-proxy"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[nginx] 設定reverse proxy當location使用regex
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2021/03/13/nginx-location-regex-reverse-proxy/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  3月 13, 2021
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/nginx/">nginx</a>
     </div>
-    <span class="readtime">3 mins.</span>
+    
+        <span class="readtime">3 mins.</span>
+    
 
 	</section>
 	
@@ -174,16 +158,17 @@
         <a href="/tags/nginx/">nginx</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。</p>
+			<p>一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。</p>
 <blockquote>
 <p>reverse proxy 可以參考我之前 <a href="/2017/09/02/reserve-proxy/" title="寫的這篇">寫的這篇</a></p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h1><p>先來個基本題，使用者進到 <strong>course</strong> 這個路徑時，希望能夠開啟維持一樣的 url 但是內容呈現在 webflow 上做好的一頁，我們所要使用的指令叫做 <code>proxy_pass</code>。</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="proxy-pass-與-regex"><a href="#proxy-pass-與-regex" class="headerlink" title="proxy_pass 與 regex"></a>proxy_pass 與 regex</h1><p>進階題來了，想要限制只有特定前綴 <strong>zh-hk</strong> 以及 <strong>en-hk</strong> 的 course 路徑才顯示 academy 的內容。</p>
 <p>先來列一下預期的 URL</p>
 <ul>
@@ -191,6 +176,7 @@
 <li>/en-hk/course</li>
 </ul>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /*-hk/course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>很開心的做完了，重起 nginx 卻發現到錯誤</p>
 <blockquote>
 <p>“proxy_pass” cannot have URI part in location given by regular expression, or inside named location, or inside “if” statement, or inside “limit_except”</p>
@@ -198,12 +184,13 @@
 <p>當 location 是動態 (regex) 路徑時，就只能指定 domain 那層，後面的 folder 不能存在。雖然只有兩個前綴，可以簡單的重複寫兩次，但總是覺得這樣很笨。</p>
 <p>查了相關的設定以後，需要透過 <strong>rewrite</strong> 的方式，先讓這個頁面先轉到目標 folder，但又不能真的執行 (break)，再來執行 proxy_pass 就可以達成目的。</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /*-tw/course</span> &#123;</span><br><span class="line">    <span class="attribute">rewrite</span><span class="regexp"> ^</span> /hkdse-courses <span class="literal">break</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53353572/proxy-pass-cannot-have-uri-part-in-location-given-by-regular-expression">stackoverflow</a></li>
 <li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break">nginx</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -220,21 +207,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -259,11 +231,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -277,7 +244,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -305,6 +272,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

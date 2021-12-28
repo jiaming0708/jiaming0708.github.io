@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -29,7 +26,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2019/02/19/gtm-content-group/post-view-event.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2019/02/19/gtm-content-group/hisotry-event.png">
 <meta property="article:published_time" content="2019-02-19T04:22:02.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.821Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.852Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="GTM">
 <meta name="twitter:card" content="summary">
@@ -46,21 +43,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -144,12 +128,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-gtm-content-group"
+        <article id="post-gtm-content-group"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -158,8 +142,6 @@
     	[GTM] pageview加上content group
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/02/19/gtm-content-group/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  2月 19, 2019
 	</time>
@@ -168,7 +150,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/GTM/">GTM</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -181,10 +165,10 @@
         <a href="/tags/GTM/">GTM</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近有一個需求是在特定頁面要加上content group的資料，很多的功能用GA都還蠻簡單，但是用了GTM就會變得比較複雜一點，今天來分享一下用GTM怎麼完成這個需求</p>
-<a id="more"></a>
+			<p>最近有一個需求是在特定頁面要加上content group的資料，很多的功能用GA都還蠻簡單，但是用了GTM就會變得比較複雜一點，今天來分享一下用GTM怎麼完成這個需求</p>
+<span id="more"></span>
 
 <p>#設定GA</p>
 <p>最一開始當然就是要先把GA設定起來，這樣後續才有辦法做測試並且確認資料是否正確，首先contnet group是設定在<code>view</code>底下而不是<code>property</code>，所以要先到admin中找到<code>Content Grouping</code>的設定</p>
@@ -200,12 +184,12 @@
 <li><p>DL-TYPE(<strong>Data Layer Variable</strong>)<br>名稱就給他<code>TYPE</code>，在程式我們只要給對應的名稱GTM就會對應到<br><img src="/2019/02/19/gtm-content-group/DL-TYPE.png" alt="DL-TYPE"></p>
 </li>
 <li><p>Get TYPE<br>寫一個判斷式，當網址不是指定頁面(<strong>post</strong>)的時候要給其他值，避免掉資料殘留的問題，因為網站本身架構比較單純主要分兩個頁面，HOME、POST，所以只要簡單判斷並且給一個定值就好</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> val = &#123;&#123;DL-TYPE&#125;&#125;;</span><br><span class="line">	<span class="keyword">var</span> path = &#123;&#123;Page Path&#125;&#125;;</span><br><span class="line">	<span class="keyword">if</span>(!<span class="regexp">/(\/post\/)/</span>.test(path))&#123;</span><br><span class="line">      val = <span class="string">&#x27;HOME&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="GA-Setting"><a href="#GA-Setting" class="headerlink" title="GA Setting"></a>GA Setting</h2></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> val = &#123;&#123;DL-TYPE&#125;&#125;;</span><br><span class="line">	<span class="keyword">var</span> path = &#123;&#123;Page Path&#125;&#125;;</span><br><span class="line">	<span class="keyword">if</span>(!<span class="regexp">/(\/post\/)/</span>.test(path))&#123;</span><br><span class="line">      val = <span class="string">&#x27;HOME&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>接著就可以在<code>Google Analytics Settings</code>加上content group的設定，打開<code>More Setting</code>找到<code>Content Groups</code>新增一個index是1，值從<code>Get TYPE</code>這個function取得<br><img src="/2019/02/19/gtm-content-group/GA-setting.png" alt="GA-setting"></p>
+<h2 id="GA-Setting"><a href="#GA-Setting" class="headerlink" title="GA Setting"></a>GA Setting</h2><p>接著就可以在<code>Google Analytics Settings</code>加上content group的設定，打開<code>More Setting</code>找到<code>Content Groups</code>新增一個index是1，值從<code>Get TYPE</code>這個function取得<br><img src="/2019/02/19/gtm-content-group/GA-setting.png" alt="GA-setting"></p>
 <h1 id="Send-Data-Layer"><a href="#Send-Data-Layer" class="headerlink" title="Send Data Layer"></a>Send Data Layer</h1><h2 id="push-data-layer"><a href="#push-data-layer" class="headerlink" title="push data layer"></a>push data layer</h2><p>TYPE的資料是<code>componentDidMount</code>的時候透過API拿回來，因此我們可以在這邊再打出Data Layer資料</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.dataLayer.push(&#123;</span><br><span class="line">    <span class="string">&#x27;TYPE&#x27;</span>: <span class="string">&#x27;VIDEO&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>寫完使用preview的功能看一下有沒有資料，慘～怎麼都沒拿到，再仔細思考一下整個流程</p>
 <blockquote>
 <p>home -&gt; (page view) -&gt; post -&gt; (send data layer)</p>
@@ -216,7 +200,7 @@
 <p>整個設定完以後，程式也在<code>componentDidMount</code>發送event，就可以用preview看看結果是不是如預期！</p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這個功能其實很簡單，官方也有說明怎麼設定，但因為時間點的問題，導致要多做一些動作，才能達到原本的預期，如果說你只是一個url的值當做content group，就完全可以忽略上面所講的這些</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -233,21 +217,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -272,11 +241,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -290,7 +254,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -318,6 +282,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

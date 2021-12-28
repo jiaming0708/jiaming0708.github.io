@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="今天要來探討ReactiveX(底下簡稱Rx)，這個已經紅很久的概念，各語言有各自的實作ex:RxJS、RxJava…我們先來看看Rx是什麼東西，官方給了一個定義composing asynchronous and event-based programs by using observable sequences">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-07-05T12:52:33.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-rx"
+        <article id="post-rx"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	ReactiveX介紹
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/07/05/rx/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  7月 5, 2017
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/RxJS/">RxJS</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/RxJS/">RxJS</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>今天要來探討ReactiveX(底下簡稱Rx)，這個已經紅很久的概念，各語言有各自的實作ex:RxJS、RxJava…<br>我們先來看看Rx是什麼東西，官方給了一個定義<br><code>composing asynchronous and event-based programs by using observable sequences</code></p>
-<a id="more"></a>
+			<p>今天要來探討ReactiveX(底下簡稱Rx)，這個已經紅很久的概念，各語言有各自的實作ex:RxJS、RxJava…<br>我們先來看看Rx是什麼東西，官方給了一個定義<br><code>composing asynchronous and event-based programs by using observable sequences</code></p>
+<span id="more"></span>
 
 <p>以下範例都將以RxJS為主</p>
 <script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=from.js"></script>
@@ -190,7 +174,7 @@
 <blockquote>
 <p>請忽視價格問題:)</p>
 </blockquote>
-<p><strong><em>從這個例子能看到一件事情，其實很重要，也就是當沒有客人(Subscribe)來，廚房(Observable)是不會動作的</em></strong></p>
+<p><em><strong>從這個例子能看到一件事情，其實很重要，也就是當沒有客人(Subscribe)來，廚房(Observable)是不會動作的</strong></em></p>
 <p>還是要回歸正提XDD，Rx提供了多種產生的方式，這邊列舉幾個常用的</p>
 <ul>
 <li>create<br>產生Observable，可以自行控制資料<blockquote>
@@ -203,34 +187,24 @@
 <p>透過next不斷的發送資料出去，當要讓subscribe知道已經結束則使用complete<br>若是錯誤則是使用throw<br>complete、throw對於observable來說都是結束的意思，後面的動作就不會繼續觸發了</p>
 <ul>
 <li><p>of<br>輸出陣列資料</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=of.js"></script>
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=of.js"></script></li>
 <li><p>from<br>將陣列資料拆解，sequence的將資料拋出</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=from.js"></script>
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=from.js"></script></li>
 <li><p>fromEvent<br>監聽事件</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=fromEvent.js"></script>
-
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=fromEvent.js"></script></li>
 </ul>
 <h2 id="Operator"><a href="#Operator" class="headerlink" title="Operator"></a>Operator</h2><p>Operator就像是煮飯一樣，搭配的好就像是阿基師，搭配不好吃起來就會…(遠目<br>Rx已經準備好許多的配料，可以讓我們自行搭配，底下用幾個來做範例吧</p>
 <ul>
 <li><p>map</p>
 </li>
 <li><p>filter</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=operator.js"></script>
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=operator.js"></script></li>
 <li><p>concat</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=concat.js"></script>
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=concat.js"></script></li>
 <li><p>merge</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=merge.js"></script>
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=merge.js"></script></li>
 <li><p>mergeMap<br>等於merge+map的合體技</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=mergeMap.js"></script>
-
-
-</li>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=mergeMap.js"></script></li>
 </ul>
 <p>看完了上面的介紹，也許有人就會開始想說，那可不可以有多個訂閱者<br>那多個訂閱者收到的資料會是什麼</p>
 <blockquote>
@@ -257,7 +231,7 @@
 <p>當然還有其他更強大的應用，但我目前都沒有用到，所以只能感受到這樣<br>歡迎大家一起來討論!</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="http://reactivex.io/">官網</a><br><a target="_blank" rel="noopener" href="http://ithelp.ithome.com.tw/users/20103367/ironman/1199">Jerry-30 天精通 RxJS</a><br><a target="_blank" rel="noopener" href="http://rxmarbles.com/">RxMarbles</a><br><a target="_blank" rel="noopener" href="http://reactivex.io/rxjs/">RxJS API Document</a></p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -274,21 +248,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -313,11 +272,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -331,7 +285,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -359,6 +313,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

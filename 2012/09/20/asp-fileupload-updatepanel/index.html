@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="一般使用FileUpload控制項時，只要PostBack回後台，有上傳的檔案一定取的到但是某天我在外面包了一個UpdatePanel">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2012-09-20T13:00:12.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.797Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.824Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="ASP.NET">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-asp-fileupload-updatepanel"
+        <article id="post-asp-fileupload-updatepanel"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[ASP.NET] 在UpdatePanel裡使用FileUpload控制項
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2012/09/20/asp-fileupload-updatepanel/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  9月 20, 2012
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Back-end/">Back-end</a>, <a href="/categories/Back-end/ASP-NET/">ASP.NET</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,20 +158,22 @@
         <a href="/tags/ASP-NET/">ASP.NET</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>一般使用FileUpload控制項時，只要PostBack回後台，有上傳的檔案一定取的到<br>但是某天我在外面包了一個UpdatePanel</p>
-<a id="more"></a>
+			<p>一般使用FileUpload控制項時，只要PostBack回後台，有上傳的檔案一定取的到<br>但是某天我在外面包了一個UpdatePanel</p>
+<span id="more"></span>
 
 <p>慘案發生了</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">asp:updatepanel</span> <span class="attr">id</span>=<span class="string">&quot;UpdatePanel1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">contenttemplate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">asp:fileupload</span> <span class="attr">id</span>=<span class="string">&quot;FileUpload1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">asp:button</span> <span class="attr">id</span>=<span class="string">&quot;Button1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span> <span class="attr">text</span>=<span class="string">&quot;Button&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">asp:button</span>&gt;</span><span class="tag">&lt;/<span class="name">asp:fileupload</span>&gt;</span><span class="tag">&lt;/<span class="name">contenttemplate</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">asp:updatepanel</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>PostBack回到後台接不到上傳的檔案orz<br>還好有同事愈過這樣的情況</p>
 <p>同事說只要加上Trigger就可以了，馬上測試</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">asp:updatepanel</span> <span class="attr">id</span>=<span class="string">&quot;UpdatePanel1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span> <span class="attr">updatemode</span>=<span class="string">&quot;Conditional&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">contenttemplate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">asp:fileupload</span> <span class="attr">id</span>=<span class="string">&quot;FileUpload1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">asp:button</span> <span class="attr">id</span>=<span class="string">&quot;Button1&quot;</span> <span class="attr">runat</span>=<span class="string">&quot;server&quot;</span> <span class="attr">text</span>=<span class="string">&quot;Button&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">asp:button</span>&gt;</span><span class="tag">&lt;/<span class="name">asp:fileupload</span>&gt;</span><span class="tag">&lt;/<span class="name">contenttemplate</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">triggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">asp:postbacktrigger</span> <span class="attr">controlid</span>=<span class="string">&quot;Button1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">asp:postbacktrigger</span>&gt;</span><span class="tag">&lt;/<span class="name">triggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">asp:updatepanel</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+
 <p>捷克～真的可以了<br>原來是FileUpload一定要觸發PostBack，後台才能取得上傳的檔案<br><a target="_blank" rel="noopener" href="http://msdn.microsoft.com/zh-tw/library/bb386454.aspx">MSDN中有說到，FileUpload和UpdatePanel不相容</a><br>學藝不精阿～還是要多多看MSDN</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -204,21 +190,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -243,11 +214,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -261,7 +227,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -289,6 +255,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

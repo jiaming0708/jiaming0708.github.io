@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="前面介紹了在瀏覽器開起應用程式及封裝應用程式，今天要來介紹的是如何在瀏覽器中偵測裝置是否已經安裝，根據狀態來決定是否要顯示不同的文字內容。  還沒有看的話，可以先回頭看看這兩篇 如何在瀏覽器開啟應用程式、透過visual studio建立安裝檔案  瀏覽器開啓應用程式是透過os層的機制處理，對於瀏覽器來說，不會回報是否開啓成功，這個部分就必須要透過其他的手法來偵測。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-11-18T02:10:54.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.893Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.944Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-detect-application-installed"
+        <article id="post-detect-application-installed"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	在瀏覽器偵測裝置是否已經安裝應用程式
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2021/11/18/detect-application-installed/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  11月 18, 2021
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Frontend/">Frontend</a>, <a href="/categories/Frontend/JavaScript/">JavaScript</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,14 +158,14 @@
         <a href="/tags/JavaScript/">JavaScript</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>前面介紹了在瀏覽器開起應用程式及封裝應用程式，今天要來介紹的是如何在瀏覽器中偵測裝置是否已經安裝，根據狀態來決定是否要顯示不同的文字內容。</p>
+			<p>前面介紹了在瀏覽器開起應用程式及封裝應用程式，今天要來介紹的是如何在瀏覽器中偵測裝置是否已經安裝，根據狀態來決定是否要顯示不同的文字內容。</p>
 <blockquote>
 <p>還沒有看的話，可以先回頭看看這兩篇 <a href="/2021/10/11/browser-open-application/" title="如何在瀏覽器開啟應用程式">如何在瀏覽器開啟應用程式</a>、<a href="/2021/11/06/vs-installer-project/" title="透過visual studio建立安裝檔案">透過visual studio建立安裝檔案</a></p>
 </blockquote>
 <p>瀏覽器開啓應用程式是透過os層的機制處理，對於瀏覽器來說，不會回報是否開啓成功，這個部分就必須要透過其他的手法來偵測。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>要偵測是否開啟成功的話，就不能開在新視窗或分頁，也不能把現在頁面給換掉，這樣 script 都會失效。這邊可以透過 iframe 的方式來做包裝，將 custom protocol 丟進去，接下來偵測的行為才能夠正確。</p>
 <blockquote>
@@ -192,10 +176,11 @@
 <p>這邊要注意到 timeout 的時間，可能會因為電腦的速度而影響到</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用 timeout 來判斷是否有安裝</span></span><br><span class="line"><span class="keyword">const</span> timeout = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;fail to launch application&quot;</span>);</span><br><span class="line">    handler.remove();</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iframe = <span class="built_in">document</span>.querySelector(<span class="string">&quot;#hiddenIframe&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(!iframe) &#123;</span><br><span class="line">  <span class="built_in">document</span>.createElement(<span class="string">&quot;iframe&quot;</span>);</span><br><span class="line">  iframe.src = <span class="string">&quot;about:blank&quot;</span>;</span><br><span class="line">  iframe.id = <span class="string">&quot;hiddenIframe&quot;</span>;</span><br><span class="line">  iframe.style.display = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">  <span class="built_in">document</span>.appendChild(iframe);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 若離開視窗，則表示有安裝</span></span><br><span class="line"><span class="keyword">const</span> onBlur = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">  handler.remove();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;launch application successful&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> handler = registerEvent(<span class="built_in">window</span>, <span class="string">&quot;blur&quot;</span>, onBlur);</span><br><span class="line"></span><br><span class="line">iframe.contentWindow.location.href = <span class="string">&quot;jimmy://&quot;</span>;</span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>實作的概念大概是這樣，其實已經有人寫好並且包成 library 可以直接引用，想要看完整的作法就請移駕到 <a target="_blank" rel="noopener" href="https://github.com/vireshshah/custom-protocol-check">Custom Protocol Check in Browser</a> 。</p>
 <p>這個作法也適用於手機上，判斷若沒有安裝的話就提示安裝 app 這樣的概念，之前想要用的時候沒查對方向，變成是用手機開啟都會提示安裝 app ，但這樣其實蠻干擾使用者的，透過這樣的機制，能夠對使用者更加友善。</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -212,21 +197,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -251,11 +221,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -269,7 +234,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -297,6 +262,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

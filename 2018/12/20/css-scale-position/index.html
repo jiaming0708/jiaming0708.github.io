@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西當我們有一個block要做scale，那這時候的position會是？">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-12-20T14:27:56.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.809Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.844Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="CSS">
 <meta property="article:tag" content="crop">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-css-scale-position"
+        <article id="post-css-scale-position"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	[crop系列] 1 scale和position的糾葛
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2018/12/20/css-scale-position/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  12月 20, 2018
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/CSS/">CSS</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -177,10 +161,10 @@
         <a href="/tags/crop/">crop</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西<br>當我們有一個block要做scale，那這時候的position會是？</p>
-<a id="more"></a>
+			<p>最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西<br>當我們有一個block要做scale，那這時候的position會是？</p>
+<span id="more"></span>
 
 <h1 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h1><blockquote>
 <p>使用angular作為樣本，只是因為懶得寫insert值到element中XD</p>
@@ -201,15 +185,14 @@
 <li><p>因為scale是以中心等比縮放，所以這邊要將計算後和計算前的數值相減除以2</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> diffX = (realWidth - width) / <span class="number">2</span>; <span class="comment">// 25</span></span><br><span class="line"><span class="keyword">const</span> diffY = (realHeight - height) / <span class="number">2</span>; <span class="comment">// 25</span></span><br></pre></td></tr></table></figure></li>
 <li><p>這個數值就會是top和left的偏移量，只要將原始的座標減掉偏移量即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="keyword">let</span> position = &#123;</span><br><span class="line">    left: <span class="number">50</span>,</span><br><span class="line">    top: <span class="number">10</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// after</span></span><br><span class="line">position = &#123;</span><br><span class="line">    left: position.left - diffX,</span><br><span class="line">    top: psoition.top - diffY,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>那來總結一下這個算式，<code>(scale - 1) / 2 * value</code>這就是取得偏移量的公式！</p>
-</li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="keyword">let</span> position = &#123;</span><br><span class="line">    left: <span class="number">50</span>,</span><br><span class="line">    top: <span class="number">10</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// after</span></span><br><span class="line">position = &#123;</span><br><span class="line">    left: position.left - diffX,</span><br><span class="line">    top: psoition.top - diffY,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
+<p>那來總結一下這個算式，<code>(scale - 1) / 2 * value</code>這就是取得偏移量的公式！</p>
 <blockquote>
 <p>2018/12/22調整title和第一段描述</p>
 </blockquote>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -226,21 +209,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -265,11 +233,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -283,7 +246,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -311,6 +274,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

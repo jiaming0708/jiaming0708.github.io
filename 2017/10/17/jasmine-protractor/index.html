@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="今天要來談談兩個前端的測試框架，可以被使用在任何的前端網站開發中，當然也被應用在angular-cli中，但今天的內容其實不會搭配angular來做說明，而是以可以被獨立使用的工具">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-10-17T14:23:44.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.805Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.840Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Test">
 <meta property="article:tag" content="Jasmine">
@@ -41,21 +38,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -139,12 +123,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-jasmine-protractor"
+        <article id="post-jasmine-protractor"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -153,8 +137,6 @@
     	前端測試框架-Jasmine&amp;Protractor介紹
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2017/10/17/jasmine-protractor/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  10月 17, 2017
 	</time>
@@ -163,7 +145,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/Test/">Test</a>
     </div>
-    <span class="readtime">28 mins.</span>
+    
+        <span class="readtime">28 mins.</span>
+    
 
 	</section>
 	
@@ -180,10 +164,10 @@
         <a href="/tags/Protractor/">Protractor</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>今天要來談談兩個前端的測試框架，可以被使用在任何的前端網站開發中，當然也被應用在angular-cli中，但今天的內容其實不會搭配angular來做說明，而是以可以被獨立使用的工具</p>
-<a id="more"></a>
+			<p>今天要來談談兩個前端的測試框架，可以被使用在任何的前端網站開發中，當然也被應用在angular-cli中，但今天的內容其實不會搭配angular來做說明，而是以可以被獨立使用的工具</p>
+<span id="more"></span>
 
 <ul>
 <li>Jasmine</li>
@@ -191,10 +175,13 @@
 </ul>
 <h1 id="Jasmine"><a href="#Jasmine" class="headerlink" title="Jasmine"></a>Jasmine</h1><p>一套JS的測試framework，從2009年開始到現在，是一套非常老牌的框架，就直接來看看該怎麼使用</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install jasmine</span></span><br><span class="line">npm install --save-dev jasmine</span><br><span class="line"><span class="meta">#</span><span class="bash">Initialize Jasmine <span class="keyword">in</span> your project</span></span><br><span class="line">./node_modules/.bin/jasmine init</span><br></pre></td></tr></table></figure>
+
 <p>設定<code>package.json</code></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;test&quot;: &quot;jasmine&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>接著產生一個測試檔案<code>spec/first.spec.js</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&#x27;first test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    it(<span class="string">&#x27;hello jasmine&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        expect(<span class="literal">true</span>).toBe(<span class="literal">true</span>);</span><br><span class="line">        expect(<span class="literal">false</span>).not.toBe(<span class="literal">true</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>npm test</p>
 </blockquote>
@@ -208,27 +195,36 @@
 </ul>
 <p>上面的範例就是jasmine的固定格式，只是說我們要透過不同的Matchers來做為測試的手法，接著就來介紹常用的Matchers</p>
 <h2 id="Machers"><a href="#Machers" class="headerlink" title="Machers"></a>Machers</h2><h3 id="toEqual"><a href="#toEqual" class="headerlink" title="toEqual"></a>toEqual</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">&quot;toEqual&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">12</span>;</span><br><span class="line">    expect(a).toEqual(<span class="number">12</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="toBeLessThan-toBeGreaterThan"><a href="#toBeLessThan-toBeGreaterThan" class="headerlink" title="toBeLessThan/toBeGreaterThan"></a>toBeLessThan/toBeGreaterThan</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">&quot;toBeLessThan &amp; toBeGreaterThan&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pi = <span class="number">3.1415926</span>;</span><br><span class="line">    <span class="keyword">let</span> e = <span class="number">2.78</span>;</span><br><span class="line">    expect(e).toBeLessThan(pi);</span><br><span class="line">    expect(e).not.toBeGreaterThan(pi);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="toThrow-toThrowError"><a href="#toThrow-toThrowError" class="headerlink" title="toThrow/toThrowError"></a>toThrow/toThrowError</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">&quot;toThrow &amp; toThrowError&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&quot;foo bar baz&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    expect(foo).toThrow();</span><br><span class="line">    expect(foo).toThrowError(<span class="string">&quot;foo bar baz&quot;</span>);</span><br><span class="line">    expect(foo).toThrowError(<span class="regexp">/bar/</span>);</span><br><span class="line">    expect(foo).toThrowError(<span class="built_in">TypeError</span>);</span><br><span class="line">    expect(foo).toThrowError(<span class="built_in">TypeError</span>, <span class="string">&quot;foo bar baz&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>當然還有更多的Machers，也可以到<a target="_blank" rel="noopener" href="https://jasmine.github.io/api/2.8/matchers.html">官網文件</a>查看，接著來看蠻常用到的功能Global功能</p>
 <h2 id="Global"><a href="#Global" class="headerlink" title="Global"></a>Global</h2><h3 id="beforeEach-afterEach"><a href="#beforeEach-afterEach" class="headerlink" title="beforeEach/afterEach"></a>beforeEach/afterEach</h3><p>每個it在跑的時候都是獨立的事件，如果有些動作是要在每個it都要跑一樣的，那就可以使用這個功能<br>例如：網站登入的動作</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&quot;A spec using beforeEach and afterEach&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">    beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo += <span class="number">1</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    afterEach(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo = <span class="number">0</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    it(<span class="string">&quot;is just a function, so it can contain any code&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo).toEqual(<span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    it(<span class="string">&quot;can have more than one expectation&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo).toEqual(<span class="number">1</span>);</span><br><span class="line">        expect(<span class="literal">true</span>).toEqual(<span class="literal">true</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="beforeAll-afterAll"><a href="#beforeAll-afterAll" class="headerlink" title="beforeAll/afterAll"></a>beforeAll/afterAll</h3><p>類似於beforeEach的功能，但beforeAll只會在整個describe中執行一次</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&quot;A spec using beforeAll and afterAll&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">    beforeAll(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo += <span class="number">1</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    afterAll(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo = <span class="number">0</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    it(<span class="string">&quot;sets the initial value of foo before specs run&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo).toEqual(<span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">    it(<span class="string">&quot;does not reset foo between specs&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo).toEqual(<span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="xit-xdescribe"><a href="#xit-xdescribe" class="headerlink" title="xit/xdescribe"></a>xit/xdescribe</h3><p>disable it/describe</p>
 <h3 id="fit-fdescribe"><a href="#fit-fdescribe" class="headerlink" title="fit/fdescribe"></a>fit/fdescribe</h3><p>只執行it/describe</p>
 <h2 id="Spies"><a href="#Spies" class="headerlink" title="Spies"></a>Spies</h2><p>在測試中，mock的手法蠻常用到(在jasmine中是叫做spy)，尤其是要呼叫api或是使用第三方套件時，那些function我們認為是正確的，所以不希望把那些包進來測試，就做模擬的方式取代掉真實的呼叫，專注於我們自己所要測試的功能上</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&quot;A spy&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo, bar = <span class="literal">null</span>;</span><br><span class="line"> </span><br><span class="line">    beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo = &#123;</span><br><span class="line">            setBar: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">                bar = value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"> </span><br><span class="line">        spyOn(foo, <span class="string">&#x27;setBar&#x27;</span>);</span><br><span class="line"> </span><br><span class="line">        foo.setBar(<span class="number">123</span>);</span><br><span class="line">        foo.setBar(<span class="number">456</span>, <span class="string">&#x27;another param&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    it(<span class="string">&quot;tracks that the spy was called&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo.setBar).toHaveBeenCalled();</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    it(<span class="string">&quot;tracks all the arguments of its calls&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo.setBar).toHaveBeenCalledWith(<span class="number">123</span>);</span><br><span class="line">        expect(foo.setBar).toHaveBeenCalledWith(<span class="number">456</span>, <span class="string">&#x27;another param&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    it(<span class="string">&quot;stops all execution on a function&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(bar).toBeNull();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>toHaveBeenCalled</code> 檢查是否真的有被呼叫過，<code>toHaveBeenCalledWith()</code> 是否符合呼叫function的參數列表</p>
 </blockquote>
 <p>透過<code>spyOn</code>將setBar這個function做模擬，因此在這段的測試中，bar的值依舊是null，這個作法是完全攔截，而且沒有任何回傳結果，但我們通常應該會有一些輸出結果，就可以採用<code>and.returnValue</code>或是<code>and.callFake</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&quot;A spy, when configured to fake a return value&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo, bar, fetchedBar;</span><br><span class="line"> </span><br><span class="line">    beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        foo = &#123;</span><br><span class="line">            setBar: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">                bar = value;</span><br><span class="line">            &#125;,</span><br><span class="line">            getBar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> bar;</span><br><span class="line">            &#125;,</span><br><span class="line">            getBar1: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> bar;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"> </span><br><span class="line">        spyOn(foo, <span class="string">&quot;getBar&quot;</span>).and.returnValue(<span class="number">745</span>);</span><br><span class="line">        spyOn(foo, <span class="string">&quot;getBar1&quot;</span>).and.callFake(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1001</span>;</span><br><span class="line">        &#125;);</span><br><span class="line"> </span><br><span class="line">        foo.setBar(<span class="number">123</span>);</span><br><span class="line">        fetchedBar = foo.getBar();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    it(<span class="string">&quot;should not effect other functions&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(bar).toEqual(<span class="number">123</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"> </span><br><span class="line">    it(<span class="string">&quot;when called returns the requested value&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(fetchedBar).toEqual(<span class="number">745</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    it(<span class="string">&quot;when called returns the requested value&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        expect(foo.getBar1()).toEqual(<span class="number">1001</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h1 id="Protractor"><a href="#Protractor" class="headerlink" title="Protractor"></a>Protractor</h1><p>由angular官方出的一套end-to-end(e2e)的framework，測試期間會開啟一個瀏覽器去執行所要測試的項目，如果是使用angular-cli所產生的專案，預設就已經包含，設定放在根目錄底下的<code>protractor.conf.js</code></p>
 <p>但今天說好不管angular-cli的，因此我們要自己安裝</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g protractor</span><br><span class="line">webdriver-manager update</span><br><span class="line">webdriver-manager start</span><br><span class="line"><span class="meta">#</span><span class="bash">http://localhost:4444/wd/hub</span></span><br></pre></td></tr></table></figure>
+
 <p>接著必須要有一個設定檔<code>conf.js</code>，並且寫好測試檔<code>spec.js</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//conf.js</span></span><br><span class="line"><span class="built_in">exports</span>.config = &#123;</span><br><span class="line">  framework: <span class="string">&#x27;jasmine&#x27;</span>,</span><br><span class="line">  seleniumAddress: <span class="string">&#x27;http://localhost:4444/wd/hub&#x27;</span>,</span><br><span class="line">  specs: [<span class="string">&#x27;spec.js&#x27;</span>]<span class="comment">//測試規格檔</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>framework</code> 在這邊我使用了jasmine，但如果有其他習慣的框架也是能夠使用的</p>
 <ul>
 <li>Mocha</li>
@@ -236,6 +232,7 @@
 <li>Serenity/JS</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// spec.js</span></span><br><span class="line">describe(<span class="string">&#x27;Protractor Demo App&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  it(<span class="string">&#x27;should have a title&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    browser.get(<span class="string">&#x27;http://juliemr.github.io/protractor-demo/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    expect(browser.getTitle()).toEqual(<span class="string">&#x27;Super Calculator&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>protractor conf.js</p>
 </blockquote>
@@ -246,16 +243,19 @@
 </ul>
 <p>到這邊做過第一次測試，但這種不是我們平常會做的測試，因此我們拿上面的網站，來進行內容的測試，首先要取得畫面中的輸入框，並且填入數字</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">&#x27;Protractor Demo App&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    beforeEach(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        browser.get(<span class="string">&#x27;http://juliemr.github.io/protractor-demo/&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    it(<span class="string">&#x27;first input&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> first = element(by.css(<span class="string">&#x27;.input-small&#x27;</span>));</span><br><span class="line">        first.sendKeys(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">        expect(first.getAttribute(<span class="string">&#x27;value&#x27;</span>)).toEqual(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>sendKeys(&#39;2&#39;)</code> 模擬鍵盤並且送出2，<code>getAttribute(&#39;value&#39;)</code> 取得value的屬性</p>
 </blockquote>
 <p>顯然我們只取得第一個輸入框，但畫面中有兩個輸入框，接著調整一下作法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">&#x27;two input&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> els = element.all(by.css(<span class="string">&#x27;.input-small&#x27;</span>));</span><br><span class="line">    <span class="keyword">let</span> first = els.get(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// let first = els.first(); same as get(0)</span></span><br><span class="line">    first.sendKeys(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> sec = els.get(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// let sec = els.last(); same as get(1)</span></span><br><span class="line">    sec.sendKeys(<span class="string">&#x27;4&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>element.all</code> 取得所有符合條件的element，<code>get(0)</code>、<code>first()</code>、<code>last()</code> 取得指定的element</p>
 </blockquote>
 <p>填入兩個輸入框的值後，就可以按下按鈕，並且取得結果</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">&#x27;calculate&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> els = element.all(by.css(<span class="string">&#x27;.input-small&#x27;</span>));</span><br><span class="line">    <span class="keyword">let</span> first = els.get(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// let first = els.first(); same as get(0)</span></span><br><span class="line">    first.sendKeys(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> sec = els.get(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// let sec = els.last();</span></span><br><span class="line">    sec.sendKeys(<span class="string">&#x27;4&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    element(by.id(<span class="string">&#x27;gobutton&#x27;</span>)).click();</span><br><span class="line">    expect($(<span class="string">&#x27;h2&#x27;</span>).getText()).toEqual(<span class="string">&#x27;6&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>by.id(&#39;gobutton&#39;)</code> id=’gobutton’的選擇器，<code>click()</code> 產生click行為，<code>$(&#39;h2&#39;)</code> 使用jquery的寫法取得特定tag name的element，<code>getText()</code> 取得element的內文</p>
 </blockquote>
@@ -272,7 +272,7 @@
 <li><a target="_blank" rel="noopener" href="http://www.protractortest.org/#/">protractor</a></li>
 </ul>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -289,21 +289,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -328,11 +313,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -346,7 +326,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -374,6 +354,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

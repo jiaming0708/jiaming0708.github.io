@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近才得知cordova可以在編譯輸出前做一些事情這個地方叫做hooks，可以到官網查詢">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2016-12-23T02:51:17.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Cordova">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-cordova-hooks"
+        <article id="post-cordova-hooks"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	[Cordova] hooks功能-檢查、壓縮、合併
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2016/12/23/cordova-hooks/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  12月 23, 2016
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/APP/">APP</a>, <a href="/categories/APP/Cordova/">Cordova</a>
     </div>
-    <span class="readtime">4 mins.</span>
+    
+        <span class="readtime">4 mins.</span>
+    
 
 	</section>
 	
@@ -174,10 +158,10 @@
         <a href="/tags/Cordova/">Cordova</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近才得知cordova可以在編譯輸出前做一些事情<br>這個地方叫做hooks，可以到<a target="_blank" rel="noopener" href="https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/">官網</a>查詢</p>
-<a id="more"></a>
+			<p>最近才得知cordova可以在編譯輸出前做一些事情<br>這個地方叫做hooks，可以到<a target="_blank" rel="noopener" href="https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/">官網</a>查詢</p>
+<span id="more"></span>
 
 <p>預計要來做幾件事情<br>1.JSHint<br>2.Concat files<br>3.Uglify</p>
 <h2 id="JSHint"><a href="#JSHint" class="headerlink" title="JSHint"></a>JSHint</h2><p>檢查JS語法，這個會放在before_prepare，要讓錯誤扼殺在成長之前XD<br>所以我們要建立一個檔案，<code>010_jshint.js</code></p>
@@ -195,8 +179,10 @@
 
 <h2 id="Uglify"><a href="#Uglify" class="headerlink" title="Uglify"></a>Uglify</h2><p>這是裡面最簡單的好做到的功能XD，只要下個指令就可以<br>會自動在after_prepare下增加一個<code>uglify.js</code>檔案，因為前面沒有順序，所以會是最後執行<br>詳細內容一樣可以到<a target="_blank" rel="noopener" href="https://github.com/rossmartin/cordova-uglify">官網</a>中查詢</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cordova-uglify --save</span><br></pre></td></tr></table></figure>
+
 <p>做完以上的動作，我們就可以下個指令確認一下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova prepare [platform] --release</span><br></pre></td></tr></table></figure>
+
 <p>沒有看到任何錯誤就是成功啦<br>可以打完收工囉</p>
 <p>ㄟㄟㄟ～等等！<br>mac用戶明明會遇到另一個錯誤</p>
 <p>好吧～我只好再回來繼續<br>因為mac用戶會有權限的問題，會只看到一個鬼一般的訊息</p>
@@ -207,7 +193,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x hooks/after_prepare/[filename]</span><br></pre></td></tr></table></figure>
 <p>好啦，這次真的要打完收工了</p>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -224,21 +210,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -263,11 +234,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -281,7 +247,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -309,6 +275,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

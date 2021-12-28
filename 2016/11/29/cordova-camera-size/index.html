@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近在用ionic1.x版的開發APP，其中需要一個拍照的功能，使用套件cordova-plugin-camera那照片會在最後一起上傳到server，但是現在的手機像素其實很高導致一兩張照片而已就已經爆掉無法傳送（當然也可能是我不懂得怎麼寫上傳照片啦，我是轉成base64後上傳）">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2016-11-29T09:07:11.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.801Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Cordova">
 <meta property="article:tag" content="ionic">
@@ -40,21 +37,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -138,12 +122,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-cordova-camera-size"
+        <article id="post-cordova-camera-size"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -152,8 +136,6 @@
     	[Cordova] camera照片大小設定
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2016/11/29/cordova-camera-size/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  11月 29, 2016
 	</time>
@@ -162,7 +144,9 @@
     <div class='cats'>
         <a href="/categories/APP/">APP</a>, <a href="/categories/APP/Cordova/">Cordova</a>
     </div>
-    <span class="readtime">2 mins.</span>
+    
+        <span class="readtime">2 mins.</span>
+    
 
 	</section>
 	
@@ -177,10 +161,10 @@
         <a href="/tags/ionic/">ionic</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近在用ionic1.x版的開發APP，其中需要一個拍照的功能，使用套件<a target="_blank" rel="noopener" href="https://github.com/apache/cordova-plugin-camera"><code>cordova-plugin-camera</code></a><br>那照片會在最後一起上傳到server，但是現在的手機像素其實很高<br>導致一兩張照片而已就已經爆掉無法傳送（當然也可能是我不懂得怎麼寫上傳照片啦，我是轉成base64後上傳）</p>
-<a id="more"></a>
+			<p>最近在用ionic1.x版的開發APP，其中需要一個拍照的功能，使用套件<a target="_blank" rel="noopener" href="https://github.com/apache/cordova-plugin-camera"><code>cordova-plugin-camera</code></a><br>那照片會在最後一起上傳到server，但是現在的手機像素其實很高<br>導致一兩張照片而已就已經爆掉無法傳送（當然也可能是我不懂得怎麼寫上傳照片啦，我是轉成base64後上傳）</p>
+<span id="more"></span>
 
 <p>一開始沒仔細看官方文件（這很重要記得要好好看）<br>就去搜尋了image resize的作法，得到使用canvas轉換，這個作法另外開一篇寫好了<br>這個作法很可怕，圖片縮小後光線強的地方直線都變成鋸齒狀</p>
 <p>就回套件看看有沒有什麼作法</p>
@@ -205,9 +189,10 @@
 </tbody></table>
 <p>這邊有說到可以等比例，好像是我要的，但是怎麼設定才會等比例阿…<br>看不到太懂說明，只好打開java檔來看看</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (targetHeight &gt; <span class="number">0</span> &amp;&amp; targetWidth &gt; <span class="number">0</span> &amp;&amp; targetWidth == targetHeight) &#123;</span><br><span class="line">    intent.putExtra(<span class="string">&quot;aspectX&quot;</span>, <span class="number">1</span>);</span><br><span class="line">    intent.putExtra(<span class="string">&quot;aspectY&quot;</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>原來只要給一樣的值，就會等比例的縮放，下面就是我的範例啦</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">navigator.camera.getPicture(onSuccess, onFail, &#123;</span><br><span class="line">  quality: <span class="number">100</span>,</span><br><span class="line">  destinationType: Camera.DestinationType.DATA_URL, <span class="comment">//FILE_URI、DATA_URL</span></span><br><span class="line">  targetWidth: <span class="number">500</span>,</span><br><span class="line">  targetHeight: <span class="number">500</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -224,21 +209,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -263,11 +233,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -281,7 +246,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -309,6 +274,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 

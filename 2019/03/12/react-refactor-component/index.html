@@ -9,9 +9,6 @@
   <meta name="keywords" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  
-    <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2" />
-  
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,7 +20,7 @@
 <meta property="og:description" content="最近在寫新的功能時，因為有些跟舊有的功能有關係，所以一定會去改到原本的code，沒去看都不知道，看了大罵WTF，這也太噁心了吧… 寫過react的人都知道，component分為兩種，一個是class component，而另一個就是pure component，不管用哪一種，不知道各位可以接受一個js(x)的行數有多少，或者更精準的是render幾行內你可以接受">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-03-12T12:25:23.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:35:55.821Z">
+<meta property="article:modified_time" content="2021-12-28T14:56:47.856Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -39,21 +36,8 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-10240063-3', 'auto');
-      ga('send', 'pageview');
-    </script>
-  
-  
-    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
@@ -137,12 +121,12 @@
 		
 	</nav>
 </aside>
-  <script>setLoadingBarProgress(40);</script>
+
+    <script>setLoadingBarProgress(40);</script>
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=620422978667861&autoLogAppEvents=1" nonce="ERAfOpF2"></script>
-<article id="post-react-refactor-component"
+        <article id="post-react-refactor-component"
   class="post white-box article-type-post"
   itemscope itemprop="blogPost">
 	<section class='meta'>
@@ -151,8 +135,6 @@
     	react component重構心得分享
     </a>
   </h2>
-	<div id="fb-root"></div>
-	<div class="fb-like" data-href="/2019/03/12/react-refactor-component/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 	<time>
 	  3月 12, 2019
 	</time>
@@ -161,7 +143,9 @@
     <div class='cats'>
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/React/">React</a>
     </div>
-    <span class="readtime">6 mins.</span>
+    
+        <span class="readtime">6 mins.</span>
+    
 
 	</section>
 	
@@ -174,11 +158,11 @@
         <a href="/tags/React/">React</a>
       
 	  </div>
-    
+		
   	<div class="article-entry" itemprop="articleBody">
-    	<p>最近在寫新的功能時，因為有些跟舊有的功能有關係，所以一定會去改到原本的code，沒去看都不知道，看了大罵WTF，這也太噁心了吧…</p>
+			<p>最近在寫新的功能時，因為有些跟舊有的功能有關係，所以一定會去改到原本的code，沒去看都不知道，看了大罵WTF，這也太噁心了吧…</p>
 <p>寫過react的人都知道，component分為兩種，一個是class component，而另一個就是pure component，不管用哪一種，不知道各位可以接受一個js(x)的行數有多少，或者更精準的是render幾行內你可以接受</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>先說說我可以接受的一個render element大概是50行內，但通常我自己寫是10行左右，我是覺得一個element如果超過太多，閱讀性整個會很差，不管是不是包含邏輯</p>
 <h1 id="可怕的component"><a href="#可怕的component" class="headerlink" title="可怕的component"></a>可怕的component</h1><p>先來看看底下這段，經過一點點的處理，但基本上架構是跟原本一樣</p>
@@ -190,6 +174,7 @@
 <h1 id="重構"><a href="#重構" class="headerlink" title="重構"></a>重構</h1><p>第一次看到的時候，完全不知道怎麼下手，所以我打算要做一件事情<strong>重構</strong>，先把element整理的比較好懂一點，就讓我們來動作試試看吧</p>
 <h2 id="先抽變數後的"><a href="#先抽變數後的" class="headerlink" title="先抽變數後的"></a>先抽變數後的</h2><p>看到程式中，有一些element是根據變數來決定要不要render，這種的最好被拉出來，因此我們先針對這種來做</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">showCancelPopup &amp;&amp; (</span><br><span class="line">  &lt;Modal</span><br><span class="line">    onClose=&#123;<span class="built_in">this</span>.closePopup&#125;</span><br><span class="line">  &gt;</span><br><span class="line">      &#123;<span class="comment">/* ... */</span>&#125;</span><br><span class="line">  &lt;/Modal&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <p>把上面的這種element變成獨立的function，讓主render可以看起來輕鬆一點，從原本的190行變成90行</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://gist.github.com/jiaming0708/9218dae11fca571f215a0173de9e09ad#file-hugestep1-jsx">完整的可以看這邊</a></p>
@@ -211,15 +196,17 @@
 <h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>講了那麼多，就來實作一下，把<code>renderCancelPopup</code>變成component，至於為什麼我會拿這個，因為這個行為最為單純，最適合第一時間重構</p>
 <p>總共有三個事件，那我們都讓事件往外傳，至於文字要不要是外面傳的就看你囉，基本上非共用的我比較不會從外面傳，除非真的超級少</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CancelPopup</span>(<span class="params">&#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    t,</span></span></span><br><span class="line"><span class="function"><span class="params">    closePopup,</span></span></span><br><span class="line"><span class="function"><span class="params">    cancelQ,</span></span></span><br><span class="line"><span class="function"><span class="params">&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Modal</span><br><span class="line">          onClose=&#123;closePopup&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          &lt;SimpleDialog</span><br><span class="line">            title=&#123;t(<span class="string">&#x27;&#x27;</span>)&#125;</span><br><span class="line">            theme=&#123;dialogTheme&#125;</span><br><span class="line">          &gt;</span><br><span class="line">            &lt;Button</span><br><span class="line">              theme=&#123;gray&#125;</span><br><span class="line">              ghost</span><br><span class="line">              onClick=&#123;closePopup&#125;</span><br><span class="line">              text=&#123;t(<span class="string">&#x27;&#x27;</span>)&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">            &lt;Button</span><br><span class="line">              theme=&#123;pink&#125;</span><br><span class="line">              onClick=&#123;cancelQ&#125;</span><br><span class="line">              text=&#123;t(<span class="string">&#x27;&#x27;</span>)&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">          &lt;/SimpleDialog&gt;</span><br><span class="line">        &lt;/Modal&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在render就可以變成這樣</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;showCancelPopup &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">CancelPopup</span> <span class="attr">closePopup</span>=<span class="string">&#123;closePopup&#125;</span> <span class="attr">cancelQ</span>=<span class="string">&#123;cancelQ&#125;</span> /&gt;</span></span>&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>在一開始寫的時候我也傾向先不拆分，因為那時候這個component的拆法和行為整個都還不是非常確定，而等到整個行為比較確定以後，再來開始進行重構的動作，讓自己好閱讀以外，也讓review你的code的人不會腦袋打結</p>
 <p>這個功能的重構，我目前只有做到第二步以後就交卷了，要等下個sprint稍微有空一點的時候才有辦法來處理</p>
 <blockquote>
 <p> 重構是必經的路程，適時的重構可以讓心情愉悅，不用鬱悶的寫到吐血</p>
 </blockquote>
 
-  	</div>
+		</div>
 		
 	
 		<div class="art-item-footer">
@@ -236,21 +223,6 @@
 		</div>
 	
 	</section>
-	
-	
-		<section id="comments">
-			<script src="https://giscus.app/client.js"
-				data-repo="jiaming0708/jiaming0708.github.io" 
-				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==" 
-				data-category="Q&amp;A"
-				data-category-id="DIC_kwDOBO717c4B_0N9"
-				data-mapping="title" 
-				data-reactions-enabled="1" 
-				data-theme="light" 
-				crossorigin="anonymous"
-				async>
-		</script>
-		</section>
 	
 </article>
 <script>
@@ -275,11 +247,6 @@
           <span class="icon icon-github"></span>
         </a>
       
-        <a href="https://www.facebook.com/secretgogoworld" class="social facebook"
-          target="_blank" rel="external">
-          <span class="icon icon-facebook"></span>
-        </a>
-      
         <a href="https://twitter.com/Secret_GoGo" class="social twitter"
           target="_blank" rel="external">
           <span class="icon icon-twitter"></span>
@@ -293,7 +260,7 @@
     
   </div>
   
-  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io/" target="_blank">Jimmy Ho</a>.</div>
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
   
 </footer>
 
@@ -321,6 +288,17 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
 
 <script src="/js/search.js"></script>
 
