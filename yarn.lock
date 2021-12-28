@@ -843,10 +843,10 @@ hexo-generator-search@^2.4.3:
     nunjucks "^3.0.1"
     utils-merge "^1.0.0"
 
-hexo-generator-sitemap@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/hexo-generator-sitemap/-/hexo-generator-sitemap-2.1.0.tgz#efd938049ddbf9a961a077fcc5947918ba5b213a"
-  integrity sha512-3+gF9lFdTJ67A65Z2f517DGmtloDX7ZwMmJUJxvv2tF+a8Hr6Kg9K/DXqOBpM39A/y9eqoGfQ3bmLlBx9rynTg==
+hexo-generator-sitemap@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-sitemap/-/hexo-generator-sitemap-2.2.0.tgz#4422670b6d9bbf8e512bc1219c4409f330cf3291"
+  integrity sha512-WoS/GpdrazoiFuhZXS3Qnb22L0uaiKHHWefcsoE7JLjh8WsksFom4v2FoNhr1RIYwFV7SudQFs91P5xcW+Gfow==
   dependencies:
     hexo-util "^2.1.0"
     micromatch "^4.0.2"
@@ -967,7 +967,21 @@ hexo-util@1.9.0:
     strip-indent "^3.0.0"
     striptags "^3.1.1"
 
-hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@latest:
+hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-2.5.0.tgz#de5635341116ba2563a789a0ebceb55a875221ad"
+  integrity sha512-l0zkqcg2524KPO84HQe0JROpPlCM/dEnCJaJrZ1qsq+3+/YxhDa0zxiGtUVY1dtrWzOK/V11Zj+UEklhGP8Jeg==
+  dependencies:
+    bluebird "^3.5.2"
+    camel-case "^4.0.0"
+    cross-spawn "^7.0.0"
+    deepmerge "^4.2.2"
+    highlight.js "^10.7.1"
+    htmlparser2 "^6.0.0"
+    prismjs "^1.17.1"
+    strip-indent "^3.0.0"
+
+hexo-util@latest:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-2.4.0.tgz#f5c0099a0a1718b3ad27061e5e4d1fb9eb7f2b41"
   integrity sha512-IPQvAyn0cznYMU2gskMiZ6LZEvN7wHNusrJoYxrir4f7S7POpZeDTBswiko9R1qqd+/hu07wUYZdm4ceTTCEaA==
@@ -981,20 +995,6 @@ hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@latest:
     prismjs "^1.17.1"
     strip-indent "^3.0.0"
     striptags "^3.1.1"
-
-hexo-util@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-2.5.0.tgz#de5635341116ba2563a789a0ebceb55a875221ad"
-  integrity sha512-l0zkqcg2524KPO84HQe0JROpPlCM/dEnCJaJrZ1qsq+3+/YxhDa0zxiGtUVY1dtrWzOK/V11Zj+UEklhGP8Jeg==
-  dependencies:
-    bluebird "^3.5.2"
-    camel-case "^4.0.0"
-    cross-spawn "^7.0.0"
-    deepmerge "^4.2.2"
-    highlight.js "^10.7.1"
-    htmlparser2 "^6.0.0"
-    prismjs "^1.17.1"
-    strip-indent "^3.0.0"
 
 hexo@^6.0.0:
   version "6.0.0"
