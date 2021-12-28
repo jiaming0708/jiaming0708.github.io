@@ -55,6 +55,11 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -127,40 +132,6 @@ sitemap:
 autoprefixer:
   exclude:
     - '*.min.css'
-
-jsonContent:
-  meta: false
-  keywords: false
-  pages:
-    title: true
-    slug: false
-    date: false
-    updated: false
-    comments: false
-    path: false
-    link: false
-    permalink: true
-    excerpt: false
-    keywords: false
-    text: true
-    raw: false
-    content: false
-  posts:
-    title: true
-    slug: false
-    date: false
-    updated: false
-    comments: false
-    path: false
-    link: false
-    permalink: true
-    excerpt: false
-    keywords: false
-    text: true
-    raw: false
-    content: false
-    categories: false
-    tags: false
 
 feed:
   type: atom
