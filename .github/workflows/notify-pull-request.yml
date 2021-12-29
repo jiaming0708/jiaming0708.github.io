@@ -1,6 +1,8 @@
 name: Send Message on Pull Request open.
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   sendMessage:
@@ -14,8 +16,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Author`: ${{ github.event.pull_request.user.login }}
+            Author: ${{ github.event.pull_request.user.login }}
             Title: ${{ github.event.pull_request.title }}
             Link: ${{ github.event.pull_request.html_url }}
+            Merge branch: from ${{ github.event.pull_request.head.ref }} to ${{ github.event.pull_request.base.ref }}
             Body:
             ${{ github.event.pull_request.body }}
