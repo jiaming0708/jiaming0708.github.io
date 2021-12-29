@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/svn-log.png?view=azure-devops">
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops">
 <meta property="article:published_time" content="2021-12-24T01:35:48.000Z">
-<meta property="article:modified_time" content="2021-12-29T04:27:21.275Z">
+<meta property="article:modified_time" content="2021-12-29T06:23:09.820Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="SVN">
@@ -188,6 +188,9 @@
 <p><strong>Subversion users</strong><br><img src="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/svn-log.png?view=azure-devops" alt="SVN users reference from MS"></p>
 <p><strong>Git users</strong><br><img src="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops" alt="Git users reference from MS"></p>
 <p>從 PowerShell 執行以下的指令，會將作者資訊存到檔案 <code>authors.txt</code>，格式會是像 <code>jiaming = jiaming &lt;jiaming&gt;</code> 這樣，開啟檔案將 <code>&lt;&gt;</code> 中的內容修改成 email 格式。</p>
+<blockquote>
+<p>這邊要特別注意一下，檔案的編碼必須是 <strong>UTF8</strong>，不然下一個步驟 clone 時會有找不到 author 的錯誤。</p>
+</blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn.exe log -<span class="literal">-quiet</span> | ? &#123; <span class="variable">$_</span> <span class="operator">-notlike</span> <span class="string">&#x27;-*&#x27;</span> &#125; | % &#123; <span class="string">&quot;&#123;0&#125; = &#123;0&#125; &lt;&#123;0&#125;&gt;&quot;</span> <span class="operator">-f</span> (<span class="variable">$_</span> <span class="operator">-split</span> <span class="string">&#x27; \| &#x27;</span>)[<span class="number">1</span>] &#125; | <span class="built_in">Select-Object</span> <span class="literal">-Unique</span> | <span class="built_in">Out-File</span> <span class="string">&#x27;authors.txt&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="使用-git-svn-複製"><a href="#使用-git-svn-複製" class="headerlink" title="使用 git-svn 複製"></a>使用 git-svn 複製</h2><p>接著就要將 svn 的專案轉換成 git，先在目前的專案目錄底下建立一個子目錄 <code>gitsource</code> ，並且執行指令。</p>
@@ -201,6 +204,9 @@
 
 <p>如果 history 很多的話，就會跑比較久一點，建議就是先放著讓他跑，做其他事情去XD</p>
 <h2 id="轉換-ignore"><a href="#轉換-ignore" class="headerlink" title="轉換 ignore"></a>轉換 ignore</h2><p>SVN 也有自己的 ignore 設定，可以透過指令轉換成 .gitignore。</p>
+<blockquote>
+<p>如果是 dotnet 可以參考這兩個 ignore 設定，<a target="_blank" rel="noopener" href="https://github.com/dotnet/core/blob/main/.gitignore">for core</a>、<a target="_blank" rel="noopener" href="https://github.com/github/gitignore/blob/main/VisualStudio.gitignore">for vs</a></p>
+</blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd gitsource</span><br><span class="line">git svn show-ignore &gt; .gitignore</span><br><span class="line">git add .gitignore</span><br><span class="line">git commit -m &#x27;convert svn:ignore to .gitignore&#x27;</span><br></pre></td></tr></table></figure>
 
 <h2 id="推到遠端"><a href="#推到遠端" class="headerlink" title="推到遠端"></a>推到遠端</h2><p>呼~終於到最後一步啦!! 接著就是照平常 push 到遠端的作法，就可以了</p>
