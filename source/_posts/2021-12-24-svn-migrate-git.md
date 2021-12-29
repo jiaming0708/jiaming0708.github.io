@@ -44,12 +44,12 @@ Git 和 SVN 對於作者描述的方法不同，第一步就要先把 SVN 的作
 **Git users**
 ![Git users reference from MS](https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops)
 
-從 PowerShell 執行以下的指令，會將作者資訊存到檔案 `authors.txt`，格式會是像 `jiaming = jiaming <jiaming>` 這樣，開啟檔案將 `<>` 中的內容修改成 email 格式。
+從 PowerShell (建議使用 version 7) 執行以下的指令，會將作者資訊存到檔案 `authors.txt`，格式會是像 `jiaming = jiaming <jiaming>` 這樣，開啟檔案將 `<>` 中的內容修改成 email 格式。
 
-> 這邊要特別注意一下，檔案的編碼必須是 **UTF8**，不然下一個步驟 clone 時會有找不到 author 的錯誤。
+> 這邊要特別注意一下，檔案的編碼必須是 **UTF8** (不能有 bom)，不然下一個步驟 clone 時會有找不到 author 的錯誤。
 
 ```powershell
-svn.exe log --quiet | ? { $_ -notlike '-*' } | % { "{0} = {0} <{0}>" -f ($_ -split ' \| ')[1] } | Select-Object -Unique | Out-File 'authors.txt'
+svn.exe log --quiet | ? { $_ -notlike '-*' } | % { "{0} = {0} <{0}>" -f ($_ -split ' \| ')[1] } | Select-Object -Unique | Out-File -Encoding UTF8 'authors.txt'
 ```
 
 ## 使用 git-svn 複製
