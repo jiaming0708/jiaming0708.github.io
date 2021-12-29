@@ -1,6 +1,8 @@
 name: Send Message on Pull Request open.
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   sendMessage:
