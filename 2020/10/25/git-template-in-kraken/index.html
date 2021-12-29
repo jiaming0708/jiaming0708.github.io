@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/preference_for_repo.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/remove_comment.png">
 <meta property="article:published_time" content="2020-10-25T07:33:08.000Z">
-<meta property="article:modified_time" content="2021-12-28T14:56:47.920Z">
+<meta property="article:modified_time" content="2021-12-29T00:48:10.490Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="GitKraken">
@@ -181,7 +181,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">touch .gitmessage</span><br><span class="line">vi .gitmessage</span><br></pre></td></tr></table></figure>
 
 <p>接著將 conventional commit 的類別放進去，輸入 <code>i</code> 然後 <code>cmd+v</code> 貼上，這個是我目前使用的內容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Conventional Commit Types:</span><br><span class="line"># build</span><br><span class="line"># ci</span><br><span class="line"># chore</span><br><span class="line"># docs</span><br><span class="line"># feat</span><br><span class="line"># fix</span><br><span class="line"># perf</span><br><span class="line"># refactor</span><br><span class="line"># revert</span><br><span class="line"># style</span><br><span class="line"># test</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Conventional Commit Types:</span><br><span class="line"># build</span><br><span class="line"># ci</span><br><span class="line"># chore</span><br><span class="line"># docs</span><br><span class="line"># feat</span><br><span class="line"># fix</span><br><span class="line"># perf</span><br><span class="line"># refactor</span><br><span class="line"># revert</span><br><span class="line"># style</span><br><span class="line"># test</span><br></pre></td></tr></table></figure>
 
 <p>最後把這個檔案指定給 git。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config commit.template .gitmessage</span><br></pre></td></tr></table></figure>

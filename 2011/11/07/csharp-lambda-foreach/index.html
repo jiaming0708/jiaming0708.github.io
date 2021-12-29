@@ -20,7 +20,7 @@
 <meta property="og:description" content="在一般情況下，使用foreach時，遇到特定條件要讓他continue&#x2F;break會這樣去寫">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2011-11-07T11:19:28.000Z">
-<meta property="article:modified_time" content="2021-12-28T14:56:47.824Z">
+<meta property="article:modified_time" content="2021-12-29T00:48:10.386Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
@@ -169,7 +169,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">string</span>&gt; lstSql;</span><br><span class="line">lstSql.Foreach(p=&gt; <span class="keyword">if</span>(stirng.IsNullOrEmpty(p)) <span class="keyword">continue</span>;);</span><br></pre></td></tr></table></figure>
 
 <p>但我們又想要這樣做，該怎麼辦呢<br>必須知道lambda是怎麼處理foreach的</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ForEach</span>&lt;<span class="title">t</span>&gt;(<span class="params"><span class="keyword">this</span> IEnumerable&lt;t&gt; sequence, Action&lt;t&gt; action</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> item <span class="keyword">in</span> sequence) action(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ForEach</span>&lt;<span class="title">t</span>&gt;(<span class="params"><span class="keyword">this</span> IEnumerable&lt;t&gt; sequence, Action&lt;t&gt; action</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> item <span class="keyword">in</span> sequence) action(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>由以上可以得知，我們下continue/break對function來說是看不懂的<br>我的作法是直接寫return，這樣就等於離開function</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">string</span>&gt; lstSql;</span><br><span class="line">lstSql.Foreach(p=&gt; <span class="keyword">if</span>(stirng.IsNullOrEmpty(p)) <span class="keyword">return</span>;);</span><br></pre></td></tr></table></figure>

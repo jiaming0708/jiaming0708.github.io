@@ -20,7 +20,7 @@
 <meta property="og:description" content="最近要和朋友一起寫個app，他們提出了要用react native但完全沒有經驗，只好邊寫邊摸囉分享一下下自己的一點點經驗囉">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-03-30T07:13:06.000Z">
-<meta property="article:modified_time" content="2021-12-28T14:56:47.832Z">
+<meta property="article:modified_time" content="2021-12-29T00:48:10.390Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="ReactNative">
 <meta name="twitter:card" content="summary">
@@ -144,7 +144,7 @@
         <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/ReactNative/">ReactNative</a>
     </div>
     
-        <span class="readtime">5 mins.</span>
+        <span class="readtime">4 mins.</span>
     
 
 	</section>
@@ -171,23 +171,23 @@
 <li>TextInput也就是input囉</li>
 </ul>
 <h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>native中我們一樣是使用css來作為樣式的設定<br>但寫法有點不一樣，是採用駝峰式的命名，數字以外的都要用單引號包起來<br>而且有的是有限制的，不是每個都能像是css那樣給值喔<br>還是要查一下官方文件，才能確定怎麼使用</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">backgroundColor: &#x27;rgba(0, 0, 0, 0.6)&#x27;</span><br><span class="line"><span class="selector-tag">margin</span>: 2 <span class="comment">/*number only*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">backgroundColor: <span class="string">&#x27;rgba(0, 0, 0, 0.6)&#x27;</span></span><br><span class="line">margin: <span class="number">2</span> /*number only*/</span><br></pre></td></tr></table></figure>
 
 <h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>在react中，要動態決定哪些內容要不要呈現<br>可以用if去判斷來撰寫，但在native中，這個語法會報錯?<br>因此可以用三元運算子(?:)來實作囉</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.publice_date ? (</span><br><span class="line">    &lt;View style&#x3D;&#123;styles.dateBlock&#125;&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.articleDate&#125;&gt;&#123;this.props.data.publice_date + &#39; by &#39; + this.props.data.author&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">    &lt;&#x2F;View&gt;</span><br><span class="line">) : (</span><br><span class="line">        &lt;View style&#x3D;&#123;styles.dateBlock&#125;&gt;</span><br><span class="line">            &lt;Text style&#x3D;&#123;styles.eventDurtion&#125;&gt; &#123;&#39;日期:&#39; + this.props.data.s_date + &#39;~&#39;this.props.data.e_date&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.publice_date ? (</span><br><span class="line">    &lt;View style=&#123;styles.dateBlock&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.articleDate&#125;&gt;&#123;this.props.data.publice_date + &#x27; by &#x27; + this.props.data.author&#125;&lt;/Text&gt;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">) : (</span><br><span class="line">        &lt;View style=&#123;styles.dateBlock&#125;&gt;</span><br><span class="line">            &lt;Text style=&#123;styles.eventDurtion&#125;&gt; &#123;&#x27;日期:&#x27; + this.props.data.s_date + &#x27;~&#x27;this.props.data.e_date&#125;&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
 
 <p>或是可以用更簡單的方法&amp;&amp;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.category &amp;&amp; (</span><br><span class="line">    &lt;View style&#x3D;&#123;styles.categoryBlock&#125;&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.category&#125;&gt;&#123;this.props.data.town&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.category&#125;&gt;&#123;this.props.data.category&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">    &lt;&#x2F;View&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.category &amp;&amp; (</span><br><span class="line">    &lt;View style=&#123;styles.categoryBlock&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.category&#125;&gt;&#123;this.props.data.town&#125;&lt;/Text&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.category&#125;&gt;&#123;this.props.data.category&#125;&lt;/Text&gt;</span><br><span class="line">    &lt;/View&gt;)</span><br></pre></td></tr></table></figure>
 
 <p>不管哪種方法，記得都要用()包起來，然後只能有一個root節點<br>也就是說不能像下面這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.category &amp;&amp; (</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.category&#125;&gt;&#123;this.props.data.town&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.category&#125;&gt;&#123;this.props.data.category&#125;&lt;&#x2F;Text&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.category &amp;&amp; (</span><br><span class="line">        &lt;Text style=&#123;styles.category&#125;&gt;&#123;this.props.data.town&#125;&lt;/Text&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.category&#125;&gt;&#123;this.props.data.category&#125;&lt;/Text&gt;)</span><br></pre></td></tr></table></figure>
 
 <h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p>那如果說要用迴圈去把資料呈現出來，有兩個方法<br>react native有提供ListView，但這個只能row的方式呈現<br>如果需要往橫向發展的，千萬不能用</p>
 <p>那我們要怎麼用勒，可以使用陣列自有的map這個operator<br>裡面有個key的屬性，記得要加，不然執行測試時也會看到他的提示<br>不過還不是很清楚這個功能的作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.tagList.map((tag, key) &#x3D;&gt; &#123;</span><br><span class="line">    return &lt;Text style&#x3D;&#123;styles.tag&#125; key&#x3D;&#123;key&#125;&gt;&#123;tag&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.props.data.tagList.map((tag, key) =&gt; &#123;</span><br><span class="line">    return &lt;Text style=&#123;styles.tag&#125; key=&#123;key&#125;&gt;&#123;tag&#125;&lt;/Text&gt;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <h2 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h2><p>在這邊你能夠盡情的使用flex來協助你排版<br>完全不用考慮到瀏覽器的問題v(￣︶￣)y</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex</span><span class="selector-pseudo">:1</span>,</span><br><span class="line">flexDirection: &#x27;row&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>:<span class="number">1</span>,</span><br><span class="line">flexDirection: <span class="string">&#x27;row&#x27;</span></span><br></pre></td></tr></table></figure>
 		</div>
 		
 	
