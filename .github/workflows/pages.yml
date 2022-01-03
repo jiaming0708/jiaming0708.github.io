@@ -53,5 +53,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            New Deployment
+            ${{ github.repository }} has new deployment
             Status: ${{ job.status }}
