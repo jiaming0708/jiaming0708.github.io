@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Category: JavaScript | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="記錄一些自己記不住的東西">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secret Note">
+<meta property="og:url" content="http://jiaming0708.github.io/categories/Frontend/JavaScript/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="記錄一些自己記不住的東西">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="Jimmy Ho">
+<meta name="twitter:card" content="summary">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        
+  <script>
+    window.subData= { title:'Category : JavaScript'}
+  </script>
+
+<section class="post-list">
+	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2021/11/18/detect-application-installed/">
+        在瀏覽器偵測裝置是否已經安裝應用程式
+      </a>
+    </h2>
+    
+    <time>
+      11月 18, 2021
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/Frontend/">Frontend</a>, <a href="/categories/Frontend/JavaScript/">JavaScript</a>
+    </div>
+    
+        <span class="readtime">4 mins.</span>
+    
+
+  </section>
+  <section class="article typo">
+	  <p>前面介紹了在瀏覽器開起應用程式及封裝應用程式，今天要來介紹的是如何在瀏覽器中偵測裝置是否已經安裝，根據狀態來決定是否要顯示不同的文字內容。</p>
+<blockquote>
+<p>還沒有看的話，可以先回頭看看這兩篇 <a href="/2021/10/11/browser-open-application/" title="如何在瀏覽器開啟應用程式">如何在瀏覽器開啟應用程式</a>、<a href="/2021/11/06/vs-installer-project/" title="透過visual studio建立安裝檔案">透過visual studio建立安裝檔案</a></p>
+</blockquote>
+<p>瀏覽器開啓應用程式是透過os層的機制處理，對於瀏覽器來說，不會回報是否開啓成功，這個部分就必須要透過其他的手法來偵測。</p>
+
+    
+	  <div class="readmore">
+      <a href="/2021/11/18/detect-application-installed/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/JavaScript/">JavaScript</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+</section>
+
+
+      </div>
+      
+        <aside class='l_side'>
+          
+  <section class='m_widget about'>
+
+<div class='header'>Jimmy Ho</div>
+<div class='content'>
+
+  <div class='desc'>記錄一些自己記不住的東西</div>
+
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://blog.kevinyang.net/">
+            <div class='name'>CK&#39;s Notepad</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://blog.ryantseng.idv.tw/">
+            <div class='name'>Ryan | 不務正業 全端 開發記事</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://blog.miniasp.com/">
+            <div class='name'>The Will Will Web | Will 保哥</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://oomusou.io/">
+            <div class='name'>點燈坊</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://wellwind.idv.tw/blog/">
+            <div class='name'>全端開發人員天梯</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://poychang.github.io/">
+            <div class='name'>POY CHANG | Trial and Error</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://jeffwu85182.github.io/">
+            <div class='name'>Jeffs WebTech Note</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://dog0416.blogspot.com/">
+            <div class='name'>Duran 的技術冶煉廠</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://kyleap.blogspot.com/">
+            <div class='name'>程式宅急便</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="http://csscoke.com">
+            <div class='name'>CSS可樂</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/AI/" style="font-size: 14px; color: #808080">AI</a> <a href="/tags/ASP-NET/" style="font-size: 18.8px; color: #1a1a1a">ASP.NET</a> <a href="/tags/AWS/" style="font-size: 14px; color: #808080">AWS</a> <a href="/tags/Angular/" style="font-size: 19.4px; color: #0d0d0d">Angular</a> <a href="/tags/AngularJS/" style="font-size: 17px; color: #404040">AngularJS</a> <a href="/tags/Backend/" style="font-size: 14px; color: #808080">Backend</a> <a href="/tags/Blazor/" style="font-size: 15.2px; color: #666">Blazor</a> <a href="/tags/C/" style="font-size: 20px; color: #000">C#</a> <a href="/tags/CI-CD/" style="font-size: 14.6px; color: #737373">CI/CD</a> <a href="/tags/CSS/" style="font-size: 17.6px; color: #333">CSS</a> <a href="/tags/Cordova/" style="font-size: 14.6px; color: #737373">Cordova</a> <a href="/tags/Debug/" style="font-size: 14.6px; color: #737373">Debug</a> <a href="/tags/Design-Pattern/" style="font-size: 14.6px; color: #737373">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 14.6px; color: #737373">Docker</a> <a href="/tags/Drone/" style="font-size: 14px; color: #808080">Drone</a> <a href="/tags/Front-end/" style="font-size: 14px; color: #808080">Front-end</a> <a href="/tags/GTM/" style="font-size: 14px; color: #808080">GTM</a> <a href="/tags/Git/" style="font-size: 14.6px; color: #737373">Git</a> <a href="/tags/GitKraken/" style="font-size: 14px; color: #808080">GitKraken</a> <a href="/tags/Gitea/" style="font-size: 14px; color: #808080">Gitea</a> <a href="/tags/Github/" style="font-size: 14px; color: #808080">Github</a> <a href="/tags/IIS/" style="font-size: 15.2px; color: #666">IIS</a> <a href="/tags/JS/" style="font-size: 14px; color: #808080">JS</a> <a href="/tags/Jasmine/" style="font-size: 14px; color: #808080">Jasmine</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #808080">JavaScript</a> <a href="/tags/MVC/" style="font-size: 14.6px; color: #737373">MVC</a> <a href="/tags/Postgres/" style="font-size: 14px; color: #808080">Postgres</a> <a href="/tags/Powershell/" style="font-size: 14px; color: #808080">Powershell</a> <a href="/tags/Protractor/" style="font-size: 14px; color: #808080">Protractor</a> <a href="/tags/Quokka/" style="font-size: 14px; color: #808080">Quokka</a> <a href="/tags/React/" style="font-size: 15.8px; color: #5a5a5a">React</a> <a href="/tags/ReactNative/" style="font-size: 14px; color: #808080">ReactNative</a> <a href="/tags/RxJS/" style="font-size: 17.6px; color: #333">RxJS</a> <a href="/tags/SVG/" style="font-size: 14px; color: #808080">SVG</a> <a href="/tags/SVN/" style="font-size: 14px; color: #808080">SVN</a> <a href="/tags/Test/" style="font-size: 14.6px; color: #737373">Test</a> <a href="/tags/Testing/" style="font-size: 14px; color: #808080">Testing</a> <a href="/tags/VS2019/" style="font-size: 14px; color: #808080">VS2019</a> <a href="/tags/Vue/" style="font-size: 14px; color: #808080">Vue</a> <a href="/tags/Wallaby/" style="font-size: 14px; color: #808080">Wallaby</a> <a href="/tags/Window/" style="font-size: 14px; color: #808080">Window</a> <a href="/tags/WindowTerminal/" style="font-size: 14px; color: #808080">WindowTerminal</a> <a href="/tags/browser/" style="font-size: 14px; color: #808080">browser</a> <a href="/tags/canvas/" style="font-size: 14px; color: #808080">canvas</a> <a href="/tags/chrome/" style="font-size: 14px; color: #808080">chrome</a> <a href="/tags/crop/" style="font-size: 16.4px; color: #4d4d4d">crop</a> <a href="/tags/database/" style="font-size: 14px; color: #808080">database</a> <a href="/tags/debug/" style="font-size: 14px; color: #808080">debug</a> <a href="/tags/e2e/" style="font-size: 14px; color: #808080">e2e</a> <a href="/tags/elasticsearch/" style="font-size: 14px; color: #808080">elasticsearch</a> <a href="/tags/installer/" style="font-size: 14px; color: #808080">installer</a> <a href="/tags/ionic/" style="font-size: 14px; color: #808080">ionic</a> <a href="/tags/iterm/" style="font-size: 14px; color: #808080">iterm</a> <a href="/tags/jQuery/" style="font-size: 14.6px; color: #737373">jQuery</a> <a href="/tags/js/" style="font-size: 14.6px; color: #737373">js</a> <a href="/tags/mac/" style="font-size: 14px; color: #808080">mac</a> <a href="/tags/nginx/" style="font-size: 14.6px; color: #737373">nginx</a> <a href="/tags/nuget/" style="font-size: 14px; color: #808080">nuget</a> <a href="/tags/nvm/" style="font-size: 14px; color: #808080">nvm</a> <a href="/tags/oracle/" style="font-size: 18.2px; color: #262626">oracle</a> <a href="/tags/regex/" style="font-size: 14px; color: #808080">regex</a> <a href="/tags/vscode/" style="font-size: 14.6px; color: #737373">vscode</a> <a href="/tags/webpack/" style="font-size: 14px; color: #808080">webpack</a> <a href="/tags/window/" style="font-size: 15.8px; color: #5a5a5a">window</a>
+    </div>
+</div>
+
+
+
+  
+
+        </aside>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

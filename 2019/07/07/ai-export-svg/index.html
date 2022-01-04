@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>[Debug] AI匯出svg小雷 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AI全名是Adobe Illustrator，由Adobe出的一個繪圖工具，今天為什麼會講到這個工具呢？原因是最近公司要做re-brand的動作，designer出的icon都是用svg做匯出，但卻發生了顏色跑掉的問題，原本是藍色變成黑色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Debug] AI匯出svg小雷">
+<meta property="og:url" content="http://jiaming0708.github.io/2019/07/07/ai-export-svg/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="AI全名是Adobe Illustrator，由Adobe出的一個繪圖工具，今天為什麼會講到這個工具呢？原因是最近公司要做re-brand的動作，designer出的icon都是用svg做匯出，但卻發生了顏色跑掉的問題，原本是藍色變成黑色">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/07/07/ai-export-svg/export.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/07/07/ai-export-svg/export_setting.png">
+<meta property="article:published_time" content="2019-07-07T03:28:17.000Z">
+<meta property="article:modified_time" content="2022-01-04T15:24:31.039Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Debug">
+<meta property="article:tag" content="SVG">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2019/07/07/ai-export-svg/export.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-ai-export-svg"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2019/07/07/ai-export-svg/">
+    	[Debug] AI匯出svg小雷
+    </a>
+  </h2>
+	<time>
+	  7月 7, 2019
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Debug/">Debug</a>
+    </div>
+    
+        <span class="readtime">7 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9SVG"><span class="toc-number">1.</span> <span class="toc-text">簡單介紹SVG</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%8F%E9%A1%8C%E6%AA%94%E6%A1%88%E5%85%A7%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">問題檔案內容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">問題解析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AI%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A"><span class="toc-number">3.</span> <span class="toc-text">AI怎麼設定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">4.</span> <span class="toc-text">結論</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Debug/">Debug</a>
+      
+        <a href="/tags/SVG/">SVG</a>
+      
+        <a href="/tags/AI/">AI</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>AI全名是Adobe Illustrator，由Adobe出的一個繪圖工具，今天為什麼會講到這個工具呢？<br>原因是最近公司要做re-brand的動作，designer出的icon都是用svg做匯出，但卻發生了顏色跑掉的問題，原本是<strong>藍色</strong>變成<strong>黑色</strong></p>
+<span id="more"></span>
+
+<blockquote>
+<p>版本介紹</p>
+<ul>
+<li>Adobe Illustrator 2017 cc中文</li>
+</ul>
+</blockquote>
+<h1 id="簡單介紹SVG"><a href="#簡單介紹SVG" class="headerlink" title="簡單介紹SVG"></a>簡單介紹SVG</h1><p>SVG全名是Scalable Vector Graphics，透過xml的格式撰寫，可縮放的向量圖。因為是直接把顏色當成是attribute的方式做宣告因此同一個svg要呈現不同顏色時不用再重出一張圖，只要透過css就可以做到染色的行為。</p>
+<h1 id="問題檔案內容"><a href="#問題檔案內容" class="headerlink" title="問題檔案內容"></a>問題檔案內容</h1><p>剛剛有說到顏色可以透過attribute的方式宣告，並且可以透過css的方式做染色的行為，今天這個狀況就是發生在css的部份</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">id</span>=<span class="string">&quot;Layer_1&quot;</span> <span class="attr">data-name</span>=<span class="string">&quot;Layer 1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 24 24&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"><span class="selector-class">.cls-1</span>&#123;fill:<span class="number">#231714</span>;&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>ic_audio_pause_240<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">d</span>=<span class="string">&quot;M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;9&quot;</span> <span class="attr">y</span>=<span class="string">&quot;8&quot;</span> <span class="attr">width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">height</span>=<span class="string">&quot;8&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;0.5&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;13&quot;</span> <span class="attr">y</span>=<span class="string">&quot;8&quot;</span> <span class="attr">width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">height</span>=<span class="string">&quot;8&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;0.5&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因為是透過AI產生的圖檔，class的名稱對軟體來說不重要，只要有產生預期的效果就好，因此所有的icon都是從<code>.cls-1</code>開始做命名，然後輸出的時候又是用style的方式做顏色的宣告。</p>
+<h2 id="問題解析"><a href="#問題解析" class="headerlink" title="問題解析"></a>問題解析</h2><p>可能有人發現問題點了，**<style></style>**是一種全域的宣告，也就是說今天你的html中只要有任何一個class叫做<code>.cls-1</code>的全部都會符合這個selector被染成紅色</p>
+<p>再加上css的特性之一，相同的宣告後面的會蓋掉前面的，也就是常在說的覆蓋，因此只要<code>.cls-1</code>這個class的顏色有不一樣，那就會變成看誰是最後被載入的，全部都會跟著變成他的顏色</p>
+<p>請看<a target="_blank" rel="noopener" href="https://codepen.io/jiaming0708/pen/dBZZmm">完整範例</a></p>
+<h1 id="AI怎麼設定"><a href="#AI怎麼設定" class="headerlink" title="AI怎麼設定"></a>AI怎麼設定</h1><p>這個問題當然只要把svg修掉就解決，問題是每次designer出圖的時候都要在那邊檢查修改嗎？難道AI沒有辦法從輸出的時候就處理掉這個問題嗎？</p>
+<p>首先來看一下AI輸出的畫面，點選工具列 <strong>檔案</strong> &gt; <strong>轉存</strong> &gt; <strong>轉存為螢幕適用</strong></p>
+<p>就可以看到下方這個畫面，右側選擇格式的右上方有一個小小齒輪（紅色圈）</p>
+<p><img src="/2019/07/07/ai-export-svg/export.png" alt="export"></p>
+<p>點進去以後可以看到下面這個畫面，接著選到<strong>SVG</strong>看一下裡面有哪些設定</p>
+<p><img src="/2019/07/07/ai-export-svg/export_setting.png" alt="export setting"></p>
+<p>這次的目標是要把樣式改對，因此點選樣式設定，可以看到有三個選項</p>
+<ul>
+<li>內部CSS &lt;== 預設</li>
+<li>內嵌樣式</li>
+<li>簡報屬性 &lt;== 請選擇</li>
+</ul>
+<blockquote>
+<p>是說有沒有人覺得<strong>簡報屬性</strong>的翻譯很難懂阿，我看到的當下完全不知道是要做什麼用…lol</p>
+</blockquote>
+<p>將樣式改為簡報屬性，再次輸出測試，可以看到顏色就變成使用attribute做宣告，這樣就可以打完收工</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">id</span>=<span class="string">&quot;Layer_1&quot;</span> <span class="attr">data-name</span>=<span class="string">&quot;Layer 1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 24 24&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>ic_audio_pause_240<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#231714&quot;</span> <span class="attr">d</span>=<span class="string">&quot;M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;9&quot;</span> <span class="attr">y</span>=<span class="string">&quot;8&quot;</span> <span class="attr">width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">height</span>=<span class="string">&quot;8&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;0.5&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">class</span>=<span class="string">&quot;cls-1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;13&quot;</span> <span class="attr">y</span>=<span class="string">&quot;8&quot;</span> <span class="attr">width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">height</span>=<span class="string">&quot;8&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;0.5&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>這個問題真的很難遇到(?)，要不是公司要做re-brand，平常designer畫UI出mockup時用<strong>sketch</strong>這套軟體產生的檔案也都沒問題，但本著從根本解決問題，遇到的當下就拉著designer一起坐下來看有什麼地方是可以調整</p>
+<blockquote>
+<p>另外補充一個小雷，很多人用svg來產生圖檔之類，有的圖可能包含著漸層，如果說把圖sketch再輸出的話，漸層就會有部分被吃掉，如果是直接輸出的話就沒有這個問題喔</p>
+</blockquote>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2019/07/16/rxjs-operator/" rel="prev"  title="rxjs之operator使用介紹">
+						rxjs之operator使用介紹 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2019/06/13/flex-float-case/" rel="next"  title="[CSS] flex和float應用情境">
+						[CSS] flex和float應用情境
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '[Debug] AI匯出svg小雷',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

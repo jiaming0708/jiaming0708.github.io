@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>[crop系列] 4 drag實作 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="crop系列之第n篇，這篇要來說怎麼用rxjs來實作drag並且要支援手機的touch行為">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[crop系列] 4 drag實作">
+<meta property="og:url" content="http://jiaming0708.github.io/2019/01/08/crop-drag/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="crop系列之第n篇，這篇要來說怎麼用rxjs來實作drag並且要支援手機的touch行為">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/01/08/crop-drag/mouse_events.png">
+<meta property="article:published_time" content="2019-01-08T14:37:11.000Z">
+<meta property="article:modified_time" content="2022-01-04T15:24:31.019Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="RxJS">
+<meta property="article:tag" content="crop">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2019/01/08/crop-drag/mouse_events.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-crop-drag"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2019/01/08/crop-drag/">
+    	[crop系列] 4 drag實作
+    </a>
+  </h2>
+	<time>
+	  1月 8, 2019
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/React/">React</a>
+    </div>
+    
+        <span class="readtime">29 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mouse"><span class="toc-number">1.</span> <span class="toc-text">mouse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#event%E5%8F%83%E6%95%B8"><span class="toc-number">1.1.</span> <span class="toc-text">event參數</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9Erx%E5%AF%A6%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">非rx實作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%B5%84%E5%90%88"><span class="toc-number">1.2.1.</span> <span class="toc-text">事件組合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%88%E7%AE%97%E4%BD%8D%E7%A7%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">計算位移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event%E5%8F%83%E6%95%B8-1"><span class="toc-number">1.3.</span> <span class="toc-text">event參數</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%A6%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">實作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%A7%8B"><span class="toc-number">1.5.</span> <span class="toc-text">重構</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B5%90%E5%90%88touch%E3%80%81mouse"><span class="toc-number">2.</span> <span class="toc-text">結合touch、mouse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E4%BB%B6%E5%8F%AA%E8%83%BD%E5%9C%A8%E5%8D%80%E5%9F%9F%E5%85%A7"><span class="toc-number">3.</span> <span class="toc-text">物件只能在區域內</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%83%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">參考</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/RxJS/">RxJS</a>
+      
+        <a href="/tags/crop/">crop</a>
+      
+        <a href="/tags/React/">React</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>crop系列之第n篇，這篇要來說怎麼用rxjs來實作drag並且要支援手機的touch行為</p>
+<span id="more"></span>
+
+<blockquote>
+<p>如果還沒看過系列其他篇的麻煩這邊請</p>
+<a href="/2018/12/20/css-scale-position/" title="[crop系列] 1 scale和position的糾葛">[crop系列] 1 scale和position的糾葛</a>、<a href="/2018/12/22/canvas-drawimage/" title="[crop系列] 2 canvas drawimage應用">[crop系列] 2 canvas drawimage應用</a>、<a href="/2018/12/25/css-mask/" title="[crop系列] 3 圖片mask">[crop系列] 3 圖片mask</a>
+</blockquote>
+<blockquote>
+<p>所有的範例都會是以react為主，angular版本改天再出</p>
+</blockquote>
+<h1 id="mouse"><a href="#mouse" class="headerlink" title="mouse"></a>mouse</h1><p>Drag的操作行為分為desktop和mobile兩種，在desktop上面大家都很清楚就是用mouse，但是在mobile上面則用touch，基本上兩個的概念是差不多，只是差在事件上面的不同，那就讓我們先用mouse的event來做</p>
+<h2 id="event參數"><a href="#event參數" class="headerlink" title="event參數"></a>event參數</h2><p>首先要先了解drag的行為模式，點在一個物件上(down)，然後移動(move)，最後放開(up)，那物件要根據移動的位移量來跟著移動，所以要計算位移量的話就會是跟x, y軸有關係，因此我們先來看看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MDN</a>有哪些參數可以使用</p>
+<ul>
+<li>clientX、clientY<br>Returns the coordinate of the mouse pointer, relative to the current window, when the mouse event was triggered</li>
+<li>movementX、movementY<br>Returns the coordinate of the mouse pointer relative to the position of the last <code>mousemove</code> event</li>
+<li>offsetX、offsetY<br>Returns the coordinate of the mouse pointer relative to the position of the edge of the target element</li>
+<li>pageX、pageY<br>Returns the coordinate of the mouse pointer, relative to the document, when the mouse event was triggered</li>
+<li>screenX、screenY<br>Returns the coordinate of the mouse pointer, relative to the screen, when an event was triggered</li>
+</ul>
+<p>上面這些講的很漏漏等，還是用一張圖來呈現比較明確</p>
+<p><img src="/2019/01/08/crop-drag/mouse_events.png" alt="mouse event"></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://courses.cs.washington.edu/courses/cse190m/11sp/lectures/slides/lecture16-events.shtml#slide15">圖片來源</a></p>
+</blockquote>
+<p>看完圖片有沒有比較清楚知道每一個的用途，那最好用的應該會是<code>movement</code>這個參數，但這個不支援部分瀏覽器，所以我們要改用其他的參數，而其中<code>client</code>這個會比<code>offset</code>還要好，等一下我們來實作看看兩個的差異</p>
+<h2 id="非rx實作"><a href="#非rx實作" class="headerlink" title="非rx實作"></a>非rx實作</h2><p>那我們先來用傳統的addEventListener來實作看看，首先我們用一個component叫做dragable，裡面只有一個div作為可以被拖拉的element，那我們第一步就是註冊各個事件</p>
+<blockquote>
+<p>當然不要忘記在<code>componentWillUnMount</code>取消註冊</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">    <span class="built_in">this</span>.dragNode.addEventListener(<span class="string">&#x27;mousedown&#x27;</span>, <span class="built_in">this</span>.mouseDown);</span><br><span class="line">    <span class="built_in">this</span>.dragNode.addEventListener(<span class="string">&#x27;mouseup&#x27;</span>, <span class="built_in">this</span>.mouseUp);</span><br><span class="line">    <span class="built_in">this</span>.dragNode.addEventListener(<span class="string">&#x27;mousemove&#x27;</span>, <span class="built_in">this</span>.mouseMove);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseDown<br>透過全域變數來記當下的座標以及開始拖拉</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mouseDown = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">      <span class="attr">isDrag</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">lastPoint</span>: &#123;</span><br><span class="line">        <span class="attr">left</span>: event.clientX,</span><br><span class="line">        <span class="attr">top</span>: event.clientY,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseUp<br>取消拖拉狀態</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mouseUp = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">this</span>.setState(&#123;</span><br><span class="line">        <span class="attr">isDrag</span>: <span class="literal">false</span>,</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseMove<br><em>將目前所在位置</em> 減掉 <em>前一次移動的值</em> 再加上 <code>目前element所在位置</code>，最後將計算的結果寫入到element</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mouseMove = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        isDrag,</span><br><span class="line">        top,</span><br><span class="line">        left,</span><br><span class="line">        lastPoint,</span><br><span class="line">    &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    <span class="keyword">if</span>(!isDrag)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">const</span> newLeft = event.offsetX - lastPoint.left + left;</span><br><span class="line">    <span class="keyword">const</span> newTop = event.offsetY - lastPoint.top + top;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">        <span class="attr">left</span>: newLeft,</span><br><span class="line">        <span class="attr">top</span>: newTop,</span><br><span class="line">        <span class="attr">lastPoint</span>: &#123;</span><br><span class="line">            <span class="attr">left</span>: event.offsetX,</span><br><span class="line">            <span class="attr">top</span>: event.offsetY,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>寫完以上的程式實際操作一下，發現會有點卡卡的，尤其是滑鼠會跑超過drag的框，但又希望dragable的物件能跟著走，因此在監聽的地方要改一下，<code>mouseup</code>、<code>mousemove</code>要改成document的全域監聽</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">    <span class="built_in">this</span>.dragNode.addEventListener(<span class="string">&#x27;mousedown&#x27;</span>, <span class="built_in">this</span>.mouseDown);</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">&#x27;mouseup&#x27;</span>, <span class="built_in">this</span>.mouseUp);</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">&#x27;mousemove&#x27;</span>, <span class="built_in">this</span>.mouseMove);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣改完再跑一次，發現還是跑的不順，這時候我們改用<code>client</code>來取代<code>offset</code>，再跑一次會發現整個順暢了，非常完美！完整的範例如下</p>
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/react-not-rx-drag?embed=1&file=Dragable.jsx&view=editor"></iframe>
+## rx版本實作
+
+<p>那接著我們就要來使用rx的方法實作同樣的功能，首先一樣先定義事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> down$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;mousedown&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> up$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mouseup&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mousemove&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="事件組合"><a href="#事件組合" class="headerlink" title="事件組合"></a>事件組合</h3><p>接著要來開始把這些事件組合，首先我們是透過<code>mousedown</code>作為起點，然後<code>mousemove</code>接著再<code>mouseup</code>的時候結束</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> down$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;mousedown&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> up$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mouseup&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mousemove&#x27;</span>);</span><br><span class="line">    down$.pipe(</span><br><span class="line">        mergeMap(<span class="function"><span class="params">down</span> =&gt;</span> move$.pipe(</span><br><span class="line">        )),</span><br><span class="line">        takeUntil(up$),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這時候將<code>up$</code>的事件當做結束，但是這樣會有一個問題，因為<code>takeUntil</code>是有值進來的時候會觸發<code>complete</code>，因此只要mouseup過一次以後這個流程就結束了</p>
+<p>但期望的應該是每次<code>mousedown</code>的時候都要能夠被觸發，因此我們應該要將<code>takeUntil(up$)</code>放在<code>move$</code>的身上，讓流程只斷移動，而不會影響到<code>down$</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> down$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;mousedown&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> up$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mouseup&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mousemove&#x27;</span>);</span><br><span class="line">    down$.pipe(</span><br><span class="line">        mergeMap(<span class="function"><span class="params">down</span> =&gt;</span> move$.pipe(</span><br><span class="line">            takeUntil(up$),</span><br><span class="line">        )),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="計算位移"><a href="#計算位移" class="headerlink" title="計算位移"></a>計算位移</h3><p>事件的流程搞定以後就可以開始的來針對位移量做計算，概念會跟前面有點類似，但又會有點不同，直接來說說不同的點，<strong>不是每次的偏移量，而是這次位置和初始位置的偏移量</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">down$.pipe(</span><br><span class="line">    mergeMap(<span class="function"><span class="params">down</span> =&gt;</span> move$.pipe(</span><br><span class="line">        takeUntil(up$),</span><br><span class="line">        map(<span class="function"><span class="params">move</span> =&gt;</span> (&#123;</span><br><span class="line">            <span class="attr">deltaX</span>: down.clientX - move.clientX,</span><br><span class="line">            <span class="attr">deltaY</span>: down.clientY - move.clientY,</span><br><span class="line">        &#125;)),</span><br><span class="line">    )),</span><br><span class="line">).subscribe(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        left,</span><br><span class="line">        top,</span><br><span class="line">    &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">       <span class="attr">left</span>: point.deltaX + left,</span><br><span class="line">       <span class="attr">top</span>: point.deltaY + top,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>很開心的寫完執行，發現怎麼跑的飛快，原因是delta的量是重新計算後跟一開始的偏移量，但我們卻拿最新的位置做計算，那當然會跑的飛快，這邊要微調一下，從<code>down$</code>的時候要就拿到<code>state</code>的資料</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">down$.pipe(</span><br><span class="line">  mergeMap(<span class="function"><span class="params">down</span> =&gt;</span> <span class="keyword">of</span>(<span class="built_in">this</span>.state).pipe(</span><br><span class="line">    map(<span class="function"><span class="params">state</span> =&gt;</span> (&#123;</span><br><span class="line">      down,</span><br><span class="line">      state,</span><br><span class="line">    &#125;)),</span><br><span class="line">  )),</span><br><span class="line">  mergeMap(<span class="function">(<span class="params">&#123;down, state&#125;</span>) =&gt;</span> move$.pipe(</span><br><span class="line">    takeUntil(up$),</span><br><span class="line">    map(<span class="function"><span class="params">move</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">deltaX</span>: move.clientX - down.clientX,</span><br><span class="line">      <span class="attr">deltaY</span>: move.clientY - down.clientY,</span><br><span class="line">    &#125;)),</span><br><span class="line">    map(<span class="function"><span class="params">delta</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">left</span>: delta.deltaX + state.left,</span><br><span class="line">      <span class="attr">top</span>: delta.deltaY + state.top,</span><br><span class="line">    &#125;)),</span><br><span class="line">  ))</span><br><span class="line">).subscribe(<span class="function"><span class="params">point</span>=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.setState(point);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在執行看看，跟前面的效果是一樣，完美！完整範例如下</p>
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/react-rx-drag?embed=1&file=Dragable.jsx&view=editor"></iframe>
+# touch
+
+<p>做完滑鼠的接著當然就是要處理mobile上面的行為，跟mouse的差不多主要都是由<code>touch</code>的事件做處理，一樣先來了解<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent">MDN</a>的參數內容</p>
+<h2 id="event參數-1"><a href="#event參數-1" class="headerlink" title="event參數"></a>event參數</h2><ul>
+<li>touches</li>
+<li>targetTouches</li>
+<li>changedTouches</li>
+</ul>
+<p>在mobile有多點觸控的功能，所以會是一個陣列，所以在寫的時候必須要注意一下目前的觸控數有多少，那在上面的兩個屬性中，有的參數其實跟<code>mouse</code>一樣</p>
+<ul>
+<li>screen</li>
+<li>client</li>
+<li>page</li>
+</ul>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>了解完參數以後就可以開始動工啦，這邊我就不用傳統的寫法而是直接採用rx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> start$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;touchstart&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> end$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchend&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchmove&#x27;</span>);</span><br><span class="line">    start$.pipe(</span><br><span class="line">        filter(<span class="function"><span class="params">event</span> =&gt;</span> event.touches.length === <span class="number">1</span>),</span><br><span class="line">        mergeMap(<span class="function"><span class="params">start</span> =&gt;</span> move$.pipe(</span><br><span class="line">            takeUntil(end$),</span><br><span class="line">        )),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊有兩個地方要注意一下</p>
+<ol>
+<li>要記得filter個數，不然會發生跟預期不一樣的行為</li>
+<li>這邊的邏輯好像跟上面mouse的差不多</li>
+</ol>
+<h2 id="重構"><a href="#重構" class="headerlink" title="重構"></a>重構</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> start$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;touchstart&#x27;</span>).pipe(<span class="built_in">this</span>.parseTouchEvent);</span><br><span class="line">    <span class="keyword">const</span> end$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchend&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchmove&#x27;</span>).pipe(<span class="built_in">this</span>.parseTouchEvent);</span><br><span class="line">    start$.pipe(</span><br><span class="line">        filter(<span class="function"><span class="params">event</span> =&gt;</span> event.touches.length === <span class="number">1</span>),</span><br><span class="line">        mergeMap(<span class="function"><span class="params">start</span> =&gt;</span> move$.pipe(</span><br><span class="line">            takeUntil(end$),</span><br><span class="line">        )),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parseTouchEvent = <span class="function"><span class="params">obs</span> =&gt;</span> obs.pipe(</span><br><span class="line">    tap(<span class="function"><span class="params">event</span> =&gt;</span> event.preventDefault()),</span><br><span class="line">    filter(<span class="function"><span class="params">event</span> =&gt;</span> event.touches.length === <span class="number">1</span>),</span><br><span class="line">    map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">x</span>: event.touches[<span class="number">0</span>].clientX,</span><br><span class="line">      <span class="attr">y</span>: event.touches[<span class="number">0</span>].clientY,</span><br><span class="line">    &#125;)),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>因為已經過濾掉只有一個觸控點的情況下會往後，因此直接拿陣列的第一個物件中client資料來使用，這樣在後面的資料都統一用<code>&#123;x, y&#125;</code>的物件做處理</p>
+<blockquote>
+<p>記得要加上*<code>preventDefault</code>*，但千萬記得不要加在end上面，會死的不明不白…</p>
+</blockquote>
+<h1 id="結合touch、mouse"><a href="#結合touch、mouse" class="headerlink" title="結合touch、mouse"></a>結合touch、mouse</h1><p>前面有看到兩個的相似之處，而且在touch的時候我們也針對資料做了處理，接著就是要把這兩段的程式做結合，主要要進行串接的有兩個地方</p>
+<ul>
+<li><p>資料的處理<br>將mouse的事件也加上前置處理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">parseMouseEvent = <span class="function"><span class="params">obs</span> =&gt;</span> obs.pipe(</span><br><span class="line">    tap(<span class="function"><span class="params">event</span> =&gt;</span> event.preventDefault()),</span><br><span class="line">    map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">x</span>: event.clientX,</span><br><span class="line">      <span class="attr">y</span>: event.clientY,</span><br><span class="line">    &#125;)),</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li><p>事件對事件的串接<br>先把<code>move</code>加上<code>end/up</code>的結束處理，再來就是兩個相同類型的事件做<code>merge</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> start$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;touchstart&#x27;</span>).pipe(<span class="built_in">this</span>.parseTouchEvent);</span><br><span class="line"><span class="keyword">const</span> end$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchend&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> touchMove$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;touchmove&#x27;</span>).pipe(</span><br><span class="line">    <span class="built_in">this</span>.parseTouchEvent,</span><br><span class="line">    takeUntil(end$),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> down$ = fromEvent(<span class="built_in">this</span>.dragNode, <span class="string">&#x27;mousedown&#x27;</span>).pipe(</span><br><span class="line">    <span class="built_in">this</span>.parseMouseEvent,</span><br><span class="line">    merge(start$),</span><br><span class="line">);</span><br><span class="line"><span class="keyword">const</span> up$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mouseup&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> move$ = fromEvent(<span class="built_in">document</span>, <span class="string">&#x27;mousemove&#x27;</span>).pipe(</span><br><span class="line">    <span class="built_in">this</span>.parseMouseEvent,</span><br><span class="line">    takeUntil(up$),</span><br><span class="line">    merge(touchMove$),</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>最後就是針對新的物件把邏輯做個微調</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">down$.pipe(</span><br><span class="line">  takeUntil(<span class="built_in">this</span>.destory$),</span><br><span class="line">  mergeMap(<span class="function"><span class="params">down</span> =&gt;</span> <span class="keyword">of</span>(<span class="built_in">this</span>.state).pipe(</span><br><span class="line">    map(<span class="function"><span class="params">state</span> =&gt;</span> (&#123;</span><br><span class="line">      down,</span><br><span class="line">      state,</span><br><span class="line">    &#125;)),</span><br><span class="line">  )),</span><br><span class="line">  mergeMap(<span class="function">(<span class="params">&#123;down, state&#125;</span>) =&gt;</span> move$.pipe(</span><br><span class="line">    map(<span class="function"><span class="params">move</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">deltaX</span>: move.x - down.x,</span><br><span class="line">      <span class="attr">deltaY</span>: move.y - down.y,</span><br><span class="line">    &#125;)),</span><br><span class="line">    map(<span class="function"><span class="params">delta</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">left</span>: delta.deltaX + state.left,</span><br><span class="line">      <span class="attr">top</span>: delta.deltaY + state.top,</span><br><span class="line">    &#125;)),</span><br><span class="line">  ))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="物件只能在區域內"><a href="#物件只能在區域內" class="headerlink" title="物件只能在區域內"></a>物件只能在區域內</h1><p>最後來點進階的，要把dragable的物件限制在一個區域內，也就是左上、左下、右上、右下</p>
+<p>但是要判斷四個資料寫起來也很煩，漏漏等，因此換個角度思考看看，如過只判斷一邊在一個範圍值之內是不是就可以，例如左邊只能在0<del>100，上面只能在0</del>200</p>
+<p>首先一定要取出外框以及dragable的width、height，接著就要把外框的width、height扣掉dragable的width、height，這樣就能知道物件不超出的最大值是多少</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parent = <span class="built_in">this</span>.dragNode.parent;</span><br><span class="line"><span class="keyword">const</span> maxLeft = parent.offsetWidth - <span class="built_in">this</span>.dragNode.offsetWidth;</span><br><span class="line"><span class="keyword">const</span> maxTop = parent.offsetHeight = <span class="built_in">this</span>.dragNode.offsetHeight;</span><br></pre></td></tr></table></figure>
+
+<p>接著就是要來判斷最大最小值，然後這邊用個公式<code>目前值</code>和<code>最小值</code>的<strong>較大者</strong>，然後再和<code>最大值</code>取<strong>較小者</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validValue = <span class="function">(<span class="params">value, min, max</span>) =&gt;</span> <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(value, min), max)</span><br></pre></td></tr></table></figure>
+
+<p>最後直接來看一下完整的程式</p>
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/react-rx-drag-touch?embed=1&file=Dragable.jsx&view=editor"></iframe>
+# 結論
+
+<blockquote>
+<p> 先說一下，原本打算這篇就要給他全部結束，但後來發現很難，因為太多程式碼要交代</p>
+</blockquote>
+<p>Rx真的是我們的好朋友，尤其是在這種情況下使用，你可以發現很多邏輯都可以被抽出去，而且可以合併來合併去，我們就只要關注真正的邏輯面就好（要算算看我總共用了哪些operator嗎？其實答案就在程式的最上面，有沒有覺得使用的類型不多）</p>
+<p>下一篇就會是更進階的zoom，會搭配上比較多的計算，希望下篇能夠完結！</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent">touch event</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">mouse event</a></li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2019/01/09/crop/" rel="prev"  title="[crop系列] 5 完整實作">
+						[crop系列] 5 完整實作 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2018/12/25/css-mask/" rel="next"  title="[crop系列] 3 圖片mask">
+						[crop系列] 3 圖片mask
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '[crop系列] 4 drag實作',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

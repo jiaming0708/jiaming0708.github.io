@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>create-react-app 開發心得分享 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 create-react-app (CRA) 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="create-react-app 開發心得分享">
+<meta property="og:url" content="http://jiaming0708.github.io/2020/09/07/create-react-app/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 create-react-app (CRA) 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-09-07T13:11:31.000Z">
+<meta property="article:modified_time" content="2022-01-04T15:24:31.111Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-create-react-app"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2020/09/07/create-react-app/">
+    	create-react-app 開發心得分享
+    </a>
+  </h2>
+	<time>
+	  9月 7, 2020
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/React/">React</a>
+    </div>
+    
+        <span class="readtime">4 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#why-CRA"><span class="toc-number">1.</span> <span class="toc-text">why CRA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E5%BB%BA%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">專案建置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%9C%89redux%E7%9A%84%E5%B0%88%E6%A1%88"><span class="toc-number">2.1.</span> <span class="toc-text">建立有redux的專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E7%AE%A1%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">CSS管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route"><span class="toc-number">2.3.</span> <span class="toc-text">Route</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Format-%E5%8F%8A-ESLint-StyleLint"><span class="toc-number">2.4.</span> <span class="toc-text">Format 及 ESLint &#x2F; StyleLint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">2.5.</span> <span class="toc-text">環境變數</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">3.</span> <span class="toc-text">結論</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/React/">React</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>最近公司的一個新專案，因為網站的功能都必須要登入以後才能操作，因此選擇了 <code>create-react-app (CRA)</code> 這個來做為 project base，前陣子剛上線第一個版本，順便來整理一些心得。</p>
+<span id="more"></span>
+
+<h1 id="why-CRA"><a href="#why-CRA" class="headerlink" title="why CRA"></a>why CRA</h1><p>在開始之前先和 PM 確認這個網站的功能要有哪些，是否會有所謂的內容或是行銷頁面，那經過 PM 確認後，網站主要是登入後的內容。既然要登入，有沒有所謂的 server-side-render (SSR) 根本不重要，因為對於網站來說也沒辦法那些內容呈現給爬蟲，因此這個時候我們就只需要 client-side-render (CSR) 的功能。</p>
+<p>既然只是 CSR 的網站，react 的團隊也提供已經建置好的一個架構也就是 CRA，讓你不用再煩惱 webpack 等等的設定。</p>
+<h1 id="專案建置"><a href="#專案建置" class="headerlink" title="專案建置"></a>專案建置</h1><p>CRA 本身提供的功能真的很陽春，react 團隊只是提供了一個平台，讓你不用在乎專案的一些架構設定等等，但如果要達到稍微複雜的開發需求，還是有不少東西需要被調整，接著我會說明怎麼去建置所需要的環境。</p>
+<h2 id="建立有redux的專案"><a href="#建立有redux的專案" class="headerlink" title="建立有redux的專案"></a>建立有redux的專案</h2><p>根據<a target="_blank" rel="noopener" href="https://create-react-app.dev/">官網的介紹</a>，我們可以使用下面的指令很輕鬆的建立好專案，完成後使用 vscode 打開，可以發現到只有 <code>public</code> 以及 <code>src</code> 兩個目錄而已，而且是只有 <code>react</code> 的功能， <code>redux</code> 等等的功能都沒有。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-project</span><br><span class="line">cd my-project</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p>作為一個完整的專案，基本上就是會有 <code>redux</code> 以及 <code>middleware</code> （也許有人會說用 context 就好，但就不再這邊討論囉！），那有沒有更簡單的方法呢？當然是有的， 在 npm 中搜尋 <a target="_blank" rel="noopener" href="https://www.npmjs.com/search?q=cra-template-*">cra-template</a> 就可以使用這些別人已經建立好的範本來做初始專案。</p>
+<p>目前團隊是使用 redux+saga ，因此我這邊就選擇一個已經整合好的<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cra-template-react-redux-saga">範本</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-project --template react-redux-saga</span><br><span class="line">cd my-project</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS管理"><a href="#CSS管理" class="headerlink" title="CSS管理"></a>CSS管理</h2><p>在 CRA 中有兩種的 css 管理方法，一種是全域的檔案，另一種就是 css module ，基本上兩種模式都有用到，但主要用比較多的會是 css module ，因此再建立 component 時，就必須要將 css 的檔案名稱加上 ***.module.css** 這樣才會變成 module scope，不然的話預設就會是全域。</p>
+<p>另外就是使用預處理器 scss 來撰寫，webpack的處理已經準備好，只是需要安裝 <code>node-sass</code> 的 library 即可！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add node-sass</span><br></pre></td></tr></table></figure>
+
+<h2 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h2><p>建立一個稍微有點規模的專案，都一定不會只有一個頁面，因此我們一定會需要使用到 route ，那想當爾就是我們要自己安裝囉！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Format-及-ESLint-StyleLint"><a href="#Format-及-ESLint-StyleLint" class="headerlink" title="Format 及 ESLint / StyleLint"></a>Format 及 ESLint / StyleLint</h2><p>排版是一件麻煩的事情，尤其是大家的習慣不同，使用 formatter 以及 linter 是最簡單的，我們團隊是使用 <a target="_blank" rel="noopener" href="https://github.com/prettier/prettier">prettier</a> 為基礎，另外套一些 react / scss 的 lint，基本上不太會去改什麼設定，<a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/setting-up-your-editor/#formatting-code-automatically">參考這邊使用方法</a>。</p>
+<p>如果有另外定義 <code>.eslintrc</code> 記得要再 env 檔案中加上 <code>EXTEND_ESLINT=TRUE</code>，才不會一直套用到 CRA 預設的 eslint</p>
+<blockquote>
+<p>使用 ESLint 時要注意一下，如果開啟 error 會導致編譯失敗，一定要修復才會正常編譯（但我還是開了！）</p>
+</blockquote>
+<h2 id="環境變數"><a href="#環境變數" class="headerlink" title="環境變數"></a>環境變數</h2><p>CRA 已經定義好每個 script 所對應的 env 檔案是什麼，先參考一下<a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/adding-custom-environment-variables#what-other-env-files-can-be-used">這邊</a>。公司的開發環境一共有三個，分別是<strong>本機</strong>、<strong>測試</strong>、<strong>正式</strong>，但根據文件所介紹的， build 只能對應 <code>.env.production</code> ，那測試環境的 <code>.env.uat</code> 檔案該怎麼讓 build 的指令可以被使用到？還好他們也有考慮到這問題，可以參考<a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/deployment#customizing-environment-variables-for-arbitrary-build-environments">這邊</a>，透過 <code>env-cmd</code> 的 library來替換檔案。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實可以發現 CRA 真的很基本，著重在於編譯相關的事情，但也有考慮到一個專案應該會要有的東西，只是需要使用者自己去針對所需做設定，也算是蠻符合 react 本身的精神。</p>
+<blockquote>
+<p>原本還想寫寫客製 <code>react-scripts</code> ，但沒有想出比較好的介紹方式，這邊就先不提了，有興趣的可以從 <code>eject</code> 的相關介紹著手。</p>
+</blockquote>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://create-react-app.dev/">CRA 官網</a></li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2020/10/25/git-template-in-kraken/" rel="prev"  title="在GitKraken中使用template">
+						在GitKraken中使用template 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2020/07/19/project-setting/" rel="next"  title="專案設定 - vscode 以及 nvmrc">
+						專案設定 - vscode 以及 nvmrc
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'create-react-app 開發心得分享',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

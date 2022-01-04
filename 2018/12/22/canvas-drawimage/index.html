@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>[crop系列] 2 canvas drawimage應用 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這是接續前一篇[crop系列] 1 scale和position的糾葛的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[crop系列] 2 canvas drawimage應用">
+<meta property="og:url" content="http://jiaming0708.github.io/2018/12/22/canvas-drawimage/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="這是接續前一篇[crop系列] 1 scale和position的糾葛的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mdn.mozillademos.org/files/5397/rhino.jpg">
+<meta property="article:published_time" content="2018-12-22T02:32:17.000Z">
+<meta property="article:modified_time" content="2022-01-04T15:24:31.015Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="crop">
+<meta property="article:tag" content="canvas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mdn.mozillademos.org/files/5397/rhino.jpg">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-canvas-drawimage"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2018/12/22/canvas-drawimage/">
+    	[crop系列] 2 canvas drawimage應用
+    </a>
+  </h2>
+	<time>
+	  12月 22, 2018
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Front-end/">Front-end</a>, <a href="/categories/Front-end/canvas/">canvas</a>
+    </div>
+    
+        <span class="readtime">9 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E6%98%AF%E4%BD%A0%E4%BB%A5%E7%82%BA%E7%9A%84%E6%A8%A3%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">不是你以為的樣子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%AF%E5%87%BA%E5%9C%96%E7%89%87"><span class="toc-number">2.</span> <span class="toc-text">匯出圖片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">3.</span> <span class="toc-text">結論</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%83%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">參考</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/crop/">crop</a>
+      
+        <a href="/tags/canvas/">canvas</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>這是接續前一篇<a href="/2018/12/20/css-scale-position/" title="[crop系列] 1 scale和position的糾葛">[crop系列] 1 scale和position的糾葛</a>的系列之二，前面有提到說要做圖片剪裁，經過了drag和scale後，只要留下一個區塊是我們要的，這時候canvas就出現啦</p>
+<span id="more"></span>
+
+<p>首先我們會把圖片先放在<code>img</code>的element中，然後再讓使用者drag和scale後，只裁切圓形所顯示的部份，但我們不會真的裁切成圓形，而是方形作為儲存</p>
+<h1 id="不是你以為的樣子"><a href="#不是你以為的樣子" class="headerlink" title="不是你以為的樣子"></a>不是你以為的樣子</h1><p>首先我們有一個img的elment，實際大小是<code>300*227</code>，指定寬度為200，下面是實際呈現出來的樣式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://mdn.mozillademos.org/files/5397/rhino.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">id</span>=<span class="string">&quot;image&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://mdn.mozillademos.org/files/5397/rhino.jpg" class="" width="200" title="河馬">
+
+<p>接著我們要開始使用canvas，把圖片放進去，直接先指定畫布大小是<code>200*200</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> img = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#image&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line">canvas.width = <span class="number">200</span>;</span><br><span class="line">canvas.height = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>你可以發現到一件事情，圖被切割了！！畫出來的大小竟然不是跟image的元件所產生的是一樣大，而是根據原始檔案</p>
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version1?embed=1&file=src/app/app.component.html&hideExplorer=1&view=editor"></iframe>
+# 指定區域截取
+
+<p>接下來，就是要開始做截取圖片，在<code>drawImage</code>有提供override可以使用，要使用的是其中最多參數的那個，那要先知道每個參數的意義，可以參考一下<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage">這篇</a>的說明</p>
+<p>放一個<code>50*50</code>的紅框，在畫面上，作為識別我們預期要截取的地方</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.block</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在draw的地方改一下參數</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(img, <span class="number">10</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
+完蛋了！取到的地方跟我們預期完全不一樣，其實這跟上面所提到的canvas是用實際大小有關係，所以這時候就要來做一點運算，讓位置是符合我們的預期
+
+<p>原圖是<code>300*227</code>，實際是<code>200*151</code>，因此位置要跟著等比例放大，因此先將比例算出來，再拿來計算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">      offsetWidth,</span><br><span class="line">      naturalWidth,</span><br><span class="line">&#125; = img;</span><br><span class="line"><span class="keyword">const</span> ratio = naturalWidth / offsetWidth;</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    offsetTop,</span><br><span class="line">    offsetLeft,</span><br><span class="line">&#125; = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.block&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> realTop = offsetTop * ratio;</span><br><span class="line"><span class="keyword">const</span> realLeft = oofsetLeft * ratio;</span><br><span class="line"><span class="keyword">const</span> realWidth = blockWidth * ratio;</span><br><span class="line"><span class="keyword">const</span> realHeight = blockHeight * ratio;</span><br><span class="line">ctx.drawImage(img, realLeft, realTop, realWidth, realHeight, <span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<iframe style="border:none" width="100%" height="450px" src="https://stackblitz.com/edit/canvas-version2?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=editor"></iframe>
+耶，終於成功啦！拿到我們要的區域，那我們就可以匯出成圖片囉
+
+<h1 id="匯出圖片"><a href="#匯出圖片" class="headerlink" title="匯出圖片"></a>匯出圖片</h1><p>我們要把截取出來的區域變成blob，最簡單的方法可以使用<code>toBlob</code>，但是要注意在<code>safari</code>是不支援的，那這邊有兩個方法，一個是用polyfill，那另一個就是用<code>toDataURL</code>的作法</p>
+<p>這邊介紹的我用的方法<code>toDataURL</code>轉成blob以後丟給api給後端處理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先輸出成為base64的字串</span></span><br><span class="line"><span class="keyword">const</span> image = canvas.toDataURL();</span><br><span class="line"><span class="comment">// 將base64的資料還原成array</span></span><br><span class="line"><span class="keyword">const</span> byteString = atob(image.split(<span class="string">&#x27;,&#x27;</span>)[<span class="number">1</span>]);</span><br><span class="line"><span class="comment">// 轉換成byte</span></span><br><span class="line"><span class="keyword">const</span> ab = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(byteString.length);</span><br><span class="line"><span class="keyword">const</span> ia = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(ab);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; byteString.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">  ia[i] = byteString.charCodeAt(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newBlob = <span class="keyword">new</span> Blob([ib], &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;image/jpeg&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>一開始弄的時候被size問題困擾好久，因為還加上了scale的功能，然後怎麼拿到的圖片都不對，後來才發現原來又要拿數學來做計算，然後後來又被一個<code>toBlob</code>搞到，所以才又生出一段轉換的動作</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images">MDN</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata">base64 to blob</a></p>
+</li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2018/12/25/css-mask/" rel="prev"  title="[crop系列] 3 圖片mask">
+						[crop系列] 3 圖片mask 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2018/12/20/css-scale-position/" rel="next"  title="[crop系列] 1 scale和position的糾葛">
+						[crop系列] 1 scale和position的糾葛
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '[crop系列] 2 canvas drawimage應用',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-10240063-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
