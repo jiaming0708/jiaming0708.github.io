@@ -896,14 +896,6 @@ hexo-renderer-ejs@^2.0.0:
   dependencies:
     ejs "^3.1.6"
 
-hexo-renderer-less@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/hexo-renderer-less/-/hexo-renderer-less-2.0.2.tgz#f6e891ed5f0f7d3c4308e4cd604047f2d64d8721"
-  integrity sha512-ieBAtFm6fhWeJJzVPzCBcI94qXIrjokJ25eBg2xBsB6Tj1JGzsKqUt8dPKNIxgudYguf+HX5eViIbqGCeelS9g==
-  dependencies:
-    less "^3.9.0"
-    micromatch "^4.0.2"
-
 hexo-renderer-less@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/hexo-renderer-less/-/hexo-renderer-less-4.0.0.tgz#8f86d0f669243765c5424efab37fb41bab80b2dc"
@@ -944,40 +936,23 @@ hexo-server@^3.0.0:
     picocolors "^1.0.0"
     serve-static "^1.14.1"
 
-hexo-symbols-count-time@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/hexo-symbols-count-time/-/hexo-symbols-count-time-0.7.1.tgz#7d41c549827071756bd2730047eea027f6dfd631"
-  integrity sha512-Zw19uxRIT/3VCvMQytG6HfBJc/IvfFJYui8cg6vyFAtDxkPOoZ1UlsPjrBRXYAqO6VjLc/vRi+Jthj38pKNPlw==
+"hexo-symbols-count-time@github:jiaming0708/hexo-symbols-count-time#v0.7.2":
+  version "0.7.2"
+  resolved "https://codeload.github.com/jiaming0708/hexo-symbols-count-time/tar.gz/86a74aece7cc0a6ece948b2b8d9e055ef26c5a8f"
   dependencies:
-    hexo-util "1.9.0"
+    hexo-util "^2.5.0"
 
-hexo-theme-material-flow@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.0.2.tgz#ee12838c04a2a8c4e36638d344907dfc18fc986f"
-  integrity sha512-nCePF99J0j+wHH32ria91igGUe1LUQSnpVZtsUrJO/pO0cLizHsIB3MPK/GPOKAfi8l5lUuHav3QekA+3N06bQ==
+hexo-theme-material-flow@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.1.0.tgz#c58b2924591af0556c53fa3088a8d625db535544"
+  integrity sha512-j6QLGjWKT0n5gXAHY4JADbTnUMD+sjV9oKutC9rEUOjDLyt0x/zsaRX7734FkYWrKTDBxIiD+TOkP4G7aMracQ==
   dependencies:
     hexo-autoprefixer "^2.0.0"
     hexo-generator-feed "^3.0.0"
     hexo-generator-json-content "^4.2.3"
     hexo-generator-search "^2.4.3"
-    hexo-renderer-less "^2.0.2"
-    hexo-symbols-count-time "^0.7.1"
-
-hexo-util@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-1.9.0.tgz#0018429319720599253b2a3ddde0c5e4e4cfc652"
-  integrity sha512-WXv8IYd9HFtP6u/y7uoI//Fmg88uhKKDto9KeNNRdWf4HG/bRh/1NcSQZWu81DOZNshWD1rvFU8OKb7bUnX1WA==
-  dependencies:
-    bluebird "^3.5.2"
-    camel-case "^4.0.0"
-    cross-spawn "^7.0.0"
-    deepmerge "^4.2.2"
-    highlight.js "^9.13.1"
-    htmlparser2 "^4.0.0"
-    prismjs "^1.17.1"
-    punycode.js "^2.1.0"
-    strip-indent "^3.0.0"
-    striptags "^3.1.1"
+    hexo-renderer-less "^4.0.0"
+    hexo-symbols-count-time "github:jiaming0708/hexo-symbols-count-time#v0.7.2"
 
 hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
   version "2.5.0"
@@ -1046,11 +1021,6 @@ highlight.js@^10.7.1:
   version "10.7.3"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.7.3.tgz#697272e3991356e40c3cac566a74eef681756531"
   integrity sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==
-
-highlight.js@^9.13.1:
-  version "9.18.5"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
-  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
@@ -1304,22 +1274,6 @@ kind-of@>=6.0.3:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-less@^3.9.0:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/less/-/less-3.13.1.tgz#0ebc91d2a0e9c0c6735b83d496b0ab0583077909"
-  integrity sha512-SwA1aQXGUvp+P5XdZslUOhhLnClSLIjWvJhmd+Vgib5BFIr9lMNlQwmwUNOjXThF/A0x+MCYYPeWEfeWiLRnTw==
-  dependencies:
-    copy-anything "^2.0.1"
-    tslib "^1.10.0"
-  optionalDependencies:
-    errno "^0.1.1"
-    graceful-fs "^4.1.2"
-    image-size "~0.5.0"
-    make-dir "^2.1.0"
-    mime "^1.4.1"
-    native-request "^1.0.5"
-    source-map "~0.6.0"
-
 less@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/less/-/less-4.1.2.tgz#6099ee584999750c2624b65f80145f8674e4b4b0"
@@ -1501,11 +1455,6 @@ nanocolors@^0.2.12:
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.2.13.tgz#dfd1ed0bfab05e9fe540eb6874525f0a1684099b"
   integrity sha512-0n3mSAQLPpGLV9ORXT5+C/D4mwew7Ebws69Hx4E2sgz2ZA5+32Q80B9tL8PbL7XHnRDiAxH/pnrUJ9a4fkTNTA==
-
-native-request@^1.0.5:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/native-request/-/native-request-1.0.8.tgz#8f66bf606e0f7ea27c0e5995eb2f5d03e33ae6fb"
-  integrity sha512-vU2JojJVelUGp6jRcLwToPoWGxSx23z/0iX+I77J3Ht17rf2INGjrhOoQnjVo60nQd8wVsgzKkPfRXBiVdD2ag==
 
 needle@^2.5.2:
   version "2.9.1"
@@ -1712,11 +1661,6 @@ psl@^1.1.33:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
   integrity sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==
-
-punycode.js@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/punycode.js/-/punycode.js-2.1.0.tgz#f3937f7a914152c2dc17e9c280a2cf86a26b7cda"
-  integrity sha512-LvGUJ9QHiESLM4yn8JuJWicstRcJKRmP46psQw1HvCZ9puLFwYMKJWvkAkP3OHBVzNzZGx/D53EYJrIaKd9gZQ==
 
 punycode@^2.1.1:
   version "2.1.1"
@@ -2008,11 +1952,6 @@ tr46@^2.1.0:
   integrity sha512-15Ih7phfcdP5YxqiB+iDtLoaTz4Nd35+IiAv0kQ5FNKHzXgdWqPoTIqEDDJmXceQt4JZk6lVPT8lnDlPpGDppw==
   dependencies:
     punycode "^2.1.1"
-
-tslib@^1.10.0:
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
-  integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
 tslib@^2.0.3:
   version "2.1.0"
