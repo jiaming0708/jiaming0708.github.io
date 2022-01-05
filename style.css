@@ -724,7 +724,7 @@ ul.h-list > li {
 }
 @media (max-width: 820px) {
   .l_body {
-    padding: 20px 20px/2 20px/2;
+    padding: 20px 10px 10px;
   }
 }
 .reveal {
@@ -773,7 +773,7 @@ ul.h-list > li {
   transition: all 0.24s ease-out;
   display: block;
   color: rgba(255, 255, 255, 0.7);
-  padding: 0 20px / 2;
+  padding: 0 10px;
 }
 .l_header .menu ul > li > a:hover,
 .l_header .menu ul > li > a.active {
@@ -940,7 +940,7 @@ ul.h-list > li {
 .l_main .post-list {
   position: relative;
   margin: 0px auto;
-  margin: -20px / 2;
+  margin: -10px;
 }
 @media (max-width: 820px) {
   .l_main .post-list {
@@ -965,7 +965,7 @@ ul.h-list > li {
   margin: auto;
 }
 .l_main .post-wrapper {
-  padding: 20px / 2;
+  padding: 20px/2;
 }
 .l_main .post-wrapper .post {
   padding: 30px 20px;
