@@ -839,6 +839,14 @@ hexo-generator-json-content@^4.2.3:
     keyword-extractor latest
     moment latest
 
+"hexo-generator-json-content@github:jiaming0708/hexo-generator-json-content#v4.2.4":
+  version "4.2.4"
+  resolved "https://codeload.github.com/jiaming0708/hexo-generator-json-content/tar.gz/e76d45f32480902dab2641b2aea2e7b8c4e3dd7d"
+  dependencies:
+    hexo-util latest
+    keyword-extractor latest
+    moment latest
+
 hexo-generator-search@^2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/hexo-generator-search/-/hexo-generator-search-2.4.3.tgz#c4f35c8b8429355612dd1cdf5a18de3568166f99"
@@ -904,7 +912,7 @@ hexo-renderer-less@^4.0.0:
     less "^4.1.2"
     micromatch "^4.0.4"
 
-hexo-renderer-marked@^4.0.0:
+hexo-renderer-marked@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/hexo-renderer-marked/-/hexo-renderer-marked-4.1.0.tgz#332e9aaee75981d89ba4ab6e9f75ce35904e7780"
   integrity sha512-WnDiqv++VqXoQPBPEtb0KD3jhgjQXzgNHUyFWFMPH5uC0cGUMXJOdf/QmvfCjGqjL14z0EnSTpoKXqssUb//yQ==
@@ -936,7 +944,7 @@ hexo-server@^3.0.0:
     picocolors "^1.0.0"
     serve-static "^1.14.1"
 
-"hexo-symbols-count-time@github:jiaming0708/hexo-symbols-count-time#v0.7.2", hexo-symbols-count-time@jiaming0708/hexo-symbols-count-time#v0.7.2:
+"hexo-symbols-count-time@github:jiaming0708/hexo-symbols-count-time#v0.7.2":
   version "0.7.2"
   resolved "https://codeload.github.com/jiaming0708/hexo-symbols-count-time/tar.gz/86a74aece7cc0a6ece948b2b8d9e055ef26c5a8f"
   dependencies:

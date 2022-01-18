@@ -19,16 +19,16 @@
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
-    "hexo-generator-json-content": "^4.2.3",
+    "hexo-generator-json-content": "github:jiaming0708/hexo-generator-json-content#v4.2.4",
     "hexo-generator-search": "^2.4.3",
     "hexo-generator-sitemap": "^2.2.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-less": "^4.0.0",
-    "hexo-renderer-marked": "^4.0.0",
+    "hexo-renderer-marked": "^4.1.0",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^3.0.0",
-    "hexo-symbols-count-time": "jiaming0708/hexo-symbols-count-time#v0.7.2",
+    "hexo-symbols-count-time": "github:jiaming0708/hexo-symbols-count-time#v0.7.2",
     "hexo-theme-material-flow": "^1.1.4"
   }
 }
