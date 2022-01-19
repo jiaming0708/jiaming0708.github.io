@@ -941,10 +941,10 @@ hexo-server@^3.0.0:
   dependencies:
     hexo-util "^2.5.0"
 
-hexo-theme-material-flow@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.1.5.tgz#444b79338538b1bb927538acab8b590dba7866c3"
-  integrity sha512-fOJsJSHbEMe4G5BVIQ2B3fQ5R70LTFkHdJ/ycNrIW7MkhGw5RWSjiW6aTzLkKSdxRqXX/srND0gM9gv8LcUGdA==
+hexo-theme-material-flow@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.1.6.tgz#eb59fa540c68ef67e0de59ecde67a5939ae909fe"
+  integrity sha512-UnKcw/3B6+IVSRUxdliKP9nh8lenN05Kwr4Q6P7Nwc5zeHxOwy8gCVr4PpGz4pNbHx6ehVnNWLnUxYprUsp3zg==
 
 hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
   version "2.5.0"
