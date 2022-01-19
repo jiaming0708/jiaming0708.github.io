@@ -20,13 +20,13 @@
 <meta property="og:description" content="前言在寫Angular專案時，只要遇到表單的部份，通常都會使用驗證的機制來輔助使用者輸入，並且提示訊息，Angular團隊也已經寫好一些驗證的pattern讓我們使用，但總是會有些特殊的格式，勢必要自己寫，這邊來跟大家分享一下作法。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-02-17T15:08:09.000Z">
-<meta property="article:modified_time" content="2022-01-19T01:10:13.038Z">
+<meta property="article:modified_time" content="2022-01-19T02:16:45.809Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
     
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
   <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
   
 <link rel="stylesheet" href="/style.css">
@@ -36,6 +36,17 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-10240063-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
@@ -264,9 +275,9 @@
   <script>setLoadingBarProgress(80);</script>
   
 
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
-<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" async></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js' async></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js" async></script>
 
 <script src="/js/jquery.fitvids.js"></script>
 
@@ -284,17 +295,6 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
-
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-10240063-3', 'auto');
-    ga('send', 'pageview');
-  </script>
-
 
 <script src="/js/search.js"></script>
 

@@ -20,14 +20,14 @@
 <meta property="og:description" content="quokka是一個測試工具，支援蠻多的編輯器，可以直接即時的就看到結果，所以大部分都是開發或是測試的時候可以拿出來使用 在使用webpack作為打包編譯的工具的時候，有一些設定會讓quokka看不懂，這邊就來介紹一下怎麼設定">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-02-15T14:44:03.000Z">
-<meta property="article:modified_time" content="2022-01-19T01:10:13.058Z">
+<meta property="article:modified_time" content="2022-01-19T02:16:45.825Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Test">
 <meta property="article:tag" content="Quokka">
 <meta name="twitter:card" content="summary">
     
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
   <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
   
 <link rel="stylesheet" href="/style.css">
@@ -37,6 +37,17 @@
       document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-10240063-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
@@ -265,9 +276,9 @@
   <script>setLoadingBarProgress(80);</script>
   
 
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
-<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" async></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js' async></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js" async></script>
 
 <script src="/js/jquery.fitvids.js"></script>
 
@@ -285,17 +296,6 @@
   var ROOT = "/"||"/";
   if(!ROOT.endsWith('/'))ROOT += '/';
 </script>
-
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-10240063-3', 'auto');
-    ga('send', 'pageview');
-  </script>
-
 
 <script src="/js/search.js"></script>
 
