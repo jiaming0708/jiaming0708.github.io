@@ -1,1 +1,1 @@
-![BuildInfo](https://travis-ci.org/jiaming0708/blog-source.svg?branch=master)
+[![pages-build-deployment](https://github.com/jiaming0708/jiaming0708.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jiaming0708/jiaming0708.github.io/actions/workflows/pages/pages-build-deployment) [![Pages](https://github.com/jiaming0708/jiaming0708.github.io/actions/workflows/pages.yml/badge.svg)](https://github.com/jiaming0708/jiaming0708.github.io/actions/workflows/pages.yml)
