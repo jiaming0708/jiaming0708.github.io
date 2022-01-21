@@ -830,9 +830,10 @@ hexo-generator-index@^2.0.0:
     hexo-pagination "1.0.0"
     timsort "^0.3.0"
 
-"hexo-generator-json-content@github:jiaming0708/hexo-generator-json-content#v4.2.4":
-  version "4.2.4"
-  resolved "https://codeload.github.com/jiaming0708/hexo-generator-json-content/tar.gz/e76d45f32480902dab2641b2aea2e7b8c4e3dd7d"
+hexo-generator-json-content-jimmy@^4.2.6:
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.2.6.tgz#7c57da00fc089c4e4b98389e27e64dc570147637"
+  integrity sha512-8QSVKazGr1kcFMp5LIZ5ytJLQHQesMmPFisiY2WgcJU/VYUjqhICVsKI1ow8/D2FlonqfFC0RigvOA60EbPnyw==
   dependencies:
     hexo-util latest
     keyword-extractor latest
@@ -941,10 +942,10 @@ hexo-server@^3.0.0:
   dependencies:
     hexo-util "^2.5.0"
 
-hexo-theme-material-flow@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.1.6.tgz#eb59fa540c68ef67e0de59ecde67a5939ae909fe"
-  integrity sha512-UnKcw/3B6+IVSRUxdliKP9nh8lenN05Kwr4Q6P7Nwc5zeHxOwy8gCVr4PpGz4pNbHx6ehVnNWLnUxYprUsp3zg==
+hexo-theme-material-flow@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.1.7.tgz#f06443c8bb054074ad086a110267014dfcb65ccf"
+  integrity sha512-fz/bBfLUF4COqL0suxAw2/cYANHHG7wZcJV4Oh9KCqhvvQUzuHsfj0o8ooLzyk3pDyxD8pbD5UBvYpWEn0qUyQ==
 
 hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
   version "2.5.0"
