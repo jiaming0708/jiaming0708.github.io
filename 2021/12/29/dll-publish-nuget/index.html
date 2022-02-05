@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/save-unpkg.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/publish.png">
 <meta property="article:published_time" content="2021-12-29T01:02:29.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.918Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.677Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nuget">
 <meta name="twitter:card" content="summary">
@@ -217,9 +217,9 @@
 <p><img src="/2021/12/29/dll-publish-nuget/save-unpkg.png" alt="save unpkg"></p>
 <h2 id="發佈"><a href="#發佈" class="headerlink" title="發佈"></a>發佈</h2><p>最後就是將做好的內容發佈到 nuget 上啦，在上方的選單中 <code>File</code> 點選 <code>Publish</code> ，選擇要發佈的 server 及填入 api key。</p>
 <p><img src="/2021/12/29/dll-publish-nuget/publish.png" alt="publish"></p>
-<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>對於一些年久失修的 dll，可以透過這樣的方法來重新打包上 nuget server，讓套件的管理更加統一。一開始操作的時候，我也有嘗試過將好幾顆 dll 一起打包，但這樣會有個缺點，一次參考就一定會所有 dll 都進去，如果每個 dll 是獨立沒有相依性的，就會建議拆開來做，避免這樣的問題發生。這些做好的 unpkg 甚至可以放進版控並且整合 CI/CD 流程。</p>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>對於一些年久失修的 dll，可以透過這樣的方法來重新打包上 nuget server，讓套件的管理更加統一。一開始操作的時候，我也有嘗試過將好幾顆 dll 一起打包，但這樣會有個缺點，一次參考就一定會所有 dll 都進去，如果每個 dll 是獨立沒有相依性的，就會建議拆開來做，避免這樣的問題發生。這些做好的 unpkg 甚至可以放進版控並且整合 CI&#x2F;CD 流程。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/NuGetPackageExplorer/NuGetPackageExplorer">NuGetPackageExplorer/NuGetPackageExplorer: Create, update and deploy Nuget Packages with a GUI (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/NuGetPackageExplorer/NuGetPackageExplorer">NuGetPackageExplorer&#x2F;NuGetPackageExplorer: Create, update and deploy Nuget Packages with a GUI (github.com)</a></li>
 <li>[<a target="_blank" rel="noopener" href="https://marcus116.blogspot.com/2019/02/nuget-nuget-package-explorer-nuget.html">Nuget] 使用 NuGet Package Explorer 製作 Nuget 套件 ~ m@rcus 學習筆記 (marcus116.blogspot.com)</a></li>
 </ul>
 

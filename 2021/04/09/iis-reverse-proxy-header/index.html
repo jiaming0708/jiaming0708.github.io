@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/arr-home.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/arr-setting.png">
 <meta property="article:published_time" content="2021-04-09T03:36:52.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.902Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.665Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="IIS">
 <meta name="twitter:card" content="summary">
@@ -190,12 +190,12 @@
 <p>當進入 ci 這個 domain 會先轉到 git 這邊做 OAuth 的認證，預期的流程如下</p>
 <ol>
 <li>在瀏覽器輸入 ci.com</li>
-<li>轉導至 git.com/login?redirect=ci.company.com</li>
+<li>轉導至 git.com&#x2F;login?redirect&#x3D;ci.company.com</li>
 <li>帳號登入，導回 ci.com</li>
 </ol>
 <p>那問題出現在第二步，host 沒有轉過去，還保留在 ci 這個 domain ，除了 host 以外，其他路徑及參數都是正確。</p>
 <blockquote>
-<p>錯誤的 URL, ci.com/login?redirect=ci.com</p>
+<p>錯誤的 URL, ci.com&#x2F;login?redirect&#x3D;ci.com</p>
 </blockquote>
 <h1 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h1><p>將 ARR 中的 <strong>Reverse rewrite host in response headers</strong> 關閉即可。</p>
 <p>在 IIS 的 root 找到 <code>Application Request Routing(ARR)</code></p>

@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2017/04/24/angular-i18n/translate.gif">
 <meta property="og:image" content="http://jiaming0708.github.io/2017/04/24/angular-i18n/build.png">
 <meta property="article:published_time" content="2017-04-24T11:22:15.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.786Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.557Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
@@ -184,14 +184,14 @@
 
 <p>接著我們要取得檔案，來維護內容，執行這段指令，將檔案放到src底下的locale這個目錄中</p>
 <blockquote>
-<p>ng xi18n –output-path src/locale</p>
+<p>ng xi18n –output-path src&#x2F;locale</p>
 </blockquote>
 <p>messages.xlf</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xliff</span> <span class="attr">version</span>=<span class="string">&quot;1.2&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;urn:oasis:names:tc:xliff:document:1.2&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">file</span> <span class="attr">source-language</span>=<span class="string">&quot;en&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;plaintext&quot;</span> <span class="attr">original</span>=<span class="string">&quot;ng2.template&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">trans-unit</span> <span class="attr">id</span>=<span class="string">&quot;5816217f424111ae4c91dd72ee1db0ae252763b5&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;html&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">source</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">target</span>&gt;</span>世界你好!<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">trans-unit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xliff</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>得到產生的檔案後，就可以來實驗看看囉，執行下面的指令</p>
 <blockquote>
-<p>ng serve –aot –i18n-file=src/locale/messages.xlf –locale=en –i18n-format=xlf</p>
+<p>ng serve –aot –i18n-file&#x3D;src&#x2F;locale&#x2F;messages.xlf –locale&#x3D;en –i18n-format&#x3D;xlf</p>
 </blockquote>
 <p>就可以發現到剛剛的<code>Hello World!</code>被替換成<code>世界你好!</code></p>
 <blockquote>
@@ -199,7 +199,7 @@
 </blockquote>
 <h2 id="進階"><a href="#進階" class="headerlink" title="進階"></a>進階</h2><p>讓我們換個指令，來輸出成檔案看看他的運作模式</p>
 <blockquote>
-<p>ng build –prod –i18n-file=src/locale/messages.zh-TW.xlf –locale=zh-TW –i18n-format=xlf</p>
+<p>ng build –prod –i18n-file&#x3D;src&#x2F;locale&#x2F;messages.zh-TW.xlf –locale&#x3D;zh-TW –i18n-format&#x3D;xlf</p>
 </blockquote>
 <p><img src="/2017/04/24/angular-i18n/build.png" alt="build"></p>
 <p>可以發現到，其實他是直接把html的內容給替換掉了！<br>那這樣是不是說，要產生不同語系，就必須重新編譯一次…!?</p>

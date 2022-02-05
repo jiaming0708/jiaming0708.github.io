@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2018/05/21/vue-first-time/manually2.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2018/05/21/vue-first-time/manually3.png">
 <meta property="article:published_time" content="2018-05-21T14:04:31.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.794Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.569Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
 	  </div>
 		
   	<div class="article-entry" itemprop="articleBody">
-			<p>最近朋友要做一個公司的官網，身為前端人（自己說XD），怎麼可以用wix/wordpress那些啦一啦而已呢<br>當然要玩一下沒玩過的東西，一直聽說Vue不錯用，因此就來玩玩看囉</p>
+			<p>最近朋友要做一個公司的官網，身為前端人（自己說XD），怎麼可以用wix&#x2F;wordpress那些啦一啦而已呢<br>當然要玩一下沒玩過的東西，一直聽說Vue不錯用，因此就來玩玩看囉</p>
 <span id="more"></span>
 
 <h2 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h2><p>起手式，當然要先來個<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli">vue-cli</a></p>
@@ -196,7 +196,7 @@
 <p><img src="/2018/05/21/vue-first-time/manually2.png" alt="manually2"></p>
 <p>產生出來的專案就會是這樣，是不是比較符合我們要的結果了，可以開工囉！</p>
 <p><img src="/2018/05/21/vue-first-time/manually3.png" alt="manually3"></p>
-<h2 id="開始享受"><a href="#開始享受" class="headerlink" title="開始享受"></a>開始享受</h2><p><code>Vue</code>的整個生命週期是從<code>main.ts</code>開始，從這邊可以看到透過<code>render</code>的方式將<code>App</code>這個內容產生出來，然後替換#app`的dom</p>
+<h2 id="開始享受"><a href="#開始享受" class="headerlink" title="開始享受"></a>開始享受</h2><p><code>Vue</code>的整個生命週期是從<code>main.ts</code>開始，從這邊可以看到透過<code>render</code>的方式將<code>App</code>這個內容產生出來，然後替換#app&#96;的dom</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  <span class="attr">render</span>: <span class="function">(<span class="params">h</span>) =&gt;</span> h(App),</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>順著內容看下去，接著來看看<code>App.vue</code>是在做什麼的，<code>.vue</code>這個副檔名就是component的宣告內容，其中分為三塊</p>
@@ -238,7 +238,7 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/about&quot;</span> <span class="attr">active-class</span>=<span class="string">&quot;selected&quot;</span> <span class="attr">exact</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>用一個簡單的網站練習一下vue，其實內容整體來說不差，真的不能否認小專案用vue上手還蠻快速的，如果真的要到專案/產品中使用，還有很多東西需要摸索</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>用一個簡單的網站練習一下vue，其實內容整體來說不差，真的不能否認小專案用vue上手還蠻快速的，如果真的要到專案&#x2F;產品中使用，還有很多東西需要摸索</p>
 <p>因此對我來說<code>Angular</code>更適合一點，兩個的寫法上差異真的沒有很大，但是cli的方便性或是檔案的分離，都讓我更加的喜歡（拜託不要來戰我～～）</p>
 <blockquote>
 <p>另外有幾個地方想請教一下大家為什麼要這樣用</p>

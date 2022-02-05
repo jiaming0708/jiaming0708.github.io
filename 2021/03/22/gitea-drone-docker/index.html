@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/gitea-base-url.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/drone-sucessful.png">
 <meta property="article:published_time" content="2021-03-22T02:04:38.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.894Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.653Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -190,7 +190,7 @@
 	  </div>
 		
   	<div class="article-entry" itemprop="articleBody">
-			<p>當要選擇自架的 git 伺服器，Gitea 是蠻多公司的選擇，在這個講求效率的開發時代，必須要搭配一個 CI/CD 的平台，讓我們可以更好更快的部屬，我選擇 Drone CI 作為平台，今天要來分享一下使用 docker-compose 建置在本機的步驟。</p>
+			<p>當要選擇自架的 git 伺服器，Gitea 是蠻多公司的選擇，在這個講求效率的開發時代，必須要搭配一個 CI&#x2F;CD 的平台，讓我們可以更好更快的部屬，我選擇 Drone CI 作為平台，今天要來分享一下使用 docker-compose 建置在本機的步驟。</p>
 <span id="more"></span>
 
 <h1 id="Gitea"><a href="#Gitea" class="headerlink" title="Gitea"></a>Gitea</h1><p>跟著<a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/install-with-docker/">官方的文件</a>試著把 Gitea 的服務建立起來，在這邊就只弄最簡單的SQLite，首先要建立一個 <code>docker-compose.yml</code> 的檔案，並且將內容貼上。</p>
@@ -204,7 +204,7 @@
 <h1 id="Drone"><a href="#Drone" class="headerlink" title="Drone"></a>Drone</h1><p>Drone 可以跟很多平台做整合，這邊當然就是選擇前面已經架好的 Gitea 作為我們的<a target="_blank" rel="noopener" href="https://docs.drone.io/server/provider/gitea/">參考文件</a>。Drone 總共要起兩個服務，一個是主服務，另一個是 runner 專門執行 task 的。</p>
 <h2 id="Gitea-OAuth"><a href="#Gitea-OAuth" class="headerlink" title="Gitea OAuth"></a>Gitea OAuth</h2><p>根據文件，第一步要在 Gitea 的設定中找到 <code>Applications</code> 這個頁籤，建立一個新的應用。名稱我們給他 <code>drone</code>，URI 的話預期是 <code>http://locahost:8000</code>。</p>
 <blockquote>
-<p>這邊要特別注意的是 <code>Redirect URI</code> 最後必須要帶上 <strong>/login</strong>，不然會無法成功</p>
+<p>這邊要特別注意的是 <code>Redirect URI</code> 最後必須要帶上 <strong>&#x2F;login</strong>，不然會無法成功</p>
 </blockquote>
 <p><img src="/2021/03/22/gitea-drone-docker/gitea-create-oauth-application.png" alt="Gitea create oauth application"></p>
 <p>按下建立以後就可以看到以下的畫面，這個畫面先留著不要馬上關掉，或者是把 <code>Client ID</code> 以及 <code>Client Secret</code> 存起來，等一下設定會用到。</p>

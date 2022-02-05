@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/svn-log.png?view=azure-devops">
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops">
 <meta property="article:published_time" content="2021-12-24T01:35:48.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.918Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.677Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="SVN">
@@ -177,7 +177,7 @@
 	  </div>
 		
   	<div class="article-entry" itemprop="articleBody">
-			<p>公司還是有舊的專案是放在 Subversion(SVN) 中，為了接下來增加一些 CI/CD 的輔助，並且希望在 Teams 能夠集中並且即時的收到專案的資訊，就必須要做搬移的動作。</p>
+			<p>公司還是有舊的專案是放在 Subversion(SVN) 中，為了接下來增加一些 CI&#x2F;CD 的輔助，並且希望在 Teams 能夠集中並且即時的收到專案的資訊，就必須要做搬移的動作。</p>
 <blockquote>
 <p>之前有做過一次，今天在做的時候又有點卡關，一定是沒有做筆記的原因!! </p>
 </blockquote>
@@ -210,7 +210,7 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn clone [svn repo] -A authors.txt ./gitsource</span><br></pre></td></tr></table></figure>
 
-<p>若專案是標準的 trunk/branch/tag ，那就可以加上 <code>--stdlayout</code> 來描述</p>
+<p>若專案是標準的 trunk&#x2F;branch&#x2F;tag ，那就可以加上 <code>--stdlayout</code> 來描述</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn clone [svn repo] -A authors.txt ./gitsource --stdlayout</span><br></pre></td></tr></table></figure>
 
 <p>如果 history 很多的話，就會跑比較久一點，建議就是先放著讓他跑，做其他事情去XD</p>

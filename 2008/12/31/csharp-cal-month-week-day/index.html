@@ -20,7 +20,7 @@
 <meta property="og:description" content="得知2009&#x2F;1&#x2F;1為該月的第一個星期四…200&#x2F;1&#x2F;8為第二個星期四…以此類推…">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2008-12-31T05:30:48.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.782Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.557Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
@@ -171,12 +171,12 @@
 	  </div>
 		
   	<div class="article-entry" itemprop="articleBody">
-			<p>得知2009/1/1為該月的第一個星期四…<br>200/1/8為第二個星期四…<br>以此類推…</p>
+			<p>得知2009&#x2F;1&#x2F;1為該月的第一個星期四…<br>200&#x2F;1&#x2F;8為第二個星期四…<br>以此類推…</p>
 <span id="more"></span>
 
 <p>當有人問你2009的1月第三個星期二是幾號…<br>平常你可以看日曆最快…<br>但這樣的東西要怎樣用程式去算出來…</p>
 <p>這聽起來似乎很難…<br>因為每個月的起始都不同…<br>有可能會有的星期w會有五個…</p>
-<p>先講算法…<br>首先要做的是先知道該月的1號是星期幾x…<br>算出第一個w是幾號…<br>判斷w是否大於等於x…<br>大於等於時…f=1+(w-x)<br>小於時…f=1+[(7-x)+w)]<br>此時f就是第一個星期w的日期了…<br>再來就是看需要計算第幾個星期w…<br>ans=f+7*(n-1)</p>
+<p>先講算法…<br>首先要做的是先知道該月的1號是星期幾x…<br>算出第一個w是幾號…<br>判斷w是否大於等於x…<br>大於等於時…f&#x3D;1+(w-x)<br>小於時…f&#x3D;1+[(7-x)+w)]<br>此時f就是第一個星期w的日期了…<br>再來就是看需要計算第幾個星期w…<br>ans&#x3D;f+7*(n-1)</p>
 <p>以下是程式…</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DateTime firstDay = DateTime.Now.AddDays(-(DateTime.Now.Day - <span class="number">1</span>));</span><br><span class="line">DayOfWeek queryDay = DayOfWeek.Tuesday;</span><br><span class="line">DateTime firstWeek, ans;</span><br><span class="line"><span class="built_in">int</span> week = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> ((<span class="built_in">int</span>)queryDay &gt;= (<span class="built_in">int</span>)firstDay.DayOfWeek)</span><br><span class="line">&#123;</span><br><span class="line">   firstWeek = firstDay.AddDays((<span class="built_in">int</span>)queryDay - (<span class="built_in">int</span>)firstDay.DayOfWeek);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">   firstWeek = firstDay.AddDays(<span class="number">7</span> - (<span class="built_in">int</span>)firstDay.DayOfWeek + (<span class="built_in">int</span>)queryDay);</span><br><span class="line">&#125;</span><br><span class="line">ans = firstWeek.AddDays(<span class="number">7</span> * (week - <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
 

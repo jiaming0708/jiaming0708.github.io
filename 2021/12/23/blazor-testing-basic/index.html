@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/parameter-on-init.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/parameter-after-init.png">
 <meta property="article:published_time" content="2021-12-23T14:27:50.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.914Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.677Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Blazor">
 <meta property="article:tag" content="Testing">
@@ -185,8 +185,8 @@
 			<p>寫了很多的元件來使用，但要怎麼確保行為正確，在修改的時候沒有把一些行為改壞，可以透過<code>測試</code>來進行保護，在 Blazor 中可以透過 <a target="_blank" rel="noopener" href="https://bunit.dev/"><strong>bUnit</strong></a> 這個套件來達成。</p>
 <span id="more"></span>
 
-<p>bUnit 可以套用在 xUnit/NUnit/MSTest 任何一個測試框架上，寫法不會因為框架的不同而有所差異。跟 API 或是 <strong>method</strong> 不一樣的測試目的，元件通常是由一個 click 或是外部的參數改變，而產生一些行為的變化，在元件的測試中，</p>
-<h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>在開始之前要先準備一下專案的環境，直接用 cli 來產生 blazor wasm 的專案，或者用 VS/Rider 這種 IDE 來產生</p>
+<p>bUnit 可以套用在 xUnit&#x2F;NUnit&#x2F;MSTest 任何一個測試框架上，寫法不會因為框架的不同而有所差異。跟 API 或是 <strong>method</strong> 不一樣的測試目的，元件通常是由一個 click 或是外部的參數改變，而產生一些行為的變化，在元件的測試中，</p>
+<h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>在開始之前要先準備一下專案的環境，直接用 cli 來產生 blazor wasm 的專案，或者用 VS&#x2F;Rider 這種 IDE 來產生</p>
 <blockquote>
 <p>dotnet sdk 版本為 6</p>
 </blockquote>
@@ -198,7 +198,7 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dotnet new nunit -n test</span><br><span class="line">dotnet sln add ./test/test.csproj</span><br><span class="line">cd test</span><br><span class="line">dotnet add package bunit</span><br><span class="line">dotnet add test.csproj reference ../client/client.csproj</span><br></pre></td></tr></table></figure>
 
-<h1 id="撰寫測試"><a href="#撰寫測試" class="headerlink" title="撰寫測試"></a>撰寫測試</h1><h2 id="Render驗證"><a href="#Render驗證" class="headerlink" title="Render驗證"></a>Render驗證</h2><p>不管透過 cli/IDE 所建立出來的 blazor wasm 專案都有基本的樣板，這邊就先來看一下樣板中 <code>Pages/Counter.razor</code> 這個元件，有什麼樣的行為，並且如何進行測試。</p>
+<h1 id="撰寫測試"><a href="#撰寫測試" class="headerlink" title="撰寫測試"></a>撰寫測試</h1><h2 id="Render驗證"><a href="#Render驗證" class="headerlink" title="Render驗證"></a>Render驗證</h2><p>不管透過 cli&#x2F;IDE 所建立出來的 blazor wasm 專案都有基本的樣板，這邊就先來看一下樣板中 <code>Pages/Counter.razor</code> 這個元件，有什麼樣的行為，並且如何進行測試。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/counter&quot;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">PageTitle</span>&gt;</span>Counter<span class="tag">&lt;/<span class="name">PageTitle</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Counter<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">role</span>=<span class="string">&quot;status&quot;</span>&gt;</span>Current count: @currentCount<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> @<span class="attr">onclick</span>=<span class="string">&quot;IncrementCount&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line"></span><br><span class="line">    private void IncrementCount()</span><br><span class="line">    &#123;</span><br><span class="line">        currentCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在這個樣板中，主要的行為是按下 button 後 count 會加1，測試的動作，就是要模擬使用者點擊 button 後，html 應該要反映出 count 的變化。</p>

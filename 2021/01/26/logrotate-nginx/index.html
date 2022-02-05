@@ -20,7 +20,7 @@
 <meta property="og:description" content="前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-01-26T02:25:27.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.890Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.653Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
 </blockquote>
 <h2 id="目前設定"><a href="#目前設定" class="headerlink" title="目前設定"></a>目前設定</h2><p>執行以下指令查看 logrotate 目前設定。</p>
 <blockquote>
-<p>cat /etc/logrotate.d/nginx</p>
+<p>cat &#x2F;etc&#x2F;logrotate.d&#x2F;nginx</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/var/log/nginx/*.log &#123;</span><br><span class="line">        daily</span><br><span class="line">        missingok</span><br><span class="line">        rotate 52</span><br><span class="line">        compress</span><br><span class="line">        delaycompress</span><br><span class="line">        notifempty</span><br><span class="line">        create 640 nginx adm</span><br><span class="line">        sharedscripts</span><br><span class="line">        postrotate</span><br><span class="line">                if [ -f /var/run/nginx.pid ]; then</span><br><span class="line">                        kill -USR1 `cat /var/run/nginx.pid`</span><br><span class="line">                fi</span><br><span class="line">        endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -202,7 +202,7 @@
 <li>delaycompress，延遲壓縮，避免檔案還被咬著導致失敗</li>
 <li>notifempty，檔案內容是空的時候不做動作</li>
 <li>create 640 nginx adm，產生檔案時要給的使用者及權限</li>
-<li>sharedscripts，一般來說 postrotate / prerotate 會在每個檔案 rotate 後執行，加上這個指令的話就等於只會執行一次</li>
+<li>sharedscripts，一般來說 postrotate &#x2F; prerotate 會在每個檔案 rotate 後執行，加上這個指令的話就等於只會執行一次</li>
 <li>postrotate，在 endscript 的區間內是 rotate 結束後會執行的指令</li>
 </ul>
 <h2 id="調整設定"><a href="#調整設定" class="headerlink" title="調整設定"></a>調整設定</h2><p>根據上面的一些介紹，可以得知會保留52天的檔案，並且一個檔案沒有上限，那為了讓開檔更順利且不會佔用太多的空間，限縮檔案是 <code>10M</code> 並且只保留 <code>7個</code>。</p>
@@ -210,7 +210,7 @@
 
 <h2 id="測試執行"><a href="#測試執行" class="headerlink" title="測試執行"></a>測試執行</h2><p>基本上 logrotate 是每天定時跑起來，改完以後是可以不用特別重新執行，但通常改完我們會希望確定是不是如我們預期，那我們可以下個指令要求立刻執行。</p>
 <blockquote>
-<p>sudo logrotate -v /etc/logrotate.d/nginx</p>
+<p>sudo logrotate -v &#x2F;etc&#x2F;logrotate.d&#x2F;nginx</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/116136/how-to-make-log-rotate-change-take-effect/116141#116141">StatckExchange - How to make log-rotate change take effect</a></p>

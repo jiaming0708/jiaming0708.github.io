@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/10/11/browser-open-application/teams.jpg">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/10/11/browser-open-application/launch-teams.jpg">
 <meta property="article:published_time" content="2021-10-11T02:31:38.000Z">
-<meta property="article:modified_time" content="2022-01-28T01:35:37.910Z">
+<meta property="article:modified_time" content="2022-02-05T07:28:09.673Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="window">
 <meta property="article:tag" content="Front-end">
@@ -180,7 +180,7 @@
 	  </div>
 		
   	<div class="article-entry" itemprop="articleBody">
-			<p>現在越來越多的服務會直接用網頁來開啟應用程式（例如 zoom/teams），不管是在手機或是電腦中，這篇主要就是要來分享在 windows 中如何做到這件事情。</p>
+			<p>現在越來越多的服務會直接用網頁來開啟應用程式（例如 zoom&#x2F;teams），不管是在手機或是電腦中，這篇主要就是要來分享在 windows 中如何做到這件事情。</p>
 <span id="more"></span>
 
 <blockquote>
@@ -190,9 +190,9 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://www.google.com/">http://www.google.com</a><br><a href="ftp://localhost/">ftp://localhost</a></p>
 </blockquote>
-<p>在前面的 http / ftp 都是屬於一種 URL 協定，那要開啟應用程式，我們也能夠制定這樣的協定，讓系統認識並且啟動我們所需要的指令或程式。</p>
+<p>在前面的 http &#x2F; ftp 都是屬於一種 URL 協定，那要開啟應用程式，我們也能夠制定這樣的協定，讓系統認識並且啟動我們所需要的指令或程式。</p>
 <h1 id="註冊應用程式"><a href="#註冊應用程式" class="headerlink" title="註冊應用程式"></a>註冊應用程式</h1><p>在 windows 中，<strong>登陸編輯程式</strong> 是一個很強大的功能，我們要讓系統認識新的 URL 協定，就必須透過他來進行。</p>
-<p>首先，我們來參考一下 zoom/teams 的作法，開啟 <strong>登陸編輯程式</strong> 後到 <code>HKEY_CLASSES_ROOT</code> 底下，找到 <code>zoommtg</code> 或者 <code>ms-teams</code> 就可以看到像下圖<br><img src="/2021/10/11/browser-open-application/teams.jpg" alt="teasm"></p>
+<p>首先，我們來參考一下 zoom&#x2F;teams 的作法，開啟 <strong>登陸編輯程式</strong> 後到 <code>HKEY_CLASSES_ROOT</code> 底下，找到 <code>zoommtg</code> 或者 <code>ms-teams</code> 就可以看到像下圖<br><img src="/2021/10/11/browser-open-application/teams.jpg" alt="teasm"></p>
 <p>嘗試匯出成檔案，來看一下內容有些什麼</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Windows</span> <span class="string">Registry</span> <span class="string">Editor</span> <span class="string">Version</span> <span class="number">5.00</span></span><br><span class="line"></span><br><span class="line">[<span class="string">HKEY_CLASSES_ROOT\ms-teams</span>]</span><br><span class="line"><span class="string">&quot;URL Protocol&quot;</span><span class="string">=&quot;&quot;</span></span><br><span class="line"><span class="string">@=&quot;URL:ms-teams&quot;</span></span><br><span class="line"></span><br><span class="line">[<span class="string">HKEY_CLASSES_ROOT\ms-teams\shell</span>]</span><br><span class="line"></span><br><span class="line">[<span class="string">HKEY_CLASSES_ROOT\ms-teams\shell\open</span>]</span><br><span class="line"></span><br><span class="line">[<span class="string">HKEY_CLASSES_ROOT\ms-teams\shell\open\command</span>]</span><br><span class="line"><span class="string">@=&quot;\&quot;C:\\Users\\Jimmy\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe\&quot;</span> <span class="string">\&quot;%1\&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -206,7 +206,7 @@
 <p>%1 的值會等於瀏覽器中輸入的值，例如 <code>jimmy-test://123</code>，在你的應用程式中，就必須要用這樣的網址做解析</p>
 </blockquote>
 <blockquote>
-<p>如果是在手機的 app ，則是在開發時，就要對外宣告有這樣的協定可以使用，ios/android都有支援，在瀏覽器端作法則是不變</p>
+<p>如果是在手機的 app ，則是在開發時，就要對外宣告有這樣的協定可以使用，ios&#x2F;android都有支援，在瀏覽器端作法則是不變</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://support.shotgunsoftware.com/hc/en-us/articles/219031308-Launching-applications-using-custom-browser-protocols">Launching applications using custom browser protocols – Shotgun Support (shotgunsoftware.com)</a></li>
