@@ -10,7 +10,7 @@ tags:
 ---
 
 這是系列文的第三篇，今天要講到的是針對 Service 做測試。
-如果還沒看過前面兩篇的話，請往這邊走 {% post_link blazer-testing-basic %}、{% post_link blazer-testing-mock %}。
+如果還沒看過前面兩篇的話，請往這邊走 {% post_link blazor-testing-basic %}、{% post_link blazor-testing-mock %}。
 
 > 使用上次的 [repo](https://github.com/jiaming0708/blazor-testing-demo) 接續操作
 

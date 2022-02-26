@@ -9,7 +9,7 @@ tags:
 - Testing
 ---
 
-前一篇 {% post_link blazer-testing-basic %} 中已經介紹過基本的測試，今天要來介紹的是 `Mock` 的應用。
+前一篇 {% post_link blazor-testing-basic %} 中已經介紹過基本的測試，今天要來介紹的是 `Mock` 的應用。
 
 > 使用上次的 [repo](https://github.com/jiaming0708/blazor-testing-demo) 接續操作
 
