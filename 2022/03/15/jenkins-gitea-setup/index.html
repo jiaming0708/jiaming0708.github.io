@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Jenkins 與 Gitea 整合 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dotnet framework 的 docker image 只有 window 版本，要特別將 Docker Desktop 切換成 Windows container 才能跑，為了讓 Dotnet framework 及 Dotnet core 能同時跑在一個 CI&#x2F;CD 的平台，最後選擇了 Jenkins 這位老爺爺。  必須說老爺爺的功能很強大，但也真的很不友善…很多東西一直查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins 與 Gitea 整合">
+<meta property="og:url" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="Dotnet framework 的 docker image 只有 window 版本，要特別將 Docker Desktop 切換成 Windows container 才能跑，為了讓 Dotnet framework 及 Dotnet core 能同時跑在一個 CI&#x2F;CD 的平台，最後選擇了 Jenkins 這位老爺爺。  必須說老爺爺的功能很強大，但也真的很不友善…很多東西一直查">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-install-logon.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/invalid-logon.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/security-configuration-management.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/search-user.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-install-logon-validate.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-install-java.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/unlock-jenkins.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/customize-jenkins.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-plugin-build-tool.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-plugin-pipeline.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-plugin-locale.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-getting-start.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-locale-setting.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-plugin-gitea.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-configure-gitea-server.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-credential-add.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/gitea-access-token.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-configure-gitea-server-hook.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-new-item.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-config.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-config-gitea-org.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-scan.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/gitea-create-repo.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-scan-with-repo.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-status.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-repo-status.png">
+<meta property="article:published_time" content="2022-03-15T07:04:59.000Z">
+<meta property="article:modified_time" content="2022-03-15T08:36:43.242Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="Gitea">
+<meta property="article:tag" content="Jenkins">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/jenkins-install-logon.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-10240063-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-jenkins-gitea-setup"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2022/03/15/jenkins-gitea-setup/">
+    	Jenkins 與 Gitea 整合
+    </a>
+  </h2>
+	<time>
+	  3月 15, 2022
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/CI-CD/">CI/CD</a>
+    </div>
+    
+        <span class="readtime">9 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Jenkins"><span class="toc-number">1.</span> <span class="toc-text">安裝 Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%80%85"><span class="toc-number">1.1.</span> <span class="toc-text">設定使用者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-JAVA"><span class="toc-number">1.2.</span> <span class="toc-text">安裝 JAVA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E5%90%88-Gitea"><span class="toc-number">2.</span> <span class="toc-text">整合 Gitea</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Gitea"><span class="toc-number">2.1.</span> <span class="toc-text">安裝 Gitea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%A3%E6%8E%A5-Repo"><span class="toc-number">2.2.</span> <span class="toc-text">連接 Repo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Jenkinsfile"><span class="toc-number">2.3.</span> <span class="toc-text">建立 Jenkinsfile</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/CI-CD/">CI/CD</a>
+      
+        <a href="/tags/Gitea/">Gitea</a>
+      
+        <a href="/tags/Jenkins/">Jenkins</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>Dotnet framework 的 docker image 只有 window 版本，要特別將 Docker Desktop 切換成 Windows container 才能跑，為了讓 Dotnet framework 及 Dotnet core 能同時跑在一個 CI&#x2F;CD 的平台，最後選擇了 Jenkins 這位老爺爺。</p>
+<blockquote>
+<p>必須說老爺爺的功能很強大，但也真的很不友善…很多東西一直查資料，只好寫一篇來筆記一下orz</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="安裝-Jenkins"><a href="#安裝-Jenkins" class="headerlink" title="安裝 Jenkins"></a>安裝 Jenkins</h1><p>Jenkins 在 Windows 的安裝方法有兩種，第一個是透過 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/jenkins/jenkins">jenkins&#x2F;jenkins - Docker Image | Docker Hub</a>，另一個是走標準安裝的方法，我選擇後者標準安裝的作法。</p>
+<blockquote>
+<p>不使用 docker 是因為要 volumn 太多東西，反而造成自己困擾<br>但很建議要先體驗的朋友，先透過 docker</p>
+</blockquote>
+<blockquote>
+<p>環境資訊<br>Jenkins 2.332.1 LTS<br>Windows 11</p>
+</blockquote>
+<h2 id="設定使用者"><a href="#設定使用者" class="headerlink" title="設定使用者"></a>設定使用者</h2><p>選完安裝目錄後，要指定一個使用者作為服務執行用，這邊我採用的是目前使用者。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-install-logon.png" alt="jenkins-install-logon"></p>
+<p>輸入後得到一個錯誤訊息 <strong>This account either does not have the privilege to logon as a service or the account was unable to be verified</strong>，這表示帳號登入成功但沒有權限作為登入服務；官方的介紹在這 <a target="_blank" rel="noopener" href="https://www.jenkins.io/doc/book/installing/windows/#invalid-service-logon-credentials">Windows (jenkins.io)</a>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/invalid-logon.png" alt="invalid-logon"></p>
+<p>接著要將登入的使用者加上可以登入服務的權限，打開 <code>本機安全性原則(Security Configuration Management)</code>，開啟 <code>本機原則</code> &gt; <code>使用者權限指派</code> &gt; <code>以服務方式登入</code>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/security-configuration-management.png" alt="security-configuration-management"></p>
+<p>找到使用者後加入。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/search-user.png" alt="search-user"></p>
+<p>再次檢查使用者，可以往下一步了!</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-install-logon-validate.png" alt="jenkins-install-logon-validate"></p>
+<h2 id="安裝-JAVA"><a href="#安裝-JAVA" class="headerlink" title="安裝 JAVA"></a>安裝 JAVA</h2><p>Jenkins 需要 JAVA 的執行環境，安裝過程中會要求指定目錄，可以直接到<a target="_blank" rel="noopener" href="https://java.com/zh-TW/download/ie_manual.jsp?locale=zh_TW">官網下載</a>，安裝完畢後在 Jenkins 中指向剛剛的目錄。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-install-java.png" alt="jenkins-install-java"></p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>根據安裝時所指定的 Port ，用瀏覽器開啟網站，可以看到 <strong>Unlock Jenkins</strong> 的畫面，到紅字所描述的路徑打開檔案，將裡面的密碼複製貼上。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/unlock-jenkins.png" alt="unlock-jenkins"></p>
+<p>接著要安裝 Plugin，這邊不會建議使用官方推薦的，而改用自行挑選。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/customize-jenkins.png" alt="customize-jenkins"></p>
+<p>裝 Jenkins 的目的是為了要可以編譯 dotnet framework，找到 Build Tools 將 <code>MSBuild</code> 打勾，若還有前端則需要把 <code>NodeJS</code> 也打勾。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-plugin-build-tool.png" alt="jenkins-plugin-build-tool"></p>
+<p>往下看到 Pipelines and Continuous Delivery，整合的目標是 Gitea 因此將 Github 的兩個選項都取消。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-plugin-pipeline.png" alt="jenkins-plugin-pipeline"></p>
+<p>最後，會建議將 <code>Locale</code> 這個套件裝起來，可以強制看到的語系不是根據瀏覽器來決定。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-plugin-locale.png" alt="jenkins-plugin-locale"></p>
+<p>都挑選完畢以後，就可以開始安裝啦。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-getting-start.png" alt="jenkins-getting-start"></p>
+<h1 id="整合-Gitea"><a href="#整合-Gitea" class="headerlink" title="整合 Gitea"></a>整合 Gitea</h1><p>都安裝完以後，進入系統，先來到 <code>管理Jenkins</code> &gt; <code>設定系統</code>，找到 locale 的區塊將預設語言設定為 <strong>en-us</strong>，並將下面核選方塊打勾，儲存後就可以看到系統變成英文版。</p>
+<blockquote>
+<p>我會習慣切成英文版是為了要找資料比較方便</p>
+</blockquote>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-locale-setting.png" alt="jenkins-locale-setting"></p>
+<h2 id="安裝-Gitea"><a href="#安裝-Gitea" class="headerlink" title="安裝 Gitea"></a>安裝 Gitea</h2><p>接著要安裝 Gitea 的<a target="_blank" rel="noopener" href="https://plugins.jenkins.io/gitea/">套件</a>，在 <code>Manage Jenkins</code> &gt; <code>Manage Plugins</code> &gt; <code>Available</code> 搜尋 Gitea，打勾後選擇下方的 <code>Download now and install after restart</code>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-plugin-gitea.png" alt="jenkins-plugin-gitea"></p>
+<p>安裝後回到 <code>Manage Jenkins</code> &gt; <code>Configure System</code>，找到 <code>Gitea Server</code> 的區塊，點選 Add，將公司的 Gitea Server 資訊輸入進去。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-configure-gitea-server.png" alt="jenkins-configure-gitea-server"></p>
+<p>官方建議勾選 <code>Manage Hooks</code> 並使用 Personal Token 的方式，Add &gt; Jenkins 新增 <strong>Credential Provider</strong>，Kind 選擇 <code>Gitea Personal Access Token</code>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-credential-add.png" alt="jenkins-credential-add"></p>
+<p>開啟 Gitea 的網站，在 <code>設定</code> &gt; <code>應用程式</code> 中，產生新的 Token。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/gitea-access-token.png" alt="gitea-access-token"></p>
+<p>複製所產生的 Token 並且回到 Jenkins 畫面貼上，最後按下儲存。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-configure-gitea-server-hook.png" alt="jenkins-configure-gitea-server-hook"></p>
+<blockquote>
+<p>建議使用一個公用的帳號，例如: ci，來產生 Token，才可以避免權限相關的問題，也不要有人員異動後需要重新弄得問題。</p>
+</blockquote>
+<h2 id="連接-Repo"><a href="#連接-Repo" class="headerlink" title="連接 Repo"></a>連接 Repo</h2><blockquote>
+<p> 呼~終於要開始整合。</p>
+</blockquote>
+<p>回到 Jenkins 主畫面，點選 <code>NewItem</code>，輸入名稱並選擇 <code>Organization Folder</code>，按下 OK。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-new-item.png" alt="jenkins-new-item"></p>
+<p>移動到 Projects 區塊，選擇 <code>Gitea Organization</code>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-config.png" alt="jenkins-org-folder-config"></p>
+<p>選擇前面所輸入的 <strong>Gitea Server</strong> 及 <strong>Credentials</strong>，Owner 輸入要納入的組織或是使用者名稱。</p>
+<blockquote>
+<p>這邊是用自己作為設定</p>
+</blockquote>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-config-gitea-org.png" alt="jenkins-org-config-gitea-org"></p>
+<p>只要前面的所有設定都正確，系統會先掃一次整個 Owner 底下的 repo，檢查是否有 <code>Jenkinsfile</code> 檔案。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-scan.png" alt="jenkins-org-folder-scan"></p>
+<h2 id="建立-Jenkinsfile"><a href="#建立-Jenkinsfile" class="headerlink" title="建立 Jenkinsfile"></a>建立 Jenkinsfile</h2><p>萬事俱備，只欠東風，現在只要建立一個 Repo，並且加上 <code>Jenkinsfile</code> 即可。<br>在個人使用者底下建立一個新的 Repo 叫做 <code>JenkinsTest</code>。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/gitea-create-repo.png" alt="gitea-create-repo"></p>
+<p>在本地開一個資料夾並且新增檔案 <code>Jenkinsfile</code> 將下面的內容貼上，並且 commit 後 push 上去。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    agent any</span><br><span class="line"></span><br><span class="line">    stages &#123;</span><br><span class="line">        stage(&#x27;Build&#x27;) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                echo &#x27;Building..&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(&#x27;Test&#x27;) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                echo &#x27;Testing..&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(&#x27;Deploy&#x27;) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                echo &#x27;Deploying....&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回到 Jenkins 組織的畫面，直接點選 <code>Scan Gitea Organization Now</code>，讓系統重新掃描一次，看到 log 就會有剛剛建立的 repo 並且發現有 Jenkinksfile 的存在。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-scan-with-repo.png" alt="jenkins-org-folder-scan-with-repo"></p>
+<p>點選左側的 Status，就可以看到 Repo 會在右側的列表中。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-status.png" alt="jenkins-org-folder-status"></p>
+<p>點進 Repo 可以看到 Branch 及 Pull Request 的狀態。</p>
+<p><img src="/2022/03/15/jenkins-gitea-setup/jenkins-org-folder-repo-status.png" alt="jenkins-org-folder-repo-status"></p>
+<p>到目前這個狀態，可以確定 Gitea 及 Jenkins 的整合成功!!</p>
+<blockquote>
+<p>寫到這邊發現篇幅有點長了，接下來的 jenkinsfile 撰寫，就挪到下一篇囉</p>
+</blockquote>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jenkins.io/doc/book/installing/windows/#invalid-service-logon-credentials">Windows (jenkins.io)</a></li>
+<li><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/gitea/">Gitea | Jenkins plugin</a></li>
+<li><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/locale/">Locale | Jenkins plugin</a></li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2022/02/26/blazor-testing-js-navigation/" rel="next"  title="[Blazor] 元件測試 - JSRuntime、NavigationManager">
+						[Blazor] 元件測試 - JSRuntime、NavigationManager
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'Jenkins 與 Gitea 整合',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
