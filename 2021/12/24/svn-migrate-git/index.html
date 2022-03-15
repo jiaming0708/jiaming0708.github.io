@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/svn-log.png?view=azure-devops">
 <meta property="og:image" content="https://docs.microsoft.com/en-us/azure/devops/repos/git/media/perform-migration-from-svn-to-git/git-log.png?view=azure-devops">
 <meta property="article:published_time" content="2021-12-24T01:35:48.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.957Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.463Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="SVN">
@@ -51,7 +51,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -202,7 +202,7 @@
 <blockquote>
 <p>這邊要特別注意一下，檔案的編碼必須是 <strong>UTF8</strong> (不能有 bom)，不然下一個步驟 clone 時會有找不到 author 的錯誤。</p>
 </blockquote>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn.exe log -<span class="literal">-quiet</span> | ? &#123; <span class="variable">$_</span> <span class="operator">-notlike</span> <span class="string">&#x27;-*&#x27;</span> &#125; | % &#123; <span class="string">&quot;&#123;0&#125; = &#123;0&#125; &lt;&#123;0&#125;&gt;&quot;</span> <span class="operator">-f</span> (<span class="variable">$_</span> <span class="operator">-split</span> <span class="string">&#x27; \| &#x27;</span>)[<span class="number">1</span>] &#125; | <span class="built_in">Select-Object</span> <span class="literal">-Unique</span> | <span class="built_in">Out-File</span> <span class="literal">-Encoding</span> UTF8 <span class="string">&#x27;authors.txt&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn.exe log <span class="literal">--quiet</span> | ? &#123; <span class="variable">$_</span> <span class="operator">-notlike</span> <span class="string">&#x27;-*&#x27;</span> &#125; | % &#123; <span class="string">&quot;&#123;0&#125; = &#123;0&#125; &lt;&#123;0&#125;&gt;&quot;</span> <span class="operator">-f</span> (<span class="variable">$_</span> <span class="operator">-split</span> <span class="string">&#x27; \| &#x27;</span>)[<span class="number">1</span>] &#125; | <span class="built_in">Select-Object</span> <span class="literal">-Unique</span> | <span class="built_in">Out-File</span> <span class="literal">-Encoding</span> UTF8 <span class="string">&#x27;authors.txt&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="使用-git-svn-複製"><a href="#使用-git-svn-複製" class="headerlink" title="使用 git-svn 複製"></a>使用 git-svn 複製</h2><p>接著就要將 svn 的專案轉換成 git，先在目前的專案目錄底下建立一個子目錄 <code>gitsource</code> ，並且執行指令。</p>
 <blockquote>

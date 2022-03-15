@@ -20,7 +20,7 @@
 <meta property="og:description" content="一個網站有部分頁面是需要連到其他網站的，但又希望網址改變，這時候我們可以使用 reverse proxy 的技術來達成，今天要來分享的是如何在 nginx 中完成這樣的需求。  reverse proxy 可以參考我之前 寫的這篇">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-03-13T01:03:58.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.937Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.439Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -47,7 +47,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -178,7 +178,7 @@
 <span id="more"></span>
 
 <h1 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h1><p>先來個基本題，使用者進到 <strong>course</strong> 這個路徑時，希望能夠開啟維持一樣的 url 但是內容呈現在 webflow 上做好的一頁，我們所要使用的指令叫做 <code>proxy_pass</code>。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="section">location</span> <span class="regexp">~ /course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="proxy-pass-與-regex"><a href="#proxy-pass-與-regex" class="headerlink" title="proxy_pass 與 regex"></a>proxy_pass 與 regex</h1><p>進階題來了，想要限制只有特定前綴 <strong>zh-hk</strong> 以及 <strong>en-hk</strong> 的 course 路徑才顯示 academy 的內容。</p>
 <p>先來列一下預期的 URL</p>
@@ -186,7 +186,7 @@
 <li>&#x2F;zh-hk&#x2F;course</li>
 <li>&#x2F;en-hk&#x2F;course</li>
 </ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /*-hk/course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="section">location</span> <span class="regexp">~ /*-hk/course</span> &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io/hkdse-courses;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>很開心的做完了，重起 nginx 卻發現到錯誤</p>
 <blockquote>
@@ -194,7 +194,7 @@
 </blockquote>
 <p>當 location 是動態 (regex) 路徑時，就只能指定 domain 那層，後面的 folder 不能存在。雖然只有兩個前綴，可以簡單的重複寫兩次，但總是覺得這樣很笨。</p>
 <p>查了相關的設定以後，需要透過 <strong>rewrite</strong> 的方式，先讓這個頁面先轉到目標 folder，但又不能真的執行 (break)，再來執行 proxy_pass 就可以達成目的。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ /*-tw/course</span> &#123;</span><br><span class="line">    <span class="attribute">rewrite</span><span class="regexp"> ^</span> /hkdse-courses <span class="literal">break</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="section">location</span> <span class="regexp">~ /*-tw/course</span> &#123;</span><br><span class="line">    <span class="attribute">rewrite</span><span class="regexp"> ^</span> /hkdse-courses <span class="literal">break</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> https://mkt-hk.webflow.io;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53353572/proxy-pass-cannot-have-uri-part-in-location-given-by-regular-expression">stackoverflow</a></li>

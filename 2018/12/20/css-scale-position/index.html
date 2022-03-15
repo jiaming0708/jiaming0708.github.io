@@ -20,7 +20,7 @@
 <meta property="og:description" content="最近剛做完一個功能是圖片上傳剪裁(要支援drag和scale)，晚點會把全部整理起來，先來分享一個小東西當我們有一個block要做scale，那這時候的position會是？">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-12-20T14:27:56.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.857Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.359Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="CSS">
 <meta property="article:tag" content="crop">
@@ -48,7 +48,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -198,7 +198,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> diffX = (realWidth - width) / <span class="number">2</span>; <span class="comment">// 25</span></span><br><span class="line"><span class="keyword">const</span> diffY = (realHeight - height) / <span class="number">2</span>; <span class="comment">// 25</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>這個數值就會是top和left的偏移量，只要將原始的座標減掉偏移量即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="keyword">let</span> position = &#123;</span><br><span class="line">    <span class="attr">left</span>: <span class="number">50</span>,</span><br><span class="line">    <span class="attr">top</span>: <span class="number">10</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// after</span></span><br><span class="line">position = &#123;</span><br><span class="line">    <span class="attr">left</span>: position.left - diffX,</span><br><span class="line">    <span class="attr">top</span>: psoition.top - diffY,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="keyword">let</span> position = &#123;</span><br><span class="line">    <span class="attr">left</span>: <span class="number">50</span>,</span><br><span class="line">    <span class="attr">top</span>: <span class="number">10</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// after</span></span><br><span class="line">position = &#123;</span><br><span class="line">    <span class="attr">left</span>: position.<span class="property">left</span> - diffX,</span><br><span class="line">    <span class="attr">top</span>: psoition.<span class="property">top</span> - diffY,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>那來總結一下這個算式，<code>(scale - 1) / 2 * value</code>這就是取得偏移量的公式！</p>
 <blockquote>

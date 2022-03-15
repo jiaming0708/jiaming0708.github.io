@@ -20,7 +20,7 @@
 <meta property="og:description" content="jQuery在1.7版的時候就把live標記為deprecated，而建議改用on">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2013-11-14T11:47:55.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.841Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.347Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
@@ -47,7 +47,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -175,10 +175,10 @@
 <span id="more"></span>
 
 <p>之前使用的時候都沒特別注意到差異<br>但最近使用到了live(這樣算是老人嗎XD)，但為了要跟上潮流<br>改用on，卻發生悲劇了，後來產生的沒有被綁上事件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原本寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).live(<span class="string">&#x27;click&#x27;</span>, ToggleDetail);</span><br><span class="line"><span class="comment">//改用新寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, ToggleDetail);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原本寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).<span class="title function_">live</span>(<span class="string">&#x27;click&#x27;</span>, <span class="title class_">ToggleDetail</span>);</span><br><span class="line"><span class="comment">//改用新寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="title class_">ToggleDetail</span>);</span><br></pre></td></tr></table></figure>
 
 <p>仔細查了一下jQuery官網，才發現原來搞錯寫法了on()<br>原來他們覺得原先的寫法，會讓人錯誤的以為事件的綁定方式，所以要正規化（我已經誤入歧途了orz）<br>自動綁定所有符合條件物件的事件，應該是從body或document開始去掃描<br>所以應該是要改成下面的寫法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原本寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).live(<span class="string">&#x27;click&#x27;</span>, ToggleDetail);</span><br><span class="line"><span class="comment">//正確寫法</span></span><br><span class="line">$(<span class="built_in">document</span>).on(<span class="string">&#x27;click&#x27;</span>,<span class="string">&#x27;a.open&#x27;</span>, ToggleDetail);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原本寫法</span></span><br><span class="line">$(<span class="string">&#x27;a.open&#x27;</span>).<span class="title function_">live</span>(<span class="string">&#x27;click&#x27;</span>, <span class="title class_">ToggleDetail</span>);</span><br><span class="line"><span class="comment">//正確寫法</span></span><br><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="string">&#x27;a.open&#x27;</span>, <span class="title class_">ToggleDetail</span>);</span><br></pre></td></tr></table></figure>
 		</div>
 		
 	

@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/gitea-base-url.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/drone-sucessful.png">
 <meta property="article:published_time" content="2021-03-22T02:04:38.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.937Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.439Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -60,7 +60,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -197,7 +197,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">gitea:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">gitea-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">gitea/gitea:1.13.3</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">gitea</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">USER_UID=1000</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">USER_GID=1000</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">gitea</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./gitea:/data</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3000:3000&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;222:22&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>試著跑看看 <code>docker-compose up -d</code> ，成功的話就可以看到 <strong>done</strong> 的字樣。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> docker-compose up -d</span></span><br><span class="line">Creating network &quot;test_gitea&quot; with the default driver</span><br><span class="line">Creating gitea ... done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">docker-compose up -d</span></span><br><span class="line">Creating network &quot;test_gitea&quot; with the default driver</span><br><span class="line">Creating gitea ... done</span><br></pre></td></tr></table></figure>
 
 <p>再用瀏覽器打開 <code>localhost:3000</code> 看到以下畫面就沒問題了！</p>
 <p><img src="/2021/03/22/gitea-drone-docker/gitea-install.png" alt="gitea install"></p>
@@ -210,7 +210,7 @@
 <p>按下建立以後就可以看到以下的畫面，這個畫面先留著不要馬上關掉，或者是把 <code>Client ID</code> 以及 <code>Client Secret</code> 存起來，等一下設定會用到。</p>
 <p><img src="/2021/03/22/gitea-drone-docker/gitea-application-data.png" alt="gitea application"></p>
 <h2 id="產生共用密碼"><a href="#產生共用密碼" class="headerlink" title="產生共用密碼"></a>產生共用密碼</h2><p>接著我們要產生一個共用密碼，給主服務和 runner 之間做認證使用。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> openssl rand -hex 16</span></span><br><span class="line">81e04d83a6054b464f5c5b13365578fd</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">openssl rand -hex 16</span></span><br><span class="line">81e04d83a6054b464f5c5b13365578fd</span><br></pre></td></tr></table></figure>
 
 <h2 id="設定docker-compose"><a href="#設定docker-compose" class="headerlink" title="設定docker-compose"></a>設定docker-compose</h2><p>為了讓 container 之間能夠互相的溝通，加上前面的 gitea 已經使用 compose，這邊就繼續往下編輯，讓我們使用一個檔案來起多個服務。</p>
 <p>將資料填入對應的欄位，並且儲存 <code>docker-compose.yml</code> 。</p>

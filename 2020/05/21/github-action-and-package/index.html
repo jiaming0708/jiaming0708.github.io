@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/repo-package.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/package-info.png">
 <meta property="article:published_time" content="2020-05-21T13:43:19.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.925Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.431Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Github">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -56,7 +56,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -164,7 +164,7 @@
         <a href="/categories/CI-CD/">CI/CD</a>
     </div>
     
-        <span class="readtime">11 mins.</span>
+        <span class="readtime">12 mins.</span>
     
 
 	</section>
@@ -225,7 +225,7 @@
 <blockquote>
 <p>因為我們要用的是 package 功能，所以除了 repo 以後還要將 package 的權限也打開</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm login --registry=https://npm.pkg.github.com</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Username: USERNAME</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Password: TOKEN</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Email: PUBLIC-EMAIL-ADDRESS</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm login --registry=https://npm.pkg.github.com</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">Username: USERNAME</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">Password: TOKEN</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">Email: PUBLIC-EMAIL-ADDRESS</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="設定-package-json"><a href="#設定-package-json" class="headerlink" title="設定 package.json"></a>設定 package.json</h2><p>要發佈到 package 之前要先將 package.json 設定好，這邊有兩個地方要注意一下</p>
 <ul>
@@ -235,7 +235,7 @@
 <blockquote>
 <p>我們的 repo 假設叫做 <code>jimmy-first-library</code> 那我們發佈到 npm 的時候可以改名稱叫做 <code>jimmy-library</code>，但是在 Github 是不被允許的，因為他是基於 repo 去產生的 package 所以名稱必須相同</p>
 </blockquote>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;@jiaming0708/schematics-react&quot;</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;publishConfig&quot;</span>: &#123; <span class="attr">&quot;registry&quot;</span>: <span class="string">&quot;https://npm.pkg.github.com/&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@jiaming0708/schematics-react&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;publishConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;registry&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://npm.pkg.github.com/&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="發佈"><a href="#發佈" class="headerlink" title="發佈"></a>發佈</h2><p>做完以上的動作以後，我們就可以用 npm 的 publish 指令，進行發佈</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>

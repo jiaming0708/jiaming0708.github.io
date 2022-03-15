@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/posh-theme.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/mytheme.png">
 <meta property="article:published_time" content="2021-05-19T13:09:59.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.949Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.455Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Window">
 <meta property="article:tag" content="Powershell">
@@ -54,7 +54,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -162,7 +162,7 @@
         <a href="/categories/Window/">Window</a>
     </div>
     
-        <span class="readtime">7 mins.</span>
+        <span class="readtime">6 mins.</span>
     
 
 	</section>
@@ -198,13 +198,13 @@
 <p>一樣的微軟提供許多安裝方式，其中官方推薦的是 <a target="_blank" rel="noopener" href="https://www.microsoft.com/store/productId/9N0DX20HK701">Window Store</a> 。</p>
 <p><img src="/2021/05/19/install-window-terminal-ps7-theme/window-terminal-select.png" alt="window terminal select"></p>
 <h1 id="套用-Theme"><a href="#套用-Theme" class="headerlink" title="套用 Theme"></a>套用 Theme</h1><h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>打開剛裝好的 <strong>Window Terminal</strong> 以及 <strong>PowerShell 7</strong>，接下來我們就要開始安裝 Theme 相關的套件，總共要安裝兩個套件，一個是 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-pos</a> 樣式的套件，另一個就是 <a target="_blank" rel="noopener" href="https://github.com/dahlbyk/posh-git">posh-git</a> 是用來顯示 git 的狀態，安裝的指令如下。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
 
 <p>接著就是要讓 PowerShell 在啟動的時候就能夠套用，需要去修改設定檔，可以透過 <code>$PROFILE</code> 這個指令來確認設定檔的位置。如果沒有設定檔，則建立一個並且使用 <strong>記事本</strong> 來開啟。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(<span class="built_in">Test-Path</span> <span class="literal">-Path</span> <span class="variable">$PROFILE</span> )) &#123; <span class="built_in">New-Item</span> <span class="literal">-Type</span> File <span class="literal">-Path</span> <span class="variable">$PROFILE</span> <span class="literal">-Force</span> &#125;</span><br><span class="line">notepad <span class="variable">$PROFILE</span></span><br></pre></td></tr></table></figure>
 
 <p>將以下的內容貼到記事本中，存檔以後，重開一個分頁即可看到套用 <code>Paradox</code> 這個樣式。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> Paradox</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> Paradox</span><br></pre></td></tr></table></figure>
 
 <h2 id="執行錯誤"><a href="#執行錯誤" class="headerlink" title="執行錯誤"></a>執行錯誤</h2><blockquote>
 <p>若你重開分頁以後有套用成功，請跳過這個章節。</p>
@@ -218,10 +218,10 @@
 <p>如果發現有些內容顯示不出來，通常是字體的問題，可以改為官方使用的字體 <a target="_blank" rel="noopener" href="https://www.nerdfonts.com/">Nerd Fonts</a></p>
 </blockquote>
 <p>如果預設的樣式還是不滿意的話，也可以自己客製化，做一些調整，讓自己開心工作上也會比較有動力！</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Export-PoshTheme</span> <span class="literal">-FilePath</span> C:\.oh<span class="literal">-my</span><span class="literal">-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Export-PoshTheme</span> <span class="literal">-FilePath</span> C:\.oh<span class="literal">-my-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
 
 <p>重新開啟 <code>$PROFILE</code> 設定檔，並且將剛剛的第三行 <strong>Set-PoshPrompt</strong> 改成套用客製化的 json 檔案即可。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> C:\.oh<span class="literal">-my</span><span class="literal">-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> C:\.oh<span class="literal">-my-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
 
 <p>最後分享一下我自己的設定檔，是參考了 <code>paradox</code> 以及 <code>jandedobbeleer</code> 所整理出來的樣式。</p>
 <p><img src="/2021/05/19/install-window-terminal-ps7-theme/mytheme.png" alt="mytheme"></p>

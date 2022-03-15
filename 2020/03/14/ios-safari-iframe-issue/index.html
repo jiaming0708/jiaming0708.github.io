@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="http://jiaming0708.github.io/2020/03/14/ios-safari-iframe-issue/issue.gif">
 <meta property="article:published_time" content="2020-03-14T08:22:46.000Z">
-<meta property="article:modified_time" content="2022-03-01T14:37:35.889Z">
+<meta property="article:modified_time" content="2022-03-15T00:53:48.395Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="CSS">
 <meta property="article:tag" content="debug">
@@ -50,7 +50,7 @@
       ga('send', 'pageview');
     </script>
   
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -200,7 +200,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">style</span>=<span class="string">&quot;width: 0;min-width: 100%;&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;no&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果同時需要支援手機和桌機的話，記得加上檢查瀏覽器版本的語法來控制 <code>scrolling</code> 的屬性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isiOS</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="regexp">/iP(hone|od|ad)/</span>.test(navigator.platform);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isiOS</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="regexp">/iP(hone|od|ad)/</span>.<span class="title function_">test</span>(navigator.<span class="property">platform</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="捲動穿透"><a href="#捲動穿透" class="headerlink" title="捲動穿透"></a>捲動穿透</h2><p>捲動的問題可以透過 <code>overflow</code> 相關的兩個屬性來解決，這次就不是放在 iframe 身上，而是要放在父層才會有效果；目前測試起來不會因為手機或桌機而有所區別。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;-webkit-overflow-scrolling: touch;overflow-y: scroll;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
