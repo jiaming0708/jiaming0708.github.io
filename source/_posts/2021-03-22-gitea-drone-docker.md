@@ -56,7 +56,7 @@ Creating gitea ... done
 
 # Drone
 
-Drone 可以跟很多平台做整合，這邊當然就是選擇前面已經架好的 Gitea 作為我們的[參考文件](https://docs.drone.io/server/provider/gitea/)。Drone 總共要起兩個服務，一個是主服務，另一個是 runner 專門執行 task 的。
+Drone 可以跟很多平台做整合，這邊當然就是選擇前面已經架好的 Gitea 作為我們的目標 [參考文件](https://docs.drone.io/server/provider/gitea/)。Drone 總共要起兩個服務，一個是主服務，另一個是 runner 專門執行 task 的。
 
 ## Gitea OAuth
 
