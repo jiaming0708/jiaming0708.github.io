@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>WCF AJAX 服務建置於 https | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天接到同事來的一個求救，有一個產品基於 WCF 服務建置 https 時無法正常運行，原本以為簡單，但卡了一陣子，特別來筆記一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WCF AJAX 服務建置於 https">
+<meta property="og:url" content="http://jiaming0708.github.io/2022/03/23/wcf-ajax-https/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="今天接到同事來的一個求救，有一個產品基於 WCF 服務建置 https 時無法正常運行，原本以為簡單，但卡了一陣子，特別來筆記一下。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-03-23T06:01:46.000Z">
+<meta property="article:modified_time" content="2022-03-23T07:17:45.266Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="WCF">
+<meta property="article:tag" content="https">
+<meta name="twitter:card" content="summary">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-10240063-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-wcf-ajax-https"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2022/03/23/wcf-ajax-https/">
+    	WCF AJAX 服務建置於 https
+    </a>
+  </h2>
+	<time>
+	  3月 23, 2022
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Backend/">Backend</a>
+    </div>
+    
+        <span class="readtime">9 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WCF-%E6%9E%B6%E7%AB%99%E6%96%BC-https"><span class="toc-number">1.</span> <span class="toc-text">WCF 架站於 https</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Backend/">Backend</a>
+      
+        <a href="/tags/WCF/">WCF</a>
+      
+        <a href="/tags/https/">https</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>今天接到同事來的一個求救，有一個產品基於 WCF 服務建置 https 時無法正常運行，原本以為簡單，但卡了一陣子，特別來筆記一下。</p>
+<span id="more"></span>
+
+<h1 id="WCF-架站於-https"><a href="#WCF-架站於-https" class="headerlink" title="WCF 架站於 https"></a>WCF 架站於 https</h1><p>WCF 建置於 https 的資料超多超好查，微軟官方就有提供作法 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-configure-an-iis-hosted-wcf-service-with-ssl">How to: Configure an IIS-hosted WCF service with SSL - WCF | Microsoft Docs</a>，看到這樣的資料立馬動手試試看。</p>
+<p>重點是在 binding，要增加一組 <code>basicHttpBinding</code> ，並且設定到 endpoint 上。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bindings</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">basicHttpBinding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">binding</span> <span class="attr">name</span>=<span class="string">&quot;secureHttpBinding&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">security</span> <span class="attr">mode</span>=<span class="string">&quot;Transport&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transport</span> <span class="attr">clientCredentialType</span>=<span class="string">&quot;None&quot;</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">security</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">binding</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">basicHttpBinding</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bindings</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">services</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">service</span> <span class="attr">name</span>=<span class="string">&quot;MySecureWCFService.Service1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">endpoint</span> <span class="attr">address</span>=<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">binding</span>=<span class="string">&quot;basicHttpBinding&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">bindingConfiguration</span>=<span class="string">&quot;secureHttpBinding&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">contract</span>=<span class="string">&quot;MySecureWCFService.IService1&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">services</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>設定完很開心的就打開系統，測試下去，還是一樣收到 404 的錯誤…</p>
+<p>為了要確認問題，決定先建立一個新的 WCF 服務，並且加上同樣的設定，新的專案的確是可以順利運行。<br>馬上回過頭檢查系統的寫法，突然發現一個不一樣的地方，服務的 endpoint 有加上 <code>behaviorConfiguration</code> 並且裡面的內容有 Ajax 的字樣，以及 binding <code>webHttpBinding</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">endpoint</span> <span class="attr">address</span>=<span class="string">&quot;&quot;</span> <span class="attr">behaviorConfiguration</span>=<span class="string">&quot;MySecureWCFService.Service1AspNetAjaxBehavior&quot;</span> <span class="attr">binding</span>=<span class="string">&quot;webHttpBinding&quot;</span> <span class="attr">contract</span>=<span class="string">&quot;MySecureWCFService.Service1&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>趕快拿著剛建立的專案，再新增一個檔案 <strong>WCF Service (Ajax enabled)</strong> ，馬上看到設定出現在 web.config 中。先來查詢看看官方怎麼定義 binding (<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/system-provided-bindings">System-provided bindings - WCF | Microsoft Docs</a>)。</p>
+<table>
+<thead>
+<tr>
+<th>Binding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><div style="word-break: keep-all;"><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.basichttpbinding">BasicHttpBinding</a></div></td>
+<td>A binding that is suitable for communicating with WS-Basic Profile-conformant Web services, for example, ASP.NET Web services (ASMX)-based services. This binding uses HTTP as the transport and text&#x2F;XML as the default message encoding.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.webhttpbinding">WebHttpBinding</a></td>
+<td>A binding used to configure endpoints for WCF Web services that are exposed through HTTP requests instead of SOAP messages.</td>
+</tr>
+</tbody></table>
+<p>從文字描述來看，<code>BasicHttpBinding</code> 會回傳 xml 格式，那 <code>WebhttpBinding</code> 則是 json，可以確定 Ajax enabled 的意義是指這個服務 response 格式不同。</p>
+<p>這樣就可以確定做法，要將官方給的範例調整為 <code>WebHttpBinding</code> ，並且設定到 endpoint 上，就可以打完收工。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bindings</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">webHttpBinding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">binding</span> <span class="attr">name</span>=<span class="string">&quot;secureHttpBinding&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">security</span> <span class="attr">mode</span>=<span class="string">&quot;Transport&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transport</span> <span class="attr">clientCredentialType</span>=<span class="string">&quot;None&quot;</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">security</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">binding</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">webHttpBinding</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bindings</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">services</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">service</span> <span class="attr">name</span>=<span class="string">&quot;MySecureWCFService.Service1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">endpoint</span> <span class="attr">address</span>=<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">behaviorConfiguration</span>=<span class="string">&quot;MySecureWCFService.Service1AspNetAjaxBehavior&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">binding</span>=<span class="string">&quot;webHttpBinding&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">bindingConfiguration</span>=<span class="string">&quot;secureHttpBinding&quot;</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">contract</span>=<span class="string">&quot;MySecureWCFService.IService1&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">services</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-configure-an-iis-hosted-wcf-service-with-ssl">How to: Configure an IIS-hosted WCF service with SSL - WCF | Microsoft Docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/system-provided-bindings">System-provided bindings - WCF | Microsoft Docs</a></li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2022/03/15/jenkins-gitea-setup/" rel="next"  title="Jenkins 與 Gitea 整合">
+						Jenkins 與 Gitea 整合
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'WCF AJAX 服務建置於 https',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

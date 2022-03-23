@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/gitea-base-url.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/03/22/gitea-drone-docker/drone-sucessful.png">
 <meta property="article:published_time" content="2021-03-22T02:04:38.000Z">
-<meta property="article:modified_time" content="2022-03-15T08:36:43.214Z">
+<meta property="article:modified_time" content="2022-03-23T07:17:45.230Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -201,7 +201,7 @@
 
 <p>再用瀏覽器打開 <code>localhost:3000</code> 看到以下畫面就沒問題了！</p>
 <p><img src="/2021/03/22/gitea-drone-docker/gitea-install.png" alt="gitea install"></p>
-<h1 id="Drone"><a href="#Drone" class="headerlink" title="Drone"></a>Drone</h1><p>Drone 可以跟很多平台做整合，這邊當然就是選擇前面已經架好的 Gitea 作為我們的<a target="_blank" rel="noopener" href="https://docs.drone.io/server/provider/gitea/">參考文件</a>。Drone 總共要起兩個服務，一個是主服務，另一個是 runner 專門執行 task 的。</p>
+<h1 id="Drone"><a href="#Drone" class="headerlink" title="Drone"></a>Drone</h1><p>Drone 可以跟很多平台做整合，這邊當然就是選擇前面已經架好的 Gitea 作為我們的目標 <a target="_blank" rel="noopener" href="https://docs.drone.io/server/provider/gitea/">參考文件</a>。Drone 總共要起兩個服務，一個是主服務，另一個是 runner 專門執行 task 的。</p>
 <h2 id="Gitea-OAuth"><a href="#Gitea-OAuth" class="headerlink" title="Gitea OAuth"></a>Gitea OAuth</h2><p>根據文件，第一步要在 Gitea 的設定中找到 <code>Applications</code> 這個頁籤，建立一個新的應用。名稱我們給他 <code>drone</code>，URI 的話預期是 <code>http://locahost:8000</code>。</p>
 <blockquote>
 <p>這邊要特別注意的是 <code>Redirect URI</code> 最後必須要帶上 <strong>&#x2F;login</strong>，不然會無法成功</p>
