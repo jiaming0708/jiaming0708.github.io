@@ -26,7 +26,7 @@
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-less": "^4.0.0",
     "hexo-renderer-marked": "^5.0.0",
-    "hexo-renderer-stylus": "^2.0.0",
+    "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "github:jiaming0708/hexo-symbols-count-time#v0.7.2",
     "hexo-theme-material-flow": "^1.2.0"
