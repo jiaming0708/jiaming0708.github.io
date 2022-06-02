@@ -768,10 +768,10 @@ hexo-generator-index@^2.0.0:
     hexo-pagination "1.0.0"
     timsort "^0.3.0"
 
-hexo-generator-json-content-jimmy@^4.2.7:
-  version "4.2.7"
-  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.2.7.tgz#0c6976232a2b55c5ad4384df3317565dd3cc822e"
-  integrity sha512-HIaDCWlYvpSMXNWTtG1grIbrfhMN+g79yjryU1srZ8JQFj4A40cVue7Dsj5Iq6Q8GJItqfFY7DO1sojW/8xIjw==
+hexo-generator-json-content-jimmy@^4.2.8:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.2.8.tgz#a96a3955b9e03b2a9c7bc434083663af05ca1e8a"
+  integrity sha512-7eI76wFpcz1jn4FKMpADPo50krMqnFJjgOgJx//3ZV5Mu6viaFY+uzggwGzvFZ91M998U6tiyR974ssq1EKAhA==
   dependencies:
     hexo-util latest
     keyword-extractor latest
