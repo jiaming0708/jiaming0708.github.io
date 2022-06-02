@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>[除蟲] AngularJS button click 執行兩次</title>
+      <link href="/2022/06/02/angularjs-button-ngclick-twice/"/>
+      <url>/2022/06/02/angularjs-button-ngclick-twice/</url>
+      
+        <content type="html"><![CDATA[<p>同事詢問了一個 AngularJS button click 的時候會執行兩次的問題，只有在 IE 上會發生，但在 edge&#x2F;chrome 就不會。聽到這個問題，第一個反應是先去看看網路上有沒有人有類似的問題，<code>angularjs button click execute twice</code> ，果然我們不是孤單的，蠻多人討論過。</p><blockquote><p>比較多人提到的，反而是在 safari 上會有這個行為。</p></blockquote><span id="more"></span><ul><li><a href="https://github.com/angular/angular.js/issues/6251">ngClick using ngTouch fires twice · Issue #6251 · angular&#x2F;angular.js (github.com)</a></li><li><a href="https://stackoverflow.com/questions/18709297/angularjs-ng-click-fires-twice">javascript - AngularJS ng-click fires twice - Stack Overflow</a></li><li><a href="https://stackoverflow.com/questions/21708730/why-are-multiple-click-events-fired-when-using-ngtouch">javascript - Why are multiple click events fired when using ngTouch? - Stack Overflow</a></li></ul><p>看到兩個方法可以解決這個問題</p><ul><li>button 增加屬性 <code>type=&quot;button&quot;</code> (最後選擇這個解法)</li></ul><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element/button">MDN</a> 有提到 button 的 type 預設值是 <code>submit</code>，通常 submit 會對應到 form 的 post 行為給 API，在我們的程式中並沒有被包在 form 裡面。<br>找到黑暗大也曾經抓過類似的問題，<a href="https://blog.darkthread.net/blog/enter-submit-in-ie/">【茶包射手日記】當IE遇上Enter-黑暗執行緒 (darkthread.net)</a>，提到 submit 如果沒有 form 的話會觸發 click 事件。</p><blockquote><p>不管是不是 IE 或是什麼的，讓元素有正確的行為，其實是撰寫的人應該要做到的。</p></blockquote><ul><li><code>event.preventDefault(); event.stopPropagation();</code></li></ul><p><code>preventDefault</code> 或者是 <code>stopPropagation</code> 就很單純了，避免<a href="https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/">事件的冒泡</a>，當然就可以解決掉重複執行的問題。</p><p>回過頭來看 angularjs 自己如何針對這個 issue 做修正，其中來看幾個原本已經改好但最後關閉的 PR</p><ul><li><a href="https://github.com/angular/angular.js/pull/13852/files">fix(ngTouch): remove ngClick override by Narretz · Pull Request #13852 · angular&#x2F;angular.js (github.com)</a></li><li><a href="https://github.com/angular/angular.js/pull/13857/files">fix(ngTouch): deprecate ngClick override directive, disable it by def… by Narretz · Pull Request #13857 · angular&#x2F;angular.js (github.com)</a></li></ul><p>上面兩個都是針對 ngTouch 做修改，其中還有把引入 ngClick 的檔案移除掉 (個人是蠻懷疑這是造成 submit 會重複送的原因)，最後這兩個 PR 直接被重新的調整並且放入到 1.5 的版本 <a href="https://docs.angularjs.org/guide/migration#ngtouch-ngclick-">AngularJS: Developer Guide: Migrating from Previous Versions</a>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Front-end </category>
+          
+          <category> AngularJS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AngularJS </tag>
+            
+            <tag> Debug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Jenkins] 環境建置 - 整合 Gitea 登入</title>
       <link href="/2022/03/24/jenkins-gitea-oauth/"/>
       <url>/2022/03/24/jenkins-gitea-oauth/</url>
