@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>如何在 cli 快速操作 json 資料 - jq | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="想在 cli 的環境下要對 json 的檔案做修改，如果要用一行一行讀取後處理，實在是太麻煩而且太容易改錯，還好有一套工具 jq ，可以快速的操作整個 json 資料。我把這個應用在 CI&#x2F;CD 的環節中，在當下調整一些設定檔。  jq 到哪都是強者!!!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在 cli 快速操作 json 資料 - jq">
+<meta property="og:url" content="http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="想在 cli 的環境下要對 json 的檔案做修改，如果要用一行一行讀取後處理，實在是太麻煩而且太容易改錯，還好有一套工具 jq ，可以快速的操作整個 json 資料。我把這個應用在 CI&#x2F;CD 的環節中，在當下調整一些設定檔。  jq 到哪都是強者!!!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-06-04T13:47:46.000Z">
+<meta property="article:modified_time" content="2022-06-04T14:43:12.321Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="jq">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-5LXTGJNLYY');
+    </script>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-cli-json-processor-jq"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2022/06/04/cli-json-processor-jq/">
+    	如何在 cli 快速操作 json 資料 - jq
+    </a>
+  </h2>
+	<time>
+	  6月 4, 2022
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/shell/">shell</a>
+    </div>
+    
+        <span class="readtime">18 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux-%E5%AE%89%E8%A3%9D"><span class="toc-number">1.</span> <span class="toc-text">linux 安裝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AA%8D%E8%AD%98-filter"><span class="toc-number">2.</span> <span class="toc-text">認識 filter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E7%AF%80%E9%BB%9E"><span class="toc-number">2.1.</span> <span class="toc-text">根節點</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">物件操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A3%E5%88%97%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.</span> <span class="toc-text">陣列操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B3%87%E6%96%99%E9%81%8B%E7%AE%97"><span class="toc-number">2.4.</span> <span class="toc-text">資料運算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%85%A7%E5%AE%B9"><span class="toc-number">2.5.</span> <span class="toc-text">修改內容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%80%E5%8F%96%E6%AA%94%E6%A1%88"><span class="toc-number">2.6.</span> <span class="toc-text">讀取檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%B3%E5%85%A5%E5%8F%83%E6%95%B8"><span class="toc-number">2.7.</span> <span class="toc-text">傳入參數</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%A6%E9%9A%9B%E4%BF%AE%E6%94%B9"><span class="toc-number">3.</span> <span class="toc-text">實際修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/jq/">jq</a>
+      
+        <a href="/tags/shell/">shell</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>想在 cli 的環境下要對 json 的檔案做修改，如果要用一行一行讀取後處理，實在是太麻煩而且太容易改錯，還好有一套工具 <a target="_blank" rel="noopener" href="https://stedolan.github.io/jq/">jq</a> ，可以快速的操作整個 json 資料。<br>我把這個應用在 CI&#x2F;CD 的環節中，在當下調整一些設定檔。</p>
+<blockquote>
+<p>jq 到哪都是強者!!!</p>
+</blockquote>
+<span id="more"></span>
+
+<p>jq 可以被使用在任何一個有 cli 的 os 上 (Linux, OS X and Windows…etc.)，選取的方法是透過 filter 來進行操作，先用個簡單的範例來示範，如何取得 foo 的值。</p>
+<blockquote>
+<p>好像看到 $jq 的影子?</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.foo&#x27;</span></span><br><span class="line">&gt; 42</span><br></pre></td></tr></table></figure>
+
+<h1 id="linux-安裝"><a href="#linux-安裝" class="headerlink" title="linux 安裝"></a>linux 安裝</h1><p>接下來將會起一個 Debian 的容器來做為示範，如何安裝並且操作。</p>
+<blockquote>
+<p>不想安裝只是想嘗試的話可以用官方提供的線上工具 <a target="_blank" rel="noopener" href="https://jqplay.org/">jq play</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it debian</span><br></pre></td></tr></table></figure>
+
+<p>進入到容器的環境內後，開始執行安裝，記得先 update 確保安裝的時候找的到套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install -y jq</span><br></pre></td></tr></table></figure>
+
+<h1 id="認識-filter"><a href="#認識-filter" class="headerlink" title="認識 filter"></a>認識 filter</h1><p>主要會專注在介紹最後實務上要用到的功能。</p>
+<h2 id="根節點"><a href="#根節點" class="headerlink" title="根節點"></a>根節點</h2><p>json 資料的格式都會有個最上層，也就是所謂的根結點，不管是陣列或是物件的形式，都是從最外層開始往內找。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.&#x27;</span></span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;  <span class="string">&quot;foo&quot;</span>: 42,</span><br><span class="line">&gt;  <span class="string">&quot;bar&quot;</span>: <span class="string">&quot;less interesting data&quot;</span></span><br><span class="line">&gt; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件操作"><a href="#物件操作" class="headerlink" title="物件操作"></a>物件操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 單一屬性</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.foo&#x27;</span></span><br><span class="line">&gt; 42</span><br><span class="line"><span class="comment"># 屬性不存在回 null</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;notfoo&quot;: true, &quot;alsonotfoo&quot;: false&#125;&#x27;</span> | jq <span class="string">&#x27;.foo&#x27;</span></span><br><span class="line">&gt; null</span><br><span class="line"><span class="comment"># 多個屬性</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.[&quot;foo&quot;, &quot;bbb&quot;]&#x27;</span></span><br><span class="line">&gt; 42</span><br><span class="line">&gt; null</span><br></pre></td></tr></table></figure>
+
+<h2 id="陣列操作"><a href="#陣列操作" class="headerlink" title="陣列操作"></a>陣列操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取得整個陣列並轉成 iterator</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&#123;&quot;name&quot;:&quot;JSON&quot;, &quot;good&quot;:true&#125;, &#123;&quot;name&quot;:&quot;XML&quot;, &quot;good&quot;:false&#125;]&#x27;</span> | jq <span class="string">&#x27;.[]&#x27;</span></span><br><span class="line">&gt; &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;JSON&quot;</span>, <span class="string">&quot;good&quot;</span>:<span class="literal">true</span>&#125;</span><br><span class="line">&gt; &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;XML&quot;</span>, <span class="string">&quot;good&quot;</span>:<span class="literal">false</span>&#125;</span><br><span class="line"><span class="comment"># 指定陣列位置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&#123;&quot;name&quot;:&quot;JSON&quot;, &quot;good&quot;:true&#125;, &#123;&quot;name&quot;:&quot;XML&quot;, &quot;good&quot;:false&#125;]&#x27;</span> | jq <span class="string">&#x27;.[0]&#x27;</span></span><br><span class="line">&gt; &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;JSON&quot;</span>, <span class="string">&quot;good&quot;</span>:<span class="literal">true</span>&#125;</span><br><span class="line"><span class="comment"># 切割陣列 (也可用在字串中) [start:end]</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]&#x27;</span> | jq <span class="string">&#x27;.[2:4]&#x27;</span></span><br><span class="line">&gt; [<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="資料運算"><a href="#資料運算" class="headerlink" title="資料運算"></a>資料運算</h2><p><code>+</code> 和 <code>-</code> 可以用來運算數值或是陣列&#x2F;字串的串接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 運算數值</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.foo + 3&#x27;</span></span><br><span class="line">&gt; 45</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.foo - 2&#x27;</span></span><br><span class="line">&gt; 40</span><br><span class="line"><span class="comment"># 陣列串接</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]&#x27;</span> | jq <span class="string">&#x27;. + [&quot;f&quot;,&quot;g&quot;]&#x27;</span></span><br><span class="line">&gt; [<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>,<span class="string">&quot;f&quot;</span>,<span class="string">&quot;g&quot;</span>]</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]&#x27;</span> | jq <span class="string">&#x27;. - [&quot;a&quot;]&#x27;</span></span><br><span class="line">&gt; [<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>]</span><br><span class="line"><span class="comment"># 字串串接</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.bar + &quot; concat another string&quot;&#x27;</span></span><br><span class="line">&gt; <span class="string">&quot;less interesting data concat another string&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改內容"><a href="#修改內容" class="headerlink" title="修改內容"></a>修改內容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq <span class="string">&#x27;.foo = 44&#x27;</span></span><br><span class="line">&gt; &#123;<span class="string">&quot;foo&quot;</span>: 44, <span class="string">&quot;bar&quot;</span>: <span class="string">&quot;less interesting data&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="讀取檔案"><a href="#讀取檔案" class="headerlink" title="讀取檔案"></a>讀取檔案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> &gt; file.json</span><br><span class="line">jq <span class="string">&#x27;.foo&#x27;</span> file.json</span><br><span class="line">&gt; 42</span><br></pre></td></tr></table></figure>
+
+<h2 id="傳入參數"><a href="#傳入參數" class="headerlink" title="傳入參數"></a>傳入參數</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 非 json 格式</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;foo&quot;: 42, &quot;bar&quot;: &quot;less interesting data&quot;&#125;&#x27;</span> | jq --arg concat <span class="string">&quot; pass from arg&quot;</span> <span class="string">&#x27;.bar + $concat&#x27;</span></span><br><span class="line">&gt; <span class="string">&quot;less interesting data pass from arg&quot;</span></span><br><span class="line"><span class="comment"># json 格式</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]&#x27;</span> | jq --argjson concat <span class="string">&#x27;[&quot;f&quot;,&quot;g&quot;]&#x27;</span> <span class="string">&#x27;. + $concat&#x27;</span></span><br><span class="line">&gt; [<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>,<span class="string">&quot;f&quot;</span>,<span class="string">&quot;g&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="實際修改"><a href="#實際修改" class="headerlink" title="實際修改"></a>實際修改</h1><p>實際上真正需要的是調整 db.json 這個檔案，先來看看資料格式。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;DBConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;DefaultDB&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LocalOrcl&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;EnableLog&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;DoNotCompleteFlag&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;DataBases&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;DBName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LocalOrcl&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;ConnectionString&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Data Source=localhost/ORCL;USER ID=jimmy;PASSWORD=jimmy;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Oracle&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>目標是要修改 DefaultDB 的值，並且增加一組連線資訊，基本上就是把前面所提到的 filter 都用過一次。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CONNECTION=<span class="string">&#x27;&#123;&quot;DBName&quot;:&quot;CI&quot;,&quot;ConnectionString&quot;:&quot;Data Source=localhost/ORCL;USER ID=CI;PASSWORD=CI;&quot;,&quot;Provider&quot;:&quot;Oracle&quot;&#125;&#x27;</span></span><br><span class="line">jq <span class="string">&#x27;.DBConfig.DefaultDB = &quot;CI&quot;&#x27;</span> db.json &gt; tmp.$$.json &amp;&amp; <span class="built_in">mv</span> tmp.$$.json db.json</span><br><span class="line">jq --arg CONNECTION <span class="string">&quot;<span class="variable">$CONNECTION</span>&quot;</span> <span class="string">&#x27;.DBConfig.DataBases += $CONNECTION&#x27;</span> db.json &gt; tmp.$$.json &amp;&amp; <span class="built_in">mv</span> tmp.$$.json db.json</span><br></pre></td></tr></table></figure>
+
+<p>就可以看到 db.json 的內容被改成以下。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;DBConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;DefaultDB&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CI&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;EnableLog&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;DoNotCompleteFlag&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;DataBases&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;DBName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LocalOrcl&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;ConnectionString&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Data Source=localhost/ORCL;USER ID=jimmy;PASSWORD=jimmy;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Oracle&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;DBName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CI&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;ConnectionString&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Data Source=localhost/ORCL;USER ID=CI;PASSWORD=CI;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Oracle&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://stedolan.github.io/jq/manual/">jq Manual (development version) (stedolan.github.io)</a></li>
+</ul>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2022/06/02/angularjs-button-ngclick-twice/" rel="next"  title="[除蟲] AngularJS button click 執行兩次">
+						[除蟲] AngularJS button click 執行兩次
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '如何在 cli 快速操作 json 資料 - jq',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
