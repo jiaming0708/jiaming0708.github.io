@@ -170,33 +170,6 @@ var customSearch;
 		scrollListener();
 	}
 
-	// function getPicture() {
-	// 	const $banner = $('.banner');
-	// 	if ($banner.length === 0) return;
-	// 	const url = ROOT + 'js/lovewallpaper.json';
-	// 	$.get(url).done(res => {
-	// 		if (res.data.length > 0) {
-	// 			const index = Math.floor(Math.random() * res.data.length);
-	// 			$banner.css('background-image', 'url(' + res.data[index].big + ')');
-	// 		}
-	// 	})
-	// }
-
-	// function getHitokoto() {
-	// 	const $hitokoto = $('#hitokoto');
-	// 	if($hitokoto.length === 0) return;
-	// 	const url = 'http://api.hitokoto.us/rand?length=80&encode=jsc&fun=handlerHitokoto';
-	// 	$('body').append('<script	src="%s"></script>'.replace('%s',url));
-	// 	window.handlerHitokoto = (data) => {
-	// 		$hitokoto
-	// 			.css('color','transparent')
-	// 			.text(data.hitokoto)
-	// 		if(data.source) $hitokoto.append('<cite> ——  %s</cite>'.replace('%s',data.source));
-	// 		else if(data.author) $hitokoto.append('<cite> ——  %s</cite>'.replace('%s',data.author));
-	// 		$hitokoto.css('color','white');
-	// 	}
-	// }
-
 
 	$(function () {
 		//set header
@@ -242,12 +215,6 @@ var customSearch;
 				serviceName: AZURE_SERVICE_NAME,
 				indexName: AZURE_INDEX_NAME,
 				queryKey: AZURE_QUERY_KEY,
-				imagePath: "/images/"
-			});
-		}
-		else if (SEARCH_SERVICE === 'baidu') {
-			customSearch = new BaiduSearch({
-				apiId: BAIDU_API_ID,
 				imagePath: "/images/"
 			});
 		}
