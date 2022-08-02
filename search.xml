@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>[c#] EF使用動態LINQ做查詢</title>
+      <link href="/2022/08/02/introduce-dynamic-linq/"/>
+      <url>/2022/08/02/introduce-dynamic-linq/</url>
+      
+        <content type="html"><![CDATA[<p>LINQ 是一個好用的工具，撰寫的時候可以透過強行別的特性，讓篩選資料等的行為很輕鬆，偏偏成也強型別敗也強型別，在做查詢的時候十幾個欄位，總不可能一個一個比對，還好查到一個好用的套件 [Dynamic-LINQ](<a href="https://dynamic-linq.net/">Dynamic LINQ (dynamic-linq.net)</a>)，可以解決這樣的問題。</p><span id="more"></span><p>先來建立一個簡單的客戶類別，並產生一些資料</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Customer</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> CustomerId;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">string</span> FirstName;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">string</span> LastName;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">string</span> Company;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data  = <span class="keyword">new</span> List&lt;Customer&gt;()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> Customer()</span><br><span class="line">    &#123;</span><br><span class="line">        CustomerId = <span class="number">1</span>,</span><br><span class="line">        FirstName = <span class="string">&quot;Jimmy&quot;</span>,</span><br><span class="line">        LastName = <span class="string">&quot;Ho&quot;</span>,</span><br><span class="line">        Company = <span class="string">&quot;Jimmy Company&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">new</span> Customer()</span><br><span class="line">    &#123;</span><br><span class="line">        CustomerId = <span class="number">2</span>,</span><br><span class="line">        FirstName = <span class="string">&quot;Secret&quot;</span>,</span><br><span class="line">        LastName = <span class="string">&quot;Ho&quot;</span>,</span><br><span class="line">        Company = <span class="string">&quot;Secret note&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">new</span> Customer()</span><br><span class="line">    &#123;</span><br><span class="line">        CustomerId = <span class="number">3</span>,</span><br><span class="line">        FirstName = <span class="string">&quot;Tina&quot;</span>,</span><br><span class="line">        LastName = <span class="string">&quot;Hu&quot;</span>,</span><br><span class="line">        Company = <span class="string">&quot;Tina Company&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>標準 Linq 的寫法，取得 <code>Company</code> 包含 <code>Compnay</code> 字樣的資料。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = data.Where(p =&gt; p.Company.Contains(<span class="string">&quot;Ho&quot;</span>));</span><br></pre></td></tr></table></figure><p>接著來安裝 Dynamic LINQ，在 Nuget 中找到 <strong>System.Linq.Dynamic.Core</strong>，並改用 Dynamic 的寫法。</p><blockquote><p>如果不是 dotnet core 請直接搜尋 System.Linq.Dynamic</p></blockquote><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = data.Where(<span class="string">&quot;Company.Contains(\&quot;Ho\&quot;)&quot;</span>);</span><br></pre></td></tr></table></figure><p>透過字串的方式，來描述原本強型別的語句，當欄位是由前端傳來只有名稱，這時候就會很好處理。<br>使用 Dynamic LINQ 要注意的是，要參照原本 Linq 的寫法，不然就會死得不明不白。</p><blockquote><p>當然這也不是沒有缺點，因為不是強型別了，所以屬性名稱寫錯的話，就要等到 runtime 才會死在旁邊。</p></blockquote><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul><li><p>[<a href="https://dotblogs.com.tw/wasichris/2015/12/17/001236">LINQ] 使用 Dynamic LINQ 補足強型別所帶來的小遺憾 | 搞搞就懂 - 點部落 (dotblogs.com.tw)</a></p></li><li><p><a href="https://blog.miniasp.com/post/2008/06/23/Introduce-LINQ-Dynamic-Query-Library">Dynamic LINQ 讓 LINQ 的世界變的更美好 | The Will Will Web (miniasp.com)</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Backend </category>
+          
+          <category> linq </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> dotnet </tag>
+            
+            <tag> linq </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[nginx] reverse proxy 在 docker compose 架構下</title>
       <link href="/2022/06/22/nginx-reverse-proxy-docker-compose/"/>
       <url>/2022/06/22/nginx-reverse-proxy-docker-compose/</url>
