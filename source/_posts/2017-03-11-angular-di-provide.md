@@ -61,4 +61,4 @@ export class BeverageService {
 ```
 
 ## DI學習參考
-[oomusou的文章，深入探討 Angular 的 DI 與 Provider](http://oomusou.io/angular/angular-di/)
+[oomusou的文章，深入探討 Angular 的 DI 與 Provider](https://old-oomusou.goodjack.tw/angular/di/)
