@@ -2,7 +2,7 @@
 title: '[Blazor] 元件測試 - Service'
 date: 2022-01-28 09:25:36
 categories:
-- Front-end
+- Frontend
 - Blazor
 tags:
 - Blazor

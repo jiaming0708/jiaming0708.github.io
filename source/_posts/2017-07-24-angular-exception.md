@@ -2,7 +2,7 @@
 title: '[Angular/AngularJS] Exception Handle'
 date: 2017-07-24 22:00:20
 categories:
-- Front-end
+- Frontend
 - Angular
 tags:
 - Angular
@@ -44,7 +44,7 @@ export class MyErrorHandler implements ErrorHandler {
 angular.module('exceptionModule')
     .factory('$exceptionHandler', ['$log', function ($log) {
         return function myExceptionHandler(exception, cause) {
-            //call back-end api
+            //call Backend api
             $log.error(`my error handler, ${exception}`, cause)
         }
     }]);

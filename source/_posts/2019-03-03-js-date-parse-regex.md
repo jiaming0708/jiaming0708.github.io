@@ -2,10 +2,10 @@
 title: '[JS] date自定義格式'
 date: 2019-03-03 10:35:15
 categories:
-- Front-end
-- js
+- Frontend
+- JavaScript
 tags:
-- js
+- JavaScript
 - regex
 ---
 

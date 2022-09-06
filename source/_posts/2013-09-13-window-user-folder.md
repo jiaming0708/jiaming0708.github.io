@@ -4,7 +4,7 @@ date: 2013-09-13 23:42:33
 categories:
 - Windows
 tags:
-- window
+- Windows
 ---
 好久沒有寫點東西，來分享一個實用的東西
 

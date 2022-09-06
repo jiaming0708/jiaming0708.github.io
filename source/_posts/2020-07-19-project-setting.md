@@ -2,7 +2,7 @@
 title: 專案設定 - vscode 以及 nvmrc
 date: 2020-07-19 23:26:00
 categories:
-- Front-end
+- Frontend
 - Project
 tags:
 - vscode

@@ -2,7 +2,7 @@
 title: 如何再Wallaby取得package.json檔案
 date: 2018-05-28 20:21:12
 categories:
-- Front-end
+- Frontend
 - Angular
 tags:
 - Angular

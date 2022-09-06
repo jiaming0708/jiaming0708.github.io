@@ -2,11 +2,11 @@
 title: '如何在瀏覽器開啟應用程式'
 date: 2021-10-11 10:31:38
 categories:
-- Front-end
+- Frontend
 tags:
-- Front-end
+- Frontend
 - browser
-- window
+- Windows
 ---
 
 現在越來越多的服務會直接用網頁來開啟應用程式（例如 zoom/teams），不管是在手機或是電腦中，這篇主要就是要來分享在 windows 中如何做到這件事情。

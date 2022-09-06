@@ -2,7 +2,7 @@
 title: '[C#] WinForm的DataGridView類似Web的GridView_DataRowBound事件'
 date: 2012-05-17 20:50:37
 categories:
-- Back-end
+- Backend
 - C#
 tags:
 - C#

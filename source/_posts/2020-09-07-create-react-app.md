@@ -2,7 +2,7 @@
 title: create-react-app 開發心得分享
 date: 2020-09-07 21:11:31
 categories:
-- Front-end
+- Frontend
 - React
 tags:
 - React

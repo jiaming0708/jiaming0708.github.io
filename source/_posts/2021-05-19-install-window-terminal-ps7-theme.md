@@ -2,9 +2,9 @@
 title: 安裝 PowerShell7 及 Window Terminal 並套用 theme 美化
 date: 2021-05-19 21:09:59
 categories:
-- Window
+- Windows
 tags:
-- Window
+- Windows
 - Powershell
 - WindowTerminal
 ---

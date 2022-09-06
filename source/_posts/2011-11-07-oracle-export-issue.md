@@ -2,7 +2,7 @@
 title: '[oracle] 使用者可以查詢卻無法匯出'
 date: 2011-11-07 18:46:30
 categories:
-- Back-end
+- Backend
 - Oracle
 tags:
 - oracle

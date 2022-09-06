@@ -2,10 +2,10 @@
 title: '[JS] 在Reload頁面時，保持ScrollBar的位置'
 date: 2011-03-31 09:58:31
 categories:
-- Front-end
-- JS
+- Frontend
+- JavaScript
 tags:
-- js
+- JavaScript
 ---
 最近的案子有一個需求
 要在頁面Reload時保持ScrollBar的位置

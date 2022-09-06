@@ -2,7 +2,7 @@
 title: '[Blazor] 上傳檔案'
 date: 2022-08-11 09:18:50
 categories:
-- Front-end
+- Frontend
 - Blazor
 tags:
 - Blazor

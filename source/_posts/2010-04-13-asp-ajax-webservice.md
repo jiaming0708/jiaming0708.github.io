@@ -2,7 +2,7 @@
 title: '[ASP.NET] ajax使用WebService'
 date: 2010-04-13 20:25:45
 categories:
-- Back-end
+- Backend
 - ASP.NET
 tags:
 - ASP.NET

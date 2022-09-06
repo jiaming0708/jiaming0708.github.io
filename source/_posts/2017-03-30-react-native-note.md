@@ -2,7 +2,7 @@
 title: ReactNative初體驗
 date: 2017-03-30 15:13:06
 categories:
-- Front-end
+- Frontend
 - ReactNative
 tags:
 - ReactNative

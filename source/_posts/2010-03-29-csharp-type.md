@@ -2,7 +2,7 @@
 title: '[C#] 型別當變數'
 date: 2010-03-29 16:58:37
 categories:
-- Back-end
+- Backend
 - C#
 tags:
 - C#

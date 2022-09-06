@@ -2,7 +2,7 @@
 title: '[jQuery] each迴圈的continue/break'
 date: 2011-09-30 11:54:16
 categories:
-- Front-end
+- Frontend
 - jQuery
 tags:
 - jQuery

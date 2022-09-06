@@ -2,7 +2,7 @@
 title: '[除蟲] AngularJS button click 執行兩次'
 date: 2022-06-02 14:39:44
 categories:
-- Front-end
+- Frontend
 - AngularJS
 tags:
 - AngularJS

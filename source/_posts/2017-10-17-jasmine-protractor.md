@@ -2,10 +2,10 @@
 title: 前端測試框架-Jasmine&Protractor介紹
 date: 2017-10-17 22:23:44
 categories:
-- Front-end
-- Test
+- Frontend
+- Testing
 tags:
-- Test
+- Testing
 - Jasmine
 - Protractor
 ---

@@ -2,7 +2,7 @@
 title: '[Angular] ViewChild遇上ngIf'
 date: 2017-09-14 15:20:01
 categories:
-- Front-end
+- Frontend
 - Angular
 tags:
 - Angular

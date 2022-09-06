@@ -2,7 +2,7 @@
 title: Vue初體驗
 date: 2018-05-21 22:04:31
 categories:
-- Front-end
+- Frontend
 - Vue
 tags:
 - Vue

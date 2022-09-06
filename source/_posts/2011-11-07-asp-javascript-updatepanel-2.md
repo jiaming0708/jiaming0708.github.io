@@ -2,7 +2,7 @@
 title: '[ASP.NET] 在UpdatePanel裡執行JavaScript II'
 date: 2011-11-07 19:08:05
 categories:
-- Back-end
+- Backend
 - ASP.NET
 tags:
 - ASP.NET

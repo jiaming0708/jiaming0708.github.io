@@ -2,11 +2,11 @@
 title: quokka搭配webpack設定
 date: 2019-02-15 22:44:03
 categories:
-- Front-end
-- Tool
+- Frontend
+- Testing
 tags:
 - Quokka
-- Test
+- Testing
 ---
 
 [quokka](https://quokkajs.com/)是一個測試工具，支援蠻多的編輯器，可以直接即時的就看到結果，所以大部分都是開發或是測試的時候可以拿出來使用

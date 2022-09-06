@@ -2,7 +2,7 @@
 title: '[AngularJS] Provider探究'
 date: 2018-11-07 12:44:39
 categories:
-- Front-end
+- Frontend
 - AngularJS
 tags:
 - AngularJS

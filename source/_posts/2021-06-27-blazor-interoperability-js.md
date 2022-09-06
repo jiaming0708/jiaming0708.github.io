@@ -2,11 +2,11 @@
 title: 在blazor中使用JavaScript
 date: 2021-06-27 10:08:40
 categories:
-- Front-end
+- Frontend
 - Blazor
 tags:
 - Blazor
-- JS
+- JavaScript
 ---
 
 最近都在使用一個很新的前端框架，叫做 [Blazor](https://docs.microsoft.com/zh-tw/aspnet/core/blazor/?view=aspnetcore-5.0) ，是由微軟所推出給 dotnet 的開發人員所用，優點是可以使用一個語言打天下(迷之音: 真的能嗎?)，但現在的 Blazor 還太年輕，對應的東西都還沒那麼齊全，JavaScript 反而已經擁有很多套件/方法可以使用，今天就一起來看看怎麼將兩個結合一起使用。

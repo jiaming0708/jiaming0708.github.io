@@ -4,7 +4,7 @@ date: 2012-11-13 09:22:18
 categories:
 - Windows
 tags:
-- window
+- Windows
 ---
 最近正在做一個專案
 裡面有一部分功能很簡單，就是讀取檔案然後寫入資料庫

@@ -2,11 +2,11 @@
 title: 在 elasticsearch 更新後立即能夠查詢
 date: 2020-05-21 22:24:59
 categories:
-- backend
-- elasticsearch
+- Backend
+- ElasticSearch
 tags:
-- elasticsearch
-- database
+- ElasticSearch
+- Database
 ---
 
 一般的關聯式資料庫下 update 以後，如果沒有下 commit 大部分情況是拿到舊的資料，但是在 elastic search 的環境下，沒有所謂的 commit，在異動資料後馬上執行 search 卻拿不到更新後的結果。

@@ -2,7 +2,7 @@
 title: '[ASP.NET] 無法執行要求，因為無法建立 App-Domain'
 date: 2008-09-10 22:52:14
 categories:
-- Back-end
+- Backend
 - ASP.NET
 tags:
 - ASP.NET

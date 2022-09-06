@@ -2,7 +2,7 @@
 title: '[GTM] pageview加上content group'
 date: 2019-02-19 12:22:02
 categories:
-- Front-end
+- Frontend
 - GTM
 tags:
 - GTM

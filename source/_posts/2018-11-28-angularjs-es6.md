@@ -2,7 +2,7 @@
 title: '[AngularJS] 使用es6開發-grunt+webpack+babel'
 date: 2018-11-28 09:35:17
 categories:
-- Front-end
+- Frontend
 - AngularJS
 tags:
 - AngularJS
