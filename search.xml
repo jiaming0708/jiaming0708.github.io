@@ -40,7 +40,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -181,7 +181,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> AngularJS </category>
           
@@ -291,7 +291,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -300,9 +300,9 @@
       
         <tags>
             
-            <tag> Blazor </tag>
-            
             <tag> Testing </tag>
+            
+            <tag> Blazor </tag>
             
         </tags>
       
@@ -320,7 +320,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -329,9 +329,9 @@
       
         <tags>
             
-            <tag> Blazor </tag>
-            
             <tag> Testing </tag>
+            
+            <tag> Blazor </tag>
             
         </tags>
       
@@ -349,7 +349,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -358,9 +358,9 @@
       
         <tags>
             
-            <tag> Blazor </tag>
-            
             <tag> Testing </tag>
+            
+            <tag> Blazor </tag>
             
         </tags>
       
@@ -430,7 +430,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -439,9 +439,9 @@
       
         <tags>
             
-            <tag> Blazor </tag>
-            
             <tag> Testing </tag>
+            
+            <tag> Blazor </tag>
             
         </tags>
       
@@ -515,16 +515,16 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> window </tag>
+            <tag> Windows </tag>
             
-            <tag> Front-end </tag>
+            <tag> Frontend </tag>
             
             <tag> browser </tag>
             
@@ -569,7 +569,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -596,7 +596,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Blazor </category>
           
@@ -605,9 +605,9 @@
       
         <tags>
             
-            <tag> Blazor </tag>
+            <tag> JavaScript </tag>
             
-            <tag> JS </tag>
+            <tag> Blazor </tag>
             
         </tags>
       
@@ -625,14 +625,14 @@
       
       <categories>
           
-          <category> Window </category>
+          <category> Windows </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Window </tag>
+            <tag> Windows </tag>
             
             <tag> Powershell </tag>
             
@@ -654,7 +654,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -864,7 +864,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> React </category>
           
@@ -891,7 +891,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Project </category>
           
@@ -920,18 +920,18 @@
       
       <categories>
           
-          <category> backend </category>
+          <category> Backend </category>
           
-          <category> elasticsearch </category>
+          <category> ElasticSearch </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> elasticsearch </tag>
+            <tag> ElasticSearch </tag>
             
-            <tag> database </tag>
+            <tag> Database </tag>
             
         </tags>
       
@@ -976,7 +976,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> chrome </category>
           
@@ -1003,7 +1003,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1032,7 +1032,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1059,7 +1059,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> vscode </category>
           
@@ -1140,7 +1140,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> RxJS </category>
           
@@ -1196,7 +1196,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1236,7 +1236,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1263,7 +1263,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Postgres </category>
           
@@ -1290,7 +1290,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> React </category>
           
@@ -1317,16 +1317,16 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
-          <category> js </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> js </tag>
+            <tag> JavaScript </tag>
             
             <tag> regex </tag>
             
@@ -1346,7 +1346,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> RxJS </category>
           
@@ -1373,7 +1373,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> GTM </category>
           
@@ -1400,16 +1400,16 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
-          <category> Tool </category>
+          <category> Testing </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Test </tag>
+            <tag> Testing </tag>
             
             <tag> Quokka </tag>
             
@@ -1429,7 +1429,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> React </category>
           
@@ -1458,7 +1458,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> React </category>
           
@@ -1489,7 +1489,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1518,7 +1518,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> canvas </category>
           
@@ -1547,7 +1547,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -1576,7 +1576,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> AngularJS </category>
           
@@ -1603,7 +1603,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> AngularJS </category>
           
@@ -1630,7 +1630,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> AngularJS </category>
           
@@ -1657,7 +1657,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1686,7 +1686,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1713,7 +1713,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1742,7 +1742,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Vue </category>
           
@@ -1769,7 +1769,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1796,7 +1796,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1823,7 +1823,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1875,9 +1875,9 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
-          <category> AngnularJS </category>
+          <category> AngularJS </category>
           
       </categories>
       
@@ -1904,16 +1904,16 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
-          <category> Test </category>
+          <category> Testing </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Test </tag>
+            <tag> Testing </tag>
             
             <tag> Jasmine </tag>
             
@@ -1935,7 +1935,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -1961,8 +1961,6 @@
       
       
       <categories>
-          
-          <category> Back-end </category>
           
           <category> IIS </category>
           
@@ -2014,7 +2012,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> e2e </category>
           
@@ -2063,12 +2061,12 @@
       <link href="/2017/07/24/angular-exception/"/>
       <url>/2017/07/24/angular-exception/</url>
       
-        <content type="html"><![CDATA[<p>今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception<br>想要把這種資料回寫到後端，我們可以怎麼去實作他</p><span id="more"></span><h1 id="Angular作法"><a href="#Angular作法" class="headerlink" title="Angular作法"></a>Angular作法</h1><p>在Angular可以攔截在全域未handle到的exception，可以看一下<a href="https://angular.io/api/core/ErrorHandler">官方文件</a></p><p>只要照著寫一個class <code>implements ErrorHandler</code>就可以<br>最簡單的錯誤就是在呼叫api的時候沒有去handle exception(想辦法讓api呼叫失敗)<br>這時候就會進入到自己寫的那個class中</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ErrorHandler</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@angular/core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">MyErrorHandler</span> <span class="keyword">implements</span> <span class="title class_">ErrorHandler</span> &#123;</span><br><span class="line">    <span class="title function_">handleError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="comment">//call backend api</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`this is my error handle, <span class="subst">$&#123;error&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="AngularJS作法"><a href="#AngularJS作法" class="headerlink" title="AngularJS作法"></a>AngularJS作法</h1><p>因為工作上還有用到AngularJS，同事就問到有沒有這種東西<br>於是查詢了一下<a href="https://docs.angularjs.org/api/ng/service/$exceptionHandler">官方文件</a></p><p>作法跟Angular蠻像的，果然是前後代XD</p><p>同樣的照著官方文件做，寫一個factory叫做<code>$exceptionHandler</code>，overwrite原生的handler<br>一樣可以輕鬆的搞定需求</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.<span class="title function_">module</span>(<span class="string">&#x27;exceptionModule&#x27;</span>)</span><br><span class="line">    .<span class="title function_">factory</span>(<span class="string">&#x27;$exceptionHandler&#x27;</span>, [<span class="string">&#x27;$log&#x27;</span>, <span class="keyword">function</span> (<span class="params">$log</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">myExceptionHandler</span>(<span class="params">exception, cause</span>) &#123;</span><br><span class="line">            <span class="comment">//call back-end api</span></span><br><span class="line">            $log.<span class="title function_">error</span>(<span class="string">`my error handler, <span class="subst">$&#123;exception&#125;</span>`</span>, cause)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;]);</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>今天來看一下Angular和AngularJS如何去handle在網站中任一個地方發生的exception<br>想要把這種資料回寫到後端，我們可以怎麼去實作他</p><span id="more"></span><h1 id="Angular作法"><a href="#Angular作法" class="headerlink" title="Angular作法"></a>Angular作法</h1><p>在Angular可以攔截在全域未handle到的exception，可以看一下<a href="https://angular.io/api/core/ErrorHandler">官方文件</a></p><p>只要照著寫一個class <code>implements ErrorHandler</code>就可以<br>最簡單的錯誤就是在呼叫api的時候沒有去handle exception(想辦法讓api呼叫失敗)<br>這時候就會進入到自己寫的那個class中</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ErrorHandler</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@angular/core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">MyErrorHandler</span> <span class="keyword">implements</span> <span class="title class_">ErrorHandler</span> &#123;</span><br><span class="line">    <span class="title function_">handleError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="comment">//call backend api</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`this is my error handle, <span class="subst">$&#123;error&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="AngularJS作法"><a href="#AngularJS作法" class="headerlink" title="AngularJS作法"></a>AngularJS作法</h1><p>因為工作上還有用到AngularJS，同事就問到有沒有這種東西<br>於是查詢了一下<a href="https://docs.angularjs.org/api/ng/service/$exceptionHandler">官方文件</a></p><p>作法跟Angular蠻像的，果然是前後代XD</p><p>同樣的照著官方文件做，寫一個factory叫做<code>$exceptionHandler</code>，overwrite原生的handler<br>一樣可以輕鬆的搞定需求</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.<span class="title function_">module</span>(<span class="string">&#x27;exceptionModule&#x27;</span>)</span><br><span class="line">    .<span class="title function_">factory</span>(<span class="string">&#x27;$exceptionHandler&#x27;</span>, [<span class="string">&#x27;$log&#x27;</span>, <span class="keyword">function</span> (<span class="params">$log</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">myExceptionHandler</span>(<span class="params">exception, cause</span>) &#123;</span><br><span class="line">            <span class="comment">//call Backend api</span></span><br><span class="line">            $log.<span class="title function_">error</span>(<span class="string">`my error handler, <span class="subst">$&#123;exception&#125;</span>`</span>, cause)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;]);</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2097,7 +2095,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> RxJS </category>
           
@@ -2124,7 +2122,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2151,7 +2149,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2178,7 +2176,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> ReactNative </category>
           
@@ -2205,7 +2203,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2232,7 +2230,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> RxJS </category>
           
@@ -2259,7 +2257,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2286,7 +2284,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2313,7 +2311,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2340,7 +2338,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> Angular </category>
           
@@ -2423,7 +2421,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2450,7 +2448,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2479,7 +2477,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> AngularJS </category>
           
@@ -2513,7 +2511,7 @@
       
         <tags>
             
-            <tag> window </tag>
+            <tag> Windows </tag>
             
         </tags>
       
@@ -2552,7 +2550,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> CSS </category>
           
@@ -2579,7 +2577,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> jQuery </category>
           
@@ -2613,7 +2611,7 @@
       
         <tags>
             
-            <tag> window </tag>
+            <tag> Windows </tag>
             
         </tags>
       
@@ -2631,7 +2629,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2658,7 +2656,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2685,7 +2683,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2712,7 +2710,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2746,7 +2744,7 @@
       
         <tags>
             
-            <tag> window </tag>
+            <tag> Windows </tag>
             
         </tags>
       
@@ -2764,7 +2762,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2791,7 +2789,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2818,7 +2816,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -2845,7 +2843,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2872,7 +2870,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -2899,7 +2897,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2926,7 +2924,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -2953,7 +2951,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -2980,7 +2978,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3007,7 +3005,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -3034,7 +3032,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -3061,7 +3059,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3088,7 +3086,7 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
           <category> jQuery </category>
           
@@ -3115,7 +3113,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3142,7 +3140,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -3169,16 +3167,16 @@
       
       <categories>
           
-          <category> Front-end </category>
+          <category> Frontend </category>
           
-          <category> JS </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> js </tag>
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -3196,7 +3194,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> Oracle </category>
           
@@ -3223,7 +3221,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3250,7 +3248,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3277,7 +3275,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3304,7 +3302,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3331,7 +3329,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3358,7 +3356,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3385,7 +3383,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3412,7 +3410,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3439,7 +3437,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3466,7 +3464,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3493,7 +3491,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3520,7 +3518,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3547,7 +3545,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3574,7 +3572,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3601,7 +3599,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3628,7 +3626,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3655,7 +3653,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3682,7 +3680,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3709,7 +3707,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
@@ -3736,7 +3734,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> C# </category>
           
@@ -3763,7 +3761,7 @@
       
       <categories>
           
-          <category> Back-end </category>
+          <category> Backend </category>
           
           <category> ASP.NET </category>
           
