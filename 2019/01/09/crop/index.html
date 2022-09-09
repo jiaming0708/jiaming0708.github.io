@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/move.gif">
 <meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/gesturecard.jpg">
 <meta property="article:published_time" content="2019-01-09T13:43:55.000Z">
-<meta property="article:modified_time" content="2022-09-06T07:58:51.358Z">
+<meta property="article:modified_time" content="2022-09-09T07:02:54.737Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="crop">
 <meta property="article:tag" content="React">
@@ -54,7 +54,7 @@
   
     <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
   <div id="loading-bar-wrapper">
@@ -213,7 +213,7 @@
 <p>但這裡有個問題是，圖放大了，但是我們的座標本身是沒有放大，因此在做max、min的比較時，不能用放大後的值來運算，應該要換算回正確的值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (zoomValue &gt; <span class="number">1</span>) &#123;</span><br><span class="line">  minLeft = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetWidth, minLeft, zoomValue);</span><br><span class="line">  minTop = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetHeight, minTop, zoomValue);</span><br><span class="line">  maxLeft = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetWidth, maxLeft, zoomValue);</span><br><span class="line">  maxTop = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetHeight, maxTop, zoomValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">calOriginPosition</span> = (<span class="params">originLength, value, zoomValue</span>) =&gt;</span><br><span class="line">    value + ((zoomValue - <span class="number">1</span>) * originLength / <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="mobile放大-pinch"><a href="#mobile放大-pinch" class="headerlink" title="mobile放大-pinch"></a>mobile放大-pinch</h2><a href="/2019/01/08/crop-drag/" title="前面一篇">前面一篇</a>有提到在mobile上的touch是一個陣列，為了可以記錄多點觸控時的位置，在mobile上scale有個名詞叫做**pinch**，可以看一下這張圖上面有各種在mobile上的操作行為
+<h2 id="mobile放大-pinch"><a href="#mobile放大-pinch" class="headerlink" title="mobile放大-pinch"></a>mobile放大-pinch</h2><a href="/2019/01/08/crop-drag/" title="[crop系列] 4 drag實作">前面一篇</a>有提到在mobile上的touch是一個陣列，為了可以記錄多點觸控時的位置，在mobile上scale有個名詞叫做**pinch**，可以看一下這張圖上面有各種在mobile上的操作行為
 <p><img src="/2019/01/09/crop/gesturecard.jpg" alt="gesture"></p>
 <p>這邊跟drag只有一個地方要調整，就是一定要觸控兩個點，接著變更<code>zoomValue</code>即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(event =&gt; event.touches.length === 2)</span><br></pre></td></tr></table></figure>
