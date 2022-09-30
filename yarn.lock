@@ -877,10 +877,10 @@ hexo-server@^3.0.0:
   dependencies:
     hexo-util "^2.5.0"
 
-hexo-theme-material-flow@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.4.0.tgz#cc9cbf276e289487eb14428770457c6488e15671"
-  integrity sha512-bcFssbf02oIobFBQ9lXSKD6SpTcr+/oY/6hOjc3AyzYA7bdlp7K/tyvBIth67uSGEYJOeVKyMpGzIHdWgbJU6g==
+hexo-theme-material-flow@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.4.1.tgz#b1eaf7f15d0853c5e76cd16221e1b0a356f090c3"
+  integrity sha512-eWSoQScPlUefaSqEBYOT+DeUPNHBKaqInt8Nl3mMT3TOEU6Z9971McyT7Txw5inQsKNv+B3luoGI7PUG9CHdsA==
 
 hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.5.0, hexo-util@^2.7.0:
   version "2.7.0"
