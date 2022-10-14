@@ -7,6 +7,7 @@ categories:
 tags:
 - Dotnet
 - Testing
+thumbnail: /images/dotnet-framework.jpg
 ---
 
 昨天收到同事的一個 bug，使用公司 library 所提供的方法所引發的一個錯誤，這錯誤蠻基本也蠻蝦的，雖然這個 library 已經很少再改，基於保護自己的想法，還是要幫這個方法加上測試，因為這個專案的版本還是 dotnet framework 4.5.1，希望能透過 cli 的方式在 CI 的時候跑測試。
