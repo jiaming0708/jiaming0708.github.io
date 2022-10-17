@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2022-10-14T09:09:41.830Z</updated>
+  <updated>2022-10-17T07:02:52.677Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/"/>
     <id>http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/</id>
     <published>2022-10-14T06:27:37.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;昨天收到同事的一個 bug，使用公司 library 所提供的方法所引發的一個錯誤，這錯誤蠻基本也蠻蝦的，雖然這個 library 已經很少再改，基於保護自己的想法，還是要幫這個方法加上測試，因為這個專案的版本還是 dotnet framework 4.5.1，希望能透過 cli 的方式在 CI 的時候跑測試。&lt;/p&gt;
@@ -45,7 +45,7 @@
     <link href="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/"/>
     <id>http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/</id>
     <published>2022-09-06T07:00:16.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;DotnetCore的版本更新的很快，為了要有支援多個環境，電腦都會安裝很多的 SDK，預設 cli 會使用最新的版本，理論上新版都應該是可以支援舊版的編譯；但偏偏&lt;del&gt;雨漸漸&lt;/del&gt;為了要測試一個功能，就安裝了 Dotnet 7 preview，結果導致原本可以編譯的專案變成失敗，而且錯誤訊息還很難看懂，還好可以指定舊版的 SDK，就可以避免掉這樣的問題。&lt;/p&gt;</summary>
@@ -68,7 +68,7 @@
     <link href="http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/"/>
     <id>http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/</id>
     <published>2022-08-22T03:07:00.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;dotnet core 的專案現在有讀取 excel 的需求了，測試幾套後整理做法，給有需要的人。總共看了四套，其中一套在商用上是需要付費的，使用上要注意一下。&lt;/p&gt;</summary>
@@ -89,7 +89,7 @@
     <link href="http://jiaming0708.github.io/2022/08/11/blazor-upload-file/"/>
     <id>http://jiaming0708.github.io/2022/08/11/blazor-upload-file/</id>
     <published>2022-08-11T01:18:50.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;本篇會介紹如何在 Blazor 使用 &lt;code&gt;multipart/form-data&lt;/code&gt; 上傳檔案的功能，並且在 API 要如何接收。&lt;/p&gt;</summary>
@@ -110,7 +110,7 @@
     <link href="http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/"/>
     <id>http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/</id>
     <published>2022-08-02T06:43:07.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;LINQ 是一個好用的工具，撰寫的時候可以透過強行別的特性，讓篩選資料等的行為很輕鬆，偏偏成也強型別敗也強型別，在做查詢的時候十幾個欄位，總不可能一個一個比對，還好查到一個好用的套件 [Dynamic-LINQ](&lt;a href=&quot;https://dynamic-linq.net/&quot;&gt;Dynamic LINQ (dynamic-linq.net)&lt;/a&gt;)，可以解決這樣的問題。&lt;/p&gt;</summary>
@@ -133,7 +133,7 @@
     <link href="http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/"/>
     <id>http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/</id>
     <published>2022-06-22T11:46:46.000Z</published>
-    <updated>2022-10-14T09:09:41.830Z</updated>
+    <updated>2022-10-17T07:02:52.677Z</updated>
     
     
     <summary type="html">&lt;p&gt;在非 windows 的環境下架站，nginx 會是首選，把一些服務搭配 nginx 並且使用 docker compose 作架站，也是一個不錯的選擇。&lt;br&gt;今天會使用 Gitea&amp;#x2F;Drone 這兩個服務，並且搭配 ngrok 來作為模擬。&lt;/p&gt;</summary>
@@ -158,7 +158,7 @@
     <link href="http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/"/>
     <id>http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/</id>
     <published>2022-06-07T12:14:13.000Z</published>
-    <updated>2022-10-14T09:09:41.826Z</updated>
+    <updated>2022-10-17T07:02:52.673Z</updated>
     
     
     <summary type="html">&lt;p&gt;放在 Github 上面的 Repository 可以開啟相依套件的更新檢查，甚至會自動幫你發送 PR，今天來看一下怎麼樣設定並在最後發出通知。&lt;/p&gt;</summary>
@@ -179,7 +179,7 @@
     <link href="http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/"/>
     <id>http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/</id>
     <published>2022-06-04T13:47:46.000Z</published>
-    <updated>2022-10-14T09:09:41.826Z</updated>
+    <updated>2022-10-17T07:02:52.673Z</updated>
     
     
     <summary type="html">&lt;p&gt;想在 cli 的環境下要對 json 的檔案做修改，如果要用一行一行讀取後處理，實在是太麻煩而且太容易改錯，還好有一套工具 &lt;a href=&quot;https://stedolan.github.io/jq/&quot;&gt;jq&lt;/a&gt; ，可以快速的操作整個 json 資料。&lt;br&gt;我把這個應用在 CI&amp;#x2F;CD 的環節中，在當下調整一些設定檔。&lt;/p&gt;
@@ -203,7 +203,7 @@
     <link href="http://jiaming0708.github.io/2022/06/02/angularjs-button-ngclick-twice/"/>
     <id>http://jiaming0708.github.io/2022/06/02/angularjs-button-ngclick-twice/</id>
     <published>2022-06-02T06:39:44.000Z</published>
-    <updated>2022-10-14T09:09:41.826Z</updated>
+    <updated>2022-10-17T07:02:52.673Z</updated>
     
     
     <summary type="html">&lt;p&gt;同事詢問了一個 AngularJS button click 的時候會執行兩次的問題，只有在 IE 上會發生，但在 edge&amp;#x2F;chrome 就不會。聽到這個問題，第一個反應是先去看看網路上有沒有人有類似的問題，&lt;code&gt;angularjs button click execute twice&lt;/code&gt; ，果然我們不是孤單的，蠻多人討論過。&lt;/p&gt;
@@ -229,7 +229,7 @@
     <link href="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/"/>
     <id>http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/</id>
     <published>2022-03-24T01:20:03.000Z</published>
-    <updated>2022-10-14T09:09:41.826Z</updated>
+    <updated>2022-10-17T07:02:52.673Z</updated>
     
     
     <summary type="html">&lt;p&gt;Jenkins 和 Gitea 的環境都建置好後，會希望登入的使用者能在一個地方控管就好， Gitea 自從 1.8 以後就開始提供 Oauth 的方法給其他系統，今天就針對這個部分來做介紹。&lt;/p&gt;</summary>
@@ -250,7 +250,7 @@
     <link href="http://jiaming0708.github.io/2022/03/23/wcf-ajax-https/"/>
     <id>http://jiaming0708.github.io/2022/03/23/wcf-ajax-https/</id>
     <published>2022-03-23T06:01:46.000Z</published>
-    <updated>2022-10-14T09:09:41.826Z</updated>
+    <updated>2022-10-17T07:02:52.673Z</updated>
     
     
     <summary type="html">&lt;p&gt;今天接到同事來的一個求救，有一個產品基於 WCF 服務建置 https 時無法正常運行，原本以為簡單，但卡了一陣子，特別來筆記一下。&lt;/p&gt;</summary>
@@ -273,7 +273,7 @@
     <link href="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/"/>
     <id>http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/</id>
     <published>2022-03-15T07:04:59.000Z</published>
-    <updated>2022-10-14T09:09:41.818Z</updated>
+    <updated>2022-10-17T07:02:52.665Z</updated>
     
     
     <summary type="html">&lt;p&gt;Dotnet framework 的 docker image 只有 window 版本，要特別將 Docker Desktop 切換成 Windows container 才能跑，為了讓 Dotnet framework 及 Dotnet core 能同時跑在一個 CI&amp;#x2F;CD 的平台，最後選擇了 Jenkins 這位老爺爺。&lt;/p&gt;
@@ -299,7 +299,7 @@
     <link href="http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/"/>
     <id>http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/</id>
     <published>2022-02-26T02:18:36.000Z</published>
-    <updated>2022-10-14T09:09:41.814Z</updated>
+    <updated>2022-10-17T07:02:52.665Z</updated>
     
     
     <summary type="html">&lt;p&gt;這是系列文的第四篇，今天要講的是針對 JSRuntime 及 NavigationManager 做測試。&lt;br&gt;如果還沒看過前面幾篇的話，請往這邊走&lt;/p&gt;
@@ -330,7 +330,7 @@
     <link href="http://jiaming0708.github.io/2022/01/28/blazor-testing-service/"/>
     <id>http://jiaming0708.github.io/2022/01/28/blazor-testing-service/</id>
     <published>2022-01-28T01:25:36.000Z</published>
-    <updated>2022-10-14T09:09:41.814Z</updated>
+    <updated>2022-10-17T07:02:52.665Z</updated>
     
     
     <summary type="html">&lt;p&gt;這是系列文的第三篇，今天要講到的是針對 Service 做測試。&lt;br&gt;如果還沒看過前面兩篇的話，請往這邊走 &lt;a href=&quot;/2021/12/23/blazor-testing-basic/&quot; title=&quot;[Blazor] 元件測試 - 基礎篇&quot;&gt;[Blazor] 元件測試 - 基礎篇&lt;/a&gt;、&lt;a href=&quot;/2022/01/21/blazor-testing-mock/&quot; title=&quot;[Blazor] 元件測試 - mock&quot;&gt;[Blazor] 元件測試 - mock&lt;/a&gt;。&lt;/p&gt;
@@ -356,7 +356,7 @@
     <link href="http://jiaming0708.github.io/2022/01/21/blazor-testing-mock/"/>
     <id>http://jiaming0708.github.io/2022/01/21/blazor-testing-mock/</id>
     <published>2022-01-21T07:40:56.000Z</published>
-    <updated>2022-10-14T09:09:41.814Z</updated>
+    <updated>2022-10-17T07:02:52.665Z</updated>
     
     
     <summary type="html">&lt;p&gt;前一篇 &lt;a href=&quot;/2021/12/23/blazor-testing-basic/&quot; title=&quot;[Blazor] 元件測試 - 基礎篇&quot;&gt;[Blazor] 元件測試 - 基礎篇&lt;/a&gt; 中已經介紹過基本的測試，今天要來介紹的是 &lt;code&gt;Mock&lt;/code&gt; 的應用。&lt;/p&gt;
@@ -382,7 +382,7 @@
     <link href="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/"/>
     <id>http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/</id>
     <published>2021-12-29T01:02:29.000Z</published>
-    <updated>2022-10-14T09:09:41.810Z</updated>
+    <updated>2022-10-17T07:02:52.661Z</updated>
     
     
     <summary type="html">&lt;p&gt;nuget 是 dotnet 的套件管理工具，就像是 npm 是屬於 nodejs 的平台一樣，在上面的版本只能升不能降，還會有所有的版本異動紀錄，可以讓專案的參考管理更為有效。&lt;br&gt;有 source code 的話要做到打包其實非常的簡單，今天要分享只有 dll 的話該如何發佈到 nuget server。&lt;/p&gt;</summary>
@@ -401,7 +401,7 @@
     <link href="http://jiaming0708.github.io/2021/12/24/svn-migrate-git/"/>
     <id>http://jiaming0708.github.io/2021/12/24/svn-migrate-git/</id>
     <published>2021-12-24T01:35:48.000Z</published>
-    <updated>2022-10-14T09:09:41.810Z</updated>
+    <updated>2022-10-17T07:02:52.661Z</updated>
     
     
     <summary type="html">&lt;p&gt;公司還是有舊的專案是放在 Subversion(SVN) 中，為了接下來增加一些 CI&amp;#x2F;CD 的輔助，並且希望在 Teams 能夠集中並且即時的收到專案的資訊，就必須要做搬移的動作。&lt;/p&gt;
@@ -425,7 +425,7 @@
     <link href="http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/"/>
     <id>http://jiaming0708.github.io/2021/12/23/blazor-testing-basic/</id>
     <published>2021-12-23T14:27:50.000Z</published>
-    <updated>2022-10-14T09:09:41.810Z</updated>
+    <updated>2022-10-17T07:02:52.661Z</updated>
     
     
     <summary type="html">&lt;p&gt;寫了很多的元件來使用，但要怎麼確保行為正確，在修改的時候沒有把一些行為改壞，可以透過&lt;code&gt;測試&lt;/code&gt;來進行保護，在 Blazor 中可以透過 &lt;a href=&quot;https://bunit.dev/&quot;&gt;&lt;strong&gt;bUnit&lt;/strong&gt;&lt;/a&gt; 這個套件來達成。&lt;/p&gt;</summary>
@@ -448,7 +448,7 @@
     <link href="http://jiaming0708.github.io/2021/11/18/detect-application-installed/"/>
     <id>http://jiaming0708.github.io/2021/11/18/detect-application-installed/</id>
     <published>2021-11-18T02:10:54.000Z</published>
-    <updated>2022-10-14T09:09:41.810Z</updated>
+    <updated>2022-10-17T07:02:52.661Z</updated>
     
     
     <summary type="html">&lt;p&gt;前面介紹了在瀏覽器開起應用程式及封裝應用程式，今天要來介紹的是如何在瀏覽器中偵測裝置是否已經安裝，根據狀態來決定是否要顯示不同的文字內容。&lt;/p&gt;
@@ -473,7 +473,7 @@
     <link href="http://jiaming0708.github.io/2021/11/06/vs-installer-project/"/>
     <id>http://jiaming0708.github.io/2021/11/06/vs-installer-project/</id>
     <published>2021-11-06T07:37:49.000Z</published>
-    <updated>2022-10-14T09:09:41.806Z</updated>
+    <updated>2022-10-17T07:02:52.657Z</updated>
     
     
     <summary type="html">&lt;p&gt;前一篇  &lt;a href=&quot;/2021/10/11/browser-open-application/&quot; title=&quot;如何在瀏覽器開啟應用程式&quot;&gt;如何在瀏覽器開啟應用程式&lt;/a&gt; 中講到開啟應用程式，接著要來講怎麼樣封裝應用程式在安裝檔內。&lt;/p&gt;</summary>
