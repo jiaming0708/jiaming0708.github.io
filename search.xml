@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>如何建立 Oracle database image</title>
+      <link href="/2023/01/16/build-oracle-database-image/"/>
+      <url>/2023/01/16/build-oracle-database-image/</url>
+      
+        <content type="html"><![CDATA[<p>原本 Oracle 有提供 image 在 <a href="https://hub.docker.com/_/oracle-database-enterprise-edition">DockerHub</a>上，現在已經沒有再提供了，那對於習慣用 container 做開發的我來說，非常的不方便，還好 Oracle 也有提供另外的做法可以來建立 image，接下來分享該如何操作。</p><span id="more"></span><p>Oracle 已經將很多的服務寫好 dockerfile 放到 <a href="https://github.com/oracle/docker-images">github</a> 上，從 OracleDatabase 目錄進入，有分 SingleInstance 及 RAC 就根據自己需求去選，這邊我是要自己開發用的所以選擇是 <strong>SingleInstance</strong>，進去以後可以看到從 11g 到 21c 都有提供，就根據自己的需要去選擇，今天會使用 19c 來做為展示。</p><blockquote><p>雖然我的環境是用 windows，在 mac 的環境下是沒有差的。</p></blockquote><h2 id="Sparse-checkout"><a href="#Sparse-checkout" class="headerlink" title="Sparse checkout"></a>Sparse checkout</h2><p>整個 repo 很多內容，我們只需要 SingleInstance 底下的 dockerfiles 資料夾，選擇使用 sparse checkout 的做法，只拿部分的內容。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 --sparse https://github.com/oracle/docker-images.git oracle-images</span><br><span class="line">cd oracle-images</span><br></pre></td></tr></table></figure><p>設定只取得 <code>OracleDatabase/SingleInstance/dockerfiles</code>。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git sparse-checkout set &quot;OracleDatabase/SingleInstance/dockerfiles&quot;</span><br></pre></td></tr></table></figure><p><img src="/2023/01/16/build-oracle-database-image/dockerfiles-folder.png" alt="dockerfiles-folder"></p><h2 id="下載dbhome"><a href="#下載dbhome" class="headerlink" title="下載dbhome"></a>下載dbhome</h2><p><a href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html">Database Software Downloads | Oracle</a> 接著到 Oracle 官網下載 dbhome，選擇好版本並且點擊 linux x86_64 來下載。</p><p><img src="/2023/01/16/build-oracle-database-image/download_dbhome_linux.png" alt="download_dbhome_linux"></p><p>下載後的檔案放到剛剛所 clone 的專案目錄底下對應的版本資料夾中。</p><p><img src="/2023/01/16/build-oracle-database-image/dbhome_in_dockerfile_folder.png" alt="dbhome_in_dockerfile_folder"></p><h2 id="產生image"><a href="#產生image" class="headerlink" title="產生image"></a>產生image</h2><p>前置作業終於完成，可以來最作後一個步驟，產生 image 啦!<br>來到 dockerfiles 的資料夾，看到 <code>buildContainerImage.sh</code> 檔案，Oracle 已經寫好指令，讓我們可以更為方便的產生 image。</p><blockquote><p>如果是在 windows 環境下，無法直接執行 bash 的檔案，可以改用 WSL 來執行。</p></blockquote><p>後面加上 <code>-v</code> 指定版本，<code>-t</code> 指定 image tag 名稱。</p><blockquote><p>共有三種模式可以選擇，Enterprise Edition(-e), Standard Edition 2(-s), Express Edition(-x)</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./buildContainerImage.sh -v 19.3.0 -s -t oracle/database:19.3.0s</span><br></pre></td></tr></table></figure><p>執行會有一陣子(我的電腦最後花費 280 秒)，最後看到這樣的訊息就代表成功囉。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> =&gt; =&gt; naming to docker.io/oracle/database:19.3.0s                         0.0s</span><br><span class="line"></span><br><span class="line">Use &#x27;docker scan&#x27; to run Snyk tests against images to find vulnerabilities and learn how to fix them</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Oracle Database container image for &#x27;se2&#x27; version 19.3.0 is ready to be extended:</span><br><span class="line"></span><br><span class="line">    --&gt; oracle/database:19.3.0s</span><br><span class="line"></span><br><span class="line">  Build completed in 280 seconds.</span><br></pre></td></tr></table></figure><p>開啟 DockerDesktop 切換到 Images 的頁面，就可以看到所產生的 image 啦!!</p><p><img src="/2023/01/16/build-oracle-database-image/image-build-successfully.png" alt="image-build-successfully"></p><h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>最後就是跑起來!! (<del>還慢慢走啊，動作</del>)<br>如果想要保留檔案，可以使用 volumn 做對應 <code>/opt/oracle/oradata</code>；使用環境變數指定管理者密碼 <code>ORACLE_PWD</code>。</p><blockquote><p>如果沒有 volumn 的話，第一次的啟動會花較多時間；有 volumn 就會蠻快的。</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name oracle -d -it --rm -p 1521:1521 -v $&#123;PWD&#125;/data19c:/opt/oracle/oradata -e ORACLE_PWD=&quot;p@ssw0rd&quot; oracle/database:19.3.0s</span><br></pre></td></tr></table></figure><p>到了這個步驟，終於可以開始我們的開發啦，也不用擔心重灌系統還要先 dump&#x2F;import 資料，可以大大的節省時間啦!!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Database </category>
+          
+          <category> Oracle </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Database </tag>
+            
+            <tag> Oracle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[flutter] 在 GoRoute 中使用 NavigationBar</title>
       <link href="/2023/01/09/flutter-goroute-with-navigation-bar/"/>
       <url>/2023/01/09/flutter-goroute-with-navigation-bar/</url>
