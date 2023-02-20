@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2023-02-20T05:41:45.654Z</updated>
+  <updated>2023-02-20T14:24:07.262Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>[Flutter] SVG應用</title>
+    <link href="http://jiaming0708.github.io/2023/02/20/flutter-svg/"/>
+    <id>http://jiaming0708.github.io/2023/02/20/flutter-svg/</id>
+    <published>2023-02-20T14:13:56.000Z</published>
+    <updated>2023-02-20T14:24:07.262Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Flutter" scheme="http://jiaming0708.github.io/categories/Flutter/"/>
+    
+    
+    <category term="Flutter" scheme="http://jiaming0708.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Gitea 資料庫遷移</title>
     <link href="http://jiaming0708.github.io/2023/02/20/gitea-database-migration/"/>
     <id>http://jiaming0708.github.io/2023/02/20/gitea-database-migration/</id>
     <published>2023-02-20T03:06:21.000Z</published>
-    <updated>2023-02-20T05:41:45.654Z</updated>
+    <updated>2023-02-20T14:24:07.262Z</updated>
     
     
     <summary type="html">&lt;p&gt;公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。&lt;/p&gt;</summary>
@@ -42,7 +61,7 @@
     <link href="http://jiaming0708.github.io/2023/01/24/flutter-hex-color/"/>
     <id>http://jiaming0708.github.io/2023/01/24/flutter-hex-color/</id>
     <published>2023-01-24T06:16:00.000Z</published>
-    <updated>2023-02-20T05:41:45.654Z</updated>
+    <updated>2023-02-20T14:24:07.258Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Flutter 中有提供好幾種方法可以來定義 &lt;code&gt;Color&lt;/code&gt; 這個物件，這篇會介紹如何使用這些方法。&lt;/p&gt;</summary>
@@ -61,7 +80,7 @@
     <link href="http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/"/>
     <id>http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/</id>
     <published>2023-01-16T02:46:13.000Z</published>
-    <updated>2023-02-20T05:41:45.654Z</updated>
+    <updated>2023-02-20T14:24:07.258Z</updated>
     
     
     <summary type="html">&lt;p&gt;原本 Oracle 有提供 image 在 &lt;a href=&quot;https://hub.docker.com/_/oracle-database-enterprise-edition&quot;&gt;DockerHub&lt;/a&gt;上，現在已經沒有再提供了，那對於習慣用 container 做開發的我來說，非常的不方便，還好 Oracle 也有提供另外的做法可以來建立 image，接下來分享該如何操作。&lt;/p&gt;</summary>
@@ -86,7 +105,7 @@
     <link href="http://jiaming0708.github.io/2023/01/09/flutter-goroute-with-navigation-bar/"/>
     <id>http://jiaming0708.github.io/2023/01/09/flutter-goroute-with-navigation-bar/</id>
     <published>2023-01-09T02:12:05.000Z</published>
-    <updated>2023-02-20T05:41:45.642Z</updated>
+    <updated>2023-02-20T14:24:07.246Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 App 中通常會把主要的幾個頁面放在下方 icon，讓使用者能夠方便操作，這個元件在 flutter 中稱為 &lt;code&gt;BottomNavigationBar&lt;/code&gt;。&lt;br&gt;&lt;code&gt;GoRouter&lt;/code&gt; 是 Flutter 官方所提供的套件，可以用來整合整個專案的路由，當這兩個功能整合在一起的時候，一個不小心呈現出來的效果就會差很多。&lt;/p&gt;</summary>
@@ -105,7 +124,7 @@
     <link href="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/"/>
     <id>http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/</id>
     <published>2023-01-05T03:49:02.000Z</published>
-    <updated>2023-02-20T05:41:45.638Z</updated>
+    <updated>2023-02-20T14:24:07.246Z</updated>
     
     
     <summary type="html">&lt;p&gt;在一個 Webform 的專案中，使用到 AjaxToolKit 的元件 &lt;code&gt;CalendarExtender&lt;/code&gt;來選擇日期，設定的時間格式為 &lt;code&gt;2023/01/05  23:59:59&lt;/code&gt;，在瀏覽器做日期的選擇後，會變成 &lt;code&gt;2023/01/05 23:59:00&lt;/code&gt;，也沒有看到任何地方有去變更時間，同事覺得奇怪，一起追查問題以後發現這是一個 bug。&lt;/p&gt;</summary>
@@ -128,7 +147,7 @@
     <link href="http://jiaming0708.github.io/2022/11/02/blazor-css-scope/"/>
     <id>http://jiaming0708.github.io/2022/11/02/blazor-css-scope/</id>
     <published>2022-11-02T12:42:21.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;Blazor 的 css 作用域預設是元件內有效，那如果想要往子元件渲染的話，可以怎麼做？今天要來搞懂 Blazor 的 css scope 是怎麼樣運作，let’s go!&lt;/p&gt;</summary>
@@ -149,7 +168,7 @@
     <link href="http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/"/>
     <id>http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/</id>
     <published>2022-10-14T06:27:37.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;昨天收到同事的一個 bug，使用公司 library 所提供的方法所引發的一個錯誤，這錯誤蠻基本也蠻蝦的，雖然這個 library 已經很少再改，基於保護自己的想法，還是要幫這個方法加上測試，因為這個專案的版本還是 dotnet framework 4.5.1，希望能透過 cli 的方式在 CI 的時候跑測試。&lt;/p&gt;
@@ -173,7 +192,7 @@
     <link href="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/"/>
     <id>http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/</id>
     <published>2022-09-06T07:00:16.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;DotnetCore的版本更新的很快，為了要有支援多個環境，電腦都會安裝很多的 SDK，預設 cli 會使用最新的版本，理論上新版都應該是可以支援舊版的編譯；但偏偏&lt;del&gt;雨漸漸&lt;/del&gt;為了要測試一個功能，就安裝了 Dotnet 7 preview，結果導致原本可以編譯的專案變成失敗，而且錯誤訊息還很難看懂，還好可以指定舊版的 SDK，就可以避免掉這樣的問題。&lt;/p&gt;</summary>
@@ -196,7 +215,7 @@
     <link href="http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/"/>
     <id>http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/</id>
     <published>2022-08-22T03:07:00.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;dotnet core 的專案現在有讀取 excel 的需求了，測試幾套後整理做法，給有需要的人。總共看了四套，其中一套在商用上是需要付費的，使用上要注意一下。&lt;/p&gt;</summary>
@@ -217,7 +236,7 @@
     <link href="http://jiaming0708.github.io/2022/08/11/blazor-upload-file/"/>
     <id>http://jiaming0708.github.io/2022/08/11/blazor-upload-file/</id>
     <published>2022-08-11T01:18:50.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;本篇會介紹如何在 Blazor 使用 &lt;code&gt;multipart/form-data&lt;/code&gt; 上傳檔案的功能，並且在 API 要如何接收。&lt;/p&gt;</summary>
@@ -238,7 +257,7 @@
     <link href="http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/"/>
     <id>http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/</id>
     <published>2022-08-02T06:43:07.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.242Z</updated>
     
     
     <summary type="html">&lt;p&gt;LINQ 是一個好用的工具，撰寫的時候可以透過強行別的特性，讓篩選資料等的行為很輕鬆，偏偏成也強型別敗也強型別，在做查詢的時候十幾個欄位，總不可能一個一個比對，還好查到一個好用的套件 [Dynamic-LINQ](&lt;a href=&quot;https://dynamic-linq.net/&quot;&gt;Dynamic LINQ (dynamic-linq.net)&lt;/a&gt;)，可以解決這樣的問題。&lt;/p&gt;</summary>
@@ -261,7 +280,7 @@
     <link href="http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/"/>
     <id>http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/</id>
     <published>2022-06-22T11:46:46.000Z</published>
-    <updated>2023-02-20T05:41:45.634Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;在非 windows 的環境下架站，nginx 會是首選，把一些服務搭配 nginx 並且使用 docker compose 作架站，也是一個不錯的選擇。&lt;br&gt;今天會使用 Gitea&amp;#x2F;Drone 這兩個服務，並且搭配 ngrok 來作為模擬。&lt;/p&gt;</summary>
@@ -286,7 +305,7 @@
     <link href="http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/"/>
     <id>http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/</id>
     <published>2022-06-07T12:14:13.000Z</published>
-    <updated>2023-02-20T05:41:45.630Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;放在 Github 上面的 Repository 可以開啟相依套件的更新檢查，甚至會自動幫你發送 PR，今天來看一下怎麼樣設定並在最後發出通知。&lt;/p&gt;</summary>
@@ -307,7 +326,7 @@
     <link href="http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/"/>
     <id>http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/</id>
     <published>2022-06-04T13:47:46.000Z</published>
-    <updated>2023-02-20T05:41:45.630Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;想在 cli 的環境下要對 json 的檔案做修改，如果要用一行一行讀取後處理，實在是太麻煩而且太容易改錯，還好有一套工具 &lt;a href=&quot;https://stedolan.github.io/jq/&quot;&gt;jq&lt;/a&gt; ，可以快速的操作整個 json 資料。&lt;br&gt;我把這個應用在 CI&amp;#x2F;CD 的環節中，在當下調整一些設定檔。&lt;/p&gt;
@@ -331,7 +350,7 @@
     <link href="http://jiaming0708.github.io/2022/06/02/angularjs-button-ngclick-twice/"/>
     <id>http://jiaming0708.github.io/2022/06/02/angularjs-button-ngclick-twice/</id>
     <published>2022-06-02T06:39:44.000Z</published>
-    <updated>2023-02-20T05:41:45.630Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;同事詢問了一個 AngularJS button click 的時候會執行兩次的問題，只有在 IE 上會發生，但在 edge&amp;#x2F;chrome 就不會。聽到這個問題，第一個反應是先去看看網路上有沒有人有類似的問題，&lt;code&gt;angularjs button click execute twice&lt;/code&gt; ，果然我們不是孤單的，蠻多人討論過。&lt;/p&gt;
@@ -357,7 +376,7 @@
     <link href="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/"/>
     <id>http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/</id>
     <published>2022-03-24T01:20:03.000Z</published>
-    <updated>2023-02-20T05:41:45.630Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;Jenkins 和 Gitea 的環境都建置好後，會希望登入的使用者能在一個地方控管就好， Gitea 自從 1.8 以後就開始提供 Oauth 的方法給其他系統，今天就針對這個部分來做介紹。&lt;/p&gt;</summary>
@@ -378,7 +397,7 @@
     <link href="http://jiaming0708.github.io/2022/03/23/wcf-ajax-https/"/>
     <id>http://jiaming0708.github.io/2022/03/23/wcf-ajax-https/</id>
     <published>2022-03-23T06:01:46.000Z</published>
-    <updated>2023-02-20T05:41:45.630Z</updated>
+    <updated>2023-02-20T14:24:07.238Z</updated>
     
     
     <summary type="html">&lt;p&gt;今天接到同事來的一個求救，有一個產品基於 WCF 服務建置 https 時無法正常運行，原本以為簡單，但卡了一陣子，特別來筆記一下。&lt;/p&gt;</summary>
@@ -401,7 +420,7 @@
     <link href="http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/"/>
     <id>http://jiaming0708.github.io/2022/03/15/jenkins-gitea-setup/</id>
     <published>2022-03-15T07:04:59.000Z</published>
-    <updated>2023-02-20T05:41:45.622Z</updated>
+    <updated>2023-02-20T14:24:07.226Z</updated>
     
     
     <summary type="html">&lt;p&gt;Dotnet framework 的 docker image 只有 window 版本，要特別將 Docker Desktop 切換成 Windows container 才能跑，為了讓 Dotnet framework 及 Dotnet core 能同時跑在一個 CI&amp;#x2F;CD 的平台，最後選擇了 Jenkins 這位老爺爺。&lt;/p&gt;
@@ -427,7 +446,7 @@
     <link href="http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/"/>
     <id>http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/</id>
     <published>2022-02-26T02:18:36.000Z</published>
-    <updated>2023-02-20T05:41:45.622Z</updated>
+    <updated>2023-02-20T14:24:07.226Z</updated>
     
     
     <summary type="html">&lt;p&gt;這是系列文的第四篇，今天要講的是針對 JSRuntime 及 NavigationManager 做測試。&lt;br&gt;如果還沒看過前面幾篇的話，請往這邊走&lt;/p&gt;
@@ -438,32 +457,6 @@
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;使用同一個 &lt;a href=&quot;https://github.com/jiaming0708/blazor-testing-demo&quot;&gt;repo&lt;/a&gt; 接續操作&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="Frontend" scheme="http://jiaming0708.github.io/categories/Frontend/"/>
-    
-    <category term="Blazor" scheme="http://jiaming0708.github.io/categories/Frontend/Blazor/"/>
-    
-    
-    <category term="Testing" scheme="http://jiaming0708.github.io/tags/Testing/"/>
-    
-    <category term="Blazor" scheme="http://jiaming0708.github.io/tags/Blazor/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[Blazor] 元件測試 - Service</title>
-    <link href="http://jiaming0708.github.io/2022/01/28/blazor-testing-service/"/>
-    <id>http://jiaming0708.github.io/2022/01/28/blazor-testing-service/</id>
-    <published>2022-01-28T01:25:36.000Z</published>
-    <updated>2023-02-20T05:41:45.622Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;這是系列文的第三篇，今天要講到的是針對 Service 做測試。&lt;br&gt;如果還沒看過前面兩篇的話，請往這邊走 &lt;a href=&quot;/2021/12/23/blazor-testing-basic/&quot; title=&quot;[Blazor] 元件測試 - 基礎篇&quot;&gt;[Blazor] 元件測試 - 基礎篇&lt;/a&gt;、&lt;a href=&quot;/2022/01/21/blazor-testing-mock/&quot; title=&quot;[Blazor] 元件測試 - mock&quot;&gt;[Blazor] 元件測試 - mock&lt;/a&gt;。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;使用上次的 &lt;a href=&quot;https://github.com/jiaming0708/blazor-testing-demo&quot;&gt;repo&lt;/a&gt; 接續操作&lt;/p&gt;
 &lt;/blockquote&gt;</summary>
     
     

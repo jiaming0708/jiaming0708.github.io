@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>[Flutter] SVG應用 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Flutter] SVG應用">
+<meta property="og:url" content="http://jiaming0708.github.io/2023/02/20/flutter-svg/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/images/flutter.png">
+<meta property="article:published_time" content="2023-02-20T14:13:56.000Z">
+<meta property="article:modified_time" content="2023-02-20T14:24:07.262Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/images/flutter.png">
+    
+  <link href="//fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="//fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-5LXTGJNLYY');
+    </script>
+  
+  
+    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-flutter-svg"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2023/02/20/flutter-svg/">
+    	[Flutter] SVG應用
+    </a>
+  </h2>
+	<time>
+	  2月 20, 2023
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Flutter/">Flutter</a>
+    </div>
+    
+        <span class="readtime">4 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">安裝使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%9C%A8%E6%9C%AC%E5%9C%B0"><span class="toc-number">2.</span> <span class="toc-text">檔案在本地</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%9C%A8%E7%B6%B2%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">檔案在網路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E8%AE%8A%E9%A1%8F%E8%89%B2"><span class="toc-number">4.</span> <span class="toc-text">改變顏色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A7%E7%B8%AE%E6%95%88%E6%9E%9C"><span class="toc-number">5.</span> <span class="toc-text">內縮效果</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Flutter/">Flutter</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。</p>
+<span id="more"></span>
+
+<h2 id="安裝使用"><a href="#安裝使用" class="headerlink" title="安裝使用"></a>安裝使用</h2><p>執行以下的指令安裝套件 <a target="_blank" rel="noopener" href="https://pub.dev/packages/flutter_svg">flutter_svg</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter pub add flutter_svg</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>pubspec.yml</code> 可以看到增加這行（若沒有請自己加上）。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter_svg:</span> <span class="string">^2.0.0+1</span></span><br></pre></td></tr></table></figure>
+
+<p>安裝後，在程式裡面引用並且使用 <code>SvgPicture</code> 這個類別。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_svg/flutter_svg.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案在本地"><a href="#檔案在本地" class="headerlink" title="檔案在本地"></a>檔案在本地</h2><p>當 icon 檔案在本地的時候，要使用的是 <code>SvgPicture.asset</code> 這個方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>直接放路徑是最基本的用法，若是希望指定元件的大小，則可以加上 <code>width</code> 及 <code>height</code> 兩個參數。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>, width: <span class="number">16</span>, height: <span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案在網路"><a href="#檔案在網路" class="headerlink" title="檔案在網路"></a>檔案在網路</h2><p>使用上跟前面差不多，主要是方法改成 <code>network</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.network(path);</span><br></pre></td></tr></table></figure>
+
+<p>要指定大小的話，一樣可以加上 <code>width</code> 及 <code>height</code> 兩個參數。</p>
+<h2 id="改變顏色"><a href="#改變顏色" class="headerlink" title="改變顏色"></a>改變顏色</h2><p>把 add 改成紅色，只需要加上 <code>color</code> 這個參數。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Widget svgIcon = SvgPicture.asset(</span><br><span class="line">  <span class="string">&#x27;assets/add.svg&#x27;</span>,</span><br><span class="line">  width: <span class="number">16</span>,</span><br><span class="line">  height: <span class="number">16</span>,</span><br><span class="line">  color: <span class="keyword">const</span> Color(<span class="number">0xFFFF0000</span>),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="內縮效果"><a href="#內縮效果" class="headerlink" title="內縮效果"></a>內縮效果</h2><p>如果 icon 是需要有 padding 的話，就可以搭配 <code>Container</code> 這個物件來完成。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>);</span><br><span class="line"><span class="comment">// icon 最終的寬高為 16</span></span><br><span class="line"><span class="keyword">var</span> iconWithPadding = Container(</span><br><span class="line">  margin: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">8.0</span>),</span><br><span class="line">  height: <span class="number">32</span>,</span><br><span class="line">  width: <span class="number">16</span>,</span><br><span class="line">  child: icon,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 flutter 的世界中，效果都是透過疊加的方式做呈現，很少有一個元件就能達成全部的效果。<br>如果你跟我一樣平常主要接觸是網頁開發，這個地方要稍微習慣一下。</p>
+</blockquote>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2023/02/20/gitea-database-migration/" rel="next"  title="Gitea 資料庫遷移">
+						Gitea 資料庫遷移
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+	 
+		<section id="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="jiaming0708/jiaming0708.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ=="
+				data-category="Q&amp;A"
+				data-category-id="DIC_kwDOBO717c4B_0N9"
+				data-mapping="title"
+				data-reactions-enabled="1"
+				data-theme="light"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '[Flutter] SVG應用',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js'></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

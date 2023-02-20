@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>[Flutter] SVG應用</title>
+      <link href="/2023/02/20/flutter-svg/"/>
+      <url>/2023/02/20/flutter-svg/</url>
+      
+        <content type="html"><![CDATA[<p>在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。</p><span id="more"></span><h2 id="安裝使用"><a href="#安裝使用" class="headerlink" title="安裝使用"></a>安裝使用</h2><p>執行以下的指令安裝套件 <a href="https://pub.dev/packages/flutter_svg">flutter_svg</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter pub add flutter_svg</span><br></pre></td></tr></table></figure><p>在 <code>pubspec.yml</code> 可以看到增加這行（若沒有請自己加上）。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter_svg:</span> <span class="string">^2.0.0+1</span></span><br></pre></td></tr></table></figure><p>安裝後，在程式裡面引用並且使用 <code>SvgPicture</code> 這個類別。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_svg/flutter_svg.dart&#x27;</span>;</span><br></pre></td></tr></table></figure><h2 id="檔案在本地"><a href="#檔案在本地" class="headerlink" title="檔案在本地"></a>檔案在本地</h2><p>當 icon 檔案在本地的時候，要使用的是 <code>SvgPicture.asset</code> 這個方法。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>);</span><br></pre></td></tr></table></figure><p>直接放路徑是最基本的用法，若是希望指定元件的大小，則可以加上 <code>width</code> 及 <code>height</code> 兩個參數。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>, width: <span class="number">16</span>, height: <span class="number">16</span>);</span><br></pre></td></tr></table></figure><h2 id="檔案在網路"><a href="#檔案在網路" class="headerlink" title="檔案在網路"></a>檔案在網路</h2><p>使用上跟前面差不多，主要是方法改成 <code>network</code>。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.network(path);</span><br></pre></td></tr></table></figure><p>要指定大小的話，一樣可以加上 <code>width</code> 及 <code>height</code> 兩個參數。</p><h2 id="改變顏色"><a href="#改變顏色" class="headerlink" title="改變顏色"></a>改變顏色</h2><p>把 add 改成紅色，只需要加上 <code>color</code> 這個參數。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Widget svgIcon = SvgPicture.asset(</span><br><span class="line">  <span class="string">&#x27;assets/add.svg&#x27;</span>,</span><br><span class="line">  width: <span class="number">16</span>,</span><br><span class="line">  height: <span class="number">16</span>,</span><br><span class="line">  color: <span class="keyword">const</span> Color(<span class="number">0xFFFF0000</span>),</span><br><span class="line">);</span><br></pre></td></tr></table></figure><h2 id="內縮效果"><a href="#內縮效果" class="headerlink" title="內縮效果"></a>內縮效果</h2><p>如果 icon 是需要有 padding 的話，就可以搭配 <code>Container</code> 這個物件來完成。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> icon = SvgPicture.asset(<span class="string">&#x27;assets/add.svg&#x27;</span>);</span><br><span class="line"><span class="comment">// icon 最終的寬高為 16</span></span><br><span class="line"><span class="keyword">var</span> iconWithPadding = Container(</span><br><span class="line">  margin: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">8.0</span>),</span><br><span class="line">  height: <span class="number">32</span>,</span><br><span class="line">  width: <span class="number">16</span>,</span><br><span class="line">  child: icon,</span><br><span class="line">);</span><br></pre></td></tr></table></figure><blockquote><p>在 flutter 的世界中，效果都是透過疊加的方式做呈現，很少有一個元件就能達成全部的效果。<br>如果你跟我一樣平常主要接觸是網頁開發，這個地方要稍微習慣一下。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Flutter </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Flutter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Gitea 資料庫遷移</title>
       <link href="/2023/02/20/gitea-database-migration/"/>
       <url>/2023/02/20/gitea-database-migration/</url>
