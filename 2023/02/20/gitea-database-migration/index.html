@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Gitea 資料庫遷移 | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gitea 資料庫遷移">
+<meta property="og:url" content="http://jiaming0708.github.io/2023/02/20/gitea-database-migration/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-02-20T03:06:21.000Z">
+<meta property="article:modified_time" content="2023-02-20T05:41:45.654Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Gitea">
+<meta property="article:tag" content="Infra">
+<meta name="twitter:card" content="summary">
+    
+  <link href="//fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="//fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-5LXTGJNLYY');
+    </script>
+  
+  
+    <script data-ad-client="ca-pub-6806360411033447" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-gitea-database-migration"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2023/02/20/gitea-database-migration/">
+    	Gitea 資料庫遷移
+    </a>
+  </h2>
+	<time>
+	  2月 20, 2023
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/Infra/">Infra</a>
+    </div>
+    
+        <span class="readtime">6 mins.</span>
+    
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%99%E4%BB%BD%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%B4%B9"><span class="toc-number">1.</span> <span class="toc-text">備份指令介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%B7%E8%A1%8C%E5%82%99%E4%BB%BD"><span class="toc-number">2.</span> <span class="toc-text">執行備份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%AF%E5%85%A5%E8%B3%87%E6%96%99%E5%BA%AB"><span class="toc-number">3.</span> <span class="toc-text">匯入資料庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%80%A3%E7%B7%9A%E8%B3%87%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">修改連線資料</span></a></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Gitea/">Gitea</a>
+      
+        <a href="/tags/Infra/">Infra</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。</p>
+<span id="more"></span>
+
+<h2 id="備份指令介紹"><a href="#備份指令介紹" class="headerlink" title="備份指令介紹"></a>備份指令介紹</h2><p>我們可以透過指令的方式針對 Gitea 來做<a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/backup-and-restore/">備份和還原</a>，備份功能本身能夠支援輸出成不同資料庫，詳細的指令的話在文件上就沒看到，我是透過 <a target="_blank" rel="noopener" href="https://discourse.gitea.io/t/migrate-gitea-db-from-mariadb-to-postgresql/2072/2">Migrate Gitea DB from MariaDB to PostgreSQL - Support - Gitea</a> 這篇的討論和 <a target="_blank" rel="noopener" href="https://github.com/go-gitea/gitea/blob/main/cmd/dump.go">Source code</a> 來找到需要的指令。</p>
+<p>對於 Gitea 來說，備份的內容包含 sql file、log、repository，需要做的只有資料庫的部分，省略其他的輸出可以讓備份的速度加快，最終的指令如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/app/gitea/gitea dump -d postgres -R -L -c /data/gitea/conf/app.ini</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>database(d)，可以指定輸出的資料庫類型 <code>PostgreSQL</code>, <code>MySQL </code>, <code>SQLite</code>, <code>MSSQL</code></li>
+<li>skip-repository(R)，略過 repository 備份</li>
+<li>skip-log(L)，略過 log 備份</li>
+<li>config(c)，指定 app.ini 檔案的路徑</li>
+</ul>
+<h2 id="執行備份"><a href="#執行備份" class="headerlink" title="執行備份"></a>執行備份</h2><p>接著就要實際的下指令囉，在公司的環境中，是用 Docker 來做安裝，因此要先連到 Gitea 的 Container 中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it gitea bash</span><br></pre></td></tr></table></figure>
+
+<p>執行前面所介紹的指令，這邊會收到一個 permission 的錯誤，主要是不能使用 root 來做 dump 的指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2023/02/20 11:43:31 ...s/setting/setting.go:1059:loadFromConf() [F] Gitea is not supposed to be run as root. Sorry. If you need to use privileged TCP ports please instead use setcap and the `cap_net_bind_service` permission</span><br></pre></td></tr></table></figure>
+
+<p>這邊只要切換使用者為 <code>git</code> ，再次執行前面的指令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br></pre></td></tr></table></figure>
+
+<p>就可以看到開始備份的訊息，完成的時候會看到一個 <code>gitea-dump-*.zip</code> 的檔案名稱在你執行的目錄底下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2023/02/20 03:55:26 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.3 built with GNU Make 4.3, go1.19.5 : bindata, timetzdata, sqlite, sqlite_unlock_notify</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">2023/02/20 03:55:49 cmd/dump.go:405:runDump() [I] Finish dumping in file gitea-dump-1676865326.zip</span><br></pre></td></tr></table></figure>
+
+<p>那整合一下以上的作法，可以這樣下指令，一次匯出。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it -u git -w /data $(docker ps -qf &#x27;name=^gitea$&#x27;) bash -c &#x27;/app/gitea/gitea dump -d postgres -R -L -c /data/gitea/conf/app.ini&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>-w 為工作目錄，因為 data 的資料夾有跟外面的實體做對應，為了要方便拿到檔案，所以放在這邊</p>
+</blockquote>
+<h2 id="匯入資料庫"><a href="#匯入資料庫" class="headerlink" title="匯入資料庫"></a>匯入資料庫</h2><p>把 dump.zip 中的 sql file 拿出來後放到 Postgres 的 container 中。</p>
+<blockquote>
+<p>這邊我對應到 app 的資料夾中</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it database bash</span><br><span class="line">su postgres</span><br><span class="line">psql</span><br></pre></td></tr></table></figure>
+
+<p>根據官方的文件 <a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/database-prep/#postgresql">Database Preparation - Docs (gitea.io)</a> 先建立好使用者和資料庫。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> &quot;gitea&quot; <span class="keyword">WITH</span> PASSWORD <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE dbgitea <span class="keyword">WITH</span> OWNER gitea TEMPLATE template0 ENCODING UTF8 LC_COLLATE <span class="string">&#x27;en_US.UTF-8&#x27;</span> LC_CTYPE <span class="string">&#x27;en_US.UTF-8&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>接著就可以開始匯入資料。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql --username gitea -h localhost --set ON_ERROR_STOP=on dbgitea &lt; /app/gitea-db.sql</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改連線資料"><a href="#修改連線資料" class="headerlink" title="修改連線資料"></a>修改連線資料</h2><p>以上的步驟都做完，最後就是要修改 app.ini 裡的連線資訊，找到 <code>database</code> 的區塊，把資訊改成以下即可。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[database]</span></span><br><span class="line"><span class="attr">DB_TYPE</span>  = postgres</span><br><span class="line"><span class="attr">HOST</span>     = database:<span class="number">5432</span></span><br><span class="line"><span class="attr">NAME</span>     = dbgitea</span><br><span class="line"><span class="attr">USER</span>     = gitea</span><br><span class="line"><span class="attr">PASSWD</span>   = password</span><br></pre></td></tr></table></figure>
+
+<p>把服務重新啟動，連線進去確認一下所有內容都是遷移前的狀態，那就可以收工啦!!</p>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2023/01/24/flutter-hex-color/" rel="next"  title="[flutter] 使用 16 進制定義顏色">
+						[flutter] 使用 16 進制定義顏色
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+	 
+		<section id="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="jiaming0708/jiaming0708.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ=="
+				data-category="Q&amp;A"
+				data-category-id="DIC_kwDOBO717c4B_0N9"
+				data-mapping="title"
+				data-reactions-enabled="1"
+				data-theme="light"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: 'Gitea 資料庫遷移',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js'></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
