@@ -34,6 +34,9 @@ mkdir $newLocation -Force
 mv ext4.vhdx $newLocation
 cd ..
 rm "data"
+# 若是 distro 的話是放在 LocalState 目錄下
+# rm "LocalState"
+
 # 使用連結檔案的方式，讓實體是在其他指定的位置
 New-Item -ItemType SymbolicLink -Path "data" -Target $newLocation
 ```
