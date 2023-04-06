@@ -39,5 +39,28 @@ rm "data"
 
 # 使用連結檔案的方式，讓實體是在其他指定的位置
 New-Item -ItemType SymbolicLink -Path "data" -Target $newLocation
+# New-Item -ItemType SymbolicLink -Path "LocalState" -Target $newLocation
+```
+
+另外補充給使用 Podman 的朋友，路徑跟以上完全不同，檔案是在 `.local` 資料夾中， `~\.local\share\containers\podman\machine\wsl`
+podman 可以建立多個，預設叫做 `podman-machine-default` ，若有改名字記得底下的內容要跟著調整
+
+```shell
+# 其他槽的位置
+$newLocation = "E:\WSL2\"
+
+cd "~\.local\share\containers\podman\machine\wsl\wsldist\podman-machine-default"
+# 關閉 podman machine
+podman machine stop podman-machine-default
+
+mkdir $newLocation -Force
+mv ext4.vhdx $newLocation
+cd ..
+rm "podman-machine-default"
+
+# 使用連結檔案的方式，讓實體是在其他指定的位置
+New-Item -ItemType SymbolicLink -Path "podman-machine-default" -Target $newLocation
+# 啟動 podman machine
+podman machine start podman-machine-default
 ```
 
