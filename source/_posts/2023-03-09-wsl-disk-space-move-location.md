@@ -42,8 +42,10 @@ New-Item -ItemType SymbolicLink -Path "data" -Target $newLocation
 # New-Item -ItemType SymbolicLink -Path "LocalState" -Target $newLocation
 ```
 
-另外補充給使用 Podman 的朋友，路徑跟以上完全不同，檔案是在 `.local` 資料夾中， `~\.local\share\containers\podman\machine\wsl`
-podman 可以建立多個，預設叫做 `podman-machine-default` ，若有改名字記得底下的內容要跟著調整
+~~另外補充給使用 Podman 的朋友，路徑跟以上完全不同，檔案是在 `.local` 資料夾中， `~\.local\share\containers\podman\machine\wsl`
+podman 可以建立多個，預設叫做 `podman-machine-default` ，若有改名字記得底下的內容要跟著調整~~
+
+> 抱歉，隔天重開機後，machine 會一直說 permission denied，還需要再研究一下
 
 ```shell
 # 其他槽的位置
