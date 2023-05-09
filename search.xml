@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>[Flutter] 實現帶有連結文字的 RichText</title>
+      <link href="/2023/05/09/flutter-richtext-with-link/"/>
+      <url>/2023/05/09/flutter-richtext-with-link/</url>
+      
+        <content type="html"><![CDATA[<p>在註冊時通常會服務營運端會放置一些規章要求你同意，其中一種的表現方式是在一段的文字中帶有連結，讓你點擊過去，或是直接勾選同意。接下來要展示如何在 Flutter 中實現這樣的效果。</p><span id="more"></span><p>其實，在前一篇 <a href="/2023/04/17/flutter-custom-font-family/" title="[Flutter] 自定義字型的方法">[Flutter] 自定義字型的方法</a> 最後有提到這次的元件。沒錯！就是使用 <code>Text.rich</code> 或是 <code>RichText</code> 在搭配上 <code>TextSpan</code>。</p><p>底下我們就來展示一段文字中有些文字是可以點擊連結開啟網頁，在開始寫之前，請先安裝 <code>url_launcher</code> 套件，以便開啟網頁。</p><blockquote><p>url_launcher 版本 6.1.7</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter pub add url_launcher</span><br></pre></td></tr></table></figure><p>為了方便，直接使用 <a href="https://discord.com/register">Discord 的註冊</a> 頁面中的文字，以下是程式碼</p><blockquote><p>註冊即代表同意 Discord 的 <a href="https://discord.com/terms">服務條款</a> 及 <a href="https://discord.com/privacy">隱私權政策</a>。</p></blockquote><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">RichText(</span><br><span class="line">  text: TextSpan(</span><br><span class="line">    children: &lt;TextSpan&gt;[</span><br><span class="line">      <span class="keyword">const</span> TextSpan(text: <span class="string">&#x27;註冊即代表同意 Discord 的 &#x27;</span>),</span><br><span class="line">      TextSpan(</span><br><span class="line">        text: <span class="string">&#x27;服務條款&#x27;</span>,</span><br><span class="line">        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">          color: Colors.blue,</span><br><span class="line">        ),</span><br><span class="line">        recognizer: TapGestureRecognizer()</span><br><span class="line">          ..onTap = () &#123;</span><br><span class="line">            launchUrl(<span class="built_in">Uri</span>.parse(<span class="string">&#x27;https://discord.com/terms&#x27;</span>));</span><br><span class="line">          &#125;,</span><br><span class="line">      ),</span><br><span class="line">      <span class="keyword">const</span> TextSpan(text: <span class="string">&#x27; 及 &#x27;</span>),</span><br><span class="line">      TextSpan(</span><br><span class="line">        text: <span class="string">&#x27;隱私權政策&#x27;</span>,</span><br><span class="line">        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">          color: Colors.blue,</span><br><span class="line">        ),</span><br><span class="line">        recognizer: TapGestureRecognizer()</span><br><span class="line">          ..onTap = () &#123;</span><br><span class="line">            launchUrl(<span class="built_in">Uri</span>.parse(<span class="string">&#x27;https://discord.com/privacy&#x27;</span>));</span><br><span class="line">          &#125;,</span><br><span class="line">      ),</span><br><span class="line">      <span class="keyword">const</span> TextSpan(text: <span class="string">&#x27;。&#x27;</span>)</span><br><span class="line">    ],</span><br><span class="line">    style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">      color: Colors.black,</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>從上面的範例中，預設的文字顏色是黑色，有連結的文字是藍色，讓使用者更容易的辨認。在 <code>TextSpan</code> 中透過 <code>recognizer</code> 的屬性，使用 <code>TapGestureRecognizer</code> 來處理單次點擊的行為，裡面直接開啟外部的網頁。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Flutter </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Flutter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[DotnetCore] 啟用 Linter 做把關</title>
       <link href="/2023/05/05/dotnet-core-linter/"/>
       <url>/2023/05/05/dotnet-core-linter/</url>
