@@ -20,7 +20,7 @@
 <meta property="og:description" content="最近發現工作電腦的c槽突然間快滿了，查了一下被哪些東西吃掉，才發現一個噁心的怪獸，就是 WSL 的虛擬硬碟 vhdx 吃掉了 30G，底下會說明該怎麼解決這個問題。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-03-09T12:47:23.000Z">
-<meta property="article:modified_time" content="2023-04-07T12:47:23.000Z">
+<meta property="article:modified_time" content="2023-05-11T03:31:23.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="Docker">
@@ -159,7 +159,7 @@
         <a href="/categories/Windows/">Windows</a>
     </div>
     
-        <span class="readtime">5 mins.</span>
+        <span class="readtime">6 mins.</span>
     
 
 	</section>
@@ -188,12 +188,25 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 其他槽的位置</span></span><br><span class="line"><span class="variable">$newLocation</span> = <span class="string">&quot;E:\WSL2\&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;~\AppData\Local\Docker\wsl\data&quot;</span></span><br><span class="line"><span class="comment"># cd &quot;~\AppData\Local\Packages\&#123;distro folder name&#125;\LocalState&quot;</span></span><br><span class="line">wsl <span class="literal">--shutdown</span></span><br><span class="line">mkdir <span class="variable">$newLocation</span> <span class="literal">-Force</span></span><br><span class="line"><span class="built_in">mv</span> ext4.vhdx <span class="variable">$newLocation</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">rm</span> <span class="string">&quot;data&quot;</span></span><br><span class="line"><span class="comment"># 若是 distro 的話是放在 LocalState 目錄下</span></span><br><span class="line"><span class="comment"># rm &quot;LocalState&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用連結檔案的方式，讓實體是在其他指定的位置</span></span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-ItemType</span> SymbolicLink <span class="literal">-Path</span> <span class="string">&quot;data&quot;</span> <span class="literal">-Target</span> <span class="variable">$newLocation</span></span><br><span class="line"><span class="comment"># New-Item -ItemType SymbolicLink -Path &quot;LocalState&quot; -Target $newLocation</span></span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>2023&#x2F;04&#x2F;07 補充</p>
+</blockquote>
 <p><del>另外補充給使用 Podman 的朋友，路徑跟以上完全不同，檔案是在 <code>.local</code> 資料夾中， <code>~\.local\share\containers\podman\machine\wsl</code><br>podman 可以建立多個，預設叫做 <code>podman-machine-default</code> ，若有改名字記得底下的內容要跟著調整</del></p>
 <blockquote>
 <p>抱歉，隔天重開機後，machine 會一直說 permission denied，還需要再研究一下</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">其他槽的位置</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">newLocation = <span class="string">&quot;E:\WSL2\&quot;</span></span></span><br><span class="line"></span><br><span class="line">cd &quot;~\.local\share\containers\podman\machine\wsl\wsldist\podman-machine-default&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">關閉 podman machine</span></span></span><br><span class="line">podman machine stop podman-machine-default</span><br><span class="line"></span><br><span class="line">mkdir $newLocation -Force</span><br><span class="line">mv ext4.vhdx $newLocation</span><br><span class="line">cd ..</span><br><span class="line">rm &quot;podman-machine-default&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">使用連結檔案的方式，讓實體是在其他指定的位置</span></span></span><br><span class="line">New-Item -ItemType SymbolicLink -Path &quot;podman-machine-default&quot; -Target $newLocation</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">啟動 podman machine</span></span></span><br><span class="line">podman machine start podman-machine-default</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>2023&#x2F;05&#x2F;11 再次補充</p>
+</blockquote>
+<p>使用 Podman 如果要改路徑的話，不能用上面的方法，要從根本解決也就是一開始安裝的時候，就直接讓目錄放在預期的目錄下。<br>如同前面預設放在 <code>.local</code> 下，可以透過修改環境變數來變更目錄，打開 terminal 執行以下的指令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setx XDG_DATA_HOME &quot;E:\WSL2&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果已經有安裝的 podman machine，就記得先移除再重新安裝。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">podman machine rm podman-machine-default</span><br><span class="line">podman machine init</span><br><span class="line">podman machine start</span><br></pre></td></tr></table></figure>
+
+<p>接著到前面設定的路徑確認，可以看到底下會有一個 <code>containers</code> 的資料夾。<br>這樣就做到修改 podman 的 ext4 檔案搬移到其他槽的目的。</p>
 
 		</div>
 		
