@@ -1,7 +1,7 @@
 ---
 title: WSL空間擴增問題排除
 date: 2023-03-09 20:47:23
-updated: 2023-04-07 20:47:23
+updated: 2023-05-11 11:31:23
 categories:
 - Windows
 tags:
@@ -43,6 +43,8 @@ New-Item -ItemType SymbolicLink -Path "data" -Target $newLocation
 # New-Item -ItemType SymbolicLink -Path "LocalState" -Target $newLocation
 ```
 
+> 2023/04/07 補充
+
 ~~另外補充給使用 Podman 的朋友，路徑跟以上完全不同，檔案是在 `.local` 資料夾中， `~\.local\share\containers\podman\machine\wsl`
 podman 可以建立多個，預設叫做 `podman-machine-default` ，若有改名字記得底下的內容要跟著調整~~
 
@@ -67,3 +69,22 @@ New-Item -ItemType SymbolicLink -Path "podman-machine-default" -Target $newLocat
 podman machine start podman-machine-default
 ```
 
+> 2023/05/11 再次補充
+
+使用 Podman 如果要改路徑的話，不能用上面的方法，要從根本解決也就是一開始安裝的時候，就直接讓目錄放在預期的目錄下。
+如同前面預設放在 `.local` 下，可以透過修改環境變數來變更目錄，打開 terminal 執行以下的指令。
+
+```shell
+setx XDG_DATA_HOME "E:\WSL2"
+```
+
+如果已經有安裝的 podman machine，就記得先移除再重新安裝。
+
+```shell
+podman machine rm podman-machine-default
+podman machine init
+podman machine start
+```
+
+接著到前面設定的路徑確認，可以看到底下會有一個 `containers` 的資料夾。
+這樣就做到修改 podman 的 ext4 檔案搬移到其他槽的目的。
