@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>WSL 進階設定</title>
+      <link href="/2023/05/19/wsl-setting/"/>
+      <url>/2023/05/19/wsl-setting/</url>
+      
+        <content type="html"><![CDATA[<p>WSL 2 預設的記憶體在 windows 10 build 20175 版本之前能夠使用到 80%，但在之後的版本最多就是 50% 或是 8GB，對於現在電腦動輒 32G 的情況來說，這樣的使用量實在太少，這篇來分享一下怎麼做調整。</p><span id="more"></span><h2 id="wslconfig"><a href="#wslconfig" class="headerlink" title=".wslconfig"></a>.wslconfig</h2><p>WSL 2 的設定檔名叫做 <code>.wslconfig</code>，存放的目錄在 <code>%UserProfile%</code> 下，若沒有這個檔案的話先行建立。</p><blockquote><p>電腦配備<br>CPU: 16 cores, 24 logical processors<br>MEM: 32G</p></blockquote><p>以下是我調整的內容，主要是要讓記憶體能夠使用多一點，並且把 swap 的檔案調整到非系統槽。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Settings apply across all Linux distros running on WSL 2</span></span><br><span class="line">[wsl2]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Limits VM memory to use no more than 4 GB, this can be set as whole numbers using GB or MB</span></span><br><span class="line">memory=20GB </span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets the VM to use two virtual processors</span></span><br><span class="line">processors=12</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets amount of swap storage space to 8GB, default is 25% of available RAM</span></span><br><span class="line">swap=8GB</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx</span></span><br><span class="line">swapfile=D:\\WSL\\wsl-swap.vhdx</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+          <category> WSL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> WSL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Flutter] 實現帶有連結文字的 RichText</title>
       <link href="/2023/05/09/flutter-richtext-with-link/"/>
       <url>/2023/05/09/flutter-richtext-with-link/</url>
