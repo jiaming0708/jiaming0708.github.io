@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>[Debug] 前端如何偵錯CORS</title>
+      <link href="/2023/06/30/frontend-debug-cors/"/>
+      <url>/2023/06/30/frontend-debug-cors/</url>
+      
+        <content type="html"><![CDATA[<p>前端的社群朋友遇到一個神奇的問題，在 axios 就會有 cors 錯誤，改使用 fetch 就不會，產生一些討論以後，覺得如何偵錯 cors 蠻值得紀錄的。</p><p>先說結論，只要遇到 CORS 一律都是後端的問題。</p><blockquote><p>本篇結束(大誤</p></blockquote><span id="more"></span><h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><h3 id="什麼是CORS"><a href="#什麼是CORS" class="headerlink" title="什麼是CORS"></a>什麼是CORS</h3><p>全名叫做 <strong>Cross-Origin Resource Sharing</strong> 簡稱 CORS，只有在瀏覽器才會有的行為，其它後端打後端或是 APP 打後端都不會有這問題的發生。<br>會發生的主要狀況是只要你請求資源不是同一個 <code>protocol</code>&#x2F;<code>domain</code>&#x2F;<code>port</code>，瀏覽器就會先發一個請求去伺服器確認是否允許。</p><table><thead><tr><th>web server</th><th>api server</th><th>CORS</th><th>說明</th></tr></thead><tbody><tr><td><a href="http://localhost:3000/">http://localhost:3000</a></td><td><a href="http://localhost:3001/">http://localhost:3001</a></td><td>V</td><td>port 不同</td></tr><tr><td><a href="http://localhost:3000/">http://localhost:3000</a></td><td><a href="https://localhost:3000/">https://localhost:3000</a></td><td>V</td><td>protocol 不同</td></tr><tr><td><a href="http://localhost:3000/">http://localhost:3000</a></td><td><a href="http://api.test.com/">http://api.test.com</a></td><td>V</td><td>domain&#x2F;port 不同</td></tr><tr><td><a href="http://localhost:3000/">http://localhost:3000</a></td><td><a href="http://localhost:3000/">http://localhost:3000</a></td><td>X</td><td></td></tr></tbody></table><p>在這種情況下，從 <code>DevTool</code> 的 <code>network</code> 可以看到有兩個相同的請求出去但方法不同，第一個就是 <code>options</code>，第二個才會是你真正的請求。</p><p>只要一律到 CORS 的錯誤，其實就代表目標伺服器不允許，如果是自己家的就可以叫後端工程師調整；但如果是外面那種 open API，就必須要先打到自己的 server 再由 server 去呼叫，避開這個問題。</p><h3 id="後端常見設定"><a href="#後端常見設定" class="headerlink" title="後端常見設定"></a>後端常見設定</h3><p>以下三種是後端比較常見的設定:</p><ul><li>Access-Control-Allow-Origin，請求的來源位置</li><li>Access-Control-Allow-Methods，請求的來源方法，put&#x2F;get&#x2F;delete&#x2F;patch…等等的</li><li>Access-Control-Allow-Headers，額外的 header 內容</li></ul><h2 id="偵錯技巧"><a href="#偵錯技巧" class="headerlink" title="偵錯技巧"></a>偵錯技巧</h2><p>身為前端的你，到底該如何去看是什麼鬼東西被卡住呢，根據朋友的案例，可以有兩種做法。</p><h3 id="追程式"><a href="#追程式" class="headerlink" title="追程式"></a>追程式</h3><p>把兩種寫法的程式都看清楚，並且比對有哪邊行為不一樣，這個通常會比較考驗眼力和耐心。</p><h3 id="使用開發者工具"><a href="#使用開發者工具" class="headerlink" title="使用開發者工具"></a>使用開發者工具</h3><p>打開瀏覽器的 <code>DevTool</code>，並且切到 <code>Console</code>，就會看到紅色的字告訴你請求失敗。</p><p><img src="/2023/06/30/frontend-debug-cors/console-error.jpg" alt="console-error"></p><p>像是上面這樣的畫面，裡面就包含著答案 <strong>Request header field <code>authorization</code> is not allowed by <code>Access-Control-Allow-Headers</code> in preflight response.</strong> 。</p><ul><li><code>header filed</code> 後面所接的就是不被允許的欄位</li><li><code>Access-Control-Allow-Header</code> 也就是前面所說額外 header 內容</li></ul><blockquote><p>基本上 authorization 不被允許，這個後端要抓來打屁股</p></blockquote><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">跨來源資源共用（CORS） - HTTP | MDN (mozilla.org)</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Frontend </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Debug </tag>
+            
+            <tag> Frontend </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WSL 進階設定</title>
       <link href="/2023/05/19/wsl-setting/"/>
       <url>/2023/05/19/wsl-setting/</url>
