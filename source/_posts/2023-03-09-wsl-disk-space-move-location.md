@@ -88,3 +88,9 @@ podman machine start
 
 接著到前面設定的路徑確認，可以看到底下會有一個 `containers` 的資料夾。
 這樣就做到修改 podman 的 ext4 檔案搬移到其他槽的目的。
+
+> 2023/09/11 補充說明
+
+前面的作法在 `Docker Desktop v4.22.1` 及 `WSL v1.2.5.0` 環境下，已經無效，標準的作法可以參考這篇 gist
+
+{% gist 1d58d40f217dfb21f0aa54517583f8d3 README.md  %}
