@@ -828,10 +828,10 @@ hexo-generator-index@^3.0.0:
   dependencies:
     hexo-pagination "3.0.0"
 
-hexo-generator-json-content-jimmy@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.3.0.tgz#ac3387eef05a501956b8d39b0f0ac3d111474c9c"
-  integrity sha512-IlV47D3Ln9pXrtQAYkBDwfgjZBfPMMqg9af61eynQ9ZLcbMJ/eEVJe4N/avcRTEfZlohx5appvsb8uSoH/og5w==
+hexo-generator-json-content-jimmy@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.4.1.tgz#369e23b6f1c92da0428cdde15a11dbff072ea2f4"
+  integrity sha512-qxDbS11vOOvYCSb9w7ba8rQ7xx7566i73jj4SBEiRoI7J+hdkx275ol5KIfrBIYcaUkIEUVDoO/MmA/PHKoevg==
   dependencies:
     dayjs "^1.11.4"
     hexo-util latest
@@ -947,10 +947,10 @@ hexo-tag-embed@^1.0.0:
   dependencies:
     hexo-util "^3.1.0"
 
-hexo-theme-material-flow@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.4.1.tgz#b1eaf7f15d0853c5e76cd16221e1b0a356f090c3"
-  integrity sha512-eWSoQScPlUefaSqEBYOT+DeUPNHBKaqInt8Nl3mMT3TOEU6Z9971McyT7Txw5inQsKNv+B3luoGI7PUG9CHdsA==
+hexo-theme-material-flow@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.4.2.tgz#844836d0fe8f77ddd480bfec69c4813f9a004df6"
+  integrity sha512-VmISETcTBgOYiANBsEVf5+DsCKwJpvH84PjyRtmop80zlARX3qLd9SYkaTwcoktPDSg0Z++LJnDyBAEgmel7ow==
 
 hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.5.0, hexo-util@^2.7.0:
   version "2.7.0"
