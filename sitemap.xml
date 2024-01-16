@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2023/01/24/flutter-hex-color/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2023/02/20/gitea-database-migration/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -47,15 +56,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2023/01/24/flutter-hex-color/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -74,7 +74,25 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/</loc>
+    <loc>http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2022/08/11/blazor-upload-file/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -84,6 +102,15 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2022/08/22/dotnet-core-read-excel-library/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -137,15 +164,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2022/06/04/cli-json-processor-jq/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -155,25 +173,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2022/06/22/nginx-reverse-proxy-docker-compose/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2022/08/02/introduce-dynamic-linq/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2022/08/11/blazor-upload-file/</loc>
+    <loc>http://jiaming0708.github.io/2022/06/07/github-dependabot-pr-notification/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2022/01/28/blazor-testing-service/</loc>
+    <loc>http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2022/02/26/blazor-testing-js-navigation/</loc>
+    <loc>http://jiaming0708.github.io/2022/01/28/blazor-testing-service/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -335,6 +335,15 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2021/01/26/logrotate-nginx/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -381,15 +390,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2020/09/07/create-react-app/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2020/10/25/git-template-in-kraken/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -461,6 +461,69 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2019/07/16/rxjs-operator/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/10/14/mac-catalina-notifiction/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/02/25/rx-expand/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/03/03/js-date-parse-regex/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/03/12/react-refactor-component/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/03/14/postgres-json/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2019/04/16/flex-text-overflow/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2019/05/25/npm-global-install-folder/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -488,24 +551,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/10/14/mac-catalina-notifiction/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/07/16/rxjs-operator/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2019/02/15/quokka-webpack/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -524,7 +569,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/02/25/rx-expand/</loc>
+    <loc>http://jiaming0708.github.io/2019/01/09/crop/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -533,34 +578,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2019/03/12/react-refactor-component/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/03/03/js-date-parse-regex/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/03/14/postgres-json/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/04/16/flex-text-overflow/</loc>
+    <loc>http://jiaming0708.github.io/2019/01/08/crop-drag/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -596,6 +614,15 @@
   </url>
   
   <url>
+    <loc>http://jiaming0708.github.io/2018/11/12/ng-admin/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://jiaming0708.github.io/2018/11/07/angularjs-provider/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -606,15 +633,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2018/11/28/angularjs-es6/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2018/11/12/ng-admin/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -642,24 +660,6 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2018/12/25/css-mask/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/01/08/crop-drag/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2019/01/09/crop/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -740,312 +740,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2017/09/02/reserve-proxy/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2011/11/07/csharp-lambda-foreach/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2011/11/07/oracle-exp00000/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2011/11/07/oracle-export-issue/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/01/06/asp-tabindex/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/01/13/csharp-mysql/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/02/17/oracle-nls-lang/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/05/17/csharp-datagridview-datarowbound/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/09/20/asp-fileupload-updatepanel/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/10/16/csharp-sandcastle/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/10/16/csharp-tcpclient/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2012/11/13/window-7-access-nt4-folder/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/02/20/oracle-27101/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/02/23/oracle-autonomus-transaction/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/02/23/oracle-query-delete-session/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/09/13/oracle-millisecond/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/09/13/window-user-folder/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2013/11/14/jquery-live/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2014/02/20/css-unit/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2014/09/17/mvc-autofac/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2014/09/17/window-close-uac/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2014/11/25/angularjs-directive/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2015/01/08/webapi-note/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2016/05/30/oracle-sga/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2016/11/29/cordova-camera-size/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2016/12/23/cordova-hooks/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/02/19/angular-2-0to2-4-upgrade-note/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/02/23/angular-viewchild-contentchild/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/02/angular-dynamic-component/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/11/angular-di-provide/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/16/rxjs-firsttime/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/03/30/react-native-note/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
-    
-    <lastmod>2024-01-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/2017/06/01/csharp-datagridview-buttonevent/</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -1064,7 +758,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2017/07/24/angular-exception/</loc>
+    <loc>http://jiaming0708.github.io/2017/08/16/angular-directive/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1073,7 +767,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2017/08/16/angular-directive/</loc>
+    <loc>http://jiaming0708.github.io/2017/07/24/angular-exception/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1092,6 +786,15 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2017/08/29/design-pattern-observer-decorator/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/09/02/reserve-proxy/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1154,7 +857,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
+    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1163,7 +866,7 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/2009/01/05/csharp-hide-icon/</loc>
+    <loc>http://jiaming0708.github.io/2008/12/31/csharp-cal-month-week-day/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1344,6 +1047,303 @@
   
   <url>
     <loc>http://jiaming0708.github.io/2011/11/07/asp-javascript-updatepanel-2/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2011/11/07/csharp-lambda-foreach/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2011/11/07/oracle-exp00000/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/01/06/asp-tabindex/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2011/11/07/oracle-export-issue/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/01/13/csharp-mysql/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/02/17/oracle-nls-lang/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/05/17/csharp-datagridview-datarowbound/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/09/20/asp-fileupload-updatepanel/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/10/16/csharp-sandcastle/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/10/16/csharp-tcpclient/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2012/11/13/window-7-access-nt4-folder/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/02/20/oracle-27101/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/02/23/oracle-autonomus-transaction/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/02/23/oracle-query-delete-session/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/09/13/oracle-millisecond/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/09/13/window-user-folder/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2013/11/14/jquery-live/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2014/02/20/css-unit/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2014/09/17/mvc-autofac/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2014/09/17/window-close-uac/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2015/01/08/webapi-note/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2016/05/30/oracle-sga/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2014/11/25/angularjs-directive/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2016/11/29/cordova-camera-size/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2016/12/23/cordova-hooks/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/02/19/angular-2-0to2-4-upgrade-note/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/02/23/angular-viewchild-contentchild/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/02/angular-dynamic-component/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/11/angular-di-provide/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/16/rxjs-firsttime/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/30/react-native-note/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/</loc>
+    
+    <lastmod>2024-01-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/2017/04/24/angular-i18n/</loc>
     
     <lastmod>2024-01-16</lastmod>
     
@@ -1607,14 +1607,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/Vue/</loc>
+    <loc>http://jiaming0708.github.io/tags/Wallaby/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/Wallaby/</loc>
+    <loc>http://jiaming0708.github.io/tags/Vue/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1901,20 +1901,6 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/Github-Action/</loc>
-    <lastmod>2024-01-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jiaming0708.github.io/tags/Telegram/</loc>
-    <lastmod>2024-01-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://jiaming0708.github.io/tags/jq/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1929,14 +1915,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/reverse-proxy/</loc>
+    <loc>http://jiaming0708.github.io/tags/Github-Action/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/tags/ngrok/</loc>
+    <loc>http://jiaming0708.github.io/tags/Telegram/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1951,6 +1937,20 @@
   
   <url>
     <loc>http://jiaming0708.github.io/tags/linq/</loc>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/tags/reverse-proxy/</loc>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jiaming0708.github.io/tags/ngrok/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2330,14 +2330,14 @@
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/Github-Action/</loc>
+    <loc>http://jiaming0708.github.io/categories/shell/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://jiaming0708.github.io/categories/shell/</loc>
+    <loc>http://jiaming0708.github.io/categories/Github-Action/</loc>
     <lastmod>2024-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
