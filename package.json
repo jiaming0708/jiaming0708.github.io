@@ -9,10 +9,10 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "6.3.0"
+    "version": "7.0.0"
   },
   "dependencies": {
-    "hexo": "^6.3.0",
+    "hexo": "^7.0.0",
     "hexo-autoprefixer": "^2.0.0",
     "hexo-codepen-plus": "^1.0.2",
     "hexo-generator-archive": "^2.0.0",
@@ -29,6 +29,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "github:jiaming0708/hexo-symbols-count-time#v0.7.2",
+    "hexo-tag-embed": "^1.0.0",
     "hexo-theme-material-flow": "^1.4.1"
   }
 }
