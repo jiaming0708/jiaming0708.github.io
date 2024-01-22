@@ -651,10 +651,10 @@ hexo-generator-index@^3.0.0:
   dependencies:
     hexo-pagination "3.0.0"
 
-hexo-generator-json-content-jimmy@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.4.2.tgz#2e41bed1087f0e7edc8d6ee0c85bb16e8288b06a"
-  integrity sha512-AJH4pDMZKRDK1PUEzMh5eEBP9veL7n2o5nSqyhajeqBEursRANgiYdEGTdqCvZwlmRHb/99XBUrTgTqx5txE9A==
+hexo-generator-json-content-jimmy@^4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/hexo-generator-json-content-jimmy/-/hexo-generator-json-content-jimmy-4.4.3.tgz#d7daa5e2e1b6276b7a8c283cbc128bdd10cda62d"
+  integrity sha512-pasB3cJ1MRAupL9OjUObVz67LuiLBNw/7ruy4UVGm9dxYO8JnsrVk9a8vdxRrUDykiZBXmTS2WkPQYr+uzbsHw==
   dependencies:
     dayjs "^1.11.4"
     hexo-util latest
