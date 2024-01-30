@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2024-01-22T06:37:19.000Z</updated>
+  <updated>2024-01-30T05:24:30.000Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Blazor] 在 API 伺服器上託管 WASM 遇到的 404 問題</title>
+    <link href="http://jiaming0708.github.io/2024/01/30/blazor-wasm-host-server-api-404-issue/"/>
+    <id>http://jiaming0708.github.io/2024/01/30/blazor-wasm-host-server-api-404-issue/</id>
+    <published>2024-01-30T05:24:30.000Z</published>
+    <updated>2024-01-30T05:24:30.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在 Dotnet 8 以前，微軟有提供過 WASM 可以直接給 API server 託管的功能，等於是只要架一個網站就可以前後端分離，但這樣的設定會衍生打不存在的 API 不會回傳 404，反而是回傳前端 index.html。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Backend" scheme="http://jiaming0708.github.io/categories/Backend/"/>
+    
+    <category term="C#" scheme="http://jiaming0708.github.io/categories/Backend/C/"/>
+    
+    
+    <category term="C#" scheme="http://jiaming0708.github.io/tags/C/"/>
+    
+    <category term="Blazor" scheme="http://jiaming0708.github.io/tags/Blazor/"/>
+    
+  </entry>
   
   <entry>
     <title>[Blazor] 傳遞方法為參數</title>
@@ -242,7 +265,7 @@
     <link href="http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/"/>
     <id>http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/</id>
     <published>2023-04-15T15:13:05.000Z</published>
-    <updated>2024-01-23T07:45:47.899Z</updated>
+    <updated>2024-01-30T06:22:12.795Z</updated>
     
     
     <summary type="html">&lt;p&gt;作為一名主要開發平台為網頁的開發者，進入 Flutter 世界的開發體驗讓我發現元件結構是最需要適應的地方。在網頁開發中，我們可以透過 CSS 樣式來控制元素的排版，包括長寬、內外邊距，甚至彈性佈局 (flex) 或網格系統 (grid) 等。除非使用定位 (position)，否則所有元素都處於同一層級。然而在 app 中，每個元素都被當作不同的「層」來處理，因此為了達到類似網頁的效果，必須使用不同的元件進行組合。&lt;/p&gt;</summary>
@@ -282,7 +305,7 @@
     <link href="http://jiaming0708.github.io/2023/02/20/flutter-svg/"/>
     <id>http://jiaming0708.github.io/2023/02/20/flutter-svg/</id>
     <published>2023-02-20T14:13:56.000Z</published>
-    <updated>2024-01-23T07:45:47.899Z</updated>
+    <updated>2024-01-30T06:22:12.795Z</updated>
     
     
     <summary type="html">&lt;p&gt;在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。&lt;/p&gt;</summary>
@@ -301,7 +324,7 @@
     <link href="http://jiaming0708.github.io/2023/02/20/gitea-database-migration/"/>
     <id>http://jiaming0708.github.io/2023/02/20/gitea-database-migration/</id>
     <published>2023-02-20T03:06:21.000Z</published>
-    <updated>2024-01-23T07:45:47.899Z</updated>
+    <updated>2024-01-30T06:22:12.795Z</updated>
     
     
     <summary type="html">&lt;p&gt;公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。&lt;/p&gt;</summary>
@@ -322,7 +345,7 @@
     <link href="http://jiaming0708.github.io/2023/01/24/flutter-hex-color/"/>
     <id>http://jiaming0708.github.io/2023/01/24/flutter-hex-color/</id>
     <published>2023-01-24T06:16:00.000Z</published>
-    <updated>2024-01-23T07:45:47.899Z</updated>
+    <updated>2024-01-30T06:22:12.795Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Flutter 中有提供好幾種方法可以來定義 &lt;code&gt;Color&lt;/code&gt; 這個物件，這篇會介紹如何使用這些方法。&lt;/p&gt;</summary>
@@ -341,7 +364,7 @@
     <link href="http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/"/>
     <id>http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/</id>
     <published>2023-01-16T02:46:13.000Z</published>
-    <updated>2024-01-23T07:45:47.899Z</updated>
+    <updated>2024-01-30T06:22:12.795Z</updated>
     
     
     <summary type="html">&lt;p&gt;原本 Oracle 有提供 image 在 &lt;a href=&quot;https://hub.docker.com/_/oracle-database-enterprise-edition&quot;&gt;DockerHub&lt;/a&gt;上，現在已經沒有再提供了，那對於習慣用 container 做開發的我來說，非常的不方便，還好 Oracle 也有提供另外的做法可以來建立 image，接下來分享該如何操作。&lt;/p&gt;</summary>
@@ -366,7 +389,7 @@
     <link href="http://jiaming0708.github.io/2023/01/09/flutter-goroute-with-navigation-bar/"/>
     <id>http://jiaming0708.github.io/2023/01/09/flutter-goroute-with-navigation-bar/</id>
     <published>2023-01-09T02:12:05.000Z</published>
-    <updated>2024-01-23T07:45:47.891Z</updated>
+    <updated>2024-01-30T06:22:12.783Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 App 中通常會把主要的幾個頁面放在下方 icon，讓使用者能夠方便操作，這個元件在 flutter 中稱為 &lt;code&gt;BottomNavigationBar&lt;/code&gt;。&lt;br&gt;&lt;code&gt;GoRouter&lt;/code&gt; 是 Flutter 官方所提供的套件，可以用來整合整個專案的路由，當這兩個功能整合在一起的時候，一個不小心呈現出來的效果就會差很多。&lt;/p&gt;</summary>
@@ -385,7 +408,7 @@
     <link href="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/"/>
     <id>http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/</id>
     <published>2023-01-05T03:49:02.000Z</published>
-    <updated>2024-01-23T07:45:47.887Z</updated>
+    <updated>2024-01-30T06:22:12.783Z</updated>
     
     
     <summary type="html">&lt;p&gt;在一個 Webform 的專案中，使用到 AjaxToolKit 的元件 &lt;code&gt;CalendarExtender&lt;/code&gt;來選擇日期，設定的時間格式為 &lt;code&gt;2023/01/05  23:59:59&lt;/code&gt;，在瀏覽器做日期的選擇後，會變成 &lt;code&gt;2023/01/05 23:59:00&lt;/code&gt;，也沒有看到任何地方有去變更時間，同事覺得奇怪，一起追查問題以後發現這是一個 bug。&lt;/p&gt;</summary>
@@ -408,7 +431,7 @@
     <link href="http://jiaming0708.github.io/2022/11/02/blazor-css-scope/"/>
     <id>http://jiaming0708.github.io/2022/11/02/blazor-css-scope/</id>
     <published>2022-11-02T12:42:21.000Z</published>
-    <updated>2024-01-23T07:45:47.883Z</updated>
+    <updated>2024-01-30T06:22:12.779Z</updated>
     
     
     <summary type="html">&lt;p&gt;Blazor 的 css 作用域預設是元件內有效，那如果想要往子元件渲染的話，可以怎麼做？今天要來搞懂 Blazor 的 css scope 是怎麼樣運作，let’s go!&lt;/p&gt;</summary>
@@ -421,30 +444,6 @@
     
     
     <category term="Blazor" scheme="http://jiaming0708.github.io/tags/Blazor/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[dotnet framework] 如何使用 cli 執行測試</title>
-    <link href="http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/"/>
-    <id>http://jiaming0708.github.io/2022/10/14/dotnet-framework-test-project-command-line/</id>
-    <published>2022-10-14T06:27:37.000Z</published>
-    <updated>2024-01-23T07:45:47.883Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;昨天收到同事的一個 bug，使用公司 library 所提供的方法所引發的一個錯誤，這錯誤蠻基本也蠻蝦的，雖然這個 library 已經很少再改，基於保護自己的想法，還是要幫這個方法加上測試，因為這個專案的版本還是 dotnet framework 4.5.1，希望能透過 cli 的方式在 CI 的時候跑測試。&lt;/p&gt;
-&lt;p&gt;在 cli 測試的話目前有兩種做法，第一種是新版 SDK 所提供的 &lt;code&gt;dotnet cli&lt;/code&gt;；另一種就是 Visual Studio 的工具。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Backend" scheme="http://jiaming0708.github.io/categories/Backend/"/>
-    
-    <category term="Dotnet" scheme="http://jiaming0708.github.io/categories/Backend/Dotnet/"/>
-    
-    
-    <category term="Testing" scheme="http://jiaming0708.github.io/tags/Testing/"/>
-    
-    <category term="Dotnet" scheme="http://jiaming0708.github.io/tags/Dotnet/"/>
     
   </entry>
   

@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>[Blazor] 在 API 伺服器上託管 WASM 遇到的 404 問題</title>
+      <link href="/2024/01/30/blazor-wasm-host-server-api-404-issue/"/>
+      <url>/2024/01/30/blazor-wasm-host-server-api-404-issue/</url>
+      
+        <content type="html"><![CDATA[<p>在 Dotnet 8 以前，微軟有提供過 WASM 可以直接給 API server 託管的功能，等於是只要架一個網站就可以前後端分離，但這樣的設定會衍生打不存在的 API 不會回傳 404，反而是回傳前端 index.html。</p><span id="more"></span><h2 id="託管設定"><a href="#託管設定" class="headerlink" title="託管設定"></a>託管設定</h2><p>想要託管在 API Server，先從 nuget 安裝 <code>Microsoft.AspNetCore.Components.WebAssembly.Server</code>，並且在 <code>Program.cs</code> 加上兩行，再把前端的專案加入參考。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line">builder.Services.AddControllers();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = builder.Build();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加上這行</span></span><br><span class="line">app.UseBlazorFrameworkFiles();</span><br><span class="line">app.UseStaticFiles();</span><br><span class="line"></span><br><span class="line">app.UseRouting();</span><br><span class="line"></span><br><span class="line">app.UseAuthorization();</span><br><span class="line"></span><br><span class="line">app.MapControllers();</span><br><span class="line"><span class="comment">// 加上這行</span></span><br><span class="line">app.MapFallbackToFile(<span class="string">&quot;index.html&quot;</span>);</span><br><span class="line"></span><br><span class="line">app.Run();</span><br></pre></td></tr></table></figure><p>改完以後，就可以用 server 跑起來，在同一個網站有前後端。</p><p>這時候可以測試一個 GET <code>api/test</code>，正常預期是 404，但實際上是回傳 <code>index.html</code> 的內容。</p><h2 id="調整"><a href="#調整" class="headerlink" title="調整"></a>調整</h2><p>這個問題主要是因為 <code>MapFallbackToFile</code> 沒有區分前後端，因此要分開這兩個行為，可以透過 <code>MapWhen</code> 來做判斷。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">app.MapWhen(ctx =&gt; !ctx.Request.Path.StartsWithSegments(<span class="string">&quot;/api&quot;</span>), blazor =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    blazor.UseBlazorFrameworkFiles();</span><br><span class="line">    blazor.UseStaticFiles();</span><br><span class="line">    blazor.UseRouting();</span><br><span class="line"></span><br><span class="line">    blazor.UseEndpoints(endpoints =&gt; endpoints.MapFallbackToFile(<span class="string">&quot;index.html&quot;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.MapWhen(ctx =&gt; ctx.Request.Path.StartsWithSegments(<span class="string">&quot;/api&quot;</span>), api =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    api.UseStaticFiles();</span><br><span class="line">    api.UseRouting();</span><br><span class="line">    api.UseAuthentication();</span><br><span class="line"></span><br><span class="line">    api.UseEndpoints(endpoints =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        endpoints.MapRazorPages();</span><br><span class="line">        endpoints.MapControllers();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><blockquote><p>其中 <code>UseRouting</code> 必須要在兩邊都寫不能寫在外面，不然可能不會回 404。</p></blockquote><p>這樣改完以後，再次嘗試 <code>api/test</code> 就可以得到 404。</p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://stackoverflow.com/questions/61268117/how-to-map-fallback-in-asp-net-core-web-api-so-that-blazor-wasm-app-only-interc">c# - How to map fallback in ASP .NET Core Web API so that Blazor WASM app only intercepts requests that are not to the API - Stack Overflow</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Backend </category>
+          
+          <category> C# </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> Blazor </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Blazor] 傳遞方法為參數</title>
       <link href="/2024/01/22/blazor-pass-method-be-parameter/"/>
       <url>/2024/01/22/blazor-pass-method-be-parameter/</url>
