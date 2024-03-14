@@ -763,10 +763,10 @@ hexo-tag-embed@^1.0.0:
   dependencies:
     hexo-util "^3.1.0"
 
-hexo-theme-material-flow@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.5.0.tgz#c3d5104898a56230c8a768eaab2bdbf773cda642"
-  integrity sha512-S774FqGnJUFRVmRTSnHTGsrg2Dh075PW362+FgOOTZa5x6qBOJ+77+XQS4oYL7epiBZnBSBwbV6xqIOih4yWhw==
+hexo-theme-material-flow@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.6.0.tgz#88bc41de74bdc27dcb03c57d571da97622c56763"
+  integrity sha512-MfdSHbsJylFjumOkA7/F+0bbQHPMEBtuUxhrJkfHA1tBZe6DL9OXE0cvD3B0c9ODEJnInkIocuRv81AlbEvRqA==
 
 hexo-util@^2.1.0, hexo-util@^2.5.0, hexo-util@^2.7.0:
   version "2.7.0"
