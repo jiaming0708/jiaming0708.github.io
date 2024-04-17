@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>使用 Ubuntu 來作為 Jenkins 的 Slave Node | Secret Note</title>
+  <meta name="description" content="記錄一些自己記不住的東西" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本篇會介紹如何使用 Ubuntu 來作為 Jenkins Slave Node 並且採用 SSH 的方式做連線。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Ubuntu 來作為 Jenkins 的 Slave Node">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/04/17/ubuntu-as-jenkins-slave-node/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="本篇會介紹如何使用 Ubuntu 來作為 Jenkins Slave Node 並且採用 SSH 的方式做連線。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2024/04/17/ubuntu-as-jenkins-slave-node/new-node.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2024/04/17/ubuntu-as-jenkins-slave-node/add-credential1.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2024/04/17/ubuntu-as-jenkins-slave-node/add-credential2.png">
+<meta property="article:published_time" content="2024-04-17T02:00:10.000Z">
+<meta property="article:modified_time" content="2024-04-17T02:00:10.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="CICD">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2024/04/17/ubuntu-as-jenkins-slave-node/new-node.png">
+    
+  <link href="//fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="preload">
+  <link href="//fonts.googleapis.com/css?family=Roboto+Mono" rel="preload">
+  <link href='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.css' rel='stylesheet'>
+  
+<link rel="stylesheet" href="/style.css">
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-5LXTGJNLYY');
+    </script>
+  
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				Secret Note | 機密檔案
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-ubuntu-as-jenkins-slave-node"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2024/04/17/ubuntu-as-jenkins-slave-node/">
+    	使用 Ubuntu 來作為 Jenkins 的 Slave Node
+    </a>
+  </h2>
+
+	<time datetime="2024-04-17">
+		2024-04-17
+	</time>
+
+	
+    
+    <div class='cats'>
+        <a href="/categories/CICD/">CICD</a>, <a href="/categories/CICD/Jenkins/">Jenkins</a>
+    </div>
+    
+        <span class="readtime">8 mins.</span>
+    
+
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Slave-Node"><span class="toc-number">1.</span> <span class="toc-text">Slave Node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E4%BD%BF%E7%94%A8%E8%80%85"><span class="toc-number">1.1.</span> <span class="toc-text">新增使用者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins-Server"><span class="toc-number">2.</span> <span class="toc-text">Jenkins Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Node"><span class="toc-number">3.</span> <span class="toc-text">新增 Node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Credential"><span class="toc-number">3.1.</span> <span class="toc-text">建立 Credential</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E5%8B%95"><span class="toc-number">3.2.</span> <span class="toc-text">啟動</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E7%9B%B8%E9%97%9C%E8%BB%9F%E9%AB%94"><span class="toc-number">4.</span> <span class="toc-text">安裝相關軟體</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-java"><span class="toc-number">4.1.</span> <span class="toc-text">安裝 java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-git"><span class="toc-number">4.2.</span> <span class="toc-text">安裝 git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-docker"><span class="toc-number">4.3.</span> <span class="toc-text">安裝 docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Permssion-Denied"><span class="toc-number">4.3.1.</span> <span class="toc-text">Permssion Denied</span></a></li></ol></li></ol></li></ol></section>
+	
+	<section class="article typo">
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Jenkins/">Jenkins</a>
+      
+        <a href="/tags/CICD/">CICD</a>
+      
+	  </div>
+		
+  	<div class="article-entry" itemprop="articleBody">
+			<p>本篇會介紹如何使用 Ubuntu 來作為 Jenkins Slave Node 並且採用 SSH 的方式做連線。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>相關環境版本<br>Jenkins Server: windows 11<br>Jenkins Version: 2.440.2<br>Slave Node: Ubuntu 22.04</p>
+</blockquote>
+<h2 id="Slave-Node"><a href="#Slave-Node" class="headerlink" title="Slave Node"></a>Slave Node</h2><p>安裝 <code>openssh server</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y openssh-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="新增使用者"><a href="#新增使用者" class="headerlink" title="新增使用者"></a>新增使用者</h3><blockquote>
+<p>不能用安裝時所產生的使用者作為 ssh 連線的帳號</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser jenkins</span><br></pre></td></tr></table></figure>
+
+<p>產生 ssh key</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>~/.ssh</code> 的目錄下會看到剛剛所產生的檔案，預設會是 <code>id_rsa(私鑰)</code> 及 <code>id_rsa.pub(公鑰)</code></p>
+<p>複製公鑰 <code>id_rsa.pub</code> 至另一個檔案 <code>authorized_keys</code>，用來給 Jenkins 驗證對答案</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt; authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jenkins-Server"><a href="#Jenkins-Server" class="headerlink" title="Jenkins Server"></a>Jenkins Server</h2><p>在 server 的 .ssh 資料夾中新增 <code>know_hosts</code> 檔案，並加上前面所產生的 <code>id_rsa.pub</code></p>
+<blockquote>
+<p>如果是 windows ，可以參考安裝 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell">SSH server</a></p>
+</blockquote>
+<h2 id="新增-Node"><a href="#新增-Node" class="headerlink" title="新增 Node"></a>新增 Node</h2><p>到 Jenkins 網站的 Nodes 頁面中新增一個 Node</p>
+<p><img src="/2024/04/17/ubuntu-as-jenkins-slave-node/new-node.png" alt="new-node"></p>
+<ul>
+<li><p>Remote root directory，輸入遠端的執行跟目錄，建議是登入的使用者底下 <code>/home/&#123;user&#125;/jenkins_agent</code></p>
+</li>
+<li><p>Labels，根據 job 的需要做輸入</p>
+</li>
+<li><p>Launch method，選擇 <code>Launch agents vis ssh</code></p>
+<ul>
+<li>Host，輸入目標電腦的 ip</li>
+<li>Credentials，用新增的方法來產生一組專門資料，詳細作法後面介紹</li>
+<li>Host Key Verification Strategy，選擇 <code>Non verifying Verification Strategy</code></li>
+</ul>
+<blockquote>
+<p>只測試到這個做法可以順利將 node 跑起來</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p> 如果 server 和 slave 是不同平台，例如 windows&#x2F;linux，那就必須在下面的 <code>Node Properties</code> 區塊中，重新設定一些 <code>Tool Locations</code></p>
+</blockquote>
+<h3 id="建立-Credential"><a href="#建立-Credential" class="headerlink" title="建立 Credential"></a>建立 Credential</h3><p>在 Kind 選擇 <code>SSH Username with private key</code> 的方式做認證</p>
+<p><img src="/2024/04/17/ubuntu-as-jenkins-slave-node/add-credential1.png" alt="add-credential"></p>
+<ul>
+<li>Username，輸入登入 node 的帳號</li>
+<li>Private Key，將前面 slave node 步驟所產生的 <code>id_rsa</code> 內容貼上</li>
+</ul>
+<p><img src="/2024/04/17/ubuntu-as-jenkins-slave-node/add-credential2.png" alt="add-credential"></p>
+<h3 id="啟動"><a href="#啟動" class="headerlink" title="啟動"></a>啟動</h3><p>以上設定都完成後，就可以讓 Node 啟動，可以發現連線成功，但是啟動失敗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[04/17/24 11:18:18] [SSH] Authentication successful.</span><br><span class="line">[04/17/24 11:18:19] [SSH] Checking java version of /home/jenkins/jenkins-agent/jdk/bin/java</span><br><span class="line">Couldn&#x27;t figure out the Java version of /home/jenkins/jenkins-agent/jdk/bin/java</span><br><span class="line">bash: line 1: /home/jenkins/jenkins-agent/jdk/bin/java: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>到這邊已經差不多成功，剩下一些軟體的安裝</p>
+<h2 id="安裝相關軟體"><a href="#安裝相關軟體" class="headerlink" title="安裝相關軟體"></a>安裝相關軟體</h2><h3 id="安裝-java"><a href="#安裝-java" class="headerlink" title="安裝 java"></a>安裝 java</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y openjdk-17-jre</span><br></pre></td></tr></table></figure>
+
+<h3 id="安裝-git"><a href="#安裝-git" class="headerlink" title="安裝 git"></a>安裝 git</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y git</span><br></pre></td></tr></table></figure>
+
+<h3 id="安裝-docker"><a href="#安裝-docker" class="headerlink" title="安裝 docker"></a>安裝 docker</h3><p>參考 <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository">Install Docker Engine on Ubuntu | Docker Docs</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add Docker<span class="string">&#x27;s official GPG key:</span></span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y ca-certificates curl</span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line">sudo chmod a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Add the repository to Apt sources:</span></span></span><br><span class="line">echo \</span><br><span class="line">  &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \</span><br><span class="line"><span class="meta prompt_">  $</span><span class="language-bash"><span class="string">(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;) stable&quot; | \</span></span></span><br><span class="line"><span class="string"><span class="language-bash">  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span></span></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>To install the latest version, run:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br></pre></td></tr></table></figure>
+
+<h4 id="Permssion-Denied"><a href="#Permssion-Denied" class="headerlink" title="Permssion Denied"></a>Permssion Denied</h4><p>當有看到以下的錯誤，可以用底下的做法來調整</p>
+<blockquote>
+<p>Got permission denied while trying to connect to the Docker daemon socket at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock: Get https:&#x2F;&#x2F;%2Fvar%2Frun%2Fdocker.sock&#x2F;v1.24&#x2F;containers&#x2F;json: dial unix &#x2F;var&#x2F;run&#x2F;docker.sock: connect: permission denied</p>
+</blockquote>
+<p>Creating a group - docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br></pre></td></tr></table></figure>
+
+<p>Adding user to the group “docker”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">chmod</span> 666 /var/run/docker.sock</span><br></pre></td></tr></table></figure>
+
+
+
+<p>以上都安裝完畢，只要回到剛剛新增的 Node 並且重新啟動，就可以正常啟用。</p>
+
+		</div>
+		
+	
+		<div class="art-item-footer">
+				
+				
+					<span class="art-item-right">next：<a href="/2024/03/14/dotnet-core-publish-web-config/" rel="next"  title="[DotnetCore] web.config 發布控制">
+						[DotnetCore] web.config 發布控制
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+	 
+		<section id="comments">
+			<script src="https://giscus.app/client.js"
+				data-repo="jiaming0708/jiaming0708.github.io"
+				data-repo-id="MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ=="
+				data-category="Q&amp;A"
+				data-category-id="DIC_kwDOBO717c4B_0N9"
+				data-mapping="title"
+				data-reactions-enabled="1"
+				data-theme="light"
+				crossorigin="anonymous"
+				async>
+			</script>
+		</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '使用 Ubuntu 來作為 Jenkins 的 Slave Node',
+		tools: true
+	}
+</script>
+
+      </div>
+      
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/jiaming0708" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/Secret_GoGo" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a target="_blank" rel="noopener" href='https://github.com/jiaming0708/hexo-theme-material-flow' class="codename">MaterialFlow+</a> designed by <a href="https://jiaming0708.github.io" target="_blank">Jimmy Ho</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js'></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+
+<script src="/js/jquery.fitvids.js"></script>
+
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/app.js"></script>
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
