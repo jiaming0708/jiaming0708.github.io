@@ -1,14 +1,14 @@
 ---
 title: 使用 Ubuntu 來作為 Jenkins 的 Slave Node
 date: 2024-04-17 10:00:10
-updated: 2024-04-17 10:00:10
+updated: 2024-04-18 09:50:00
 categories:
 - CICD
 - Jenkins
 tags:
 - Jenkins
 - CICD
-thumbnail: 
+thumbnail: https://www.jenkins.io/images/logos/jenkins/jenkins.png
 ---
 
 本篇會介紹如何使用 Ubuntu 來作為 Jenkins Slave Node 並且採用 SSH 的方式做連線。
@@ -140,7 +140,13 @@ To install the latest version, run:
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-#### Permssion Denied
+
+
+以上都安裝完畢，只要回到剛剛新增的 Node 並且重新啟動，就可以正常啟用。
+
+## 問題排除
+
+#### Docker Permssion Denied
 
 當有看到以下的錯誤，可以用底下的做法來調整
 
@@ -160,6 +166,13 @@ sudo usermod -aG docker $USER
 sudo chmod 666 /var/run/docker.sock
 ```
 
+### Delete file permission
+
+因為使用先在 slave node 起做 git pull，後續的行為是在 docker 裡面，預設是使用 root 作執行，會導致編譯出來的檔案 slave node 無法刪除，因此要將使用者加入到 root 群組
+
+```shell
+sudo usermod -aG root jenkins
+```
 
 
-以上都安裝完畢，只要回到剛剛新增的 Node 並且重新啟動，就可以正常啟用。
+
