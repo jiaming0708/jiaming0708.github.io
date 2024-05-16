@@ -776,6 +776,11 @@ hexo-theme-material-flow@^1.6.3:
   resolved "https://registry.yarnpkg.com/hexo-theme-material-flow/-/hexo-theme-material-flow-1.6.3.tgz#c177bc731833a3713da190c9b9111185024b1aaa"
   integrity sha512-kUsECL29YHFO/rFDYyPCtzbPvqi3/pwNki9vqogIrChSIysFLMeZmAiCjcLnn/9jWYKHp9sHM0CARkXKD3D3MQ==
 
+hexo-theme-next@^8.20.0:
+  version "8.20.0"
+  resolved "https://registry.yarnpkg.com/hexo-theme-next/-/hexo-theme-next-8.20.0.tgz#8130f1b32d353f4bde7e99aa7d9f8f1e682d37b4"
+  integrity sha512-cLKE32mP6B2E84+4XUXOgZhaI+srndHAviVpDaz8S7fj4OTnRchWg1anbhpZTFAgMO0NSRs4A0kT61eXY3l/Gg==
+
 hexo-util@1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-1.9.0.tgz#0018429319720599253b2a3ddde0c5e4e4cfc652"

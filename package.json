@@ -29,6 +29,7 @@
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "^0.7.1",
     "hexo-tag-embed": "^1.0.0",
-    "hexo-theme-material-flow": "^1.6.3"
+    "hexo-theme-material-flow": "^1.6.3",
+    "hexo-theme-next": "^8.20.0"
   }
 }
