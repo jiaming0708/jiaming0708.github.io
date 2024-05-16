@@ -1057,7 +1057,7 @@ ul.h-list > li {
   margin-left: 2rem;
 }
 .l_main .post .meta time {
-  color: #878787;
+  color: #545454;
   position: absolute;
   left: -1px;
   transform: rotate(90deg);
