@@ -36,27 +36,23 @@ skip_render:
 new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: 
+external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
-marked:
-  prependRoot: true
-  postAsset: true
 relative_link: false
 future: true
+syntax_highlighter: highlight.js
 highlight:
-  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
-  enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -99,18 +95,22 @@ include:
 exclude:
 ignore:
 
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: material-flow
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: https://github.com/jiaming0708/jiaming0708.github.io.git
+
 # disqus_shortname: secretgogo
 # google_analytics: UA-10240063-3
 gtag: G-5LXTGJNLYY
 google_adsense: ca-pub-3000875971450027
 bing_validate: 3B44C55C817CED2F642154B1168B77E2
-
-
-
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: material-flow
 
 search:
   path: search.xml
@@ -136,9 +136,3 @@ symbols_count_time:
   time: true
   total_symbols: true
   total_time: true
-
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repository: https://github.com/jiaming0708/jiaming0708.github.io.git
