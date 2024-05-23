@@ -166,6 +166,7 @@ social:
   #YouTube: https://youtube.com/yourname || fab fa-youtube
   #Instagram: https://instagram.com/yourname || fab fa-instagram
   #Skype: skype:yourname?call|chat || fab fa-skype
+  RSS: /atom.xml || fa fa-rss
 
 social_icons:
   enable: true
@@ -291,10 +292,10 @@ reward:
 # Subscribe through Telegram Channel, Twitter, etc.
 # Usage: `Key: permalink || icon` (Font Awesome)
 follow_me:
-  Twitter: https://twitter.com/Secret_GoGo || fab fa-twitter
+  # Twitter: https://twitter.com/Secret_GoGo || fab fa-twitter
   #Telegram: https://t.me/channel_name || fab fa-telegram
   #WeChat: /images/wechat_channel.png || fab fa-weixin
-  RSS: /atom.xml || fa fa-rss
+  # RSS: /atom.xml || fa fa-rss
 
 # Related popular posts
 # Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
@@ -491,7 +492,7 @@ exturl_icon: true
 
 # Google Webmaster tools verification.
 # See: https://developers.google.com/search
-google_site_verification:
+google_site_verification: TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4
 
 # Bing Webmaster tools verification.
 # See: https://www.bing.com/webmasters

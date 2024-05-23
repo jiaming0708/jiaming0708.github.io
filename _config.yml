@@ -106,33 +106,9 @@ deploy:
   type: git
   repository: https://github.com/jiaming0708/jiaming0708.github.io.git
 
-# disqus_shortname: secretgogo
-# google_analytics: UA-10240063-3
-gtag: G-5LXTGJNLYY
-google_adsense: ca-pub-3000875971450027
-bing_validate: 3B44C55C817CED2F642154B1168B77E2
-
-search:
-  path: search.xml
-  field: post
-
-sitemap:
-  path: sitemap.xml
-
-autoprefixer:
-  exclude:
-    - '*.min.css'
-
 feed:
   type: atom
   path: atom.xml
   limit: 20
   hub:
   content:
-  
-# article read time
-symbols_count_time:
-  symbols: true
-  time: true
-  total_symbols: true
-  total_time: true
