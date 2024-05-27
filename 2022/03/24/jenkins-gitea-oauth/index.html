@@ -29,18 +29,18 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="Jenkins 和 Gitea 的環境都建置好後，會希望登入的使用者能在一個地方控管就好， Gitea 自從 1.8 以後就開始提供 Oauth 的方法給其他系統，今天就針對這個部分來做介紹。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/gitea-oauth-create.png">
-<meta property="og:image" content="http://jiaming0708.github.io/jenkins-security-realm.png">
-<meta property="og:image" content="http://jiaming0708.github.io/jenkins-login-openid-connect.png">
-<meta property="og:image" content="http://jiaming0708.github.io/gitea-auth-application.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/gitea-oauth-create.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/jenkins-security-realm.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/jenkins-login-openid-connect.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/gitea-auth-application.png">
 <meta property="article:published_time" content="2022-03-24T01:20:03.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.670Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.819Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="Gitea">
 <meta property="article:tag" content="Jenkins">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/gitea-oauth-create.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/gitea-oauth-create.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2022/03/24/jenkins-gitea-oauth/">
@@ -345,7 +345,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
 
   
@@ -381,18 +381,18 @@
 <li>重新導向 URI: <code>http://&#123;domain&#125;/securityRealm/finishLogin</code></li>
 </ul>
 <p>輸入以上資訊後按下 <code>建立應用程式</code>。</p>
-<p><img data-src="/./gitea-oauth-create.png" alt="gitea-oauth-create"></p>
+<p><img data-src="/2022/03/24/jenkins-gitea-oauth/gitea-oauth-create.png" alt="gitea-oauth-create"></p>
 <p>就會拿到一組 <code>客戶端 ID</code> 及 <code>密鑰</code> ，這個頁面先不要關閉，等一下要把這兩個資訊貼到 Jenkins 上。</p>
 <blockquote>
 <p>建議使用公用帳號操作，避免使用者被砍掉或停用，導致後續的麻煩</p>
 </blockquote>
 <h1 id="設定-Jenkins"><a href="#設定-Jenkins" class="headerlink" title="設定 Jenkins"></a>設定 Jenkins</h1><h2 id="安裝-Plugin"><a href="#安裝-Plugin" class="headerlink" title="安裝 Plugin"></a>安裝 Plugin</h2><p>Jenkins 的 OAuth 相關 plugin 蠻多的，但就是沒有直接對應 Gitea 的，可以選擇這套 <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/oic-auth/">OpenId Connect Authentication | Jenkins plugin</a> 來作為整合的套件。<br>進入 <code>Manage Jenkins</code> &gt; <code>Plugin Manager</code> &gt; <code>Available</code>，安裝套件並且重啟。</p>
 <h2 id="設定-Oauth"><a href="#設定-Oauth" class="headerlink" title="設定 Oauth"></a>設定 Oauth</h2><p>安裝完套件後，進入到 <code>Manage Jenkins</code> &gt; <code>Confiure Global Security</code>，找到 <code>Security Realm</code> 區塊</p>
-<p><img data-src="/./jenkins-security-realm.png" alt="jenkins-security-realm"></p>
+<p><img data-src="/2022/03/24/jenkins-gitea-oauth/jenkins-security-realm.png" alt="jenkins-security-realm"></p>
 <p>預設應該會使用 <code>Jenkins’ own user database</code> ，要改成 <code>Login with Openid Connect</code>，並且將前面 Gitea 所產生 <code>客戶端 ID</code> 及 <code>密鑰</code> 填入，<code>Configuration mode</code> 選擇 <code>Automatic confiuration</code> 填入 Gitea 的網址。</p>
-<p><img data-src="/./jenkins-login-openid-connect.png" alt="jenkins-login-openid-connect"></p>
+<p><img data-src="/2022/03/24/jenkins-gitea-oauth/jenkins-login-openid-connect.png" alt="jenkins-login-openid-connect"></p>
 <p>設定完成以後，登出系統，並且回到 Jenkins 網站的跟目錄，就會發現被轉到 Gitea 網站做登入授權。</p>
-<p><img data-src="/./gitea-auth-application.png" alt="gitea-auth-application"></p>
+<p><img data-src="/2022/03/24/jenkins-gitea-oauth/gitea-auth-application.png" alt="gitea-auth-application"></p>
 <h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>其實跟 DroneCI 很像，可以參考 <a href="/2021/03/22/gitea-drone-docker/" title="在本機使用Docker架Gitea和DroneCI">在本機使用Docker架Gitea和DroneCI</a> 的作法，雖然沒有直接的套件讓我們整合 Gitea，但也是能夠做到相同的事情。</p>
 
     </div>

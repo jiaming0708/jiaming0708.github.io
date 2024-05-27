@@ -29,22 +29,22 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="今天晚上聽 林亨力 在 GDG台中 分享的 如果你連DevTools都不會用，還敢說你是網頁設計者嗎，滿滿的乾貨，所以趁新鮮趕快來記錄一下自己所不知道的部份。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/command-list.png">
-<meta property="og:image" content="http://jiaming0708.github.io/animation.png">
-<meta property="og:image" content="http://jiaming0708.github.io/animation-result.png">
-<meta property="og:image" content="http://jiaming0708.github.io/firefox-animation.png">
-<meta property="og:image" content="http://jiaming0708.github.io/screenshot.png">
-<meta property="og:image" content="http://jiaming0708.github.io/geolocation.png">
-<meta property="og:image" content="http://jiaming0708.github.io/orientation.png">
-<meta property="og:image" content="http://jiaming0708.github.io/orientation-result.png">
-<meta property="og:image" content="http://jiaming0708.github.io/network-condition.png">
-<meta property="og:image" content="http://jiaming0708.github.io/coverage.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/command-list.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/animation.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/animation-result.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/firefox-animation.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/screenshot.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/geolocation.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/orientation.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/orientation-result.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/network-condition.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/coverage.png">
 <meta property="article:published_time" content="2020-03-26T13:06:51.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.606Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.751Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="chrome">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/command-list.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/command-list.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2020/03/26/chrome-devtool-intro/">
@@ -321,7 +321,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -368,25 +368,25 @@
 <blockquote>
 <p>window請用 <code>control+shift+p</code></p>
 </blockquote>
-<p><img data-src="/command-list.png" alt="command-list"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/command-list.png" alt="command-list"></p>
 <h2 id="檢視animation"><a href="#檢視animation" class="headerlink" title="檢視animation"></a>檢視animation</h2><p>在命令列選單輸入 <code>animation</code> 就只會看到一個選項，點下去就可以在下方看到新的 tab（如下圖）。</p>
-<p><img data-src="/animation.png" alt="animation"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/animation.png" alt="animation"></p>
 <p>在裡面就能夠看到目前頁面中所有的動畫元素，並且可以暫停重跑。</p>
-<p><img data-src="/animation-result.png" alt="animation-result"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/animation-result.png" alt="animation-result"></p>
 <p>在今天之前，如果要看 animation 的效果並且調整，我會選擇 firefox 查看，現在才知道原來chrome也有類似的功能。<br>實際操作了一下，發現還是 firefox 比較強，在 firefox 是顯示某個元素底下所有的結果，不用另外開出來，直接在檢視中就提供（如下圖）。</p>
-<p><img data-src="/firefox-animation.png" alt="firefox-animation"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/firefox-animation.png" alt="firefox-animation"></p>
 <h2 id="截圖"><a href="#截圖" class="headerlink" title="截圖"></a>截圖</h2><p>想要把整個網頁截取的話，可以不用額外的工具，只需要在命令列中輸入 <code>screenshot</code> 選取 <code>capture full size</code> 就會開始執行截圖的行為，但需要一下下的執行時間，請耐心等候。</p>
-<p><img data-src="/screenshot.png" alt="screenshot"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/screenshot.png" alt="screenshot"></p>
 <h2 id="Sensors"><a href="#Sensors" class="headerlink" title="Sensors"></a>Sensors</h2><p>一樣在命令列輸入 <code>sensor</code> ，這個 tab 中可以看到下面這幾個功能，個人覺得這 tab 的功能很酷！</p>
 <h3 id="Geolocation"><a href="#Geolocation" class="headerlink" title="Geolocation"></a>Geolocation</h3><p>可以模擬訊號位置到別的地區，對於這方面的測試是蠻方便的，最簡單的測試是打開 google map 並且變更設定到 <code>berlin</code> ，重新整理後就會發現自己離開台灣啦🤩（<s>可以打卡出國了</s></p>
-<p><img data-src="/geolocation.png" alt="geolocation"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/geolocation.png" alt="geolocation"></p>
 <h3 id="Orientation"><a href="#Orientation" class="headerlink" title="Orientation"></a>Orientation</h3><p>模擬手機的陀螺儀功能，可以到這個<a target="_blank" rel="noopener" href="https://intel.github.io/generic-sensor-demos/websensor-panorama/">網站</a>，並且將 orientation 設定改為 <code>protrait upsite down</code> ，重新整理後在右邊手機的地方點著旋轉，就可以上下左右的觀看了🤩</p>
-<p><img data-src="/orientation.png" alt="orientation"></p>
-<p><img data-src="/orientation-result.png" alt="orientation-result"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/orientation.png" alt="orientation"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/orientation-result.png" alt="orientation-result"></p>
 <h2 id="Network-Condition"><a href="#Network-Condition" class="headerlink" title="Network Condition"></a>Network Condition</h2><p>在命令列輸入 <code>network condition</code> 開啟 tab ，看到下面的 <code>user-agent</code> ，可以更改想要模擬的裝置</p>
-<p><img data-src="/network-condition.png" alt="network-condition"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/network-condition.png" alt="network-condition"></p>
 <h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>在命令列輸入 <code>coverage</code> 開啟 tab 後點擊 refresh 的圖示，就可以看到你網站的所有 css 以及 js 檔案使用率，對於效能調教上有著很大的幫助。基本上應該是越少紅色越好，因為紅色代表著未被該頁面使用到。</p>
-<p><img data-src="/coverage.png" alt="coverage"></p>
+<p><img data-src="/2020/03/26/chrome-devtool-intro/coverage.png" alt="coverage"></p>
 <h1 id="偵錯"><a href="#偵錯" class="headerlink" title="偵錯"></a>偵錯</h1><h2 id="design-mode"><a href="#design-mode" class="headerlink" title="design mode"></a>design mode</h2><p>在 console 的 tab 中輸入 <code>document.designMode=&#39;on&#39;</code> 就可以直接在畫面上編輯元素的文字，這對於要測試多文字樣式的確認還蠻方便的。</p>
 <h1 id="CSS-overview"><a href="#CSS-overview" class="headerlink" title="CSS overview"></a>CSS overview</h1><p>目前在 <code>stable</code> 版本是沒有的，可以看看<a target="_blank" rel="noopener" href="https://umaar.com/dev-tips/209-css-overview/">別人的介紹</a>，會讓我有點期待想要看到公司的網站會顯示什麼樣的內容</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>

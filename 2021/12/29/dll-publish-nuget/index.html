@@ -29,20 +29,20 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="nuget 是 dotnet 的套件管理工具，就像是 npm 是屬於 nodejs 的平台一樣，在上面的版本只能升不能降，還會有所有的版本異動紀錄，可以讓專案的參考管理更為有效。有 source code 的話要做到打包其實非常的簡單，今天要分享只有 dll 的話該如何發佈到 nuget server。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/create-new-package.png">
-<meta property="og:image" content="http://jiaming0708.github.io/package-view.png">
-<meta property="og:image" content="http://jiaming0708.github.io/edit-metadata.png">
-<meta property="og:image" content="http://jiaming0708.github.io/add-lib-folder.png">
-<meta property="og:image" content="http://jiaming0708.github.io/specify-dotnet-version.png">
-<meta property="og:image" content="http://jiaming0708.github.io/add-dll-in-content.png">
-<meta property="og:image" content="http://jiaming0708.github.io/save-unpkg.png">
-<meta property="og:image" content="http://jiaming0708.github.io/publish.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/create-new-package.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/package-view.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/edit-metadata.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/add-lib-folder.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/specify-dotnet-version.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/add-dll-in-content.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/save-unpkg.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/publish.png">
 <meta property="article:published_time" content="2021-12-29T01:02:29.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.658Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.807Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nuget">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/create-new-package.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/create-new-package.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/">
@@ -347,7 +347,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,15 +395,15 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nugetpackageexplorer</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="打包-dll"><a href="#打包-dll" class="headerlink" title="打包 dll"></a>打包 dll</h1><p>打開 <code>NuGet Package Explorer</code> 並且選擇 <code>Create a new package</code> 來產生一個新的檔案</p>
-<p><img data-src="/./create-new-package.png" alt="create new package"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/create-new-package.png" alt="create new package"></p>
 <p>接著會看到畫面分為兩個區塊</p>
 <ul>
 <li>metadata: 描述 package 的基本資訊，版本、作者、說明…等。</li>
 <li>contents: 包含在這個 package 中的內容，dotnet 版本、dll…等。</li>
 </ul>
-<p><img data-src="/./package-view.png" alt="package view"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/package-view.png" alt="package view"></p>
 <h2 id="編輯-metadata"><a href="#編輯-metadata" class="headerlink" title="編輯 metadata"></a>編輯 metadata</h2><p>點下 metadata 的左上角的 icon，進入編輯的畫面</p>
-<p><img data-src="/./edit-metadata.png" alt="edit metadata"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/edit-metadata.png" alt="edit metadata"></p>
 <p>通常會編輯幾個區塊</p>
 <ul>
 <li>Id: 需要唯一名稱，不可和 nuget 平台上的重複 (同一個 Id 可以在不同的 nuget server 上，也就是 nuget.org 和 private 的可以用同一個名稱)。</li>
@@ -412,14 +412,14 @@
 <li>Description: 對於這個 package 的描述。</li>
 </ul>
 <h2 id="編輯-content"><a href="#編輯-content" class="headerlink" title="編輯 content"></a>編輯 content</h2><p>要將 dll 放進去前，要先新增 <code>lib</code> 的資料夾</p>
-<p><img data-src="/./add-lib-folder.png" alt="add lib folder"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/add-lib-folder.png" alt="add lib folder"></p>
 <p>如果 dll 有指定平台或是版本，就可以選擇上面的 <code>Add &#123;*&#125; folder</code> ，若沒有的話，可以直接點選 <code>Add Existing File</code> 。<br>我要放進去的 dll 是 framework 4.5 的版本，就先指定版本再來新增檔案。</p>
-<p><img data-src="/./specify-dotnet-version.png" alt="specify dotnet version"></p>
-<p><img data-src="/./add-dll-in-content.png" alt="add dll in content"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/specify-dotnet-version.png" alt="specify dotnet version"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/add-dll-in-content.png" alt="add dll in content"></p>
 <h2 id="產生-unpkg"><a href="#產生-unpkg" class="headerlink" title="產生 unpkg"></a>產生 unpkg</h2><p>做完前面兩個步驟以後，就可以按下儲存，來產生 unpkg 的檔案。預設的檔案名稱會使用 <code>&#123;Id&#125;_&#123;Version&#125;.unpkg</code> ，基本上也不用去改名稱，直接找到想要的目錄底下儲存就好。</p>
-<p><img data-src="/./save-unpkg.png" alt="save unpkg"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/save-unpkg.png" alt="save unpkg"></p>
 <h2 id="發佈"><a href="#發佈" class="headerlink" title="發佈"></a>發佈</h2><p>最後就是將做好的內容發佈到 nuget 上啦，在上方的選單中 <code>File</code> 點選 <code>Publish</code> ，選擇要發佈的 server 及填入 api key。</p>
-<p><img data-src="/./publish.png" alt="publish"></p>
+<p><img data-src="/2021/12/29/dll-publish-nuget/publish.png" alt="publish"></p>
 <h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>對於一些年久失修的 dll，可以透過這樣的方法來重新打包上 nuget server，讓套件的管理更加統一。一開始操作的時候，我也有嘗試過將好幾顆 dll 一起打包，但這樣會有個缺點，一次參考就一定會所有 dll 都進去，如果每個 dll 是獨立沒有相依性的，就會建議拆開來做，避免這樣的問題發生。這些做好的 unpkg 甚至可以放進版控並且整合 CI&#x2F;CD 流程。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/NuGetPackageExplorer/NuGetPackageExplorer">NuGetPackageExplorer&#x2F;NuGetPackageExplorer: Create, update and deploy Nuget Packages with a GUI (github.com)</a></li>

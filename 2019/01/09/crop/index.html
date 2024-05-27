@@ -29,15 +29,15 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="系列文終於要來到最終章，前面的每一個都是重要的元素，但要怎麼整合起來會在這篇完整的交代">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/move.gif">
-<meta property="og:image" content="http://jiaming0708.github.io/gesturecard.jpg">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/move.gif">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/01/09/crop/gesturecard.jpg">
 <meta property="article:published_time" content="2019-01-09T13:43:55.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.570Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.715Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="crop">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/move.gif">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2019/01/09/crop/move.gif">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2019/01/09/crop/">
@@ -297,7 +297,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -360,7 +360,7 @@
 
 <p>接下來我們要把邊界的條件拉近來，並且邊界從四周改成中間的圓，也就是圖片不能超過圓形的範圍，因此計算的方式要重新來</p>
 <h2 id="圓為邊界"><a href="#圓為邊界" class="headerlink" title="圓為邊界"></a>圓為邊界</h2><p>前面我們所用到的邊界取值的方式還記得嗎，<strong>使用目前值和最大最小做計算</strong>。<br>用圓當做邊界也是一樣，我們要拿到圓的上下左右四個值，而不能偷懶直接用0當做最小值，這邊先來個暖身沒有任何scale的問題要帶入</p>
-<p>我們只要拿一邊來做計算，因此思考的方式要調整一下，先來看一下操作模式<br><img data-src="/move.gif" alt="move"></p>
+<p>我們只要拿一邊來做計算，因此思考的方式要調整一下，先來看一下操作模式<br><img data-src="/2019/01/09/crop/move.gif" alt="move"></p>
 <p>當圖左邊拉到圓的左邊時就要停止，而反邊的話是左邊拉到圓的右邊減去寬度，因此我們可以用這兩個值當做最大和最小</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> circle = &#123;</span><br><span class="line">    <span class="attr">radius</span>: <span class="number">125</span>,</span><br><span class="line">    <span class="attr">offsetY</span>: <span class="number">54</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//　取得圓在drag區域的offset</span></span><br><span class="line"><span class="keyword">const</span> photoRect = <span class="variable language_">this</span>.<span class="property">dragNode</span>.<span class="property">parentNode</span>.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line"><span class="keyword">let</span> circleNode = &#123;</span><br><span class="line">  <span class="attr">left</span>: (photoRect.<span class="property">width</span> / <span class="number">2</span>) - circle.<span class="property">radius</span>,</span><br><span class="line">  <span class="attr">top</span>: circle.<span class="property">offsetY</span>,</span><br><span class="line">&#125;;</span><br><span class="line">circleNode = &#123;</span><br><span class="line">  ...circleNode,</span><br><span class="line">  <span class="attr">right</span>: circleNode.<span class="property">left</span> + (circle.<span class="property">radius</span> * <span class="number">2</span>),</span><br><span class="line">  <span class="attr">bottom</span>: circleNode.<span class="property">top</span> + (circle.<span class="property">radius</span> * <span class="number">2</span>),</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//　以上的計算只需要一次，所以可以放在 componentDidMount</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> minLeft = circleNode.<span class="property">right</span> - <span class="variable language_">this</span>.<span class="property">dragNode</span>.<span class="property">offsetWidth</span>;</span><br><span class="line"><span class="keyword">const</span> minHeight = circleNode.<span class="property">bottom</span> - <span class="variable language_">this</span>.<span class="property">dragNode</span>.<span class="property">offsetHeight</span>;</span><br><span class="line"></span><br><span class="line">point = &#123;</span><br><span class="line">  <span class="attr">left</span>: <span class="variable language_">this</span>.<span class="title function_">validValue</span>(point.<span class="property">left</span>, minLeft, circleNode.<span class="property">left</span>),</span><br><span class="line">  <span class="attr">top</span>: <span class="variable language_">this</span>.<span class="title function_">validValue</span>(point.<span class="property">top</span>, minHeight, circleNode.<span class="property">top</span>),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -371,7 +371,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (zoomValue &gt; <span class="number">1</span>) &#123;</span><br><span class="line">  minLeft = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetWidth, minLeft, zoomValue);</span><br><span class="line">  minTop = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetHeight, minTop, zoomValue);</span><br><span class="line">  maxLeft = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetWidth, maxLeft, zoomValue);</span><br><span class="line">  maxTop = <span class="variable language_">this</span>.<span class="title function_">calOriginPosition</span>(offsetHeight, maxTop, zoomValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">calOriginPosition</span> = (<span class="params">originLength, value, zoomValue</span>) =&gt;</span><br><span class="line">    value + ((zoomValue - <span class="number">1</span>) * originLength / <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="mobile放大-pinch"><a href="#mobile放大-pinch" class="headerlink" title="mobile放大-pinch"></a>mobile放大-pinch</h2><a href="/2019/01/08/crop-drag/" title="[crop系列] 4 drag實作">前面一篇</a>有提到在mobile上的touch是一個陣列，為了可以記錄多點觸控時的位置，在mobile上scale有個名詞叫做**pinch**，可以看一下這張圖上面有各種在mobile上的操作行為
-<p><img data-src="/gesturecard.jpg" alt="gesture"></p>
+<p><img data-src="/2019/01/09/crop/gesturecard.jpg" alt="gesture"></p>
 <p>這邊跟drag只有一個地方要調整，就是一定要觸控兩個點，接著變更<code>zoomValue</code>即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(event =&gt; event.touches.length === 2)</span><br></pre></td></tr></table></figure>
 

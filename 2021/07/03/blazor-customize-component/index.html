@@ -29,13 +29,13 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="不管是哪一個前端的框架或套件，寫一個專屬於自己專案的元件，是很基本的行為，今天要來分享的是在 Blazor 中建立元件的一些小撇步。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/two-way-binding.gif">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/07/03/blazor-customize-component/two-way-binding.gif">
 <meta property="article:published_time" content="2021-07-03T01:27:13.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.654Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.799Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Blazor">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/two-way-binding.gif">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/07/03/blazor-customize-component/two-way-binding.gif">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2021/07/03/blazor-customize-component/">
@@ -340,7 +340,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,7 +394,7 @@
 <p>我們就在另一個元件中使用剛剛所制定的 <code>Jimmy</code> 這個元件，並且將資料輸出在畫面上。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/&quot;</span><br><span class="line"></span><br><span class="line">&lt;Jimmy @bind-Value=&quot;data&quot; /&gt;</span><br><span class="line">&lt;span&gt;hi @data&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">  string data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>執行以後應該可以看到像下面的結果，雙向綁定的行為是成功的。<br><img data-src="/two-way-binding.gif" alt="two-way-binding"></p>
+<p>執行以後應該可以看到像下面的結果，雙向綁定的行為是成功的。<br><img data-src="/2021/07/03/blazor-customize-component/two-way-binding.gif" alt="two-way-binding"></p>
 <h2 id="多層雙向綁定"><a href="#多層雙向綁定" class="headerlink" title="多層雙向綁定"></a>多層雙向綁定</h2><p>接著我們要寫一個元件叫做 <strong>TextField.razor</strong>，裡面會包含 label 以及 input，並且希望能夠直接將 input 的資料做雙向綁定。</p>
 <p>如果只照著前面的做法來做，會遇到一個問題，input 本身有雙向綁定，會需要一個屬性來承接，但又要能直接跟開放出去的屬性作連接，這時可以使用一個新的屬性來做關聯。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;</span><br><span class="line">    @Text</span><br><span class="line">    &lt;input @bind=&quot;Data&quot; /&gt;</span><br><span class="line">&lt;/label&gt;</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    [Parameter] public string Text &#123; get; set; &#125;</span><br><span class="line">    [Parameter] public string Value &#123; get; set; &#125;</span><br><span class="line">    [Parameter] public EventCallback&lt;string&gt; ValueChanged &#123; get; set; &#125;</span><br><span class="line">    string Data &#123;</span><br><span class="line">    	get =&gt; Value;</span><br><span class="line">    	set =&gt; ValueChanged.InvokeSync(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

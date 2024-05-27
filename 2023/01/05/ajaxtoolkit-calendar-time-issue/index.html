@@ -29,16 +29,16 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="在一個 Webform 的專案中，使用到 AjaxToolKit 的元件 CalendarExtender來選擇日期，設定的時間格式為 2023&#x2F;01&#x2F;05  23:59:59，在瀏覽器做日期的選擇後，會變成 2023&#x2F;01&#x2F;05 23:59:00，也沒有看到任何地方有去變更時間，同事覺得奇怪，一起追查問題以後發現這是一個 bug。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/source-aspx-js.png">
-<meta property="og:image" content="http://jiaming0708.github.io/calendarbehavior.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/source-aspx-js.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/calendarbehavior.png">
 <meta property="article:published_time" content="2023-01-05T03:49:02.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.678Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.827Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="ASP.NET">
 <meta property="article:tag" content="Debug">
 <meta property="article:tag" content="Webform">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/source-aspx-js.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/source-aspx-js.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2023/01/05/ajaxtoolkit-calendar-time-issue/">
@@ -315,7 +315,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -364,8 +364,8 @@
 <blockquote>
 <p>這種壓縮過的程式會比較難閱讀，可以點下方的 <code>&#123;&#125;</code> 圖示來還原比較好讀的排版。參考 <a target="_blank" rel="noopener" href="https://5xruby.tw/posts/how-to-use-chrome-devtools">開發不難，會 Debug 就好！如何靈活運用 Chrome DevTools 來開發網站 | 五倍紅寶石・專業程式教育 (5xruby.tw)</a></p>
 </blockquote>
-<p><img data-src="/source-aspx-js.png" alt="source-aspx-js"></p>
-<p>看展開後的排版，從上到下的把一段大概看一下，猜測寫入值的部分應該是在 <code>set_selectedDate</code>，從這邊下個中斷點，開始一行一行的看邏輯。<br><img data-src="/calendarbehavior.png" alt="calendarbehavior.png"></p>
+<p><img data-src="/2023/01/05/ajaxtoolkit-calendar-time-issue/source-aspx-js.png" alt="source-aspx-js"></p>
+<p>看展開後的排版，從上到下的把一段大概看一下，猜測寫入值的部分應該是在 <code>set_selectedDate</code>，從這邊下個中斷點，開始一行一行的看邏輯。<br><img data-src="/2023/01/05/ajaxtoolkit-calendar-time-issue/calendarbehavior.png" alt="calendarbehavior.png"></p>
 <p><code>d</code> 是選擇到的日期，<code>f</code> 是原本選擇的日期也就是帶有時分秒的，在 4734 行開始，會把 <code>f</code> 的時分秒開始寫入到 <code>d</code> 身上，問題就在這邊，有 <code>時Hour</code>、<code>分Minute</code>、<code>毫秒Millisecond</code>，但是沒看到 <code>秒Second</code>。<br>嘗試把這行程式在 <code>監看</code> 執行，可以看到 <code>ttbEndDate</code> 的值就是正確的了!!</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.<span class="title function_">setUTCSeconds</span>(e.<span class="title function_">getUTCSeconds</span>());</span><br></pre></td></tr></table></figure>
 

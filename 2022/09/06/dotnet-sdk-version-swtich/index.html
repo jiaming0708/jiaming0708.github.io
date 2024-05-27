@@ -29,18 +29,18 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="DotnetCore的版本更新的很快，為了要有支援多個環境，電腦都會安裝很多的 SDK，預設 cli 會使用最新的版本，理論上新版都應該是可以支援舊版的編譯；但偏偏雨漸漸為了要測試一個功能，就安裝了 Dotnet 7 preview，結果導致原本可以編譯的專案變成失敗，而且錯誤訊息還很難看懂，還好可以指定舊版的 SDK，就可以避免掉這樣的問題。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/sdk-list.png">
-<meta property="og:image" content="http://jiaming0708.github.io/cli-globaljson.png">
-<meta property="og:image" content="http://jiaming0708.github.io/cat-globaljson.png">
-<meta property="og:image" content="http://jiaming0708.github.io/change-sdk-version.png">
-<meta property="og:image" content="http://jiaming0708.github.io/cli-globaljson-version.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/sdk-list.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/cli-globaljson.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/cat-globaljson.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/change-sdk-version.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/cli-globaljson-version.png">
 <meta property="article:published_time" content="2022-09-06T07:00:16.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.674Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.819Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="DotnetCore">
 <meta property="article:tag" content="SDK">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/sdk-list.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/sdk-list.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2022/09/06/dotnet-sdk-version-swtich/">
@@ -345,7 +345,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -393,22 +393,22 @@
 
 
 
-<p><img data-src="/sdk-list.png" alt="sdk-list"></p>
+<p><img data-src="/2022/09/06/dotnet-sdk-version-swtich/sdk-list.png" alt="sdk-list"></p>
 <p>接著可以透過 cli 來產生 <code>global.json</code> 的檔案，用來指定 SDK 版本。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet new globaljson</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/cli-globaljson.png" alt="cli-globaljson"></p>
+<p><img data-src="/2022/09/06/dotnet-sdk-version-swtich/cli-globaljson.png" alt="cli-globaljson"></p>
 <p>要注意的是，這個檔案會產生在你所下的目錄位置內，並不是真的在 User 底下的一個檔案，可以透過 cat 來看內容是什麼。</p>
-<p><img data-src="/cat-globaljson.png" alt="cat-globaljson"></p>
+<p><img data-src="/2022/09/06/dotnet-sdk-version-swtich/cat-globaljson.png" alt="cat-globaljson"></p>
 <p>像是我要改成指定 <code>6.0.300</code> 的話，就可以開啟這個檔案，並且替換 version 的內容，存檔後可以下 <code>dotnet --version</code> 來確認現在版本是符合預期的。</p>
 <blockquote>
 <p>如果只想要透過指令，也可以考慮使用 jq 這個套件來完成，或是用 vim</p>
 </blockquote>
-<p><img data-src="/change-sdk-version.png" alt="change-sdk-version"></p>
+<p><img data-src="/2022/09/06/dotnet-sdk-version-swtich/change-sdk-version.png" alt="change-sdk-version"></p>
 <p>當然也有更快的方法，產生 global.json 時就直接指定需要的版本號。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet new globaljson --sdk-version 6.0.300</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/cli-globaljson-version.png" alt="cli-globaljson-version"></p>
+<p><img data-src="/2022/09/06/dotnet-sdk-version-swtich/cli-globaljson-version.png" alt="cli-globaljson-version"></p>
 <p>用以上的方法就可以先排除掉因為 SDK 太新導致編譯失敗的問題，不建議把這個檔案加入版控，畢竟這算是個人環境因素，另外就是如果未來專案升級，這個檔案也要砍掉或跟著調整，不然執行上就會有問題。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/core/tools/global-json?WT.mc_id=DT-MVP-4015686">global.json overview - .NET CLI | Microsoft Docs</a></li>

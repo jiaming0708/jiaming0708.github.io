@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="大綱一個要提供給國際使用的網站，一定會遇到多國語系的問題，Angular已經幫我們想好解決方案，i18n，一起進入這個世界探索吧!">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/translate.gif">
-<meta property="og:image" content="http://jiaming0708.github.io/build.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2017/04/24/angular-i18n/translate.gif">
+<meta property="og:image" content="http://jiaming0708.github.io/2017/04/24/angular-i18n/build.png">
 <meta property="article:published_time" content="2017-04-24T11:22:15.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.554Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.703Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/translate.gif">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2017/04/24/angular-i18n/translate.gif">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2017/04/24/angular-i18n/">
@@ -341,7 +341,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -384,7 +384,7 @@
     <div class="post-body" itemprop="articleBody"><h2 id="大綱"><a href="#大綱" class="headerlink" title="大綱"></a>大綱</h2><p>一個要提供給國際使用的網站，一定會遇到多國語系的問題，Angular已經幫我們想好解決方案，i18n，一起進入這個世界探索吧!</p>
 <span id="more"></span>
 
-<h2 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h2><p>多國語系是網頁必定會遇到的問題，在開始之前，我們先來看一下預期的目標<br><img data-src="/translate.gif" alt="translate"></p>
+<h2 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h2><p>多國語系是網頁必定會遇到的問題，在開始之前，我們先來看一下預期的目標<br><img data-src="/2017/04/24/angular-i18n/translate.gif" alt="translate"></p>
 <p>我們希望畫面上的字能根據語系來做相對應的呈現<br><a target="_blank" rel="noopener" href="https://angular.io/docs/ts/latest/cookbook/i18n.html">i18n</a>!!!粉墨登場</p>
 <p>首先要在component中加上<code>i18n</code>這個directive</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">i18n</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -408,7 +408,7 @@
 <blockquote>
 <p>ng build –prod –i18n-file&#x3D;src&#x2F;locale&#x2F;messages.zh-TW.xlf –locale&#x3D;zh-TW –i18n-format&#x3D;xlf</p>
 </blockquote>
-<p><img data-src="/build.png" alt="build"></p>
+<p><img data-src="/2017/04/24/angular-i18n/build.png" alt="build"></p>
 <p>可以發現到，其實他是直接把html的內容給替換掉了！<br>那這樣是不是說，要產生不同語系，就必須重新編譯一次…!?</p>
 <p><del>這樣的作法不可能應用到網站中，因此我們需要改變一下</del><br>如果只要架一個網站，就要想辦法將檔案動態載入</p>
 <p>首先使用system.import的方式載入檔案，並且載入要在bootstrap之前<br>所以我們可以來看看下面這段，先用固定的語系</p>

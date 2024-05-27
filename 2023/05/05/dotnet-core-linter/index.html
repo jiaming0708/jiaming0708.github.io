@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="在 JS 的世界中，有 ESLinter 可以幫助我們做一些排版還有變數等等的檢查，提升程式碼風格一致性，在 Dotnet Core 也希望有類似的功能。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/vs-linter-error.png">
-<meta property="og:image" content="http://jiaming0708.github.io/vs-linter-error-fix.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/vs-linter-error.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/vs-linter-error-fix.png">
 <meta property="article:published_time" content="2023-05-05T09:32:46.000Z">
 <meta property="article:modified_time" content="2023-05-05T09:32:46.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="DotnetCore">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/vs-linter-error.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/vs-linter-error.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/">
@@ -403,9 +403,9 @@
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># C# files</span></span><br><span class="line"><span class="section">[*.cs]</span></span><br><span class="line"><span class="comment"># Default severity for analyzer diagnostics with category &#x27;Style&#x27; (escalated to build errors)</span></span><br><span class="line"><span class="attr">dotnet_analyzer_diagnostic.category-Style.severity</span> = error</span><br></pre></td></tr></table></figure>
 
 <p>並且把前面那段格式有問題的程式貼回去，還不用編譯就會在 VS 看到一堆紅蚯蚓</p>
-<p><img data-src="/vs-linter-error.png" alt="vs-linter-error"></p>
+<p><img data-src="/2023/05/05/dotnet-core-linter/vs-linter-error.png" alt="vs-linter-error"></p>
 <p>不知道怎麼修的話，可以用 VS 的建議來直接修復</p>
-<p><img data-src="/vs-linter-error-fix.png" alt="vs-linter-error-fix"></p>
+<p><img data-src="/2023/05/05/dotnet-core-linter/vs-linter-error-fix.png" alt="vs-linter-error-fix"></p>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>開啟 Linter 的好處就是很多寫法是有規範的，可以避免掉一些很基礎的問題讓自己不爽，但預設的規則也很硬，要開啟的話記得要跟團隊好好討論一下要怎麼弄，不然絕對會搞到自己。</p>
 <blockquote>
 <p>像是 using 要分門別類的排好以外還要空行</p>

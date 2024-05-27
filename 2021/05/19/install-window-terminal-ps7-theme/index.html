@@ -29,18 +29,18 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="最近再次投入了 window 平台的筆電，之前已經很習慣 mac 的 iTerm + oh-my-zsh 的功能，一直嘗試找有沒有類似的工具可以使用，很開心的找到了一個類似的工具，Window Terminal 搭配最新的 PowerShell 7 套用 oh-my-posh （是不是很相似阿，作者有說是參考 oh-my-zsh）">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/search-powershell.png">
-<meta property="og:image" content="http://jiaming0708.github.io/window-terminal-select.png">
-<meta property="og:image" content="http://jiaming0708.github.io/posh-theme.png">
-<meta property="og:image" content="http://jiaming0708.github.io/mytheme.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/search-powershell.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/window-terminal-select.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/posh-theme.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/mytheme.png">
 <meta property="article:published_time" content="2021-05-19T13:09:59.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.654Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.799Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="Powershell">
 <meta property="article:tag" content="WindowTerminal">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/search-powershell.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/search-powershell.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2021/05/19/install-window-terminal-ps7-theme/">
@@ -345,7 +345,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -389,13 +389,13 @@
 <p>我是蠻懷疑，有多少 Linux 或是 Mac 的使用者會想要安裝這套XDDD</p>
 </blockquote>
 <p>現在微軟都有提供多種安裝方式，可以到 <a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell">github</a> 看看，那個人是使用 <a target="_blank" rel="noopener" href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D">Window Store</a> 直接下載安裝，安裝完以後可以在<strong>開始</strong>的選單中搜尋 <code>powershell</code> 就可以發現到有兩種不一樣的版本（不是x86的差異），一個叫做 <strong>Window PowerShell</strong> 也就是原生5.1的版本，另一個 <strong>PowerShell</strong> 就是剛安裝好的7這個版本。</p>
-<p><img data-src="/search-powershell.png" alt="search powershell"></p>
+<p><img data-src="/2021/05/19/install-window-terminal-ps7-theme/search-powershell.png" alt="search powershell"></p>
 <h2 id="Window-Terminal"><a href="#Window-Terminal" class="headerlink" title="Window Terminal"></a>Window Terminal</h2><p>為什麼有了 PowerShell 這樣的工具，還需要另外一套類似的工具呢？PowerShell 是一個強大的工具，但一次就是一個視窗，分散開來其實有時候要管理的時候不是非常方便，如果同時又開了 cmd 以及 ubnutu wsl 的話，那不就一堆視窗在那邊跑，在這種情況下就蠻適合使用 Window Terminal 這套工具的。</p>
 <blockquote>
 <p>好啦，最重要的原因是跟 mac 很像，所以選他就對了！</p>
 </blockquote>
 <p>一樣的微軟提供許多安裝方式，其中官方推薦的是 <a target="_blank" rel="noopener" href="https://www.microsoft.com/store/productId/9N0DX20HK701">Window Store</a> 。</p>
-<p><img data-src="/window-terminal-select.png" alt="window terminal select"></p>
+<p><img data-src="/2021/05/19/install-window-terminal-ps7-theme/window-terminal-select.png" alt="window terminal select"></p>
 <h1 id="套用-Theme"><a href="#套用-Theme" class="headerlink" title="套用 Theme"></a>套用 Theme</h1><h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>打開剛裝好的 <strong>Window Terminal</strong> 以及 <strong>PowerShell 7</strong>，接下來我們就要開始安裝 Theme 相關的套件，總共要安裝兩個套件，一個是 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-pos</a> 樣式的套件，另一個就是 <a target="_blank" rel="noopener" href="https://github.com/dahlbyk/posh-git">posh-git</a> 是用來顯示 git 的狀態，安裝的指令如下。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
 
@@ -412,7 +412,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
 
 <h2 id="套用樣式"><a href="#套用樣式" class="headerlink" title="套用樣式"></a>套用樣式</h2><p>oh-my-posh 提供蠻多的樣式可以做選擇，可以透過指令 <strong>Get-PoshThemes</strong> 或是 網站<a target="_blank" rel="noopener" href="https://ohmyposh.dev/docs/themes">Themes | Oh my Posh</a> 來做參考，下圖是執行指令出來的部份結果。</p>
-<p><img data-src="/posh-theme.png" alt="posh theme"></p>
+<p><img data-src="/2021/05/19/install-window-terminal-ps7-theme/posh-theme.png" alt="posh theme"></p>
 <blockquote>
 <p>如果發現有些內容顯示不出來，通常是字體的問題，可以改為官方使用的字體 <a target="_blank" rel="noopener" href="https://www.nerdfonts.com/">Nerd Fonts</a></p>
 </blockquote>
@@ -423,7 +423,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span></span><br><span class="line"><span class="built_in">Set-PoshPrompt</span> <span class="literal">-Theme</span> C:\.oh<span class="literal">-my-posh</span>.omp.json</span><br></pre></td></tr></table></figure>
 
 <p>最後分享一下我自己的設定檔，是參考了 <code>paradox</code> 以及 <code>jandedobbeleer</code> 所整理出來的樣式。</p>
-<p><img data-src="/mytheme.png" alt="mytheme"></p>
+<p><img data-src="/2021/05/19/install-window-terminal-ps7-theme/mytheme.png" alt="mytheme"></p>
 <script src="//gist.github.com/7851a94d92f5a5f35d1c7685afe56d44.js?file=.mytheme.omp.json"></script>
 
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>

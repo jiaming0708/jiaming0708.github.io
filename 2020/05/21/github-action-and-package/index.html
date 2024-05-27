@@ -29,20 +29,20 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="Continuous Integration (以下簡稱CI)，是在開發中很重要的一環，大家常用或常聽到的例如：Jenkins, Travis…等等的，我們常在使用的 Github 本身也有提供類似的服務。今天來使用 Github 的全套服務，使用 Action 做 CI&#x2F;CD 並且發佈到 Package。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/start-action.png">
-<meta property="og:image" content="http://jiaming0708.github.io/simple-action.png">
-<meta property="og:image" content="http://jiaming0708.github.io/commit.png">
-<meta property="og:image" content="http://jiaming0708.github.io/build-log.png">
-<meta property="og:image" content="http://jiaming0708.github.io/build-fail.png">
-<meta property="og:image" content="http://jiaming0708.github.io/repo-package.png">
-<meta property="og:image" content="http://jiaming0708.github.io/package-info.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/start-action.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/simple-action.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/commit.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/build-log.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/build-fail.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/repo-package.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/package-info.png">
 <meta property="article:published_time" content="2020-05-21T13:43:19.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.630Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.775Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Github">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/start-action.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2020/05/21/github-action-and-package/start-action.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2020/05/21/github-action-and-package/">
@@ -347,7 +347,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -390,15 +390,15 @@
 <p>Github本身對於Action有一些<a target="_blank" rel="noopener" href="https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions">限制</a>和<a target="_blank" rel="noopener" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#usage-limits">收費</a>的方式，詳細請參考官方文件。</p>
 </blockquote>
 <h2 id="使用範本建立"><a href="#使用範本建立" class="headerlink" title="使用範本建立"></a>使用範本建立</h2><p>在開始之前當然就要先建立好一個 repo ，點選到 Action 的頁籤，就可以開始建立囉</p>
-<p><img data-src="/start-action.png" alt="start action"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/start-action.png" alt="start action"></p>
 <p>一個還沒有建立過 Action 的專案，會先看到上圖的畫面，可以從現有的範本中做建立的動作，那我們就使用 <code>Simple workflow</code> 來做為我們的第一個 Action，從範本中我們可以發現到兩件事情</p>
 <ul>
 <li><code>yaml</code> 的格式做撰寫</li>
 <li>檔案存在 <code>.github/workflow</code> 底下</li>
 </ul>
-<p><img data-src="/simple-action.png" alt="simple action"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/simple-action.png" alt="simple action"></p>
 <p>先什麼都不改然後 commit 就可以到 Action 的頁籤中確認執行狀況，從下圖中可以看到 <code>CI</code> 的 workflow 已經執行成功</p>
-<p><img data-src="/commit.png" alt="commit"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/commit.png" alt="commit"></p>
 <h2 id="了解yaml"><a href="#了解yaml" class="headerlink" title="了解yaml"></a>了解yaml</h2><p>為了之後能夠寫出自己的檔案，就要先了解檔案的每個區塊是怎麼運作，詳細可以<a target="_blank" rel="noopener" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions">參考官網</a></p>
 <blockquote>
 <p>為了篇幅我將註解都刪除</p>
@@ -416,10 +416,10 @@
 <p>官方建議後面要加上版本號，避免突然間炸掉</p>
 </blockquote>
 <h5 id="name-run"><a href="#name-run" class="headerlink" title="name&#x2F;run"></a>name&#x2F;run</h5><p>每個步驟的名稱，以及要執行的指令</p>
-<h2 id="看看build-log"><a href="#看看build-log" class="headerlink" title="看看build log"></a>看看build log</h2><p><img data-src="/build-log.png" alt="build log"></p>
+<h2 id="看看build-log"><a href="#看看build-log" class="headerlink" title="看看build log"></a>看看build log</h2><p><img data-src="/2020/05/21/github-action-and-package/build-log.png" alt="build log"></p>
 <p>可以看到左邊的 <strong>build</strong> 就是所有的 job，右邊則是列出所有的 steps</p>
 <p>###執行錯誤</p>
-<p><img data-src="/build-fail.png" alt="build fail"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/build-fail.png" alt="build fail"></p>
 <p>如果有執行錯誤從外面其實看不到是在哪一個步驟錯誤，必須要到詳細的 log 中查看才行</p>
 <h1 id="Package"><a href="#Package" class="headerlink" title="Package"></a>Package</h1><p>前面已經了解完了 Action，接著第二個目的是使用 Github Package 這個服務，這個服務本身不是只能放 javascript 的 library 也是能夠放其他語言的 library ，例如 nugget、gem 等等的，詳細請見<a target="_blank" rel="noopener" href="https://github.com/features/packages">官方說明</a></p>
 <h2 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h2><p>使用 npm 的方式做登入，只是要另外指定 registry；登入的時候使用的是 Github 的帳號以及 <strong>token</strong> ，token產生方式可以<a target="_blank" rel="noopener" href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">參考這邊</a></p>
@@ -442,8 +442,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
 
 <p>接著我們可以到 Github 的 repo 中查看</p>
-<p><img data-src="/repo-package.png" alt="repo package"></p>
-<p><img data-src="/package-info.png" alt="package info"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/repo-package.png" alt="repo package"></p>
+<p><img data-src="/2020/05/21/github-action-and-package/package-info.png" alt="package info"></p>
 <h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>發佈以後我們可以來安裝看看，在專案的根目錄中，加上 <code>.npmrc</code> 在裡面要加上 package 所屬的 owner，接著就可以使用一般的 npm 安裝方法</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registry=https://npm.pkg.github.com/jiaming0708</span><br></pre></td></tr></table></figure>
 

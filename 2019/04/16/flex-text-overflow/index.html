@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="最近做一些新的畫面，其中有一個問題很妙，在一般的情況下要呈現省略號，其實算是蠻容易的，但在flex中卻有點麻煩，今天要來探討一下這個部分">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/layout.png">
-<meta property="og:image" content="http://jiaming0708.github.io/overflow.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/04/16/flex-text-overflow/layout.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/04/16/flex-text-overflow/overflow.png">
 <meta property="article:published_time" content="2019-04-16T03:10:41.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.582Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.727Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/layout.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2019/04/16/flex-text-overflow/layout.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2019/04/16/flex-text-overflow/">
@@ -327,7 +327,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -371,7 +371,7 @@
 <span id="more"></span>
 
 <h1 id="畫面架構"><a href="#畫面架構" class="headerlink" title="畫面架構"></a>畫面架構</h1><p>來看一下畫面需求是這樣，左邊有一個清單，每一張卡片裡面還分兩塊，右邊的資訊過長的時候，必須是需要呈顯省略號</p>
-<p><img data-src="/layout.png" alt="layout"></p>
+<p><img data-src="/2019/04/16/flex-text-overflow/layout.png" alt="layout"></p>
 <h1 id="討論省略號"><a href="#討論省略號" class="headerlink" title="討論省略號"></a>討論省略號</h1><p>要能夠呈現省略號，必須要達成三個條件，少掉一個其實都無法看到省略號</p>
 <ul>
 <li>width</li>
@@ -385,7 +385,7 @@
 <h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>接下來來看一下css的部份，先用最直覺的寫法，結果發現怎麼都超過了阿!!</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.root</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.list</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30%</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.card</span>&#123;</span><br><span class="line">      <span class="attribute">display</span>: flex;</span><br><span class="line">      <span class="attribute">border</span>: <span class="number">1px</span> solid blue;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="selector-class">.pic</span>&#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid green;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 重點區塊</span></span><br><span class="line">      <span class="selector-class">.content</span>&#123;</span><br><span class="line">        <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="attribute">margin-left</span>: <span class="number">0.5rem</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="selector-class">.title</span>&#123;</span><br><span class="line">          <span class="attribute">font-weight</span>: bold;</span><br><span class="line">          <span class="attribute">overflow</span>: hidden;</span><br><span class="line">          <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">          <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="selector-class">.descr</span>&#123;</span><br><span class="line">          <span class="attribute">margin-top</span>: <span class="number">0.25rem</span>;</span><br><span class="line">          <span class="attribute">overflow</span>: hidden;</span><br><span class="line">          <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">          <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.body</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/overflow.png" alt="oveflow"></p>
+<p><img data-src="/2019/04/16/flex-text-overflow/overflow.png" alt="oveflow"></p>
 <p>怎麼完全width完全沒有被控制住呢，說好的省略號呢！</p>
 <h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>那先試著給width一個固定值，省略號的確可以work，跟上面所講的三要素是相同，但給固定值絕對不是我們需要的，就讓我們一起試著找一些方法來解決吧</p>
 <h2 id="overflow-hidden"><a href="#overflow-hidden" class="headerlink" title="overflow:hidden"></a>overflow:hidden</h2><blockquote>

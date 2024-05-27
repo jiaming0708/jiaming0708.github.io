@@ -29,15 +29,15 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="使用 IIS 做 reverse proxy 時，如果網站需要 OAuth，會自動導去其他網站，但會發現這時候 host 沒有被切過去，導致整個 auth 失敗，來分享一下可以怎麼樣解決這個問題。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/iis-home.png">
-<meta property="og:image" content="http://jiaming0708.github.io/arr-home.png">
-<meta property="og:image" content="http://jiaming0708.github.io/arr-setting.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/iis-home.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/arr-home.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/arr-setting.png">
 <meta property="article:published_time" content="2021-04-09T03:36:52.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.650Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.795Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="IIS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/iis-home.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/iis-home.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2021/04/09/iis-reverse-proxy-header/">
@@ -342,7 +342,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -402,11 +402,11 @@
 </blockquote>
 <h1 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h1><p>將 ARR 中的 <strong>Reverse rewrite host in response headers</strong> 關閉即可。</p>
 <p>在 IIS 的 root 找到 <code>Application Request Routing(ARR)</code></p>
-<p><img data-src="/iis-home.png" alt="iis home"></p>
+<p><img data-src="/2021/04/09/iis-reverse-proxy-header/iis-home.png" alt="iis home"></p>
 <p>在 ARR 的右側點選 <code>Server Proxy Setting</code></p>
-<p><img data-src="/arr-home.png" alt="arr home"></p>
+<p><img data-src="/2021/04/09/iis-reverse-proxy-header/arr-home.png" alt="arr home"></p>
 <p>找到 <code>Reverse rewrite host in response headers</code> 並且取消核選</p>
-<p><img data-src="/arr-setting.png" alt="arr setting"></p>
+<p><img data-src="/2021/04/09/iis-reverse-proxy-header/arr-setting.png" alt="arr setting"></p>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ul>
 <li><a href="/2017/09/02/reserve-proxy/" title="設定Reverse Proxy在Windows、Mac">設定Reverse Proxy在Windows、Mac</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2009/04/13/Using-ARR-to-implement-Reverse-Proxy">如何利用 IIS7 的 ARR 模組實做 Reverse Proxy 機制</a></li>

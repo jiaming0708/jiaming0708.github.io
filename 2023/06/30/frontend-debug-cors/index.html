@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="前端的社群朋友遇到一個神奇的問題，在 axios 就會有 cors 錯誤，改使用 fetch 就不會，產生一些討論以後，覺得如何偵錯 cors 蠻值得紀錄的。 先說結論，只要遇到 CORS 一律都是後端的問題。  本篇結束(大誤">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/console-error.jpg">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/06/30/frontend-debug-cors/console-error.jpg">
 <meta property="article:published_time" content="2023-06-30T08:21:56.000Z">
 <meta property="article:modified_time" content="2023-06-30T08:21:56.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Debug">
 <meta property="article:tag" content="Frontend">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/console-error.jpg">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2023/06/30/frontend-debug-cors/console-error.jpg">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2023/06/30/frontend-debug-cors/">
@@ -423,7 +423,7 @@
 <h2 id="偵錯技巧"><a href="#偵錯技巧" class="headerlink" title="偵錯技巧"></a>偵錯技巧</h2><p>身為前端的你，到底該如何去看是什麼鬼東西被卡住呢，根據朋友的案例，可以有兩種做法。</p>
 <h3 id="追程式"><a href="#追程式" class="headerlink" title="追程式"></a>追程式</h3><p>把兩種寫法的程式都看清楚，並且比對有哪邊行為不一樣，這個通常會比較考驗眼力和耐心。</p>
 <h3 id="使用開發者工具"><a href="#使用開發者工具" class="headerlink" title="使用開發者工具"></a>使用開發者工具</h3><p>打開瀏覽器的 <code>DevTool</code>，並且切到 <code>Console</code>，就會看到紅色的字告訴你請求失敗。</p>
-<p><img data-src="/console-error.jpg" alt="console-error"></p>
+<p><img data-src="/2023/06/30/frontend-debug-cors/console-error.jpg" alt="console-error"></p>
 <p>像是上面這樣的畫面，裡面就包含著答案 <strong>Request header field <code>authorization</code> is not allowed by <code>Access-Control-Allow-Headers</code> in preflight response.</strong> 。</p>
 <ul>
 <li><code>header filed</code> 後面所接的就是不被允許的欄位</li>

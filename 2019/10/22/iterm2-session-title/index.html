@@ -29,17 +29,17 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="一直以來都有用 iterm2 作為 bash 的工具，最近不知道什麼樣的更新，讓頁籤的標題永遠都只會顯示 zsh ，但工作的關係，一次都會開好幾個專案在跑，那每個都顯示 zsh 說真的還真沒記得哪個頁籤是什麼…">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/incorrect_title.png">
-<meta property="og:image" content="http://jiaming0708.github.io/profile_title_incorrect.png">
-<meta property="og:image" content="http://jiaming0708.github.io/profile_title_correct.png">
-<meta property="og:image" content="http://jiaming0708.github.io/correct_title.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/incorrect_title.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/profile_title_incorrect.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/profile_title_correct.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/correct_title.png">
 <meta property="article:published_time" content="2019-10-22T13:47:48.000Z">
-<meta property="article:modified_time" content="2024-05-23T12:57:50.594Z">
+<meta property="article:modified_time" content="2024-05-27T03:19:36.739Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Debug">
 <meta property="article:tag" content="iterm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/incorrect_title.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/incorrect_title.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2019/10/22/iterm2-session-title/">
@@ -344,7 +344,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-23 20:57:50" itemprop="dateModified" datetime="2024-05-23T20:57:50+08:00">2024-05-23</time>
+      <time title="修改時間：2024-05-27 11:19:36" itemprop="dateModified" datetime="2024-05-27T11:19:36+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -383,16 +383,16 @@
     <div class="post-body" itemprop="articleBody"><p>一直以來都有用 <code>iterm2</code> 作為 bash 的工具，最近不知道什麼樣的更新，讓頁籤的標題永遠都只會顯示 <code>zsh</code> ，但工作的關係，一次都會開好幾個專案在跑，那每個都顯示 <code>zsh</code> 說真的還真沒記得哪個頁籤是什麼…</p>
 <span id="more"></span>
 
-<p><img data-src="/incorrect_title.png" alt="incorrect_title"></p>
+<p><img data-src="/2019/10/22/iterm2-session-title/incorrect_title.png" alt="incorrect_title"></p>
 <p>上圖是壞掉的狀況，為了示範只有兩個頁籤，但是實際上在工作的時候我會開四五個，到底是哪邊的設定跑掉呢？</p>
 <p>首先，要先定義一下名詞，在 <code>iterm</code> 裡面，每個頁籤其實叫做 session ，這樣在查找資料的時候才會比較容易，不然會像我一樣一直用 tab title 去查，查到的不一定是錯的，但就是解不了我的問題</p>
 <h1 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h1><p>這個問題其實很簡單，只是一個設定跑掉而已，找了很久才找到，打開 <code>preferences</code> 的設定，進入到 <code>Profiles</code> 的頁籤，然後找到 <code>Title</code> 這個下拉選單</p>
-<h2 id="錯誤"><a href="#錯誤" class="headerlink" title="錯誤"></a>錯誤</h2><p><img data-src="/profile_title_incorrect.png" alt="profile_title_incorrect"></p>
+<h2 id="錯誤"><a href="#錯誤" class="headerlink" title="錯誤"></a>錯誤</h2><p><img data-src="/2019/10/22/iterm2-session-title/profile_title_incorrect.png" alt="profile_title_incorrect"></p>
 <p>從上面這張可以看到，只選了 <code>Job</code> 然後其他都沒了，試著每個都選選看可以看到不一樣的變化</p>
 <h2 id="預設"><a href="#預設" class="headerlink" title="預設"></a>預設</h2><p>那預設的是什麼呢？應該要選 <code>Session Name + Job</code></p>
-<p><img data-src="/profile_title_correct.png" alt="profile_title_correct"></p>
+<p><img data-src="/2019/10/22/iterm2-session-title/profile_title_correct.png" alt="profile_title_correct"></p>
 <p>設定完的 <code>iterm</code> 就會回到正常的資料夾顯示於標題</p>
-<p><img data-src="/correct_title.png" alt="correct_title"></p>
+<p><img data-src="/2019/10/22/iterm2-session-title/correct_title.png" alt="correct_title"></p>
 <h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a target="_blank" rel="noopener" href="https://iterm2.com/documentation-session-title.html">https://iterm2.com/documentation-session-title.html</a></p>
 
     </div>

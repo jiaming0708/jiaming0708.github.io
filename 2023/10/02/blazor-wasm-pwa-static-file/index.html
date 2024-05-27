@@ -29,18 +29,18 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="在 Blazor WebAssembly 中可以開啟 PWA 的模式，也就是會產生 Service Worker，要加入像是 Excel 或是 PDF 到靜態檔案，會發現在本機開發時都能夠正常下載的檔案，怎麼上到掛 domain 的 server 就會去走 routing，跟預期的差很多，今天會來解析中間發生了什麼事情。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://jiaming0708.github.io/sample1-local-run.png">
-<meta property="og:image" content="http://jiaming0708.github.io/sample2-local-run.png">
-<meta property="og:image" content="http://jiaming0708.github.io/npx-http-server.png">
-<meta property="og:image" content="http://jiaming0708.github.io/ngrok-run.png">
-<meta property="og:image" content="http://jiaming0708.github.io/pwa-issue-reproduce.png">
-<meta property="og:image" content="http://jiaming0708.github.io/pwa-wwwroot-diff.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/sample1-local-run.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/sample2-local-run.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/npx-http-server.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/ngrok-run.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/pwa-issue-reproduce.png">
+<meta property="og:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/pwa-wwwroot-diff.png">
 <meta property="article:published_time" content="2023-10-02T06:13:19.000Z">
 <meta property="article:modified_time" content="2023-10-02T06:13:19.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Blazor">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/sample1-local-run.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/sample1-local-run.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2023/10/02/blazor-wasm-pwa-static-file/">
@@ -391,25 +391,25 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/&quot;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">PageTitle</span>&gt;</span>Index<span class="tag">&lt;/<span class="name">PageTitle</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">Welcome to your new app.</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 增加連結 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;113年辦公日曆表.pdf&quot;</span>&gt;</span>台灣 2024 年行事曆<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">SurveyPrompt</span> <span class="attr">Title</span>=<span class="string">&quot;How is Blazor working for you?&quot;</span> /&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>兩個專案都要做一次同樣的事情，並且用 <code>dotnet run</code> 來確認結果。</p>
-<p><img data-src="/sample1-local-run.png" alt="sample1-local-run"></p>
-<p><img data-src="/sample2-local-run.png" alt="sample2-local-run"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/sample1-local-run.png" alt="sample1-local-run"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/sample2-local-run.png" alt="sample2-local-run"></p>
 <h3 id="模擬server"><a href="#模擬server" class="headerlink" title="模擬server"></a>模擬server</h3><p>接著要來模擬 deploy 到 server 後的情境，搭配使用 <a target="_blank" rel="noopener" href="https://ngrok.com/download">ngrok</a> 工具來實現 domain 的情境。<br>執行 <code>publish</code> 的指令，並且將輸出目錄指定為 <code>Release</code>。</p>
 <blockquote>
 <p>後面再來說為什麼要用這樣的模式</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dotnet publish -c Release -o Release</span><br><span class="line">cd ./Release/wwwroot</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">透過 npm 套件 http-server 來架網站，如果是 windows 也可以用 IIS 來做到相同的事情</span></span><br><span class="line">npx http-server</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/npx-http-server.png" alt="npx-http-server"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/npx-http-server.png" alt="npx-http-server"></p>
 <p>先執行看看，確保網站能夠正確的呈現，接著要啟動 ngrok 來做 reverse proxy。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok http 8080</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/ngrok-run.png" alt="ngrok-run"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/ngrok-run.png" alt="ngrok-run"></p>
 <p>依序執行兩個專案，記得到 sample2 的時候要強制 refresh 才會吃到正確的內容。</p>
 <blockquote>
 <p>簡單一點也可以是關掉 ngrok 重新執行，會取得新的 domain</p>
 </blockquote>
 <p>用 domain 開啟 sample2 網站，試著點擊行事曆的連結，就會發現到系統竟然是重新載入頁面並且說找不到路由。</p>
-<p><img data-src="/pwa-issue-reproduce.png" alt="pwa-issue-reproduce"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/pwa-issue-reproduce.png" alt="pwa-issue-reproduce"></p>
 <p>##Root Cause</p>
 <p>使用 localhost 開啟不管是不是 PWA 網站都沒事，只要用 Domain 開啟 PWA 就會發生路由問題，這到底是為什麼？</p>
 <h3 id="PWA"><a href="#PWA" class="headerlink" title="PWA"></a>PWA</h3><p>按照前面來看最大問題點應該是 PWA 及 Domain，那就先來看看微軟如何<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/blazor/progressive-web-app?view=aspnetcore-7.0&tabs=visual-studio-code">介紹 PWA</a>，並且搞清楚有沒有 PWA 的專案差異在哪。</p>
@@ -421,7 +421,7 @@
 <li>Automatically updating in the background.</li>
 </ul>
 <p>跟一般的網頁最大差異有兩個，第一個是可以<strong>離線運作</strong>，第二個是可以<strong>安裝</strong>。<br>接著要來看看差異是什麼，從檔案的差異來看，可以看到 wwwroot 底下多了兩個檔案，<code>service-worker.js</code> 及 <code>service-worker.published.js</code>。</p>
-<p><img data-src="/pwa-wwwroot-diff.png" alt="pwa-wwwroot-diff"></p>
+<p><img data-src="/2023/10/02/blazor-wasm-pwa-static-file/pwa-wwwroot-diff.png" alt="pwa-wwwroot-diff"></p>
 <p><code>csproj</code> 裡面的設定也有兩個地方不同，都是跟 <code>service-worker</code> 有關係。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk.BlazorWebAssembly&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net7.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 新增設定 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ServiceWorkerAssetsManifest</span>&gt;</span>service-worker-assets.js<span class="tag">&lt;/<span class="name">ServiceWorkerAssetsManifest</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.AspNetCore.Components.WebAssembly&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;7.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.AspNetCore.Components.WebAssembly.DevServer&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;7.0.0&quot;</span> <span class="attr">PrivateAssets</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 新增設定 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ServiceWorker</span> <span class="attr">Include</span>=<span class="string">&quot;wwwroot\service-worker.js&quot;</span> <span class="attr">PublishedContent</span>=<span class="string">&quot;wwwroot\service-worker.published.js&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
