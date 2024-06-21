@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4">
+  <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiaming0708.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="CTE的簡介 Common Table Expressions（CTEs）是一種在SQL查詢中定義臨時結果集的方法。CTE在T-SQL中的應用可以提高查詢的可讀性和維護性，使得複雜的查詢邏輯更加清晰。為何使用CTE 使用CTE的主要原因在於它可以讓我們將查詢邏輯分解成可讀性更強的小塊。CTE在遞迴查詢和處理分層數據時特別有用。  本篇由 ChatGPT 產生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[SQL] T-SQL 中的 CTE 介紹與應用">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/06/21/tsql-cte-introduce/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="CTE的簡介 Common Table Expressions（CTEs）是一種在SQL查詢中定義臨時結果集的方法。CTE在T-SQL中的應用可以提高查詢的可讀性和維護性，使得複雜的查詢邏輯更加清晰。為何使用CTE 使用CTE的主要原因在於它可以讓我們將查詢邏輯分解成可讀性更強的小塊。CTE在遞迴查詢和處理分層數據時特別有用。  本篇由 ChatGPT 產生">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-06-21T01:45:22.000Z">
+<meta property="article:modified_time" content="2024-06-21T01:45:22.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="SqlServer">
+<meta property="article:tag" content="TSQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://jiaming0708.github.io/2024/06/21/tsql-cte-introduce/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2024/06/21/tsql-cte-introduce/","path":"2024/06/21/tsql-cte-introduce/","title":"[SQL] T-SQL 中的 CTE 介紹與應用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[SQL] T-SQL 中的 CTE 介紹與應用 | Secret Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Secret Note</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">機密檔案</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CTE%E7%9A%84%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">CTE的基礎概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CTE%E7%9A%84%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">CTE的應用場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%9E%E8%BF%B4CTE"><span class="nav-number">3.</span> <span class="nav-text">遞迴CTE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CTE%E7%9A%84%E6%80%A7%E8%83%BD%E8%80%83%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">CTE的性能考量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jimmy Ho"
+      src="/images/avator.JPG">
+  <p class="site-author-name" itemprop="name">Jimmy Ho</p>
+  <div class="site-description" itemprop="description">記錄一些自己記不住的東西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jiaming0708" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jiaming0708" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Secret_GoGo" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Secret_GoGo" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/secretgogoworld" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;secretgogoworld" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.kevinyang.net/" title="https:&#x2F;&#x2F;blog.kevinyang.net&#x2F;" rel="noopener" target="_blank">CK's Notepad</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.miniasp.com/" title="https:&#x2F;&#x2F;blog.miniasp.com&#x2F;" rel="noopener" target="_blank">The Will Will Web | Will 保哥</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wellwind.idv.tw/blog/" title="https:&#x2F;&#x2F;wellwind.idv.tw&#x2F;blog&#x2F;" rel="noopener" target="_blank">全端開發人員天梯</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://poychang.github.io/" title="https:&#x2F;&#x2F;poychang.github.io&#x2F;" rel="noopener" target="_blank">POY CHANG | Trial and Error</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://dog0416.blogspot.com/" title="https:&#x2F;&#x2F;dog0416.blogspot.com&#x2F;" rel="noopener" target="_blank">Duran 的技術冶煉廠</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kyleap.github.io/" title="https:&#x2F;&#x2F;kyleap.github.io&#x2F;" rel="noopener" target="_blank">凱哥打扣</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://csscoke.com/" title="http:&#x2F;&#x2F;csscoke.com" rel="noopener" target="_blank">CSS可樂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.darkthread.net/" title="https:&#x2F;&#x2F;blog.darkthread.net&#x2F;" rel="noopener" target="_blank">黑暗執行緒</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.dotblogs.com.tw/yc421206" title="https:&#x2F;&#x2F;www.dotblogs.com.tw&#x2F;yc421206" rel="noopener" target="_blank">余小章 @ 大內殿堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.crazyalu.com/" title="https:&#x2F;&#x2F;blog.crazyalu.com&#x2F;" rel="noopener" target="_blank">Jeff Wu's Note</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.anna-yufeng.com/" title="https:&#x2F;&#x2F;blog.anna-yufeng.com&#x2F;" rel="noopener" target="_blank">安娜的自我探索與成長筆記</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://jiaming0708.github.io/2024/06/21/tsql-cte-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.JPG">
+      <meta itemprop="name" content="Jimmy Ho">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Secret Note">
+      <meta itemprop="description" content="記錄一些自己記不住的東西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[SQL] T-SQL 中的 CTE 介紹與應用 | Secret Note">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [SQL] T-SQL 中的 CTE 介紹與應用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-06-21 09:45:22" itemprop="dateCreated datePublished" datetime="2024-06-21T09:45:22+08:00">2024-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/SqlServer/" itemprop="url" rel="index"><span itemprop="name">SqlServer</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>668</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>2 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>CTE的簡介</strong> Common Table Expressions（CTEs）是一種在SQL查詢中定義臨時結果集的方法。CTE在T-SQL中的應用可以提高查詢的可讀性和維護性，使得複雜的查詢邏輯更加清晰。<br><strong>為何使用CTE</strong> 使用CTE的主要原因在於它可以讓我們將查詢邏輯分解成可讀性更強的小塊。CTE在遞迴查詢和處理分層數據時特別有用。</p>
+<blockquote>
+<p>本篇由 ChatGPT 產生</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="CTE的基礎概念"><a href="#CTE的基礎概念" class="headerlink" title="CTE的基礎概念"></a>CTE的基礎概念</h2><p><strong>CTE的語法</strong> CTE的語法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> CTE名稱 (欄位<span class="number">1</span>, 欄位<span class="number">2</span>, ...)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">(</span><br><span class="line">    <span class="comment">-- 查詢定義</span></span><br><span class="line">    <span class="keyword">SELECT</span> ...</span><br><span class="line">    <span class="keyword">FROM</span> ...</span><br><span class="line">    <span class="keyword">WHERE</span> ...</span><br><span class="line">)</span><br><span class="line"><span class="comment">-- 使用CTE</span></span><br><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> CTE名稱</span><br><span class="line"><span class="keyword">WHERE</span> ...</span><br></pre></td></tr></table></figure>
+
+<p><strong>基本CTE範例</strong> 假設我們有一個名為<code>Employees</code>的表，包含員工的姓名和部門ID，我們可以使用CTE來查詢部門中的所有員工：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> DepartmentCTE <span class="keyword">AS</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">SELECT</span> DepartmentID, EmployeeName</span><br><span class="line">    <span class="keyword">FROM</span> Employees</span><br><span class="line">    <span class="keyword">WHERE</span> DepartmentID <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> DepartmentCTE;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CTE的應用場景"><a href="#CTE的應用場景" class="headerlink" title="CTE的應用場景"></a>CTE的應用場景</h2><p><strong>簡化複雜查詢</strong> CTE可以用來分解複雜的查詢，使其更易於理解和維護。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> SalesCTE <span class="keyword">AS</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">SELECT</span> SalesPerson, <span class="built_in">SUM</span>(SalesAmount) <span class="keyword">AS</span> TotalSales</span><br><span class="line">    <span class="keyword">FROM</span> Sales</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> SalesPerson</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> SalesCTE</span><br><span class="line"><span class="keyword">WHERE</span> TotalSales <span class="operator">&gt;</span> <span class="number">10000</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>逐層遞迴</strong> CTE在處理遞迴查詢時非常有用，例如處理組織結構或分層數據：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sql</span><br><span class="line">複製程式碼</span><br><span class="line">WITH HierarchyCTE AS</span><br><span class="line">(</span><br><span class="line">    SELECT EmployeeID, ManagerID, EmployeeName</span><br><span class="line">    FROM Employees</span><br><span class="line">    WHERE ManagerID IS NULL</span><br><span class="line">    UNION ALL</span><br><span class="line">    SELECT e.EmployeeID, e.ManagerID, e.EmployeeName</span><br><span class="line">    FROM Employees e</span><br><span class="line">    INNER JOIN HierarchyCTE h ON e.ManagerID = h.EmployeeID</span><br><span class="line">)</span><br><span class="line">SELECT * FROM HierarchyCTE;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遞迴CTE"><a href="#遞迴CTE" class="headerlink" title="遞迴CTE"></a>遞迴CTE</h2><p><strong>遞迴CTE的語法</strong> 遞迴CTE由兩部分組成：一個初始查詢（基準成員），和一個遞迴成員。遞迴成員引用CTE本身：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> RecursiveCTE <span class="keyword">AS</span></span><br><span class="line">(</span><br><span class="line">    <span class="comment">-- 基準成員</span></span><br><span class="line">    <span class="keyword">SELECT</span> ...</span><br><span class="line">    <span class="keyword">FROM</span> ...</span><br><span class="line">    <span class="keyword">WHERE</span> ...</span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">    <span class="comment">-- 遞迴成員</span></span><br><span class="line">    <span class="keyword">SELECT</span> ...</span><br><span class="line">    <span class="keyword">FROM</span> ...</span><br><span class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> RecursiveCTE ...</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> RecursiveCTE;</span><br></pre></td></tr></table></figure>
+
+<p><strong>遞迴CTE範例</strong> 以下是一個處理員工層次結構的範例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> HierarchyCTE <span class="keyword">AS</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">SELECT</span> EmployeeID, ManagerID, EmployeeName</span><br><span class="line">    <span class="keyword">FROM</span> Employees</span><br><span class="line">    <span class="keyword">WHERE</span> ManagerID <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">    <span class="keyword">SELECT</span> e.EmployeeID, e.ManagerID, e.EmployeeName</span><br><span class="line">    <span class="keyword">FROM</span> Employees e</span><br><span class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> HierarchyCTE h <span class="keyword">ON</span> e.ManagerID <span class="operator">=</span> h.EmployeeID</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> HierarchyCTE;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CTE的性能考量"><a href="#CTE的性能考量" class="headerlink" title="CTE的性能考量"></a>CTE的性能考量</h2><p><strong>CTE vs 臨時表</strong> CTE是為了可讀性而設計的，但在某些情況下，使用臨時表可能會有更好的性能。需要根據具體情況進行性能測試。</p>
+<p><strong>使用CTE的最佳實踐</strong></p>
+<ul>
+<li>避免過度使用CTE，特別是在大數據集上。</li>
+<li>確保CTE內部的查詢是高效的。</li>
+<li>在需要重複使用的情況下考慮使用臨時表或物化視圖。</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ul>
+<li><p><strong>CTE的優勢</strong> CTE可以顯著提高查詢的可讀性和維護性，特別是在處理遞迴查詢和分層數據時。</p>
+</li>
+<li><p><strong>使用CTE的注意事項</strong> 在使用CTE時，要注意性能問題，並根據具體的需求選擇合適的解決方案。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Database/" rel="tag"># Database</a>
+              <a href="/tags/SqlServer/" rel="tag"># SqlServer</a>
+              <a href="/tags/TSQL/" rel="tag"># TSQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/17/ubuntu-as-jenkins-slave-node/" rel="prev" title="使用 Ubuntu 來作為 Jenkins 的 Slave Node">
+                  <i class="fa fa-angle-left"></i> 使用 Ubuntu 來作為 Jenkins 的 Slave Node
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2008 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jimmy Ho</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="總字數">95k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">5:45</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"jiaming0708/jiaming0708.github.io","repo_id":"MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==","category":"Q&A","category_id":"DIC_kwDOBO717c4B_0N9","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
