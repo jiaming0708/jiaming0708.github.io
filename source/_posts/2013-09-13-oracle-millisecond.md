@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 記錄時間的時候，通常會用to_char(sysdate, 'yyyy/MM/dd HH24:mi:ss')
 但這樣只能顯示到秒，無法在顯示到更小的單位

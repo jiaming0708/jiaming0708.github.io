@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 
 最近在玩系統負載測試，PM說用到最新的那台server上跑看看，於是就把系統丟上去開始測試

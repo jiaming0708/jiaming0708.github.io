@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 當要調教效能時，會採用寫log的方式
 但是寫log是一定要commit，但commit下去一定會影響到外面在做的事情

@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 最近遇到了一個情況
 

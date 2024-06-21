@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 最近用自己的DB去測試程式時，發現簡體的資料存進去都變成空白字元
 在網路上查詢了一下，是因為DB的一個設定導致

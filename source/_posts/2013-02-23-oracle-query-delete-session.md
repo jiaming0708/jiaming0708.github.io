@@ -5,7 +5,7 @@ categories:
 - Backend
 - Oracle
 tags:
-- oracle
+- Oracle
 ---
 有時候Procedure/Package沒寫好時，會跑超級久
 這時候會開始寫log或其他的動作來看調教效能
