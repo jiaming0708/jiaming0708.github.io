@@ -337,7 +337,7 @@
     <link href="http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/"/>
     <id>http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/</id>
     <published>2023-04-15T15:13:05.000Z</published>
-    <updated>2024-06-21T01:52:14.086Z</updated>
+    <updated>2024-06-21T01:56:13.340Z</updated>
     
     
     <summary type="html">&lt;p&gt;作為一名主要開發平台為網頁的開發者，進入 Flutter 世界的開發體驗讓我發現元件結構是最需要適應的地方。在網頁開發中，我們可以透過 CSS 樣式來控制元素的排版，包括長寬、內外邊距，甚至彈性佈局 (flex) 或網格系統 (grid) 等。除非使用定位 (position)，否則所有元素都處於同一層級。然而在 app 中，每個元素都被當作不同的「層」來處理，因此為了達到類似網頁的效果，必須使用不同的元件進行組合。&lt;/p&gt;</summary>
@@ -377,7 +377,7 @@
     <link href="http://jiaming0708.github.io/2023/02/20/flutter-svg/"/>
     <id>http://jiaming0708.github.io/2023/02/20/flutter-svg/</id>
     <published>2023-02-20T14:13:56.000Z</published>
-    <updated>2024-06-21T01:52:14.086Z</updated>
+    <updated>2024-06-21T01:56:13.340Z</updated>
     
     
     <summary type="html">&lt;p&gt;在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。&lt;/p&gt;</summary>
@@ -396,7 +396,7 @@
     <link href="http://jiaming0708.github.io/2023/02/20/gitea-database-migration/"/>
     <id>http://jiaming0708.github.io/2023/02/20/gitea-database-migration/</id>
     <published>2023-02-20T03:06:21.000Z</published>
-    <updated>2024-06-21T01:52:14.086Z</updated>
+    <updated>2024-06-21T01:56:13.340Z</updated>
     
     
     <summary type="html">&lt;p&gt;公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。&lt;/p&gt;</summary>
@@ -417,7 +417,7 @@
     <link href="http://jiaming0708.github.io/2023/01/24/flutter-hex-color/"/>
     <id>http://jiaming0708.github.io/2023/01/24/flutter-hex-color/</id>
     <published>2023-01-24T06:16:00.000Z</published>
-    <updated>2024-06-21T01:52:14.086Z</updated>
+    <updated>2024-06-21T01:56:13.340Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Flutter 中有提供好幾種方法可以來定義 &lt;code&gt;Color&lt;/code&gt; 這個物件，這篇會介紹如何使用這些方法。&lt;/p&gt;</summary>
@@ -436,7 +436,7 @@
     <link href="http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/"/>
     <id>http://jiaming0708.github.io/2023/01/16/build-oracle-database-image/</id>
     <published>2023-01-16T02:46:13.000Z</published>
-    <updated>2024-06-21T01:52:14.086Z</updated>
+    <updated>2024-06-21T01:56:13.340Z</updated>
     
     
     <summary type="html">&lt;p&gt;原本 Oracle 有提供 image 在 &lt;a href=&quot;https://hub.docker.com/_/oracle-database-enterprise-edition&quot;&gt;DockerHub&lt;/a&gt;上，現在已經沒有再提供了，那對於習慣用 container 做開發的我來說，非常的不方便，還好 Oracle 也有提供另外的做法可以來建立 image，接下來分享該如何操作。&lt;/p&gt;</summary>
@@ -448,11 +448,11 @@
     <category term="Oracle" scheme="http://jiaming0708.github.io/categories/Database/Oracle/"/>
     
     
+    <category term="Oracle" scheme="http://jiaming0708.github.io/tags/Oracle/"/>
+    
     <category term="Docker" scheme="http://jiaming0708.github.io/tags/Docker/"/>
     
     <category term="Database" scheme="http://jiaming0708.github.io/tags/Database/"/>
-    
-    <category term="Oracle" scheme="http://jiaming0708.github.io/tags/Oracle/"/>
     
   </entry>
   
