@@ -28,6 +28,7 @@
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="nuget 是 dotnet 的套件管理工具，就像是 npm 是屬於 nodejs 的平台一樣，在上面的版本只能升不能降，還會有所有的版本異動紀錄，可以讓專案的參考管理更為有效。有 source code 的話要做到打包其實非常的簡單，今天要分享只有 dll 的話該如何發佈到 nuget server。">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/microsoft-store.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/create-new-package.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/package-view.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/edit-metadata.png">
@@ -37,11 +38,11 @@
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/save-unpkg.png">
 <meta property="og:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/publish.png">
 <meta property="article:published_time" content="2021-12-29T01:02:29.000Z">
-<meta property="article:modified_time" content="2024-07-10T07:36:22.527Z">
+<meta property="article:modified_time" content="2024-08-15T01:11:00.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nuget">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/create-new-package.png">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/microsoft-store.png">
 
 
 <link rel="canonical" href="http://jiaming0708.github.io/2021/12/29/dll-publish-nuget/">
@@ -346,7 +347,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-07-10 15:36:22" itemprop="dateModified" datetime="2024-07-10T15:36:22+08:00">2024-07-10</time>
+      <time title="修改時間：2024-08-15 09:11:00" itemprop="dateModified" datetime="2024-08-15T09:11:00+08:00">2024-08-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -365,7 +366,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">文章字數：</span>
-      <span>732</span>
+      <span>730</span>
     </span>
     <span class="post-meta-item" title="所需閱讀時間">
       <span class="post-meta-item-icon">
@@ -388,7 +389,7 @@
 <h1 id="安裝-Explorer"><a href="#安裝-Explorer" class="headerlink" title="安裝 Explorer"></a>安裝 Explorer</h1><p>要發佈到 nuget 前要先做打包成 <code>*.nupkg</code> 的檔案，有 source code 的話可以透過 <code>nuget.exe</code> CLI (下載 <a target="_blank" rel="noopener" href="https://www.nuget.org/downloads">NuGet Gallery | Downloads</a>) 來進行打包，打包後如果還要編輯 unpkg 的話，就可以透過 <a target="_blank" rel="noopener" href="https://github.com/NuGetPackageExplorer/NuGetPackageExplorer">Nuget Package Explorer</a> 。</p>
 <p>目前有兩個方法可以安裝</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/store/apps/9wzdncrdmdm3">Microsoft Store</a> (推薦)<br>![microsoft store].\microsoft-store.png)</p>
+<li><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/store/apps/9wzdncrdmdm3">Microsoft Store</a> (推薦)<br><img data-src="/2021/12/29/dll-publish-nuget/microsoft-store.png" alt="microsoft store"></p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://chocolatey.org/packages/NugetPackageExplorer">Chocolatey</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nugetpackageexplorer</span><br></pre></td></tr></table></figure></li>
