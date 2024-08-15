@@ -1,6 +1,7 @@
 ---
 title: 將獨立的 dll 打包發佈到 nuget server
 date: 2021-12-29 09:02:29
+updated: 2024-08-15 09:11:00
 categories:
 - nuget
 tags:
@@ -19,7 +20,7 @@ nuget 是 dotnet 的套件管理工具，就像是 npm 是屬於 nodejs 的平�
 目前有兩個方法可以安裝
 
 * [Microsoft Store](https://www.microsoft.com/store/apps/9wzdncrdmdm3) (推薦)
-  ![microsoft store].\microsoft-store.png)
+  ![microsoft store](.\microsoft-store.png)
 
 * [Chocolatey](https://chocolatey.org/packages/NugetPackageExplorer)
 
