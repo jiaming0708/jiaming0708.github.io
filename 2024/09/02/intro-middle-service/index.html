@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4">
+  <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiaming0708.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本篇由 ChatGPT 產生  什麼是中台服務？中台服務是一種將業務邏輯、數據資源和技術能力統一管理、調用的平台化解決方案。它的目的是在前台應用（如用戶端應用、網站）和後台系統（如數據庫、業務系統）之間建立一個靈活的中間層，以支持企業的敏捷業務需求和快速創新。 中台服務的核心思想是通過將企業中的共性業務邏輯、數據資源抽象出來，並將其構建成可復用的服務組件，供不同的前台應用調用。這樣，前台應用無需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中台服務說明及介紹">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/09/02/intro-middle-service/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="本篇由 ChatGPT 產生  什麼是中台服務？中台服務是一種將業務邏輯、數據資源和技術能力統一管理、調用的平台化解決方案。它的目的是在前台應用（如用戶端應用、網站）和後台系統（如數據庫、業務系統）之間建立一個靈活的中間層，以支持企業的敏捷業務需求和快速創新。 中台服務的核心思想是通過將企業中的共性業務邏輯、數據資源抽象出來，並將其構建成可復用的服務組件，供不同的前台應用調用。這樣，前台應用無需">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://jiaming0708.github.io/2024/09/02/intro-middle-service/thumbnail.jpg">
+<meta property="article:published_time" content="2024-09-02T13:46:15.000Z">
+<meta property="article:modified_time" content="2024-09-02T13:46:15.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="MiddleService">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jiaming0708.github.io/2024/09/02/intro-middle-service/thumbnail.jpg">
+
+
+<link rel="canonical" href="http://jiaming0708.github.io/2024/09/02/intro-middle-service/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2024/09/02/intro-middle-service/","path":"2024/09/02/intro-middle-service/","title":"中台服務說明及介紹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>中台服務說明及介紹 | Secret Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Secret Note</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">機密檔案</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E4%B8%AD%E5%8F%B0%E6%9C%8D%E5%8B%99%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什麼是中台服務？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%8F%B0%E6%9C%8D%E5%8B%99%E6%87%89%E5%85%B7%E5%82%99%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B"><span class="nav-number">2.</span> <span class="nav-text">中台服務應具備的核心能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E7%8F%BE%E4%B8%AD%E5%8F%B0%E6%9C%8D%E5%8B%99%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">實現中台服務的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jimmy Ho"
+      src="/images/avator.JPG">
+  <p class="site-author-name" itemprop="name">Jimmy Ho</p>
+  <div class="site-description" itemprop="description">記錄一些自己記不住的東西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">166</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jiaming0708" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jiaming0708" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Secret_GoGo" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Secret_GoGo" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/secretgogoworld" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;secretgogoworld" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.kevinyang.net/" title="https:&#x2F;&#x2F;blog.kevinyang.net&#x2F;" rel="noopener" target="_blank">CK's Notepad</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.miniasp.com/" title="https:&#x2F;&#x2F;blog.miniasp.com&#x2F;" rel="noopener" target="_blank">The Will Will Web | Will 保哥</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wellwind.idv.tw/blog/" title="https:&#x2F;&#x2F;wellwind.idv.tw&#x2F;blog&#x2F;" rel="noopener" target="_blank">全端開發人員天梯</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://poychang.github.io/" title="https:&#x2F;&#x2F;poychang.github.io&#x2F;" rel="noopener" target="_blank">POY CHANG | Trial and Error</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://dog0416.blogspot.com/" title="https:&#x2F;&#x2F;dog0416.blogspot.com&#x2F;" rel="noopener" target="_blank">Duran 的技術冶煉廠</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kyleap.github.io/" title="https:&#x2F;&#x2F;kyleap.github.io&#x2F;" rel="noopener" target="_blank">凱哥打扣</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://csscoke.com/" title="http:&#x2F;&#x2F;csscoke.com" rel="noopener" target="_blank">CSS可樂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.darkthread.net/" title="https:&#x2F;&#x2F;blog.darkthread.net&#x2F;" rel="noopener" target="_blank">黑暗執行緒</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.dotblogs.com.tw/yc421206" title="https:&#x2F;&#x2F;www.dotblogs.com.tw&#x2F;yc421206" rel="noopener" target="_blank">余小章 @ 大內殿堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.crazyalu.com/" title="https:&#x2F;&#x2F;blog.crazyalu.com&#x2F;" rel="noopener" target="_blank">Jeff Wu's Note</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.anna-yufeng.com/" title="https:&#x2F;&#x2F;blog.anna-yufeng.com&#x2F;" rel="noopener" target="_blank">安娜的自我探索與成長筆記</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://jiaming0708.github.io/2024/09/02/intro-middle-service/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.JPG">
+      <meta itemprop="name" content="Jimmy Ho">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Secret Note">
+      <meta itemprop="description" content="記錄一些自己記不住的東西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="中台服務說明及介紹 | Secret Note">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中台服務說明及介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-09-02 21:46:15" itemprop="dateCreated datePublished" datetime="2024-09-02T21:46:15+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/MiddleService/" itemprop="url" rel="index"><span itemprop="name">MiddleService</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>4 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>本篇由 ChatGPT 產生</p>
+</blockquote>
+<h3 id="什麼是中台服務？"><a href="#什麼是中台服務？" class="headerlink" title="什麼是中台服務？"></a>什麼是中台服務？</h3><p><strong>中台服務</strong>是一種將業務邏輯、數據資源和技術能力統一管理、調用的平台化解決方案。它的目的是在前台應用（如用戶端應用、網站）和後台系統（如數據庫、業務系統）之間建立一個靈活的中間層，以支持企業的敏捷業務需求和快速創新。</p>
+<p>中台服務的核心思想是通過將企業中的共性業務邏輯、數據資源抽象出來，並將其構建成可復用的服務組件，供不同的前台應用調用。這樣，前台應用無需關注底層業務邏輯和數據處理，而專注於用戶體驗和快速迭代。</p>
+<span id="more"></span>
+
+<p><img data-src="/2024/09/02/intro-middle-service/thumbnail.jpg" alt="thumbnail"></p>
+<h3 id="中台服務應具備的核心能力"><a href="#中台服務應具備的核心能力" class="headerlink" title="中台服務應具備的核心能力"></a>中台服務應具備的核心能力</h3><p>要實現一個有效的中台服務系統，它需要具備以下幾個核心能力：</p>
+<ol>
+<li><strong>業務能力的抽象與復用</strong><ul>
+<li>將企業內部的業務邏輯抽象為可復用的服務，供不同的應用和場景調用，減少重複開發，提高開發效率。</li>
+<li>支持業務功能的快速組裝，能夠適應業務的快速變化。</li>
+</ul>
+</li>
+<li><strong>數據治理和管理能力</strong><ul>
+<li>提供統一的數據存儲、管理和治理能力，保證數據的一致性、完整性和安全性。</li>
+<li>能夠將數據轉化為數據資產，為業務決策提供支持。</li>
+</ul>
+</li>
+<li><strong>靈活的技術支持能力</strong><ul>
+<li>支持微服務架構，允許不同的業務邏輯模塊獨立部署、調用和擴展。</li>
+<li>支持 API 管理和集成，方便將內部系統和外部應用快速集成。</li>
+</ul>
+</li>
+<li><strong>數據分析與挖掘能力</strong><ul>
+<li>提供數據分析、報表和數據可視化能力，幫助企業做出數據驅動的決策。</li>
+<li>支持機器學習、AI 的應用，將數據資產轉化為業務價值。</li>
+</ul>
+</li>
+<li><strong>安全性與合規性</strong><ul>
+<li>提供完善的權限控制、審計和安全保障機制，確保企業數據的安全性。</li>
+<li>符合業內標準和法律法規，確保合規性。</li>
+</ul>
+</li>
+</ol>
+<h3 id="實現中台服務的工具"><a href="#實現中台服務的工具" class="headerlink" title="實現中台服務的工具"></a>實現中台服務的工具</h3><p>實現中台服務需要使用到多種技術工具和框架，以下是一些常見且有效的工具和技術：</p>
+<ol>
+<li><strong>微服務框架</strong><ul>
+<li><strong>Spring Boot &#x2F; Spring Cloud (Java)</strong>: 用於構建和管理微服務架構，提供服務發現、配置管理、負載均衡等功能。</li>
+<li><strong>ASP.NET Core (C#)</strong>: 支持跨平台的微服務開發，易於與其他 Microsoft 生態系統集成。</li>
+</ul>
+</li>
+<li><strong>API 管理工具</strong><ul>
+<li><strong>Kong</strong>: 開源的 API 管理工具，支持 API 路由、身份驗證、流量控制等功能。</li>
+<li><strong>Apigee</strong>: Google 提供的企業級 API 管理平台，適合大規模企業應用。</li>
+</ul>
+</li>
+<li><strong>數據管理與分析工具</strong><ul>
+<li><strong>Apache Kafka</strong>: 用於實時數據流處理，適合處理大規模的數據流和事件驅動的架構。</li>
+<li><strong>Elasticsearch</strong>: 開源的搜索和分析引擎，用於構建可伸縮的數據搜索和分析平台。</li>
+</ul>
+</li>
+<li><strong>容器化與編排工具</strong><ul>
+<li><strong>Docker</strong>: 將應用及其依賴打包成容器，便於應用的部署和移動。</li>
+<li><strong>Kubernetes</strong>: 強大的容器編排平台，支持應用的自動部署、擴展和管理。</li>
+</ul>
+</li>
+<li><strong>數據可視化與BI 工具</strong><ul>
+<li><strong>Tableau</strong>: 企業級的數據可視化工具，支持多種數據源的連接和分析。</li>
+<li><strong>Power BI</strong>: Microsoft 提供的 BI 工具，集成性強，適合於多數業務場景。</li>
+</ul>
+</li>
+<li><strong>安全性和合規性工具</strong><ul>
+<li><strong>HashiCorp Vault</strong>: 用於密鑰管理和加密數據的解決方案，保護敏感數據。</li>
+<li><strong>AWS IAM</strong>: AWS 提供的身份和訪問管理服務，用於控制 AWS 資源的訪問權限。</li>
+</ul>
+</li>
+</ol>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>中台服務在現代企業架構中扮演著越來越重要的角色。通過將業務邏輯和數據資源抽象為通用服務，中台服務不僅提高了企業的開發效率，還增強了企業的靈活性和適應性。在實現中台服務的過程中，選擇合適的工具和技術至關重要，它們可以幫助企業快速構建和部署中台服務，並有效地管理和治理數據，從而支持業務創新和發展。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Backend/" rel="tag"># Backend</a>
+              <a href="/tags/MiddleService/" rel="tag"># MiddleService</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/21/upload-image-to-s3-via-lambda-function/" rel="prev" title="[C#] Lambda Function 實作上傳圖片至 S3">
+                  <i class="fa fa-angle-left"></i> [C#] Lambda Function 實作上傳圖片至 S3
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2008 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jimmy Ho</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="總字數">97k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">5:51</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"jiaming0708/jiaming0708.github.io","repo_id":"MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==","category":"Q&A","category_id":"DIC_kwDOBO717c4B_0N9","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
