@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2024-09-02T13:46:15.000Z</updated>
+  <updated>2024-09-13T11:32:22.000Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Dotnet] JsonStringEnumConverter 的應用</title>
+    <link href="http://jiaming0708.github.io/2024/09/13/json-string-enum-converter/"/>
+    <id>http://jiaming0708.github.io/2024/09/13/json-string-enum-converter/</id>
+    <published>2024-09-13T11:32:22.000Z</published>
+    <updated>2024-09-13T11:32:22.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近在寫需求時，前端回報 API 的某個欄位不是應該數字 enum 嗎，怎麼變成文字，檢查以後才發現，前人使用 &lt;code&gt;JsonStringEnumConverter&lt;/code&gt; 這個功能將 enum 全部轉成 string 輸出給前端。&lt;/p&gt;
+&lt;p&gt;為了要讓舊有 API 維持，新的 API 也可以照所希望的輸出成數字，而去找了一些解法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Backend" scheme="http://jiaming0708.github.io/categories/Backend/"/>
+    
+    <category term="DotnetCore" scheme="http://jiaming0708.github.io/categories/Backend/DotnetCore/"/>
+    
+    
+    <category term="DotnetCore" scheme="http://jiaming0708.github.io/tags/DotnetCore/"/>
+    
+  </entry>
   
   <entry>
     <title>中台服務說明及介紹</title>
@@ -387,7 +409,7 @@
     <link href="http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/"/>
     <id>http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/</id>
     <published>2023-04-15T15:13:05.000Z</published>
-    <updated>2024-09-05T12:10:11.703Z</updated>
+    <updated>2024-09-14T11:11:51.139Z</updated>
     
     
     <summary type="html">&lt;p&gt;作為一名主要開發平台為網頁的開發者，進入 Flutter 世界的開發體驗讓我發現元件結構是最需要適應的地方。在網頁開發中，我們可以透過 CSS 樣式來控制元素的排版，包括長寬、內外邊距，甚至彈性佈局 (flex) 或網格系統 (grid) 等。除非使用定位 (position)，否則所有元素都處於同一層級。然而在 app 中，每個元素都被當作不同的「層」來處理，因此為了達到類似網頁的效果，必須使用不同的元件進行組合。&lt;/p&gt;</summary>
@@ -427,7 +449,7 @@
     <link href="http://jiaming0708.github.io/2023/02/20/flutter-svg/"/>
     <id>http://jiaming0708.github.io/2023/02/20/flutter-svg/</id>
     <published>2023-02-20T14:13:56.000Z</published>
-    <updated>2024-09-05T12:10:11.703Z</updated>
+    <updated>2024-09-14T11:11:51.139Z</updated>
     
     
     <summary type="html">&lt;p&gt;在網頁使用 icon 的時候，會想要採用 svg，主要原因是可以渲染並且不會失真，而且可以做動態渲染的效果，接下來看看如何在 flutter 使用 svg 來開發。&lt;/p&gt;</summary>
@@ -438,27 +460,6 @@
     
     
     <category term="Flutter" scheme="http://jiaming0708.github.io/tags/Flutter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gitea 資料庫遷移</title>
-    <link href="http://jiaming0708.github.io/2023/02/20/gitea-database-migration/"/>
-    <id>http://jiaming0708.github.io/2023/02/20/gitea-database-migration/</id>
-    <published>2023-02-20T03:06:21.000Z</published>
-    <updated>2024-09-05T12:10:11.703Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;公司的 Gitea 原本資料庫是用 SQLServer，那台 Server 本身也比較舊，在有些操作下也會覺得不順，剛好有機會可以停機可以轉成 Postgres，這邊來記錄一下我的操作步驟。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Infra" scheme="http://jiaming0708.github.io/categories/Infra/"/>
-    
-    
-    <category term="Gitea" scheme="http://jiaming0708.github.io/tags/Gitea/"/>
-    
-    <category term="Infra" scheme="http://jiaming0708.github.io/tags/Infra/"/>
     
   </entry>
   
