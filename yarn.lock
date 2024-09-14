@@ -827,6 +827,13 @@ hexo-tag-embed@^1.0.0:
   dependencies:
     hexo-util "^3.1.0"
 
+hexo-tag-github-code@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/hexo-tag-github-code/-/hexo-tag-github-code-0.1.0.tgz#ff1a1393c2e0f00a346ee2504d5d2d9f8615d741"
+  integrity sha512-8spnaP1oSBlBZkm/ou7G6OqEsIDctQGhPiKmtBbDiiUReYEKrWOgujf/KadaWxMZsdBwQK7R6sD7Hctu5aGTng==
+  dependencies:
+    lodash.assign "^4.2.0"
+
 hexo-theme-next@^8.20.0:
   version "8.20.0"
   resolved "https://registry.yarnpkg.com/hexo-theme-next/-/hexo-theme-next-8.20.0.tgz#8130f1b32d353f4bde7e99aa7d9f8f1e682d37b4"
@@ -1143,6 +1150,11 @@ jsonparse@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==
+
+lodash.assign@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+  integrity sha512-hFuH8TY+Yji7Eja3mGiuAxBqLagejScbG8GbG0j6o9vzn0YL14My+ktnqtZgFTosKymC9/44wP6s7xyuLfnClw==
 
 lower-case@^2.0.2:
   version "2.0.2"
