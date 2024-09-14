@@ -274,6 +274,13 @@
       [Blazor] 元件測試 - Service
       </a>
     </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/03/23/wcf-ajax-https/" rel="bookmark">
+        <time class="popular-posts-time">2022-03-23</time>
+        <br>
+      WCF AJAX 服務建置於 https
+      </a>
+    </li>
   </ul>
 
           </div>
@@ -346,7 +353,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">文章字數：</span>
-      <span>493</span>
+      <span>505</span>
     </span>
     <span class="post-meta-item" title="所需閱讀時間">
       <span class="post-meta-item-icon">
@@ -390,6 +397,9 @@
 <p>這個做法可以優化成使用 attribute</p>
 </blockquote>
 <h2 id="指定-Enum-輸出"><a href="#指定-Enum-輸出" class="headerlink" title="指定 Enum 輸出"></a>指定 Enum 輸出</h2><p>當 Enum 都是自己定義，那也可以換個思維，指定哪些 enum 輸出成 string，<code>JsonConverter</code> 本身可以當作一個 attribute 來使用<br>有設定這些 Attribute 的在輸出時，都會根據設定來做轉換，連 service 都不用設定，更加優美</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/customize-properties?pivots=dotnet-8-0#enums-as-strings">How to customize property names and values with System.Text.Json - .NET | Microsoft Learn</a></p>
+</blockquote>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">JsonConverter(typeof(JsonStringEnumConverter&lt;Precipitation&gt;))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> Precipitation</span><br><span class="line">&#123;</span><br><span class="line">    Drizzle, Rain, Sleet, Hail, Snow</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
