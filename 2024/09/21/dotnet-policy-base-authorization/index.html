@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4">
+  <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiaming0708.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="接到一個需求是希望能夠針對某些 API 檢查使用者的權限，使用者的權限維護於資料庫中，例如權限名稱叫做 Published，底下會介紹如何使用 Policy-based authorization 的機制來實現。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[dotnet] 實作原則型授權">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/09/21/dotnet-policy-base-authorization/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="接到一個需求是希望能夠針對某些 API 檢查使用者的權限，使用者的權限維護於資料庫中，例如權限名稱叫做 Published，底下會介紹如何使用 Policy-based authorization 的機制來實現。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-21T09:19:36.000Z">
+<meta property="article:modified_time" content="2024-09-21T09:19:36.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="DotnetCore">
+<meta property="article:tag" content="Authorization">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://jiaming0708.github.io/2024/09/21/dotnet-policy-base-authorization/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2024/09/21/dotnet-policy-base-authorization/","path":"2024/09/21/dotnet-policy-base-authorization/","title":"[dotnet] 實作原則型授權"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[dotnet] 實作原則型授權 | Secret Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Secret Note</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">機密檔案</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9-AuthorizationHandler"><span class="nav-number">1.</span> <span class="nav-text">定義 AuthorizationHandler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9A%E7%BE%A9-Policy"><span class="nav-number">2.</span> <span class="nav-text">直接定義 Policy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E7%94%A2%E7%94%9F-Policy"><span class="nav-number">3.</span> <span class="nav-text">動態產生 Policy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jimmy Ho"
+      src="/images/avator.JPG">
+  <p class="site-author-name" itemprop="name">Jimmy Ho</p>
+  <div class="site-description" itemprop="description">記錄一些自己記不住的東西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">168</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jiaming0708" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jiaming0708" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Secret_GoGo" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Secret_GoGo" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/secretgogoworld" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;secretgogoworld" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.kevinyang.net/" title="https:&#x2F;&#x2F;blog.kevinyang.net&#x2F;" rel="noopener" target="_blank">CK's Notepad</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.miniasp.com/" title="https:&#x2F;&#x2F;blog.miniasp.com&#x2F;" rel="noopener" target="_blank">The Will Will Web | Will 保哥</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wellwind.idv.tw/blog/" title="https:&#x2F;&#x2F;wellwind.idv.tw&#x2F;blog&#x2F;" rel="noopener" target="_blank">全端開發人員天梯</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://poychang.github.io/" title="https:&#x2F;&#x2F;poychang.github.io&#x2F;" rel="noopener" target="_blank">POY CHANG | Trial and Error</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://dog0416.blogspot.com/" title="https:&#x2F;&#x2F;dog0416.blogspot.com&#x2F;" rel="noopener" target="_blank">Duran 的技術冶煉廠</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kyleap.github.io/" title="https:&#x2F;&#x2F;kyleap.github.io&#x2F;" rel="noopener" target="_blank">凱哥打扣</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://csscoke.com/" title="http:&#x2F;&#x2F;csscoke.com" rel="noopener" target="_blank">CSS可樂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.darkthread.net/" title="https:&#x2F;&#x2F;blog.darkthread.net&#x2F;" rel="noopener" target="_blank">黑暗執行緒</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.dotblogs.com.tw/yc421206" title="https:&#x2F;&#x2F;www.dotblogs.com.tw&#x2F;yc421206" rel="noopener" target="_blank">余小章 @ 大內殿堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.crazyalu.com/" title="https:&#x2F;&#x2F;blog.crazyalu.com&#x2F;" rel="noopener" target="_blank">Jeff Wu's Note</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.anna-yufeng.com/" title="https:&#x2F;&#x2F;blog.anna-yufeng.com&#x2F;" rel="noopener" target="_blank">安娜的自我探索與成長筆記</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相關文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2021/02/20/aws-elb-tls-setting/" rel="bookmark">
+        <time class="popular-posts-time">2021-02-20</time>
+        <br>
+      [AWS] Elastic Load Balancer變更TLS的設定
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2014/09/17/window-close-uac/" rel="bookmark">
+        <time class="popular-posts-time">2014-09-17</time>
+        <br>
+      [windows] 真正關閉Windows 8的UAC
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/03/14/dotnet-core-publish-web-config/" rel="bookmark">
+        <time class="popular-posts-time">2024-03-14</time>
+        <br>
+      [DotnetCore] web.config 發布控制
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2018/11/07/angularjs-provider/" rel="bookmark">
+        <time class="popular-posts-time">2018-11-07</time>
+        <br>
+      [AngularJS] Provider探究
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/03/23/wcf-ajax-https/" rel="bookmark">
+        <time class="popular-posts-time">2022-03-23</time>
+        <br>
+      WCF AJAX 服務建置於 https
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://jiaming0708.github.io/2024/09/21/dotnet-policy-base-authorization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.JPG">
+      <meta itemprop="name" content="Jimmy Ho">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Secret Note">
+      <meta itemprop="description" content="記錄一些自己記不住的東西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[dotnet] 實作原則型授權 | Secret Note">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [dotnet] 實作原則型授權
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-09-21 17:19:36" itemprop="dateCreated datePublished" datetime="2024-09-21T17:19:36+08:00">2024-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/DotnetCore/" itemprop="url" rel="index"><span itemprop="name">DotnetCore</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>601</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>2 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>接到一個需求是希望能夠針對某些 API 檢查使用者的權限，使用者的權限維護於資料庫中，例如權限名稱叫做 <code>Published</code>，底下會介紹如何使用 <code>Policy-based authorization</code> 的機制來實現。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>環境為 Dotnet core 8</p>
+</blockquote>
+<h2 id="定義-AuthorizationHandler"><a href="#定義-AuthorizationHandler" class="headerlink" title="定義 AuthorizationHandler"></a>定義 AuthorizationHandler</h2><p>寫一個 <code>AuthorizationHandler</code> 來處理權限邏輯，預期會在裡面檢查資料庫，確認使用者是否有對應的權限。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermissionRequirement</span> : <span class="title">IAuthorizationRequirement</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Permission &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PermissionRequirement</span>(<span class="params"><span class="built_in">string</span> permission</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Permission = permission;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermissionHandler</span> : <span class="title">AuthorizationHandler</span>&lt;<span class="title">PermissionRequirement</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IUserPermissionService _userPermissionService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PermissionHandler</span>(<span class="params">IUserPermissionService userPermissionService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _userPermissionService = userPermissionService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">async</span> Task <span class="title">HandleRequirementAsync</span>(<span class="params">AuthorizationHandlerContext context, PermissionRequirement requirement</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 取得使用者 ID</span></span><br><span class="line">        <span class="keyword">var</span> userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (userId == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Task.CompletedTask;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 從資料庫中檢查是否擁有對應權限</span></span><br><span class="line">        <span class="keyword">var</span> hasPermission = <span class="keyword">await</span> _userPermissionService.UserHasPermissionAsync(userId, requirement.Permission);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (hasPermission)</span><br><span class="line">        &#123;</span><br><span class="line">            context.Succeed(requirement);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Task.CompletedTask;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="直接定義-Policy"><a href="#直接定義-Policy" class="headerlink" title="直接定義 Policy"></a>直接定義 Policy</h2><p>在 <code>Program.cs</code> 設定 <code>Authorization Policy</code>，增加一個 <code>RequirePublishedPermission</code> 的規則。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddAuthorization(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    options.AddPolicy(<span class="string">&quot;PublishedPermission&quot;</span>, policy =&gt;</span><br><span class="line">        policy.Requirements.Add(<span class="keyword">new</span> PermissionRequirement(<span class="string">&quot;Published&quot;</span>)));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 註冊自定義的授權處理器</span></span><br><span class="line">builder.Services.AddSingleton&lt;IAuthorizationHandler, PermissionHandler&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>以上處理完畢就能夠在 API 使用 <code>Authorize</code> 這個屬性來做限制。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;api/[controller]&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ArticlesController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">		[<span class="meta">Authorize(Policy = <span class="string">&quot;PublishedPermission&quot;</span>)</span>]</span><br><span class="line">    [<span class="meta">HttpGet</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Get</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 只有擁有 &quot;Published&quot; 權限的用戶才可以訪問此方法</span></span><br><span class="line">        <span class="keyword">return</span> Ok(<span class="keyword">new</span> &#123; Message = <span class="string">&quot;This is a protected API.&quot;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="動態產生-Policy"><a href="#動態產生-Policy" class="headerlink" title="動態產生 Policy"></a>動態產生 Policy</h2><p>上面的作法比較簡單，也相對侷限，必須要在 <code>Program.cs</code> 定義好，另一種作法就是自定義 Policy Provider 來動態的產生 Policy。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermissionPolicyProvider</span> : <span class="title">IAuthorizationPolicyProvider</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> DefaultAuthorizationPolicyProvider FallbackPolicyProvider &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PermissionPolicyProvider</span>(<span class="params">IOptions&lt;AuthorizationOptions&gt; options</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        FallbackPolicyProvider = <span class="keyword">new</span> DefaultAuthorizationPolicyProvider(options);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Task&lt;AuthorizationPolicy&gt; <span class="title">GetPolicyAsync</span>(<span class="params"><span class="built_in">string</span> policyName</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 如果 policyName 以 &#x27;Permission_&#x27; 開頭，則動態生成 policy</span></span><br><span class="line">        <span class="keyword">if</span> (policyName.StartsWith(<span class="string">&quot;Permission_&quot;</span>, StringComparison.OrdinalIgnoreCase))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> policy = <span class="keyword">new</span> AuthorizationPolicyBuilder()</span><br><span class="line">                .AddRequirements(<span class="keyword">new</span> PermissionRequirement(policyName.Substring(<span class="string">&quot;Permission_&quot;</span>.Length)))</span><br><span class="line">                .Build();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Task.FromResult(policy);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用預設的 PolicyProvider 處理其他的 policy</span></span><br><span class="line">        <span class="keyword">return</span> FallbackPolicyProvider.GetPolicyAsync(policyName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Task&lt;AuthorizationPolicy&gt; <span class="title">GetDefaultPolicyAsync</span>()</span> =&gt; FallbackPolicyProvider.GetDefaultPolicyAsync();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Task&lt;AuthorizationPolicy?&gt; GetFallbackPolicyAsync() =&gt; FallbackPolicyProvider.GetFallbackPolicyAsync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Program.cs</code> 註冊</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddSingleton&lt;IAuthorizationPolicyProvider, PermissionPolicyProvider&gt;();</span><br><span class="line">builder.Services.AddSingleton&lt;IAuthorizationHandler, PermissionHandler&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>在 API 就能夠透過 Policy Provider 的機制去動態產生前一種作法的 Policy 並且檢查是否有權限。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;api/[controller]&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ArticlesController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">		[<span class="meta">Authorize(Policy = <span class="string">&quot;Permission_Published&quot;</span>)</span>]</span><br><span class="line">    [<span class="meta">HttpGet</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Get</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 只有擁有 &quot;Published&quot; 權限的用戶才可以訪問此方法</span></span><br><span class="line">        <span class="keyword">return</span> Ok(<span class="keyword">new</span> &#123; Message = <span class="string">&quot;This is a protected API.&quot;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更好的作法是建立一個 Attribute 用來取代 <code>[Authorize(Policy = &quot;Permission_Published&quot;)]</code> 這個寫法。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermissionAuthorizeAttribute</span> : <span class="title">AuthorizeAttribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">string</span> POLICY_PREFIX = <span class="string">&quot;Permission_&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PermissionAuthorizeAttribute</span>(<span class="params"><span class="built_in">string</span> rightName</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        RightName = rightName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> RightName</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> =&gt; Policy[POLICY_PREFIX.Length..];</span><br><span class="line">        <span class="keyword">set</span> =&gt; Policy = <span class="string">$&quot;<span class="subst">&#123;POLICY_PREFIX&#125;</span><span class="subst">&#123;<span class="keyword">value</span>&#125;</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>實際使用就可以改成這樣</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">PermissionAuthorize(<span class="string">&quot;Published&quot;</span>)</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-7.0">Policy-based authorization in ASP.NET Core - Learn Microsoft</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dotblogs.com.tw/yc421206/2022/06/21/aspnet_core_6_use_policy_authorization">ASP.NET Core 6 使用 Policy Authorization 保護端點 - 余小章 @ 大內殿堂</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DotnetCore/" rel="tag"># DotnetCore</a>
+              <a href="/tags/Authorization/" rel="tag"># Authorization</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/13/json-string-enum-converter/" rel="prev" title="[Dotnet] JsonStringEnumConverter 的應用">
+                  <i class="fa fa-angle-left"></i> [Dotnet] JsonStringEnumConverter 的應用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2008 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jimmy Ho</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="總字數">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">5:55</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"jiaming0708/jiaming0708.github.io","repo_id":"MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==","category":"Q&A","category_id":"DIC_kwDOBO717c4B_0N9","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
