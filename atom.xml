@@ -432,7 +432,7 @@
     <link href="http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/"/>
     <id>http://jiaming0708.github.io/2023/04/15/flutter-ui-layout/</id>
     <published>2023-04-15T15:13:05.000Z</published>
-    <updated>2024-09-23T12:53:18.380Z</updated>
+    <updated>2024-11-12T08:08:54.639Z</updated>
     
     
     <summary type="html">&lt;p&gt;作為一名主要開發平台為網頁的開發者，進入 Flutter 世界的開發體驗讓我發現元件結構是最需要適應的地方。在網頁開發中，我們可以透過 CSS 樣式來控制元素的排版，包括長寬、內外邊距，甚至彈性佈局 (flex) 或網格系統 (grid) 等。除非使用定位 (position)，否則所有元素都處於同一層級。然而在 app 中，每個元素都被當作不同的「層」來處理，因此為了達到類似網頁的效果，必須使用不同的元件進行組合。&lt;/p&gt;</summary>
