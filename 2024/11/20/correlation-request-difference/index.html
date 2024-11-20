@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4">
+  <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiaming0708.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"找到 ${hits} 個搜索結果（用時 ${time} 毫秒）","hits":"找到 ${hits} 個搜索結果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在現代分散式系統中，當有多個服務共同協作來處理單一請求時，對於整個請求的追蹤與調試變得至關重要。這時，X-Correlation-Id 和 X-Request-Id 這些 HTTP 標頭能提供幫助。  本篇由 ChatGPT 產生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="X-Correlation-Id 與 X-Request-Id 差異介紹">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/11/20/correlation-request-difference/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="在現代分散式系統中，當有多個服務共同協作來處理單一請求時，對於整個請求的追蹤與調試變得至關重要。這時，X-Correlation-Id 和 X-Request-Id 這些 HTTP 標頭能提供幫助。  本篇由 ChatGPT 產生">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-20T13:35:54.000Z">
+<meta property="article:modified_time" content="2024-11-20T13:35:54.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://jiaming0708.github.io/2024/11/20/correlation-request-difference/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2024/11/20/correlation-request-difference/","path":"2024/11/20/correlation-request-difference/","title":"X-Correlation-Id 與 X-Request-Id 差異介紹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>X-Correlation-Id 與 X-Request-Id 差異介紹 | Secret Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Secret Note</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">機密檔案</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜尋..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#X-Correlation-Id-%E8%88%87-X-Request-Id-%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="nav-number">1.</span> <span class="nav-text">X-Correlation-Id 與 X-Request-Id 的差異</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Correlation-Id"><span class="nav-number">1.1.</span> <span class="nav-text">X-Correlation-Id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Request-Id"><span class="nav-number">1.2.</span> <span class="nav-text">X-Request-Id</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-number">2.</span> <span class="nav-text">使用時機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dotnet-Core-%E5%AF%A6%E4%BD%9C%E7%AF%84%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">Dotnet Core 實作範例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E7%BE%A9-Middleware"><span class="nav-number">3.1.</span> <span class="nav-text">1. 定義 Middleware</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%A8%BB%E5%86%8A-Middleware"><span class="nav-number">3.2.</span> <span class="nav-text">2. 註冊 Middleware</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E5%8A%9F%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">延伸功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jimmy Ho"
+      src="/images/avator.JPG">
+  <p class="site-author-name" itemprop="name">Jimmy Ho</p>
+  <div class="site-description" itemprop="description">記錄一些自己記不住的東西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">170</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jiaming0708" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jiaming0708" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Secret_GoGo" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Secret_GoGo" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/secretgogoworld" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;secretgogoworld" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          連結
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.kevinyang.net/" title="https:&#x2F;&#x2F;blog.kevinyang.net&#x2F;" rel="noopener" target="_blank">CK's Notepad</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.miniasp.com/" title="https:&#x2F;&#x2F;blog.miniasp.com&#x2F;" rel="noopener" target="_blank">The Will Will Web | Will 保哥</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wellwind.idv.tw/blog/" title="https:&#x2F;&#x2F;wellwind.idv.tw&#x2F;blog&#x2F;" rel="noopener" target="_blank">全端開發人員天梯</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://poychang.github.io/" title="https:&#x2F;&#x2F;poychang.github.io&#x2F;" rel="noopener" target="_blank">POY CHANG | Trial and Error</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://dog0416.blogspot.com/" title="https:&#x2F;&#x2F;dog0416.blogspot.com&#x2F;" rel="noopener" target="_blank">Duran 的技術冶煉廠</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kyleap.github.io/" title="https:&#x2F;&#x2F;kyleap.github.io&#x2F;" rel="noopener" target="_blank">凱哥打扣</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://csscoke.com/" title="http:&#x2F;&#x2F;csscoke.com" rel="noopener" target="_blank">CSS可樂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.darkthread.net/" title="https:&#x2F;&#x2F;blog.darkthread.net&#x2F;" rel="noopener" target="_blank">黑暗執行緒</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.dotblogs.com.tw/yc421206" title="https:&#x2F;&#x2F;www.dotblogs.com.tw&#x2F;yc421206" rel="noopener" target="_blank">余小章 @ 大內殿堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.crazyalu.com/" title="https:&#x2F;&#x2F;blog.crazyalu.com&#x2F;" rel="noopener" target="_blank">Jeff Wu's Note</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.anna-yufeng.com/" title="https:&#x2F;&#x2F;blog.anna-yufeng.com&#x2F;" rel="noopener" target="_blank">安娜的自我探索與成長筆記</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://imall.dev/" title="https:&#x2F;&#x2F;imall.dev&#x2F;" rel="noopener" target="_blank">Imall's Blog</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相關文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/08/29/design-pattern-observer-decorator/" rel="bookmark">
+        <time class="popular-posts-time">2017-08-29</time>
+        <br>
+      [Design Pattern] Observer(觀察者)、Decoractor(裝飾器)
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/01/30/blazor-wasm-host-server-api-404-issue/" rel="bookmark">
+        <time class="popular-posts-time">2024-01-30</time>
+        <br>
+      [Blazor] 在 API 伺服器上託管 WASM 遇到的 404 問題
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://jiaming0708.github.io/2024/11/20/correlation-request-difference/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.JPG">
+      <meta itemprop="name" content="Jimmy Ho">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Secret Note">
+      <meta itemprop="description" content="記錄一些自己記不住的東西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="X-Correlation-Id 與 X-Request-Id 差異介紹 | Secret Note">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          X-Correlation-Id 與 X-Request-Id 差異介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-11-20 21:35:54" itemprop="dateCreated datePublished" datetime="2024-11-20T21:35:54+08:00">2024-11-20</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>949</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>3 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在現代分散式系統中，當有多個服務共同協作來處理單一請求時，對於整個請求的追蹤與調試變得至關重要。這時，<strong>X-Correlation-Id</strong> 和 <strong>X-Request-Id</strong> 這些 HTTP 標頭能提供幫助。</p>
+<blockquote>
+<p>本篇由 ChatGPT 產生</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="X-Correlation-Id-與-X-Request-Id-的差異"><a href="#X-Correlation-Id-與-X-Request-Id-的差異" class="headerlink" title="X-Correlation-Id 與 X-Request-Id 的差異"></a>X-Correlation-Id 與 X-Request-Id 的差異</h3><h4 id="X-Correlation-Id"><a href="#X-Correlation-Id" class="headerlink" title="X-Correlation-Id"></a><strong>X-Correlation-Id</strong></h4><ul>
+<li><strong>用途</strong>：用於跨系統的請求追蹤。</li>
+<li><strong>範圍</strong>：通常用於<strong>多個服務之間</strong>，確保每個服務在處理同一請求的過程中可以共用相同的識別碼。</li>
+<li><strong>典型場景</strong>：分散式系統中，記錄一整條請求的處理鏈路（例如 A -&gt; B -&gt; C）。</li>
+<li>設計重點：<ul>
+<li>通常由請求的<strong>初始服務</strong>產生，並在所有下游服務中傳遞。</li>
+<li>使用相同的 ID 作為一個“上下文標識符”。</li>
+</ul>
+</li>
+</ul>
+<h4 id="X-Request-Id"><a href="#X-Request-Id" class="headerlink" title="X-Request-Id"></a><strong>X-Request-Id</strong></h4><ul>
+<li><strong>用途</strong>：用於單一請求的追蹤。</li>
+<li><strong>範圍</strong>：單個服務內部的請求標識。</li>
+<li><strong>典型場景</strong>：在某一個微服務內，追蹤該服務接收到的每個請求。</li>
+<li>設計重點：<ul>
+<li>每個請求都會生成一個唯一的 <code>Request-Id</code>。</li>
+<li>即便是相同的 Correlation-Id，Request-Id 也會是唯一的，代表該請求的服務內處理實例。</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><ol>
+<li><strong>X-Correlation-Id</strong>：<ul>
+<li>用於跨多個服務之間的請求追蹤。</li>
+<li>例如，在微服務架構中，當請求從前端到後端，並經過多個微服務時，X-Correlation-Id 可以幫助你關聯這些請求。</li>
+<li>適用於分佈式追蹤與集中化日誌查詢工具，如 ELK 或 Jaeger。</li>
+</ul>
+</li>
+<li><strong>X-Request-Id</strong>：<ul>
+<li>用於服務內的請求識別。</li>
+<li>例如，一個服務可能會處理來自多個客戶端的請求，而每個請求都有不同的 X-Request-Id，方便區分。</li>
+<li>適用於單個服務內的細粒度調試與問題定位。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Dotnet-Core-實作範例"><a href="#Dotnet-Core-實作範例" class="headerlink" title="Dotnet Core 實作範例"></a>Dotnet Core 實作範例</h3><p>以下是用 ASP.NET Core 8 實現 <strong>X-Correlation-Id</strong> 和 <strong>X-Request-Id</strong> 的範例，包括如何在中介軟體（Middleware）中處理它們。</p>
+<h4 id="1-定義-Middleware"><a href="#1-定義-Middleware" class="headerlink" title="1. 定義 Middleware"></a>1. <strong>定義 Middleware</strong></h4><p>我們需要建立一個中介軟體來處理 <code>X-Correlation-Id</code> 和 <code>X-Request-Id</code>：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CorrelationIdMiddleware</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> RequestDelegate _next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CorrelationIdMiddleware</span>(<span class="params">RequestDelegate next</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">InvokeAsync</span>(<span class="params">HttpContext context</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 檢查是否有傳入 X-Correlation-Id，否則生成一個新的</span></span><br><span class="line">        <span class="keyword">if</span> (!context.Request.Headers.TryGetValue(<span class="string">&quot;X-Correlation-Id&quot;</span>, <span class="keyword">out</span> <span class="keyword">var</span> correlationId))</span><br><span class="line">        &#123;</span><br><span class="line">            correlationId = Guid.NewGuid().ToString();</span><br><span class="line">            context.Request.Headers[<span class="string">&quot;X-Correlation-Id&quot;</span>] = correlationId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 確保在 Response Header 中返回 X-Correlation-Id</span></span><br><span class="line">        context.Response.Headers[<span class="string">&quot;X-Correlation-Id&quot;</span>] = correlationId;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 為每個請求生成唯一的 X-Request-Id</span></span><br><span class="line">        <span class="keyword">var</span> requestId = Guid.NewGuid().ToString();</span><br><span class="line">        context.Request.Headers[<span class="string">&quot;X-Request-Id&quot;</span>] = requestId;</span><br><span class="line">        context.Response.Headers[<span class="string">&quot;X-Request-Id&quot;</span>] = requestId;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 將 CorrelationId 和 RequestId 傳遞給下游處理</span></span><br><span class="line">        <span class="keyword">await</span> _next(context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-註冊-Middleware"><a href="#2-註冊-Middleware" class="headerlink" title="2. 註冊 Middleware"></a>2. <strong>註冊 Middleware</strong></h4><p>將中介軟體註冊到應用程序中：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line"><span class="keyword">var</span> app = builder.Build();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 註冊 CorrelationIdMiddleware</span></span><br><span class="line">app.UseMiddleware&lt;CorrelationIdMiddleware&gt;();</span><br><span class="line"></span><br><span class="line">app.MapGet(<span class="string">&quot;/&quot;</span>, (HttpContext context) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> correlationId = context.Request.Headers[<span class="string">&quot;X-Correlation-Id&quot;</span>].ToString();</span><br><span class="line">    <span class="keyword">var</span> requestId = context.Request.Headers[<span class="string">&quot;X-Request-Id&quot;</span>].ToString();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Results.Json(<span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        Message = <span class="string">&quot;Hello, world!&quot;</span>,</span><br><span class="line">        CorrelationId = correlationId,</span><br><span class="line">        RequestId = requestId</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.Run();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="延伸功能"><a href="#延伸功能" class="headerlink" title="延伸功能"></a>延伸功能</h3><ol>
+<li><strong>集中式日誌追蹤</strong>：<ul>
+<li>使用 <code>X-Correlation-Id</code> 串聯多個服務的日誌，將其輸出到工具（如 ELK、Jaeger）。</li>
+<li>在 ASP.NET Core 中，將 Correlation-Id 嵌入日誌中：</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Logging;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CorrelationLoggerMiddleware</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> RequestDelegate _next;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> ILogger&lt;CorrelationLoggerMiddleware&gt; _logger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CorrelationLoggerMiddleware</span>(<span class="params">RequestDelegate next, ILogger&lt;CorrelationLoggerMiddleware&gt; logger</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _next = next;</span><br><span class="line">        _logger = logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">InvokeAsync</span>(<span class="params">HttpContext context</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> correlationId = context.Request.Headers[<span class="string">&quot;X-Correlation-Id&quot;</span>].ToString();</span><br><span class="line">        <span class="keyword">using</span> (_logger.BeginScope(<span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt; &#123; &#123; <span class="string">&quot;CorrelationId&quot;</span>, correlationId &#125; &#125;))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">await</span> _next(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>錯誤追蹤與回報</strong>：</p>
+<ul>
+<li>在 API 錯誤回應中返回 <code>X-Correlation-Id</code>，讓使用者可以回報問題時提供更準確的追蹤資訊。</li>
+</ul>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p><strong>X-Correlation-Id</strong> 和 <strong>X-Request-Id</strong> 是分散式系統中不可或缺的請求追蹤工具：</p>
+<ul>
+<li><strong>X-Correlation-Id</strong> 用於關聯跨多個服務的請求。</li>
+<li><strong>X-Request-Id</strong> 用於區分單一服務內的請求。</li>
+</ul>
+<p>透過 ASP.NET Core 的中介軟體，我們能夠輕鬆地實現這兩者，並將其整合到集中式日誌系統或錯誤追蹤系統中，從而提升系統的可觀察性與調試能力。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/15/dotnet-9-cet-issue/" rel="prev" title="[Debug]Dotnet 9 的 CET 問題">
+                  <i class="fa fa-angle-left"></i> [Debug]Dotnet 9 的 CET 問題
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2008 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jimmy Ho</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="總字數">99k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">6:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"jiaming0708/jiaming0708.github.io","repo_id":"MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==","category":"Q&A","category_id":"DIC_kwDOBO717c4B_0N9","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
