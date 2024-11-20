@@ -26,7 +26,7 @@
     
     <summary type="html">&lt;p&gt;在現代分散式系統中，當有多個服務共同協作來處理單一請求時，對於整個請求的追蹤與調試變得至關重要。這時，&lt;strong&gt;X-Correlation-Id&lt;/strong&gt; 和 &lt;strong&gt;X-Request-Id&lt;/strong&gt; 這些 HTTP 標頭能提供幫助。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;本篇由 ChatGPT 產生&lt;/p&gt;
+&lt;p&gt;本篇由 ChatGPT 產生&lt;br&gt;程式片段測試有效，可安心服用&lt;/p&gt;
 &lt;/blockquote&gt;</summary>
     
     
