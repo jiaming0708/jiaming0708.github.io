@@ -1,5 +1,5 @@
 ---
-title: '[Dotnet] JsonStringEnumConverter 的應用'
+title: '[DotnetCore] JsonStringEnumConverter 的應用'
 date: 2024-09-13 19:32:22
 updated: 2024-09-13 19:32:22
 categories:

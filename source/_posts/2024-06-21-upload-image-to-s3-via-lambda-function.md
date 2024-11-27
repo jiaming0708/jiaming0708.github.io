@@ -1,12 +1,12 @@
 ---
-title: '[C#] Lambda Function 實作上傳圖片至 S3'
+title: '[DotnetCore] Lambda Function 實作上傳圖片至 S3'
 date: 2024-06-21 13:56:09
 updated: 2024-06-21 13:56:09
 categories:
 - Backend
-- C#
+- DotnetCore
 tags:
-- C#
+- DotnetCore
 - AWS
 thumbnail:
 ---

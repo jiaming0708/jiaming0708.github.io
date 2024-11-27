@@ -1,5 +1,5 @@
 ---
-title: '[dotnet] 實作原則型授權'
+title: '[DotnetCore] 實作原則型授權'
 date: 2024-09-21 17:19:36
 updated: 2024-09-21 17:19:36
 categories:

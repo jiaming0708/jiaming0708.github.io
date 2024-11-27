@@ -4,10 +4,9 @@ date: 2024-09-02 21:46:15
 updated: 2024-09-02 21:46:15
 categories:
 - Backend
-- MiddleService
+- Infrastructure
 tags:
-- Backend
-- MiddleService
+- Infrastructure
 thumbnail:
 ---
 

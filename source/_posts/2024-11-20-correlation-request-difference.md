@@ -3,7 +3,11 @@ title: 'X-Correlation-Id 與 X-Request-Id 差異介紹'
 date: 2024-11-20 21:35:54
 updated: 2024-11-20 21:35:54
 categories:
+- Backend
+- Infrastructure
 tags:
+- DotnetCore
+- Infrastructure
 thumbnail:
 ---
 
