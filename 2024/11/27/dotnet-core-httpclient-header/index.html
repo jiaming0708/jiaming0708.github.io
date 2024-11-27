@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+  <meta name="google-site-verification" content="TkcPr92_udHOBNGH4btaY7gv5Ei9zHUs58Kid16XOr4">
+  <meta name="msvalidate.01" content="3B44C55C817CED2F642154B1168B77E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiaming0708.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"找到 ${hits} 個搜索結果（用時 ${time} 毫秒）","hits":"找到 ${hits} 個搜索結果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用 HttpClient 來呼叫其他的服務取得資料，要加上 header 有幾種作法，底下來看看怎麼用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[DotnetCore] HttpClient 加上 Header 的作法">
+<meta property="og:url" content="http://jiaming0708.github.io/2024/11/27/dotnet-core-httpclient-header/index.html">
+<meta property="og:site_name" content="Secret Note">
+<meta property="og:description" content="使用 HttpClient 來呼叫其他的服務取得資料，要加上 header 有幾種作法，底下來看看怎麼用">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-27T01:12:04.000Z">
+<meta property="article:modified_time" content="2024-11-27T01:12:04.000Z">
+<meta property="article:author" content="Jimmy Ho">
+<meta property="article:tag" content="DotnetCore">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://jiaming0708.github.io/2024/11/27/dotnet-core-httpclient-header/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2024/11/27/dotnet-core-httpclient-header/","path":"2024/11/27/dotnet-core-httpclient-header/","title":"[DotnetCore] HttpClient 加上 Header 的作法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[DotnetCore] HttpClient 加上 Header 的作法 | Secret Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Secret Note" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Secret Note</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">機密檔案</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜尋..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%8A%A0"><span class="nav-number">1.</span> <span class="nav-text">直接加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-DelegatingHandler"><span class="nav-number">2.</span> <span class="nav-text">使用 DelegatingHandler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jimmy Ho"
+      src="/images/avator.JPG">
+  <p class="site-author-name" itemprop="name">Jimmy Ho</p>
+  <div class="site-description" itemprop="description">記錄一些自己記不住的東西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jiaming0708" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jiaming0708" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Secret_GoGo" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Secret_GoGo" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/secretgogoworld" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;secretgogoworld" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          連結
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.kevinyang.net/" title="https:&#x2F;&#x2F;blog.kevinyang.net&#x2F;" rel="noopener" target="_blank">CK's Notepad</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.miniasp.com/" title="https:&#x2F;&#x2F;blog.miniasp.com&#x2F;" rel="noopener" target="_blank">The Will Will Web | Will 保哥</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://wellwind.idv.tw/blog/" title="https:&#x2F;&#x2F;wellwind.idv.tw&#x2F;blog&#x2F;" rel="noopener" target="_blank">全端開發人員天梯</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://poychang.github.io/" title="https:&#x2F;&#x2F;poychang.github.io&#x2F;" rel="noopener" target="_blank">POY CHANG | Trial and Error</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://dog0416.blogspot.com/" title="https:&#x2F;&#x2F;dog0416.blogspot.com&#x2F;" rel="noopener" target="_blank">Duran 的技術冶煉廠</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kyleap.github.io/" title="https:&#x2F;&#x2F;kyleap.github.io&#x2F;" rel="noopener" target="_blank">凱哥打扣</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://csscoke.com/" title="http:&#x2F;&#x2F;csscoke.com" rel="noopener" target="_blank">CSS可樂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.darkthread.net/" title="https:&#x2F;&#x2F;blog.darkthread.net&#x2F;" rel="noopener" target="_blank">黑暗執行緒</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.dotblogs.com.tw/yc421206" title="https:&#x2F;&#x2F;www.dotblogs.com.tw&#x2F;yc421206" rel="noopener" target="_blank">余小章 @ 大內殿堂</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.crazyalu.com/" title="https:&#x2F;&#x2F;blog.crazyalu.com&#x2F;" rel="noopener" target="_blank">Jeff Wu's Note</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.anna-yufeng.com/" title="https:&#x2F;&#x2F;blog.anna-yufeng.com&#x2F;" rel="noopener" target="_blank">安娜的自我探索與成長筆記</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://imall.dev/" title="https:&#x2F;&#x2F;imall.dev&#x2F;" rel="noopener" target="_blank">Imall's Blog</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相關文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/01/21/blazor-testing-mock/" rel="bookmark">
+        <time class="popular-posts-time">2022-01-21</time>
+        <br>
+      [Blazor] 元件測試 - mock
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/06/30/frontend-debug-cors/" rel="bookmark">
+        <time class="popular-posts-time">2023-06-30</time>
+        <br>
+      [Debug] 前端如何偵錯CORS
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/01/28/blazor-testing-service/" rel="bookmark">
+        <time class="popular-posts-time">2022-01-28</time>
+        <br>
+      [Blazor] 元件測試 - Service
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/11/20/correlation-request-difference/" rel="bookmark">
+        <time class="popular-posts-time">2024-11-20</time>
+        <br>
+      X-Correlation-Id 與 X-Request-Id 差異介紹
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2021/04/09/iis-reverse-proxy-header/" rel="bookmark">
+        <time class="popular-posts-time">2021-04-09</time>
+        <br>
+      [IIS] 修正 reverse proxy 的 host 問題
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://jiaming0708.github.io/2024/11/27/dotnet-core-httpclient-header/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.JPG">
+      <meta itemprop="name" content="Jimmy Ho">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Secret Note">
+      <meta itemprop="description" content="記錄一些自己記不住的東西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[DotnetCore] HttpClient 加上 Header 的作法 | Secret Note">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [DotnetCore] HttpClient 加上 Header 的作法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-11-27 09:12:04" itemprop="dateCreated datePublished" datetime="2024-11-27T09:12:04+08:00">2024-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Backend/DotnetCore/" itemprop="url" rel="index"><span itemprop="name">DotnetCore</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>311</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>1 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>使用 HttpClient 來呼叫其他的服務取得資料，要加上 header 有幾種作法，底下來看看怎麼用</p>
+<span id="more"></span>
+
+<blockquote>
+<p>環境: Dotnet 9</p>
+</blockquote>
+<h2 id="直接加"><a href="#直接加" class="headerlink" title="直接加"></a>直接加</h2><p>最直接的作法是在每個 request 前加上 header</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddHttpClient();</span><br><span class="line"></span><br><span class="line">app.MapGet(<span class="string">&quot;/weatherforecast&quot;</span>, (HttpRequest request, [FromServices] HttpClient httpClient) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        httpClient.DefaultRequestHeaders.Add(<span class="string">&quot;custom-data&quot;</span>, <span class="string">&quot;jimmy test&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> httpClient.GetFromJsonAsync&lt;IEnumerable&lt;WeatherForecast&gt;&gt;(</span><br><span class="line">            <span class="string">$&quot;http://localhost:5183/weatherforecast&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .WithName(<span class="string">&quot;GetWeatherForecast&quot;</span>)</span><br><span class="line">    .WithOpenApi();</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-DelegatingHandler"><a href="#使用-DelegatingHandler" class="headerlink" title="使用 DelegatingHandler"></a>使用 DelegatingHandler</h2><p>上面的作法很簡單，但每個都要自己加，變得很難以管理<br>c# 有提供 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/httpclient-message-handlers">DelegatingHandler</a> 的做法，這等於是 interceptor 中介，也可以說是 middleware，讓我們可以統一的加上 header 的行為</p>
+<p>建立一個 <code>CustomHttpInterceptor.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomHttpInterceptor</span> : <span class="title">DelegatingHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IHttpContextAccessor _httpContextAccessor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomHttpInterceptor</span>(<span class="params">IHttpContextAccessor httpContextAccessor</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _httpContextAccessor = httpContextAccessor ?? <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentNullException(<span class="keyword">nameof</span>(httpContextAccessor));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">async</span> Task&lt;HttpResponseMessage&gt; <span class="title">SendAsync</span>(<span class="params">HttpRequestMessage request, CancellationToken cancellationToken</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        request.Headers.Add(<span class="string">&quot;custom-data&quot;</span>, <span class="string">&quot;jimmy test&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 呼叫下一層處理邏輯</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">base</span>.SendAsync(request, cancellationToken);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回到 <code>Program.cs</code> 需要調整 <code>AddHttpClient</code> 的設定</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddTransient&lt;CustomHttpInterceptor&gt;();</span><br><span class="line"><span class="comment">// 這邊可以給一個名稱也可以空白</span></span><br><span class="line">builder.Services.AddHttpClient(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">    .AddHttpMessageHandler&lt;CustomHttpInterceptor&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>上面這些做完原本的注入可以不用改，持續用 <code>HttpClient</code>，也可以改用 <code>IHttpClientFactory</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.MapGet(<span class="string">&quot;/weatherforecast&quot;</span>, (HttpRequest request, [FromServices] IHttpClientFactory httpClientFactory) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> httpClient = httpClientFactory.CreateClient(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> httpClient.GetFromJsonAsync&lt;IEnumerable&lt;WeatherForecast&gt;&gt;(</span><br><span class="line">            <span class="string">$&quot;http://localhost:5183/weatherforecast&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .WithName(<span class="string">&quot;GetWeatherForecast&quot;</span>)</span><br><span class="line">    .WithOpenApi();</span><br></pre></td></tr></table></figure>
+
+<p>這樣呼叫出去的 API 就都會統一加上 <code>custom-data</code> 在 header 上啦!</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://timdeschryver.dev/blog/intercepting-http-requests-with-a-delegatinghandler">Intercepting HTTP requests with a DelegatingHandler</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/httpclient-message-handlers">HttpClient Message Handlers in ASP.NET Web API</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DotnetCore/" rel="tag"># DotnetCore</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/20/correlation-request-difference/" rel="prev" title="X-Correlation-Id 與 X-Request-Id 差異介紹">
+                  <i class="fa fa-angle-left"></i> X-Correlation-Id 與 X-Request-Id 差異介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2008 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jimmy Ho</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="總字數">99k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">6:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"jiaming0708/jiaming0708.github.io","repo_id":"MDEwOlJlcG9zaXRvcnk4Mjc2OTM4OQ==","category":"Q&A","category_id":"DIC_kwDOBO717c4B_0N9","mapping":"title","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
