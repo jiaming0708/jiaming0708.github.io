@@ -46,12 +46,14 @@ public class CustomHttpInterceptor : DelegatingHandler
 
     public CustomHttpInterceptor(IHttpContextAccessor httpContextAccessor)
     {
-        _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+        _httpContextAccessor = httpContextAccessor;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.Add("custom-data", "jimmy test");
+        // 若有需要取得這次 request 進來的一些資料，可以透過 _httpContextAccessor 取得
+        // _httpContextAccessor.HttpContext.Request.Headers.TryGetValue("X-Correlation-Id", out var correlationId);
 
         // 呼叫下一層處理邏輯
         return await base.SendAsync(request, cancellationToken);
@@ -61,6 +63,7 @@ public class CustomHttpInterceptor : DelegatingHandler
 
 回到 `Program.cs` 需要調整 `AddHttpClient` 的設定
 ```c#
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<CustomHttpInterceptor>();
 // 這邊可以給一個名稱也可以空白
 builder.Services.AddHttpClient("test")
