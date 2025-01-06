@@ -29,7 +29,7 @@
 <meta property="og:description" content="今天要來帶大家看三個我實際有使用過的案例，並且一個步驟一個步驟的走過，當然我們會從簡單到複雜…">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2018-08-20T12:21:01.000Z">
-<meta property="article:modified_time" content="2025-01-02T07:33:53.148Z">
+<meta property="article:modified_time" content="2025-01-06T01:23:46.765Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="Angular">
 <meta property="article:tag" content="RxJS">
@@ -315,7 +315,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2025-01-02 15:33:53" itemprop="dateModified" datetime="2025-01-02T15:33:53+08:00">2025-01-02</time>
+      <time title="修改時間：2025-01-06 09:23:46" itemprop="dateModified" datetime="2025-01-06T09:23:46+08:00">2025-01-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -402,8 +402,7 @@
 <p>這邊必須注意<code>service</code>或是<code>input</code>事件的先後順序，因為<code>input</code>會是持續發生，所以必須要以<code>keyword$</code>為主</p>
 <blockquote>
 <p>如果是es5作法呢？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line">array.<span class="title function_">forEach</span>(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(p.<span class="property">OrgName</span>.<span class="title function_">indexOf</span>(keyword) &gt; -<span class="number">1</span>)&#123;</span><br><span class="line">        result.<span class="title function_">push</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line">array.<span class="title function_">forEach</span>(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(p.<span class="property">OrgName</span>.<span class="title function_">indexOf</span>(keyword) &gt; -<span class="number">1</span>)&#123;</span><br><span class="line">        result.<span class="title function_">push</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></blockquote>
 <h2 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h2><ul>
 <li>原本使用<code>mergeMap</code>還要考慮先後順序，可以改成<code>combineLatest</code></li>
 <li>加上輸入的間隔時間<code>debounceTime</code>，避免一直呼叫API</li>

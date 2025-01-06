@@ -29,7 +29,7 @@
 <meta property="og:description" content="今天要來探討ReactiveX(底下簡稱Rx)，這個已經紅很久的概念，各語言有各自的實作ex:RxJS、RxJava…我們先來看看Rx是什麼東西，官方給了一個定義composing asynchronous and event-based programs by using observable sequences">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-07-05T12:52:33.000Z">
-<meta property="article:modified_time" content="2025-01-02T07:33:53.140Z">
+<meta property="article:modified_time" content="2025-01-06T01:23:46.757Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
@@ -321,7 +321,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2025-01-02 15:33:53" itemprop="dateModified" datetime="2025-01-02T15:33:53+08:00">2025-01-02</time>
+      <time title="修改時間：2025-01-06 09:23:46" itemprop="dateModified" datetime="2025-01-06T09:23:46+08:00">2025-01-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -387,31 +387,43 @@
 
 <p>透過next不斷的發送資料出去，當要讓subscribe知道已經結束則使用complete<br>若是錯誤則是使用throw<br>complete、throw對於observable來說都是結束的意思，後面的動作就不會繼續觸發了</p>
 <ul>
-<li><p>of<br>輸出陣列資料</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=of.js"></script>
-</li>
-<li><p>from<br>將陣列資料拆解，sequence的將資料拋出</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=from.js"></script>
-</li>
-<li><p>fromEvent<br>監聽事件</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=fromEvent.js"></script></li>
+<li>of<br>輸出陣列資料</li>
 </ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=of.js"></script>
+
+<ul>
+<li>from<br>將陣列資料拆解，sequence的將資料拋出</li>
+</ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=from.js"></script>
+
+<ul>
+<li>fromEvent<br>監聽事件</li>
+</ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=fromEvent.js"></script>
+
 <h2 id="Operator"><a href="#Operator" class="headerlink" title="Operator"></a>Operator</h2><p>Operator就像是煮飯一樣，搭配的好就像是阿基師，搭配不好吃起來就會…(遠目<br>Rx已經準備好許多的配料，可以讓我們自行搭配，底下用幾個來做範例吧</p>
 <ul>
-<li><p>map</p>
-</li>
-<li><p>filter</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=operator.js"></script>
-</li>
-<li><p>concat</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=concat.js"></script>
-</li>
-<li><p>merge</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=merge.js"></script>
-</li>
-<li><p>mergeMap<br>等於merge+map的合體技</p>
-<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=mergeMap.js"></script></li>
+<li>map</li>
+<li>filter</li>
 </ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=operator.js"></script>
+
+<ul>
+<li>concat</li>
+</ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=concat.js"></script>
+
+<ul>
+<li>merge</li>
+</ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=merge.js"></script>
+
+<ul>
+<li>mergeMap<br>等於merge+map的合體技</li>
+</ul>
+<script src="//gist.github.com/08101b5d8f3f35c562c2d7df774835c4.js?file=mergeMap.js"></script>
+
+
 <p>看完了上面的介紹，也許有人就會開始想說，那可不可以有多個訂閱者<br>那多個訂閱者收到的資料會是什麼</p>
 <blockquote>
 <p>答案是全部的人收到一模一樣的資料</p>
