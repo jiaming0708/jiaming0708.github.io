@@ -1,6 +1,7 @@
 ---
 title: Vue初體驗
 date: 2018-05-21 22:04:31
+updated: 2018-05-21 22:04:31
 categories:
 - Frontend
 - Vue

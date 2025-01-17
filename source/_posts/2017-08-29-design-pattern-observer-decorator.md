@@ -1,6 +1,7 @@
 ---
 title: '[Design Pattern] Observer(觀察者)、Decoractor(裝飾器)'
 date: 2017-08-29 20:17:54
+updated: 2017-08-29 20:17:54
 categories:
 - Design Pattern
 tags:

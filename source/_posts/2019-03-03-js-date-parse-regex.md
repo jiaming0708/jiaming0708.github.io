@@ -1,6 +1,7 @@
 ---
 title: '[JS] date自定義格式'
 date: 2019-03-03 10:35:15
+updated: 2019-03-03 10:35:15
 categories:
 - Frontend
 - JavaScript

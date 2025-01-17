@@ -1,6 +1,7 @@
 ---
 title: '[crop系列] 2 canvas drawimage應用'
 date: 2018-12-22 10:32:17
+updated: 2018-12-22 10:32:17
 categories:
 - Frontend
 - canvas

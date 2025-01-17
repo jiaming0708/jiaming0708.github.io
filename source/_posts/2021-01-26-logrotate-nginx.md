@@ -1,6 +1,7 @@
 ---
 title: 設定nginx的log備份機制
 date: 2021-01-26 10:25:27
+updated: 2021-01-26 10:25:27
 categories:
 - linux
 tags:

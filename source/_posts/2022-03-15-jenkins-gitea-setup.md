@@ -1,6 +1,7 @@
 ---
 title: Jenkins 與 Gitea 整合
 date: 2022-03-15 15:04:59
+updated: 2022-03-15 15:04:59
 categories:
 - CI/CD
 tags:

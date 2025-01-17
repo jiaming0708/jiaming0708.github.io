@@ -1,6 +1,7 @@
 ---
 title: '[Angular] Directive介紹'
 date: 2017-08-16 10:32:42
+updated: 2017-08-16 10:32:42
 categories:
 - Frontend
 - Angular

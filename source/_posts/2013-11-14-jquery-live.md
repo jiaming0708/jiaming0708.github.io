@@ -1,6 +1,7 @@
 ---
 title: '[jQuery] live改用on寫法'
 date: 2013-11-14 19:47:55
+updated: 2013-11-14 19:47:55
 categories:
 - Frontend
 - jQuery

@@ -1,12 +1,12 @@
 ---
 title: '[Flutter] 自定義字型的方法'
+date: 2023-04-17 14:12:07
+updated: 2023-04-17 14:12:07
 categories:
   - Flutter
 tags:
   - Flutter
 thumbnail: /images/flutter.png
-date: 2023-04-17 14:12:07
-updated: 2023-04-17 14:12:07
 ---
 
 不管在哪個平台開發，都會遇到設計師尋求特定字體來增強他們的設計，今天就來介紹要如何在 Flutter 中自定義字型。

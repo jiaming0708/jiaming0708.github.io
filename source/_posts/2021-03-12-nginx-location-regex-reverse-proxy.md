@@ -1,6 +1,7 @@
 ---
 title: '[nginx] 設定reverse proxy當location使用regex'
 date: 2021-03-13 09:03:58
+updated: 2021-03-13 09:03:58
 categories:
 - nginx
 tags:

@@ -1,5 +1,7 @@
 ---
 title: '[Angular] 動態載入Component'
+date: 2017-03-03 22:10:58
+updated: 2017-03-03 22:10:58
 categories:
 - Frontend
 - Angular

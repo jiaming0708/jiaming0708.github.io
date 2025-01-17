@@ -1,6 +1,7 @@
 ---
 title: '[Oracle] 記憶體控制sga'
 date: 2016-05-30 22:29:03
+updated: 2016-05-30 22:29:03
 categories:
 - Backend
 - Oracle

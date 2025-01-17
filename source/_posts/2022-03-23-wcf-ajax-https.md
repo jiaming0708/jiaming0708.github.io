@@ -1,6 +1,7 @@
 ---
 title: WCF AJAX 服務建置於 https
 date: 2022-03-23 14:01:46
+updated: 2022-03-23 14:01:46
 categories:
 - Backend
 tags:

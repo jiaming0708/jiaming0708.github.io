@@ -1,6 +1,7 @@
 ---
 title: '[dotnet framework] 如何使用 cli 執行測試'
 date: 2022-10-14 14:27:37
+updated: 2022-10-14 14:27:37
 categories:
 - Backend
 - Dotnet

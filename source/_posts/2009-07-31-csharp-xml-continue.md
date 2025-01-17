@@ -1,6 +1,7 @@
 ---
 title: '[C#] xml讀取寫入(續)'
 date: 2009-07-31 00:10:11
+updated: 2009-07-31 00:10:11
 categories:
 - Backend
 - C#

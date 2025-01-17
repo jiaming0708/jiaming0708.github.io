@@ -1,6 +1,7 @@
 ---
 title: '[C#] 寫入的簡體資料變成亂碼'
 date: 2012-02-17 15:44:05
+updated: 2012-02-17 15:44:05
 categories:
 - Backend
 - Oracle

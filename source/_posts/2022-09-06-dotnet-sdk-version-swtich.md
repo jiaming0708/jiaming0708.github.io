@@ -1,6 +1,7 @@
 ---
 title: '[Dotnet] 如何切換 SDK 版本'
 date: 2022-09-06 15:00:16
+updated: 2022-09-06 15:00:16
 categories:
 - Backend
 - DotnetCore

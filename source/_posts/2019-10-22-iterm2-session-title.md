@@ -1,6 +1,7 @@
 ---
 title: '[Debug] iterm2的頁籤標題設定'
 date: 2019-10-22 21:47:48
+updated: 2019-10-22 21:47:48
 categories:
 - iterm
 tags:

@@ -1,6 +1,7 @@
 ---
 title: 使用 Github Action 檢查套件更新並發送 PR
 date: 2022-06-07 20:14:13
+updated: 2022-06-07 20:14:13
 categories:
 - Github Action
 tags:

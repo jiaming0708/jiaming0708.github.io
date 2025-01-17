@@ -1,6 +1,7 @@
 ---
 title: react component重構心得分享
 date: 2019-03-12 20:25:23
+updated: 2019-03-12 20:25:23
 categories:
 - Frontend
 - React

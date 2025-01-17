@@ -1,6 +1,7 @@
 ---
 title: '[Design Pattern] facade(外觀) 和 interpreter(直繹器) 以及 mediator(協調者)'
 date: 2021-08-06 10:29:54
+updated: 2021-08-06 10:29:54
 categories:
 - Design Pattern
 tags:

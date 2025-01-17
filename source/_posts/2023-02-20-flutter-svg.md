@@ -1,10 +1,11 @@
 ---
 title: '[Flutter] SVG應用'
+date: 2023-02-20 22:13:56
+updated: 2023-02-20 22:13:56
 categories:
   - Flutter
 tags:
   - Flutter
-date: 2023-02-20 22:13:56
 thumbnail: /images/flutter.png
 ---
 

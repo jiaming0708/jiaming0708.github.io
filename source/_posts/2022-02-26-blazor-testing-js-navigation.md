@@ -1,6 +1,7 @@
 ---
 title: '[Blazor] 元件測試 - JSRuntime、NavigationManager'
 date: 2022-02-26 10:18:36
+updated: 2022-02-26 10:18:36
 categories:
 - Frontend
 - Blazor

@@ -1,6 +1,7 @@
 ---
 title: '[AgnularJS] 與RxJS結合-監聽model變動'
 date: 2017-11-30 21:26:02
+updated: 2017-11-30 21:26:02
 categories:
 - Frontend
 - AngularJS

@@ -1,6 +1,7 @@
 ---
 title: 使用 Github Action 作為 CI/CD 將 libraray 發佈到 Github Package
 date: 2020-05-21 21:43:19
+updated: 2020-05-21 21:43:19
 categories:
 - CI/CD
 tags:

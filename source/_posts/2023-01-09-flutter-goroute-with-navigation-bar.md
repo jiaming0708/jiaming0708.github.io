@@ -1,6 +1,7 @@
 ---
 title: '[flutter] 在 GoRoute 中使用 NavigationBar'
 date: 2023-01-09 10:12:05
+updated: 2023-01-09 10:12:05
 categories:
 - Flutter
 tags:

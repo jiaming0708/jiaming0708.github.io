@@ -1,6 +1,7 @@
 ---
 title: '[C#] ComboBox和ListBox如何將顯示和值分開'
 date: 2009-10-08 23:12:56
+updated: 2009-10-08 23:12:56
 categories:
 - Backend
 - C#

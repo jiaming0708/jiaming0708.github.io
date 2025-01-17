@@ -1,6 +1,7 @@
 ---
 title: 在本機使用Docker架Gitea和DroneCI
 date: 2021-03-22 10:04:38
+updated: 2021-03-22 10:04:38
 categories:
 - CI/CD
 tags:

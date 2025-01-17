@@ -1,6 +1,7 @@
 ---
-title: 在blazor中使用JavaScript
+title: '[Blazor] 使用JavaScript'
 date: 2021-06-27 10:08:40
+updated: 2021-06-27 10:08:40
 categories:
 - Frontend
 - Blazor

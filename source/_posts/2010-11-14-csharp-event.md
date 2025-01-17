@@ -1,6 +1,7 @@
 ---
 title: '[C#] 自己寫Event'
 date: 2010-11-14 09:36:39
+updated: 2010-11-14 09:36:39
 categories:
 - Backend
 - C#

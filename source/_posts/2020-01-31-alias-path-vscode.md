@@ -1,6 +1,7 @@
 ---
 title: 讓vscode讀懂alias path
 date: 2020-01-31 17:00:14
+updated: 2020-01-31 17:00:14
 categories:
 - Frontend
 - vscode

@@ -1,6 +1,7 @@
 ---
 title: '[Angular] 下載image並顯示'
 date: 2018-02-13 00:29:29
+updated: 2018-02-13 00:29:29
 categories:
 - Frontend
 - Angular

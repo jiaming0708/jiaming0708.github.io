@@ -1,6 +1,7 @@
 ---
 title: '[c#] EF使用動態LINQ做查詢'
 date: 2022-08-02 14:43:07
+updated: 2022-08-02 14:43:07
 categories:
 - Backend
 - linq

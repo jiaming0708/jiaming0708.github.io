@@ -1,6 +1,7 @@
 ---
 title: '[抓蟲] npm全域安裝路徑錯誤'
 date: 2019-05-25 17:20:19
+updated: 2019-05-25 17:20:19
 categories:
 tags:
 ---

@@ -1,6 +1,7 @@
 ---
 title: 如何建立 Oracle database image
 date: 2023-01-16 10:46:13
+updated: 2023-01-16 10:46:13
 categories:
 - Database
 - Oracle

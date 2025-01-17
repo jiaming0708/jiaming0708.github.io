@@ -1,6 +1,7 @@
 ---
 title: '[nginx] reverse proxy 在 docker compose 架構下'
 date: 2022-06-22 19:46:46
+updated: 2022-06-22 19:46:46
 categories:
 - nginx
 tags:

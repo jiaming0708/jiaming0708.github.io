@@ -1,6 +1,7 @@
 ---
 title: '[AngularJS] 第一個directive'
 date: 2014-11-25 19:32:03
+updated: 2014-11-25 19:32:03
 categories:
 - Frontend
 - AngularJS

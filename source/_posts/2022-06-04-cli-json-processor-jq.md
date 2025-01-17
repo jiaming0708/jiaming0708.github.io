@@ -1,6 +1,7 @@
 ---
 title: 如何在 cli 快速操作 json 資料 - jq
 date: 2022-06-04 21:47:46
+updated: 2022-06-04 21:47:46
 categories:
 - shell
 tags:

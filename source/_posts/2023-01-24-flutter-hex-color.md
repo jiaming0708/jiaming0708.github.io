@@ -1,6 +1,7 @@
 ---
 title: '[flutter] 使用 16 進制定義顏色'
 date: 2023-01-24 14:16:00
+updated: 2023-01-24 14:16:00
 categories:
   - Flutter
 tags:

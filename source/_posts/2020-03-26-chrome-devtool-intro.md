@@ -1,6 +1,7 @@
 ---
 title: chrome devtool介紹
 date: 2020-03-26 21:06:51
+updated: 2020-03-26 21:06:51
 categories:
 - Frontend
 - chrome

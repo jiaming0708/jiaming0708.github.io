@@ -1,6 +1,7 @@
 ---
 title: '[Jenkins] 環境建置 - 整合 Gitea 登入'
 date: 2022-03-24 09:20:03
+updated: 2022-03-24 09:20:03
 categores:
 - CI/CD
 tags:

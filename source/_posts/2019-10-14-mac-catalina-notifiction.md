@@ -1,6 +1,7 @@
 ---
 title: '[mac] Catalina的notification設定'
 date: 2019-10-14 15:36:11
+updated: 2019-10-14 15:36:11
 categories:
 - mac
 tags:

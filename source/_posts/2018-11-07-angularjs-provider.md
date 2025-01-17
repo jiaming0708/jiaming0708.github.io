@@ -1,6 +1,7 @@
 ---
 title: '[AngularJS] Provider探究'
 date: 2018-11-07 12:44:39
+updated: 2018-11-07 12:44:39
 categories:
 - Frontend
 - AngularJS

@@ -1,6 +1,7 @@
 ---
 title: '[C#] 連結MySql'
 date: 2012-01-13 10:12:16
+updated: 2012-01-13 10:12:16
 categories:
 - Backend
 - C#

@@ -1,6 +1,7 @@
 ---
 title: '[ASP.NET] 在UpdatePanel裡執行JavaScript'
 date: 2011-10-05 09:27:52
+updated: 2011-10-05 09:27:52
 categories:
 - Backend
 - ASP.NET

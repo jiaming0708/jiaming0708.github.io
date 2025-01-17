@@ -1,6 +1,7 @@
 ---
 title: 在 elasticsearch 更新後立即能夠查詢
 date: 2020-05-21 22:24:59
+updated: 2020-05-21 22:24:59
 categories:
 - Backend
 - ElasticSearch

@@ -1,6 +1,7 @@
 ---
 title: '[Angular/AngularJS] Exception Handle'
 date: 2017-07-24 22:00:20
+updated: 2017-07-24 22:00:20
 categories:
 - Frontend
 - Angular

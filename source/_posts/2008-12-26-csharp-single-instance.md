@@ -1,6 +1,7 @@
 ---
 title: '[C#] 單一化執行'
 date: 2008-12-26 11:33:06
+updated: 2008-12-26 11:33:06
 categories:
 - Backend
 - C#

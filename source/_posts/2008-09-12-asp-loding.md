@@ -1,6 +1,7 @@
 ---
 title: '[ASP.NET] 跳出類似loading的頁面'
 date: 2008-09-12 22:46:36
+updated: 2008-09-12 22:46:36
 categories:
 - Backend
 - ASP.NET

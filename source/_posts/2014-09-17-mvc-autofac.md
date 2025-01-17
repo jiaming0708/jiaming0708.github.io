@@ -1,6 +1,7 @@
 ---
 title: '[C#] 使用Autofac'
 date: 2014-09-17 09:30:27
+updated: 2014-09-17 09:30:27
 categories:
 - 
 tags:

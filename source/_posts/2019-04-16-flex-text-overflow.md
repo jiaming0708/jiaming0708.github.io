@@ -1,6 +1,7 @@
 ---
 title: '[CSS] 在flex呈現省略號'
 date: 2019-04-16 11:10:41
+updated: 2019-04-16 11:10:41
 categories:
 - Frontend
 - CSS

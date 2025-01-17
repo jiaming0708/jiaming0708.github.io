@@ -1,6 +1,7 @@
 ---
 title: '[ASP.NET] DataGrid動態產生Template(更新)'
 date: 2010-05-14 21:40:30
+updated: 2010-05-14 21:40:30
 categories:
 - Backend
 - ASP.NET
