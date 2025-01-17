@@ -23,13 +23,13 @@
 
     <meta name="description" content="最近都在使用一個很新的前端框架，叫做 Blazor ，是由微軟所推出給 dotnet 的開發人員所用，優點是可以使用一個語言打天下(迷之音: 真的能嗎?)，但現在的 Blazor 還太年輕，對應的東西都還沒那麼齊全，JavaScript 反而已經擁有很多套件&#x2F;方法可以使用，今天就一起來看看怎麼將兩個結合一起使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在blazor中使用JavaScript">
+<meta property="og:title" content="[Blazor] 使用JavaScript">
 <meta property="og:url" content="http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/index.html">
 <meta property="og:site_name" content="Secret Note">
 <meta property="og:description" content="最近都在使用一個很新的前端框架，叫做 Blazor ，是由微軟所推出給 dotnet 的開發人員所用，優點是可以使用一個語言打天下(迷之音: 真的能嗎?)，但現在的 Blazor 還太年輕，對應的東西都還沒那麼齊全，JavaScript 反而已經擁有很多套件&#x2F;方法可以使用，今天就一起來看看怎麼將兩個結合一起使用。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-06-27T02:08:40.000Z">
-<meta property="article:modified_time" content="2025-01-17T14:22:30.900Z">
+<meta property="article:modified_time" content="2021-06-27T02:08:40.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Blazor">
@@ -39,10 +39,10 @@
 <link rel="canonical" href="http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/","path":"2021/06/27/blazor-interoperability-js/","title":"在blazor中使用JavaScript"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"http://jiaming0708.github.io/2021/06/27/blazor-interoperability-js/","path":"2021/06/27/blazor-interoperability-js/","title":"[Blazor] 使用JavaScript"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>在blazor中使用JavaScript | Secret Note</title>
+<title>[Blazor] 使用JavaScript | Secret Note</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5LXTGJNLYY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-5LXTGJNLYY","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -274,17 +274,17 @@
       </a>
     </li>
     <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2024/06/21/upload-image-to-s3-via-lambda-function/" rel="bookmark">
-        <time class="popular-posts-time">2024-06-21</time>
-        <br>
-      [DotnetCore] Lambda Function 實作上傳圖片至 S3
-      </a>
-    </li>
-    <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2024/01/22/blazor-pass-method-be-parameter/" rel="bookmark">
         <time class="popular-posts-time">2024-01-22</time>
         <br>
       [Blazor] 傳遞方法為參數
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/01/30/blazor-wasm-host-server-api-404-issue/" rel="bookmark">
+        <time class="popular-posts-time">2024-01-30</time>
+        <br>
+      [Blazor] 在 API 伺服器上託管 WASM 遇到的 404 問題
       </a>
     </li>
   </ul>
@@ -320,12 +320,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="在blazor中使用JavaScript | Secret Note">
+      <meta itemprop="name" content="[Blazor] 使用JavaScript | Secret Note">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在blazor中使用JavaScript
+          [Blazor] 使用JavaScript
         </h1>
 
         <div class="post-meta-container">
@@ -337,13 +337,6 @@
       <span class="post-meta-item-text">發表於</span>
 
       <time title="創建時間：2021-06-27 10:08:40" itemprop="dateCreated datePublished" datetime="2021-06-27T10:08:40+08:00">2021-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2025-01-17 22:22:30" itemprop="dateModified" datetime="2025-01-17T22:22:30+08:00">2025-01-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
