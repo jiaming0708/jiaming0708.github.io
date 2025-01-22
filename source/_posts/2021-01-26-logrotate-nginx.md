@@ -1,7 +1,7 @@
 ---
 title: 設定nginx的log備份機制
 date: 2021-01-26 10:25:27
-updated: 2021-01-26 10:25:27
+updated: 2025-01-22 09:14:27
 categories:
 - linux
 tags:
@@ -72,10 +72,10 @@ tags:
 --- /etc/logrotate.d/nginx
 +++ /etc/logrotate.d/nginx
 /var/log/nginx/*.log {
-+				size=10M
++	size 10M
         daily
         missingok
--				rotate 52
+-	rotate 52
 +       rotate 7
         compress
         delaycompress
