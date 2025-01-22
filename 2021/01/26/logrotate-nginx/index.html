@@ -29,7 +29,7 @@
 <meta property="og:description" content="前幾天公司部屬新的版本到 prod server 的時候失敗了，檢查以後才發現是空間不足，問題是出現在 nginx log 目錄太肥，到底是發生什麼事情，今天來探討一下。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-01-26T02:25:27.000Z">
-<meta property="article:modified_time" content="2021-01-26T02:25:27.000Z">
+<meta property="article:modified_time" content="2025-01-22T01:14:27.000Z">
 <meta property="article:author" content="Jimmy Ho">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -339,6 +339,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2025-01-22 09:14:27" itemprop="dateModified" datetime="2025-01-22T09:14:27+08:00">2025-01-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分類於</span>
@@ -406,7 +413,7 @@
 <li>postrotate，在 endscript 的區間內是 rotate 結束後會執行的指令</li>
 </ul>
 <h2 id="調整設定"><a href="#調整設定" class="headerlink" title="調整設定"></a>調整設定</h2><p>根據上面的一些介紹，可以得知會保留52天的檔案，並且一個檔案沒有上限，那為了讓開檔更順利且不會佔用太多的空間，限縮檔案是 <code>10M</code> 並且只保留 <code>7個</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">--- /etc/logrotate.d/nginx</span><br><span class="line">+++ /etc/logrotate.d/nginx</span><br><span class="line">/var/log/nginx/*.log &#123;</span><br><span class="line">+				size=10M</span><br><span class="line">        daily</span><br><span class="line">        missingok</span><br><span class="line">-				rotate 52</span><br><span class="line">+       rotate 7</span><br><span class="line">        compress</span><br><span class="line">        delaycompress</span><br><span class="line">        notifempty</span><br><span class="line">        create 640 nginx adm</span><br><span class="line">        sharedscripts</span><br><span class="line">        postrotate</span><br><span class="line">                if [ -f /var/run/nginx.pid ]; then</span><br><span class="line">                        kill -USR1 `cat /var/run/nginx.pid`</span><br><span class="line">                fi</span><br><span class="line">        endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">--- /etc/logrotate.d/nginx</span><br><span class="line">+++ /etc/logrotate.d/nginx</span><br><span class="line">/var/log/nginx/*.log &#123;</span><br><span class="line">+	size 10M</span><br><span class="line">        daily</span><br><span class="line">        missingok</span><br><span class="line">-	rotate 52</span><br><span class="line">+       rotate 7</span><br><span class="line">        compress</span><br><span class="line">        delaycompress</span><br><span class="line">        notifempty</span><br><span class="line">        create 640 nginx adm</span><br><span class="line">        sharedscripts</span><br><span class="line">        postrotate</span><br><span class="line">                if [ -f /var/run/nginx.pid ]; then</span><br><span class="line">                        kill -USR1 `cat /var/run/nginx.pid`</span><br><span class="line">                fi</span><br><span class="line">        endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="測試執行"><a href="#測試執行" class="headerlink" title="測試執行"></a>測試執行</h2><p>基本上 logrotate 是每天定時跑起來，改完以後是可以不用特別重新執行，但通常改完我們會希望確定是不是如我們預期，那我們可以下個指令要求立刻執行。</p>
 <blockquote>
