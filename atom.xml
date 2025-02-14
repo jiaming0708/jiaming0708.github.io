@@ -6,7 +6,7 @@
   <link href="http://jiaming0708.github.io/atom.xml" rel="self"/>
   
   <link href="http://jiaming0708.github.io/"/>
-  <updated>2024-11-27T01:12:04.000Z</updated>
+  <updated>2025-02-13T01:12:27.000Z</updated>
   <id>http://jiaming0708.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何確認 FTP 掛載的 s3 資料夾</title>
+    <link href="http://jiaming0708.github.io/2025/02/13/ftp-s3/"/>
+    <id>http://jiaming0708.github.io/2025/02/13/ftp-s3/</id>
+    <published>2025-02-13T01:12:27.000Z</published>
+    <updated>2025-02-13T01:12:27.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在一台 linux 的主機上有 FTP 的服務，背後其實是傳到 AWS 的 S3 上面，這篇會記錄如何去找到這個背後的 S3 key 和 bucket 心路歷程。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="http://jiaming0708.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://jiaming0708.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>[DotnetCore] HttpClient 加上 Header 的作法</title>
@@ -450,27 +469,6 @@
     
     
     <category term="Flutter" scheme="http://jiaming0708.github.io/tags/Flutter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[DotnetCore] 啟用 Linter 做把關</title>
-    <link href="http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/"/>
-    <id>http://jiaming0708.github.io/2023/05/05/dotnet-core-linter/</id>
-    <published>2023-05-05T09:32:46.000Z</published>
-    <updated>2023-05-05T09:32:46.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;在 JS 的世界中，有 &lt;a href=&quot;https://eslint.org/&quot;&gt;ESLinter&lt;/a&gt; 可以幫助我們做一些排版還有變數等等的檢查，提升程式碼風格一致性，在 Dotnet Core 也希望有類似的功能。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Backend" scheme="http://jiaming0708.github.io/categories/Backend/"/>
-    
-    <category term="DotnetCore" scheme="http://jiaming0708.github.io/categories/Backend/DotnetCore/"/>
-    
-    
-    <category term="DotnetCore" scheme="http://jiaming0708.github.io/tags/DotnetCore/"/>
     
   </entry>
   

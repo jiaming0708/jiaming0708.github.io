@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>如何確認 FTP 掛載的 s3 資料夾</title>
+      <link href="/2025/02/13/ftp-s3/"/>
+      <url>/2025/02/13/ftp-s3/</url>
+      
+        <content type="html"><![CDATA[<p>在一台 linux 的主機上有 FTP 的服務，背後其實是傳到 AWS 的 S3 上面，這篇會記錄如何去找到這個背後的 S3 key 和 bucket 心路歷程。</p><span id="more"></span><p>首先要確認 FTP 服務是哪一套，可以在自己電腦透過指令的方式來得知</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp 192.168.100.99</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Connected to 192.168.100.99.</span><br><span class="line">220---------- Welcome to Pure-FTPd [privsep] [TLS] ----------</span><br><span class="line">220-You are user number 1 of 50 allowed.</span><br><span class="line">220-Local time is now 17:43. Server port: 21.</span><br><span class="line">220-This is a private system - No anonymous login</span><br><span class="line">220-IPv6 connections are also welcome on this server.</span><br><span class="line">220 You will be disconnected after 15 minutes of inactivity.</span><br><span class="line">200 OK, UTF-8 enabled</span><br><span class="line">User (192.168.100.99:(none)):</span><br></pre></td></tr></table></figure><p>從上面資訊中看到 <code>Welcome to Pure-FTPd [privsep] [TLS]</code> 這行文字，可以得知是 <code>Pure-FTPd</code> 這套</p><p>接著連到 linux 主機透過指令來查詢有開放什麼樣的資料夾給使用者</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/pure-ftpd/pureftpd.passwd</span><br></pre></td></tr></table></figure><p>看到的內容格式會是</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username:$hashed_password:UID:GID::/targetfolder./:permissions</span><br><span class="line"></span><br><span class="line">jimmy:hash_password:505:505::/nfs/ftp/./::::::::::::</span><br></pre></td></tr></table></figure><p>這邊代表的是 <code>jimmy</code> 這個使用者，可以看到 <code>/nfs/ftp</code> 這個資料夾底下的內容，沒特別設定權限</p><p>找到目錄以後，要確認這目錄是不是掛載進來的，可以使用 <code>findmnt</code> 指令來查詢</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">findmnt /nfs/ftp</span><br></pre></td></tr></table></figure><p>如果目錄是掛載的，可以看到以下的資訊；如果不是掛載則不會有任何輸出</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TARGET   SOURCE          FSTYPE    OPTIONS</span><br><span class="line">/nfs/ftp   s3fs           fuse.s3fs rw,relatime,allow_other</span><br></pre></td></tr></table></figure><p>從上面的資訊可以看出來，ftp 這個資料夾是用 s3fs-fuse 這個套件做掛載，和 s3 同步</p><p>接著問題來了，s3 是哪個 bucket 以及所使用的 access key，我們往下繼續探究<br>在主機內我使用以下兩個指令可以查到對應的 bucket</p><ul><li>ps aux</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep s3fs</span><br></pre></td></tr></table></figure><p>可以看到底下的資訊，其中的 <code>bucket1</code> 就是目標</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root       992  0 0 0 0 ?      Ssl  Feb03  20:07 s3fs bucket1 /nfs/ftp -o rw,allow_other,dev,suid</span><br></pre></td></tr></table></figure><ul><li>fstab</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/fstab | grep s3fs</span><br></pre></td></tr></table></figure><p>這個更簡單的可以看出目標</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3fs#bucket1 /nfs/ftp fuse allow_other 0 0</span><br></pre></td></tr></table></figure><p>最後就是 access key，最常見的是放在 <code>/.passwd-s3fs</code>，或是有指定檔案則會在前面兩個指令的結果中呈現</p><p>到這邊就已經拿到所有一開始所需要的資料，可以往後做其他事情啦!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[DotnetCore] HttpClient 加上 Header 的作法</title>
       <link href="/2024/11/27/dotnet-core-httpclient-header/"/>
       <url>/2024/11/27/dotnet-core-httpclient-header/</url>
