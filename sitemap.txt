@@ -1,7 +1,7 @@
-http://jiaming0708.github.io/serials/index.html
 http://jiaming0708.github.io/tags/index.html
-http://jiaming0708.github.io/categories/index.html
+http://jiaming0708.github.io/serials/index.html
 http://jiaming0708.github.io/about/index.html
+http://jiaming0708.github.io/categories/index.html
 http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/
 http://jiaming0708.github.io/Privacy-Policy/index.html
 http://jiaming0708.github.io/2025/02/13/ftp-s3/
@@ -220,10 +220,10 @@ http://jiaming0708.github.io/tags/Database/
 http://jiaming0708.github.io/tags/Github/
 http://jiaming0708.github.io/tags/CI-CD/
 http://jiaming0708.github.io/tags/nvm/
-http://jiaming0708.github.io/tags/nginx/
 http://jiaming0708.github.io/tags/Git/
 http://jiaming0708.github.io/tags/GitKraken/
 http://jiaming0708.github.io/tags/AWS/
+http://jiaming0708.github.io/tags/nginx/
 http://jiaming0708.github.io/tags/Gitea/
 http://jiaming0708.github.io/tags/Drone/
 http://jiaming0708.github.io/tags/Powershell/
@@ -299,10 +299,10 @@ http://jiaming0708.github.io/categories/Frontend/chrome/
 http://jiaming0708.github.io/categories/Backend/ElasticSearch/
 http://jiaming0708.github.io/categories/CI-CD/
 http://jiaming0708.github.io/categories/Frontend/Project/
-http://jiaming0708.github.io/categories/linux/
 http://jiaming0708.github.io/categories/Git/
 http://jiaming0708.github.io/categories/AWS/
 http://jiaming0708.github.io/categories/nginx/
+http://jiaming0708.github.io/categories/linux/
 http://jiaming0708.github.io/categories/Frontend/Blazor/
 http://jiaming0708.github.io/categories/nuget/
 http://jiaming0708.github.io/categories/shell/
