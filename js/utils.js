@@ -13,11 +13,7 @@ HTMLElement.prototype.wrap = function(wrapper) {
     })
   );
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('readystatechange', onPageLoaded, { once: true });
-  } else {
-    onPageLoaded();
-  }
+  document.addEventListener('DOMContentLoaded', onPageLoaded);
   document.addEventListener('pjax:success', onPageLoaded);
 })();
 
@@ -173,7 +169,7 @@ NexT.utils = {
   updateActiveNav() {
     if (!Array.isArray(this.sections)) return;
     let index = this.sections.findIndex(element => {
-      return element && element.getBoundingClientRect().top > 10;
+      return element?.getBoundingClientRect().top > 10;
     });
     if (index === -1) {
       index = this.sections.length - 1;
@@ -202,7 +198,7 @@ NexT.utils = {
       this.updateActiveNav();
     }, { passive: true });
 
-    backToTop && backToTop.addEventListener('click', () => {
+    backToTop?.addEventListener('click', () => {
       window.anime({
         targets  : document.scrollingElement,
         duration : 500,
