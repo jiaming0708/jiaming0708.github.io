@@ -7,7 +7,7 @@ categories:
 - DotnetCore
 tags:
 - DotnetCore
-thumbnail:
+thumbnail: /images/dotnet-core.png
 ---
 
 使用 HttpClient 來呼叫其他的服務取得資料，要加上 header 有幾種作法，底下來看看怎麼用
