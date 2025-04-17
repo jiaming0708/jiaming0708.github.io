@@ -4,6 +4,7 @@ http://jiaming0708.github.io/about/index.html
 http://jiaming0708.github.io/categories/index.html
 http://jiaming0708.github.io/2017/03/27/angular-hostbinding-listener/
 http://jiaming0708.github.io/Privacy-Policy/index.html
+http://jiaming0708.github.io/2025/04/17/dotnet-core-options-pattern/
 http://jiaming0708.github.io/2025/02/13/ftp-s3/
 http://jiaming0708.github.io/2021/01/26/logrotate-nginx/
 http://jiaming0708.github.io/2024/11/27/dotnet-core-httpclient-header/
@@ -217,9 +218,9 @@ http://jiaming0708.github.io/tags/debug/
 http://jiaming0708.github.io/tags/chrome/
 http://jiaming0708.github.io/tags/ElasticSearch/
 http://jiaming0708.github.io/tags/Database/
-http://jiaming0708.github.io/tags/nvm/
 http://jiaming0708.github.io/tags/Github/
 http://jiaming0708.github.io/tags/CI-CD/
+http://jiaming0708.github.io/tags/nvm/
 http://jiaming0708.github.io/tags/Git/
 http://jiaming0708.github.io/tags/GitKraken/
 http://jiaming0708.github.io/tags/nginx/
@@ -254,12 +255,12 @@ http://jiaming0708.github.io/tags/Webform/
 http://jiaming0708.github.io/tags/Flutter/
 http://jiaming0708.github.io/tags/Infra/
 http://jiaming0708.github.io/tags/WSL/
-http://jiaming0708.github.io/tags/Github-Pages/
-http://jiaming0708.github.io/tags/Remix/
 http://jiaming0708.github.io/tags/DevOps/
 http://jiaming0708.github.io/tags/Prometheus/
 http://jiaming0708.github.io/tags/Grafana/
 http://jiaming0708.github.io/tags/Monitor/
+http://jiaming0708.github.io/tags/Github-Pages/
+http://jiaming0708.github.io/tags/Remix/
 http://jiaming0708.github.io/tags/CICD/
 http://jiaming0708.github.io/tags/SqlServer/
 http://jiaming0708.github.io/tags/TSQL/
@@ -297,8 +298,8 @@ http://jiaming0708.github.io/categories/iterm/
 http://jiaming0708.github.io/categories/Frontend/vscode/
 http://jiaming0708.github.io/categories/Frontend/chrome/
 http://jiaming0708.github.io/categories/Backend/ElasticSearch/
-http://jiaming0708.github.io/categories/Frontend/Project/
 http://jiaming0708.github.io/categories/CI-CD/
+http://jiaming0708.github.io/categories/Frontend/Project/
 http://jiaming0708.github.io/categories/Git/
 http://jiaming0708.github.io/categories/linux/
 http://jiaming0708.github.io/categories/AWS/
@@ -317,8 +318,8 @@ http://jiaming0708.github.io/categories/Infra/
 http://jiaming0708.github.io/categories/Windows/WSL/
 http://jiaming0708.github.io/categories/DevOps/
 http://jiaming0708.github.io/categories/CICD/
-http://jiaming0708.github.io/categories/Backend/Infrastructure/
 http://jiaming0708.github.io/categories/Database/Oracle/
+http://jiaming0708.github.io/categories/Backend/Infrastructure/
 http://jiaming0708.github.io/categories/CICD/Jenkins/
 http://jiaming0708.github.io/categories/Database/SqlServer/
 http://jiaming0708.github.io/categories/Linux/
