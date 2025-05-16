@@ -8,12 +8,10 @@ on:
 jobs:
   pages:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     steps:
-      # cancel previous runs
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
-        with:
-          access_token: ${{ github.token }}
       - uses: actions/checkout@v4
       # install node
       - name: Use Node.js
