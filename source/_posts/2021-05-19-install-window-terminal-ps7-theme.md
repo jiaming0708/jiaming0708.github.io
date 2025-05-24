@@ -1,7 +1,7 @@
 ---
 title: 安裝 PowerShell7 及 Window Terminal 並套用 theme 美化
 date: 2021-05-19 21:09:59
-updated: 2021-05-19 21:09:59
+updated: 2025-05-24 16:09:59
 categories:
 - Windows
 tags:
@@ -41,6 +41,8 @@ PowerShell 7 或者是說 PowerShell Core，比原本 Window 10 內建的 PowerS
 ## 安裝
 
 打開剛裝好的 **Window Terminal** 以及 **PowerShell 7**，接下來我們就要開始安裝 Theme 相關的套件，總共要安裝兩個套件，一個是 [oh-my-pos](https://ohmyposh.dev/) 樣式的套件，另一個就是 [posh-git](https://github.com/dahlbyk/posh-git) 是用來顯示 git 的狀態，安裝的指令如下。
+
+> 2025/05/24 更新，原先做法已經過時，請直接參考 [官方文件](https://ohmyposh.dev/docs/installation/windows)
 
 ```powershell
 Install-Module oh-my-posh -Scope CurrentUser
@@ -82,6 +84,8 @@ oh-my-posh 提供蠻多的樣式可以做選擇，可以透過指令 **Get-PoshT
 
 如果預設的樣式還是不滿意的話，也可以自己客製化，做一些調整，讓自己開心工作上也會比較有動力！
 
+> 2025/05/24 更新，原先作法已過時，請參考 [官方文件](https://ohmyposh.dev/docs/installation/customize#themes)
+
 ```powershell
 Export-PoshTheme -FilePath C:\.oh-my-posh.omp.json
 ```
@@ -104,3 +108,4 @@ Set-PoshPrompt -Theme C:\.oh-my-posh.omp.json
 
 * [使用 oh-my-posh 美化 PowerShell 樣式 (poychang.net)](https://blog.poychang.net/setting-powershell-theme-with-oh-my-posh/)
 * [PowerShell 美化：oh my posh | Flymia 凡事用心之事 (ppundsh.github.io)](https://ppundsh.github.io/posts/ad6e/)
+- [官方網站](https://ohmyposh.dev/)
