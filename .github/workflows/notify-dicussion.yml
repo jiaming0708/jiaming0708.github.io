@@ -1,4 +1,7 @@
 name: Send Message on discussions comment.
+permissions:
+  contents: read
+  pull-requests: write
 
 on:
   discussion_comment:

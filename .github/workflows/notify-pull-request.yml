@@ -1,4 +1,7 @@
 name: Send Message on Pull Request open.
+permissions:
+  contents: read
+  pull-requests: write
 
 on:
   pull_request:
