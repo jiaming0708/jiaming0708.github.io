@@ -88,8 +88,17 @@ Vue 的 CreateApp 寫法官方有提供幾種
     })
     app.mount('#app')
 </script>
-
 ```
+
+其實這個寫法等同於這種宣告方式 `app.component`
+
+```js
+    const app = createApp({})
+    app.component('MyComponent', MyComponent)
+    app.mount('#app')
+```
+
+> 參考 [官網](https://vuejs.org/guide/components/registration.html)
 
 ## 寫法比較
 
