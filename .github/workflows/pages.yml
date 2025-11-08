@@ -93,7 +93,7 @@ jobs:
                   },
                   {
                     \"name\": \"Commit\",
-                    \"value\": \"[\\\`${COMMIT_SHORT}\\\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\",
+                    \"value\": \"[${COMMIT_SHORT}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\",
                     \"inline\": false
                   }
                 ],
