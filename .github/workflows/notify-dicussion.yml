@@ -14,9 +14,26 @@ jobs:
     steps:
       - name: send discord message
         run: |
+          BODY=$(echo '${{ github.event.comment.body }}' | head -c 1000 | sed 's/"/\\"/g' | sed 's/\\/\\\\/g')
+          TITLE=$(echo '${{ github.event.discussion.title }}' | sed 's/"/\\"/g')
+          
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{
-                 "content": "**New Discussion Comment**\n**From:** ${{ github.event.sender.login }}\n**Title:** ${{ github.event.discussion.title }}\n**Link:** ${{ github.event.comment.html_url }}\n**Body:**\n```\n${{ github.event.comment.body }}\n```"
-               }' \
-               ${{ secrets.DISCORD_WEBHOOK }}
+               -d "{
+                 \"embeds\": [{
+                   \"title\": \"💬 New Discussion Comment\",
+                   \"description\": \"Someone commented on a discussion\",
+                   \"color\": 3447003,
+                   \"fields\": [
+                     {\"name\": \"Discussion\", \"value\": \"$TITLE\", \"inline\": false},
+                     {\"name\": \"Author\", \"value\": \"${{ github.event.sender.login }}\", \"inline\": true},
+                     {\"name\": \"Comment\", \"value\": \"$BODY\", \"inline\": false}
+                   ],
+                   \"url\": \"${{ github.event.comment.html_url }}\",
+                   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\",
+                   \"thumbnail\": {
+                     \"url\": \"${{ github.event.sender.avatar_url }}\"
+                   }
+                 }]
+               }" \
+               "${{ secrets.DISCORD_WEBHOOK }}"

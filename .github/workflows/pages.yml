@@ -55,9 +55,30 @@ jobs:
       - name: Notify Discord
         if: always()
         run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR="65280"  # Green
+            EMOJI="✅"
+          else
+            COLOR="16711680"  # Red
+            EMOJI="❌"
+          fi
+          
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{
-                 "content": "**${{ github.repository }}** has new deployment\n**Status:** ${{ job.status }}\n**Commit:** ${{ github.sha }}\n**Branch:** ${{ github.ref_name }}\n**Author:** ${{ github.actor }}"
-               }' \
-               ${{ secrets.DISCORD_WEBHOOK }}
+               -d "{
+                 \"embeds\": [{
+                   \"title\": \"${EMOJI} Deployment $STATUS\",
+                   \"description\": \"${{ github.repository }} has new deployment\",
+                   \"color\": $COLOR,
+                   \"fields\": [
+                     {\"name\": \"Status\", \"value\": \"${{ job.status }}\", \"inline\": true},
+                     {\"name\": \"Branch\", \"value\": \"${{ github.ref_name }}\", \"inline\": true},
+                     {\"name\": \"Author\", \"value\": \"${{ github.actor }}\", \"inline\": true},
+                     {\"name\": \"Commit\", \"value\": \"[\`${{ github.sha }}\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\", \"inline\": false}
+                   ],
+                   \"url\": \"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",
+                   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
+                 }]
+               }" \
+               "${{ secrets.DISCORD_WEBHOOK }}"

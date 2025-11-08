@@ -14,9 +14,28 @@ jobs:
     steps:
       - name: send discord message
         run: |
+          TITLE=$(echo '${{ github.event.pull_request.title }}' | sed 's/"/\\"/g')
+          DESCRIPTION=$(echo '${{ github.event.pull_request.body }}' | head -c 500 | sed 's/"/\\"/g' | sed 's/\\/\\\\/g')
+          
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{
-                 "content": "**New Pull Request**\n**Author:** ${{ github.event.pull_request.user.login }}\n**Title:** ${{ github.event.pull_request.title }}\n**Link:** ${{ github.event.pull_request.html_url }}"
-               }' \
-               ${{ secrets.DISCORD_WEBHOOK }}
+               -d "{
+                 \"embeds\": [{
+                   \"title\": \"🔄 New Pull Request\",
+                   \"description\": \"$TITLE\",
+                   \"color\": 2196944,
+                   \"fields\": [
+                     {\"name\": \"Author\", \"value\": \"${{ github.event.pull_request.user.login }}\", \"inline\": true},
+                     {\"name\": \"Base Branch\", \"value\": \"${{ github.event.pull_request.base.ref }}\", \"inline\": true},
+                     {\"name\": \"Head Branch\", \"value\": \"${{ github.event.pull_request.head.ref }}\", \"inline\": true},
+                     {\"name\": \"Changes\", \"value\": \"+${{ github.event.pull_request.additions }} -${{ github.event.pull_request.deletions }}\", \"inline\": true},
+                     {\"name\": \"Description\", \"value\": \"$DESCRIPTION\", \"inline\": false}
+                   ],
+                   \"url\": \"${{ github.event.pull_request.html_url }}\",
+                   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\",
+                   \"thumbnail\": {
+                     \"url\": \"${{ github.event.pull_request.user.avatar_url }}\"
+                   }
+                 }]
+               }" \
+               "${{ secrets.DISCORD_WEBHOOK }}"
