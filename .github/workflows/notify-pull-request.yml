@@ -12,13 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: hmarr/debug-action@v2
-      - name: send telegram message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            Author: ${{ github.event.pull_request.user.login }}
-            Title: ${{ github.event.pull_request.title }}
-            Link: ${{ github.event.pull_request.html_url }}
+      - name: send discord message
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{
+                 "content": "**New Pull Request**\n**Author:** ${{ github.event.pull_request.user.login }}\n**Title:** ${{ github.event.pull_request.title }}\n**Link:** ${{ github.event.pull_request.html_url }}"
+               }' \
+               ${{ secrets.DISCORD_WEBHOOK }}

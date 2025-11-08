@@ -52,12 +52,12 @@ jobs:
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Notify
+      - name: Notify Discord
         if: always()
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ github.repository }} has new deployment
-            Status: ${{ job.status }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{
+                 "content": "**${{ github.repository }}** has new deployment\n**Status:** ${{ job.status }}\n**Commit:** ${{ github.sha }}\n**Branch:** ${{ github.ref_name }}\n**Author:** ${{ github.actor }}"
+               }' \
+               ${{ secrets.DISCORD_WEBHOOK }}
