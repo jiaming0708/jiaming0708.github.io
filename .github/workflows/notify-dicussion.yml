@@ -14,26 +14,32 @@ jobs:
     steps:
       - name: send discord message
         run: |
-          BODY=$(echo '${{ github.event.comment.body }}' | head -c 1000 | sed 's/"/\\"/g' | sed 's/\\/\\\\/g')
-          TITLE=$(echo '${{ github.event.discussion.title }}' | sed 's/"/\\"/g')
+          # Clean and truncate comment body
+          BODY=$(echo '${{ github.event.comment.body }}' | head -c 1000 | tr -d '"' | tr -d '\\')
+          TITLE=$(echo '${{ github.event.discussion.title }}' | tr -d '"' | tr -d '\\')
+          
+          # Create JSON payload using heredoc
+          cat << EOF > payload.json
+          {
+            "embeds": [{
+              "title": "💬 New Discussion Comment",
+              "description": "Someone commented on a discussion",
+              "color": 3447003,
+              "fields": [
+                {"name": "Discussion", "value": "${TITLE}", "inline": false},
+                {"name": "Author", "value": "${{ github.event.sender.login }}", "inline": true},
+                {"name": "Comment", "value": "${BODY}", "inline": false}
+              ],
+              "url": "${{ github.event.comment.html_url }}",
+              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
+              "thumbnail": {
+                "url": "${{ github.event.sender.avatar_url }}"
+              }
+            }]
+          }
+          EOF
           
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{
-                 \"embeds\": [{
-                   \"title\": \"💬 New Discussion Comment\",
-                   \"description\": \"Someone commented on a discussion\",
-                   \"color\": 3447003,
-                   \"fields\": [
-                     {\"name\": \"Discussion\", \"value\": \"$TITLE\", \"inline\": false},
-                     {\"name\": \"Author\", \"value\": \"${{ github.event.sender.login }}\", \"inline\": true},
-                     {\"name\": \"Comment\", \"value\": \"$BODY\", \"inline\": false}
-                   ],
-                   \"url\": \"${{ github.event.comment.html_url }}\",
-                   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\",
-                   \"thumbnail\": {
-                     \"url\": \"${{ github.event.sender.avatar_url }}\"
-                   }
-                 }]
-               }" \
+               -d @payload.json \
                "${{ secrets.DISCORD_WEBHOOK }}"

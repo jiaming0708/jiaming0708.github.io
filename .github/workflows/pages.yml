@@ -57,28 +57,33 @@ jobs:
         run: |
           STATUS="${{ job.status }}"
           if [ "$STATUS" = "success" ]; then
-            COLOR="65280"  # Green
+            COLOR="65280"
             EMOJI="✅"
           else
-            COLOR="16711680"  # Red
+            COLOR="16711680"
             EMOJI="❌"
           fi
           
+          # Create JSON payload using heredoc to avoid escaping issues
+          cat << EOF > payload.json
+          {
+            "embeds": [{
+              "title": "${EMOJI} Deployment ${STATUS}",
+              "description": "${{ github.repository }} has new deployment",
+              "color": ${COLOR},
+              "fields": [
+                {"name": "Status", "value": "${{ job.status }}", "inline": true},
+                {"name": "Branch", "value": "${{ github.ref_name }}", "inline": true},
+                {"name": "Author", "value": "${{ github.actor }}", "inline": true},
+                {"name": "Commit", "value": "[\`${{ github.sha }}\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }})", "inline": false}
+              ],
+              "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
+            }]
+          }
+          EOF
+          
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{
-                 \"embeds\": [{
-                   \"title\": \"${EMOJI} Deployment $STATUS\",
-                   \"description\": \"${{ github.repository }} has new deployment\",
-                   \"color\": $COLOR,
-                   \"fields\": [
-                     {\"name\": \"Status\", \"value\": \"${{ job.status }}\", \"inline\": true},
-                     {\"name\": \"Branch\", \"value\": \"${{ github.ref_name }}\", \"inline\": true},
-                     {\"name\": \"Author\", \"value\": \"${{ github.actor }}\", \"inline\": true},
-                     {\"name\": \"Commit\", \"value\": \"[\`${{ github.sha }}\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\", \"inline\": false}
-                   ],
-                   \"url\": \"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",
-                   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
-                 }]
-               }" \
+               -d @payload.json \
                "${{ secrets.DISCORD_WEBHOOK }}"
