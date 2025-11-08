@@ -13,35 +13,50 @@ jobs:
 
     steps:
       - name: send discord message
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # Clean text content
-          TITLE=$(echo '${{ github.event.pull_request.title }}' | tr -d '"' | tr -d '\\')
-          DESCRIPTION=$(echo '${{ github.event.pull_request.body }}' | head -c 500 | tr -d '"' | tr -d '\\')
-          
-          # Create JSON payload using heredoc
-          cat << EOF > payload.json
-          {
-            "embeds": [{
-              "title": "🔄 New Pull Request",
-              "description": "${TITLE}",
-              "color": 2196944,
-              "fields": [
-                {"name": "Author", "value": "${{ github.event.pull_request.user.login }}", "inline": true},
-                {"name": "Base Branch", "value": "${{ github.event.pull_request.base.ref }}", "inline": true},
-                {"name": "Head Branch", "value": "${{ github.event.pull_request.head.ref }}", "inline": true},
-                {"name": "Changes", "value": "+${{ github.event.pull_request.additions }} -${{ github.event.pull_request.deletions }}", "inline": true},
-                {"name": "Description", "value": "${DESCRIPTION}", "inline": false}
-              ],
-              "url": "${{ github.event.pull_request.html_url }}",
-              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
-              "thumbnail": {
-                "url": "${{ github.event.pull_request.user.avatar_url }}"
-              }
-            }]
-          }
-          EOF
+          PR_TITLE=$(echo '${{ github.event.pull_request.title }}' | sed 's/\\/\\\\/g' | sed 's/"/\\"/g')
+          PR_BODY=$(echo '${{ github.event.pull_request.body }}' | head -c 300 | sed 's/\\/\\\\/g' | sed 's/"/\\"/g')
           
           curl -H "Content-Type: application/json" \
-               -X POST \
-               -d @payload.json \
-               "${{ secrets.DISCORD_WEBHOOK }}"
+            -d "{
+              \"embeds\": [{
+                \"title\": \"🔄 New Pull Request\",
+                \"description\": \"${PR_TITLE}\",
+                \"color\": 2196944,
+                \"fields\": [
+                  {
+                    \"name\": \"Author\",
+                    \"value\": \"${{ github.event.pull_request.user.login }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Base Branch\",
+                    \"value\": \"${{ github.event.pull_request.base.ref }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Head Branch\",
+                    \"value\": \"${{ github.event.pull_request.head.ref }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Changes\",
+                    \"value\": \"+${{ github.event.pull_request.additions }} -${{ github.event.pull_request.deletions }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Description\",
+                    \"value\": \"${PR_BODY}\",
+                    \"inline\": false
+                  }
+                ],
+                \"url\": \"${{ github.event.pull_request.html_url }}\",
+                \"thumbnail\": {
+                  \"url\": \"${{ github.event.pull_request.user.avatar_url }}\"
+                },
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
+              }]
+            }" \
+            "${DISCORD_WEBHOOK}"
