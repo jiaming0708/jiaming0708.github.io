@@ -52,3 +52,53 @@ jobs:
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify Discord
+        if: always()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR="65280"
+            EMOJI="✅"
+          else
+            COLOR="16711680"
+            EMOJI="❌"
+          fi
+          
+          COMMIT_SHA="${{ github.sha }}"
+          COMMIT_SHORT="${COMMIT_SHA:0:7}"
+          
+          curl -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"${EMOJI} Deployment ${STATUS}\",
+                \"description\": \"**${{ github.repository }}** has new deployment\",
+                \"color\": ${COLOR},
+                \"fields\": [
+                  {
+                    \"name\": \"Status\",
+                    \"value\": \"${{ job.status }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Branch\",
+                    \"value\": \"${{ github.ref_name }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Author\",
+                    \"value\": \"${{ github.actor }}\",
+                    \"inline\": true
+                  },
+                  {
+                    \"name\": \"Commit\",
+                    \"value\": \"[${COMMIT_SHORT}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\",
+                    \"inline\": false
+                  }
+                ],
+                \"url\": \"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
+              }]
+            }" \
+            "${DISCORD_WEBHOOK}"
