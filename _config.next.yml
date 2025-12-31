@@ -299,12 +299,6 @@ follow_me:
   #WeChat: /images/wechat_channel.png || fab fa-weixin
   # RSS: /atom.xml || fa fa-rss
 
-# Related popular posts
-# Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
-related_posts:
-  enable: true
-  icon: fa fa-signs-post
-
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:

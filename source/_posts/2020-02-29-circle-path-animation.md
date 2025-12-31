@@ -59,7 +59,7 @@ tags:
 }
 ```
 
-{% codepen jiaming0708 dyoWBJw dark [result] %}
+{% codepen dyoWBJw %}
 
 ## 加上移動距離
 
@@ -78,7 +78,7 @@ tags:
 }
 ```
 
-{% codepen jiaming0708 KKpmjRW dark [result] %}
+{% codepen KKpmjRW %}
 
 ## 維持正面
 
@@ -97,7 +97,7 @@ div{
 }
 ```
 
-{% codepen jiaming0708 QWbvXVd dark [result] %}
+{% codepen QWbvXVd %}
 
 ### 由左至右
 
@@ -129,7 +129,7 @@ div{
 }
 ```
 
-{% codepen jiaming0708 KKpmjeW dark [result] %}
+{% codepen KKpmjeW %}
 
 # 結論
 
