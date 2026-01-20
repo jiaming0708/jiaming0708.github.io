@@ -1,2 +1,13 @@
+{# Custom og:image from thumbnail field #}
+{%- if page.thumbnail %}
+  {%- if page.thumbnail.startsWith('http') %}
+    <meta property="og:image" content="{{ page.thumbnail }}">
+  {%- elif page.thumbnail.startsWith('/') %}
+    <meta property="og:image" content="{{ config.url }}{{ page.thumbnail }}">
+  {%- else %}
+    <meta property="og:image" content="{{ config.url }}/{{ page.path }}{{ page.thumbnail }}">
+  {%- endif %}
+{%- endif %}
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
      crossorigin="anonymous"></script>
