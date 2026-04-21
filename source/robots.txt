@@ -1,0 +1,49 @@
+# robots.txt for jiaming0708.github.io
+# Generated: 2026-04-21
+# Compliant with RFC 9309
+
+# Allow all crawlers by default
+User-agent: *
+Allow: /
+
+# Allow crawling of content directories
+Allow: /2008/
+Allow: /2009/
+Allow: /2010/
+Allow: /2011/
+Allow: /2012/
+Allow: /2013/
+Allow: /2014/
+Allow: /2015/
+Allow: /2016/
+Allow: /2017/
+Allow: /2018/
+Allow: /2019/
+Allow: /2020/
+Allow: /2021/
+Allow: /2022/
+Allow: /2023/
+Allow: /2024/
+Allow: /2025/
+Allow: /2026/
+
+# Allow key pages
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /serials/
+
+# Allow static resources for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Disallow search API endpoint (optional, reduces unnecessary crawling)
+Disallow: /search.xml
+
+# Disallow draft posts if they exist
+Disallow: /_drafts/
+
+# Sitemap reference
+Sitemap: https://jiaming0708.github.io/sitemap.xml
