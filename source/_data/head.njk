@@ -18,5 +18,10 @@
 <link rel="author" href="{{ config.url }}/about/" title="About">
 <link rel="archives" href="{{ config.url }}/archives/" title="Archives">
 
+{# Markdown for Agents - provide markdown source for posts #}
+{%- if page.layout === 'post' and page.path %}
+<link rel="alternate" href="{{ config.url }}/{{ page.path | replace('.html', '.md') }}" type="text/markdown" title="Markdown Source">
+{%- endif %}
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
      crossorigin="anonymous"></script>
