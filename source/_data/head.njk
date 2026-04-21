@@ -9,5 +9,14 @@
   {%- endif %}
 {%- endif %}
 
+{# Agent discovery links (RFC 8288) #}
+<link rel="robots" href="{{ config.url }}/robots.txt" type="text/plain">
+<link rel="sitemap" href="{{ config.url }}/sitemap.xml" type="application/xml">
+<link rel="alternate" href="{{ config.url }}/atom.xml" type="application/atom+xml" title="Atom Feed">
+<link rel="search" href="{{ config.url }}/search.xml" type="application/opensearchdescription+xml" title="Site Search">
+<link rel="privacy-policy" href="{{ config.url }}/Privacy-Policy/" title="Privacy Policy">
+<link rel="author" href="{{ config.url }}/about/" title="About">
+<link rel="archives" href="{{ config.url }}/archives/" title="Archives">
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3000875971450027"
      crossorigin="anonymous"></script>
