@@ -2,6 +2,10 @@
 # Generated: 2026-04-21
 # Compliant with RFC 9309
 
+# Content Signals - AI content usage preferences
+# See: https://contentsignals.org/
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
 # Allow all crawlers by default
 User-agent: *
 Allow: /
