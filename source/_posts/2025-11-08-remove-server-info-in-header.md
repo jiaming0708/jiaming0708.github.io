@@ -3,6 +3,7 @@ title: 移除 Nginx/IIS 伺服器資訊
 date: 2025-11-08 09:47:18
 updated: 2025-11-08 09:47:18
 categories:
+- Infra
 tags:
 - nginx
 - IIS

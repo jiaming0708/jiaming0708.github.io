@@ -3,7 +3,8 @@ title: 將獨立的 dll 打包發佈到 nuget server
 date: 2021-12-29 09:02:29
 updated: 2024-08-15 09:11:00
 categories:
-- nuget
+- Backend
+- Dotnet
 tags:
 - nuget
 ---

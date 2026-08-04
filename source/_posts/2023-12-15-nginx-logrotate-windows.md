@@ -3,6 +3,7 @@ title: '[nginx] 運行於 windows 底下設定 log 的備份機制'
 date: 2023-12-15 15:58:03
 updated: 2023-12-15 15:58:03
 categories:
+- Infra
 - nginx
 tags:
 - nginx

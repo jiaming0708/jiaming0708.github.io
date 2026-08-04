@@ -3,7 +3,7 @@ title: 使用 Ubuntu 來作為 Jenkins 的 Slave Node
 date: 2024-04-17 10:00:10
 updated: 2024-04-18 09:50:00
 categories:
-- CICD
+- CI/CD
 - Jenkins
 tags:
 - Jenkins
